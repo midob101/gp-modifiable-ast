@@ -1,0 +1,10 @@
+{
+  "languageName": "Example Language",
+  "fileExtension": "ex",
+  "singleLineCommentAvailable": true,
+  "singleLineCommentStyle": "//",
+  "multiLineCommentAvailable": true,
+  "multiLineCommentStyleStart": "/*",
+  "multilineCommentStyleEnd": "*/",
+  "caseSensitive": true
+}
