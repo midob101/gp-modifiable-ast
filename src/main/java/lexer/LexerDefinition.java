@@ -6,7 +6,7 @@ package lexer;
  * There are three types of rules.
  *      1. Literals             --->      Plain text matches
  *      2. Patterns             --->      Regex matches
- *      3. Custom Matchers      --->      Custom implementated matchers
+ *      3. Custom Matchers      --->      Custom implemented matchers
  */
 public class LexerDefinition {
     private final String name;

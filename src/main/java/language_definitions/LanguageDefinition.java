@@ -5,13 +5,21 @@ package language_definitions;
  * The values are injected by the json parser.
  */
 public class LanguageDefinition {
+    @SuppressWarnings("unused")
     private String languageName;
+    @SuppressWarnings("unused")
     private String fileExtension;
+    @SuppressWarnings("unused")
     private boolean singleLineCommentAvailable;
+    @SuppressWarnings("unused")
     private String singleLineCommentStyle;
+    @SuppressWarnings("unused")
     private boolean multiLineCommentAvailable;
+    @SuppressWarnings("unused")
     private String multiLineCommentStyleStart;
+    @SuppressWarnings("unused")
     private String multilineCommentStyleEnd;
+    @SuppressWarnings("unused")
     private boolean caseSensitive;
 
     public String getLanguageName() {

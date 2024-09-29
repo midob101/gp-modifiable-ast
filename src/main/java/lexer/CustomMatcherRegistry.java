@@ -19,7 +19,7 @@ public class CustomMatcherRegistry {
             "multiLineCommentMatcher", new MultiLineCommentMatcher()
     );
 
-    private static final Map<String, Map<String, ICustomMatcher>> languageMatchers = new HashMap<String, Map<String, ICustomMatcher>>();
+    private static final Map<String, Map<String, ICustomMatcher>> languageMatchers = new HashMap<>();
 
     public static void registerCustomMatcher(String languageName, ICustomMatcher matcher) {
         languageMatchers.put(languageName, Map.of(languageName, matcher));

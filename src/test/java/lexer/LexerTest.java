@@ -15,11 +15,10 @@ import java.nio.file.Path;
 public class LexerTest {
 
     private LexerDefinitionList lexerDefinitionList;
-    private LanguageDefinition languageDefinition;
 
     @Before
     public void setUp() throws Exception {
-        languageDefinition = LanguageDefinitionFactory.createFromFile("src/test/java/example_language/language_definition.json");
+        LanguageDefinition languageDefinition = LanguageDefinitionFactory.createFromFile("src/test/java/example_language/language_definition.json");
         lexerDefinitionList = LexerDefinitionFactory.createFromFile(languageDefinition, "src/test/java/example_language/lexer_definitions.json");
     }
 

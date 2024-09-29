@@ -13,5 +13,5 @@ public interface ICustomMatcher {
      * Given the context, the current position in the source code can be determined.
      * The return value should be null if no match was detected, otherwise the matched string.
      */
-    public String match(LexerContext context);
+    String match(LexerContext context);
 }

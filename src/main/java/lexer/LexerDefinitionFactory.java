@@ -2,7 +2,6 @@ package lexer;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import generic.FileUtils;
 import language_definitions.LanguageDefinition;
 import lexer.exceptions.LexerMissingCustomMatcherException;
 
@@ -32,7 +31,7 @@ public class LexerDefinitionFactory {
                 ICustomMatcher customMatcher = CustomMatcherRegistry.getMatcher(languageDefinition.getLanguageName(), customMatcherName);
                 LexerDefinition t = new LexerDefinition(name, customMatcher);
                 lexerDefinitionList.addToken(t);
-            };
+            }
         }
         return lexerDefinitionList;
     }

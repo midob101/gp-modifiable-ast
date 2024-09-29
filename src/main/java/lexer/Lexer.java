@@ -31,7 +31,7 @@ public class Lexer {
     private void runForContext(LexerContext context) throws LexerParseException {
         while (!context.isDone()) {
             addNextToken(context);
-        };
+        }
     }
 
     private void addNextToken(LexerContext context) throws LexerParseException {
