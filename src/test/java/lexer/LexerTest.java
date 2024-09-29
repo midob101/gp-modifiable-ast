@@ -1,5 +1,6 @@
 package lexer;
 
+import language_definitions.LanguageDefinition;
 import language_definitions.LanguageDefinitionFactory;
 import lexer.exceptions.LexerParseException;
 import org.junit.Assert;
@@ -14,11 +15,12 @@ import java.nio.file.Path;
 public class LexerTest {
 
     private LexerDefinitionList lexerDefinitionList;
+    private LanguageDefinition languageDefinition;
 
     @Before
     public void setUp() throws Exception {
-        LanguageDefinitionFactory.createFromFile("src/test/java/example_language/language_definition.json");
-        lexerDefinitionList = LexerDefinitionFactory.createFromFile("src/test/java/example_language/lexer_definitions.json");
+        languageDefinition = LanguageDefinitionFactory.createFromFile("src/test/java/example_language/language_definition.json");
+        lexerDefinitionList = LexerDefinitionFactory.createFromFile(languageDefinition, "src/test/java/example_language/lexer_definitions.json");
     }
 
     @Test

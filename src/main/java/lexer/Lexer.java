@@ -46,7 +46,7 @@ public class Lexer {
         LexerDefinition match = null;
         int matchLength = -1;
 
-        /**
+        /*
          * TODO: Think about running through the definition list from back first, exit on first match
          */
         for (LexerDefinition lexerDefinition: context.getLexerDefinitionList().getDefinitionList()) {
