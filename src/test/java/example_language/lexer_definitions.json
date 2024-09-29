@@ -2,7 +2,8 @@
   "tokens": [
     {
       "name": "whitespace",
-      "pattern": "\\s+"
+      "pattern": "\\s+",
+      "keepInAST": false
     },
     {
       "name": "identifier",
@@ -34,11 +35,13 @@
     },
     {
       "name": "Single line comment",
-      "customMatcher": "singleLineCommentMatcher"
+      "customMatcher": "singleLineCommentMatcher",
+      "keepInAST": false
     },
     {
       "name": "Multi line comment",
-      "customMatcher": "multiLineCommentMatcher"
+      "customMatcher": "multiLineCommentMatcher",
+      "keepInAST": false
     }
   ]
 }

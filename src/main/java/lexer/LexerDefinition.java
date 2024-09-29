@@ -12,17 +12,20 @@ public class LexerDefinition {
     private final String name;
     private String pattern = "";
     private String literal = "";
+    private boolean keepInAST = true;
     private ICustomMatcher customMatcher = null;
 
-    public LexerDefinition(String name, String pattern, String literal) {
+    public LexerDefinition(String name, String pattern, String literal, boolean keepInAST) {
         this.name = name;
         this.pattern = pattern;
         this.literal = literal;
+        this.keepInAST = keepInAST;
     }
 
-    public LexerDefinition(String name, ICustomMatcher customMatcher) {
+    public LexerDefinition(String name, ICustomMatcher customMatcher, boolean keepInAST) {
         this.name = name;
         this.customMatcher = customMatcher;
+        this.keepInAST = keepInAST;
     }
 
     public String getName() {
@@ -39,6 +42,10 @@ public class LexerDefinition {
 
     public ICustomMatcher getCustomMatcher() {
         return customMatcher;
+    }
+
+    public boolean getKeepInAST() {
+        return keepInAST;
     }
 
     @Override

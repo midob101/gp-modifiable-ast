@@ -15,11 +15,15 @@ import java.nio.file.Path;
 public class LexerTest {
 
     private LexerDefinitionList lexerDefinitionList;
+    private LexerDefinitionList lexerDefinitionListWhitespace;
 
     @Before
     public void setUp() throws Exception {
         LanguageDefinition languageDefinition = LanguageDefinitionFactory.createFromFile("src/test/java/example_language/language_definition.json");
         lexerDefinitionList = LexerDefinitionFactory.createFromFile(languageDefinition, "src/test/java/example_language/lexer_definitions.json");
+
+        languageDefinition = LanguageDefinitionFactory.createFromFile("src/test/java/whitespace_language/language_definition.json");
+        lexerDefinitionListWhitespace = LexerDefinitionFactory.createFromFile(languageDefinition, "src/test/java/whitespace_language/lexer_definitions.json");
     }
 
     @Test
@@ -27,8 +31,8 @@ public class LexerTest {
         Lexer lexer = new Lexer();
         TokenList t = lexer.runForFile("src/test/java/lexer/test_data/SimpleCode.ex", lexerDefinitionList);
         Assert.assertEquals(35, t.getTokenList().size());
-        Assert.assertEquals("93.23", t.getTokenList().get(4).value() );
-        Assert.assertEquals("number", t.getTokenList().get(4).lexerDefinition().getName());
+        Assert.assertEquals("93.23", t.getTokenList().get(4).getValue() );
+        Assert.assertEquals("number", t.getTokenList().get(4).getLexerDefinition().getName());
         String expected = Files.readString(Path.of("src/test/java/lexer/results/SimpleCode.txt"), StandardCharsets.UTF_8);
         Assert.assertEquals(expected, t.toString());
     }
@@ -56,5 +60,13 @@ public class LexerTest {
         TokenList t = lexer.runForFile("src/test/java/lexer/test_data/CommentsTest.ex", lexerDefinitionList);
         String expected = Files.readString(Path.of("src/test/java/lexer/test_data/CommentsTest.ex"), StandardCharsets.UTF_8);
         Assert.assertEquals(expected, lexer.backToSource(t));
+    }
+
+    @Test
+    public void testWhitespace() throws IOException, LexerParseException {
+        Lexer lexer = new Lexer();
+        TokenList t = lexer.runForFile("src/test/java/lexer/test_data/WhitespaceSimpleTest.ex", lexerDefinitionListWhitespace);
+        String expected = Files.readString(Path.of("src/test/java/lexer/results/WhitespaceSimpleTest.txt"), StandardCharsets.UTF_8);
+        Assert.assertEquals(expected, t.toString());
     }
 }

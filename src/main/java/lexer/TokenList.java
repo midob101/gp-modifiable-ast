@@ -16,7 +16,7 @@ public class TokenList {
     public String backToSource() {
         StringBuilder result = new StringBuilder();
         for (Token token : tokenList) {
-            result.append(token.value());
+            result.append(token.getValue());
         }
         return result.toString();
     }
