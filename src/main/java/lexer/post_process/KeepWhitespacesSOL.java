@@ -1,20 +1,19 @@
-package lexer_post_process.predefined_post_processors;
+package lexer.post_process;
 
+import lexer.LexerContext;
 import lexer.Token;
-import lexer.TokenList;
-import lexer_post_process.ILexerPostProcessor;
 
 /**
- * Keeps the whitespaces in the AST at the start of a line.
+ * Keeps the whitespaces in the AST at the start of a line (SOL).
  * This postprocessor requires seperate tokens for whitespaces and newlines.
  * They have to be called "whitespace" and "newline" respectively.
  */
 public class KeepWhitespacesSOL implements ILexerPostProcessor {
 
     @Override
-    public void postProcess(TokenList tokenList) {
+    public void run(LexerContext context) {
         boolean isInNewLine = true;
-        for (Token token : tokenList.getTokenList()) {
+        for (Token token : context.getTokenList().getIterable()) {
             if (token.getLexerDefinition().getName().equals("whitespace")) {
                 token.setKeepInAST(isInNewLine);
             } else {

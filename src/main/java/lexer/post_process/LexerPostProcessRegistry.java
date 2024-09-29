@@ -1,6 +1,4 @@
-package lexer_post_process;
-
-import lexer_post_process.predefined_post_processors.KeepWhitespacesSOL;
+package lexer.post_process;
 
 import java.util.HashMap;
 import java.util.Map;

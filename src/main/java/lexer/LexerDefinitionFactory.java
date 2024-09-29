@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import language_definitions.LanguageDefinition;
 import lexer.exceptions.LexerMissingCustomMatcherException;
-import lexer_post_process.LexerPostProcessRegistry;
+import lexer.post_process.LexerPostProcessRegistry;
 
 import java.io.File;
 import java.io.IOException;

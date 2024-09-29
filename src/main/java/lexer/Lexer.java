@@ -2,6 +2,7 @@ package lexer;
 
 import lexer.custom_matchers.SingleLineCommentMatcher;
 import lexer.exceptions.LexerParseException;
+import lexer.post_process.LexerPostProcess;
 import logger.Logger;
 import logger.LoggerComponents;
 
@@ -32,6 +33,7 @@ public class Lexer {
         while (!context.isDone()) {
             addNextToken(context);
         }
+        LexerPostProcess.run(context);
     }
 
     private void addNextToken(LexerContext context) throws LexerParseException {

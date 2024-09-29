@@ -6,6 +6,7 @@ import lexer.exceptions.LexerParseException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import test_utils.StringUtilities;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -30,11 +31,11 @@ public class LexerTest {
     public void testWithoutComments() throws IOException, LexerParseException {
         Lexer lexer = new Lexer();
         TokenList t = lexer.runForFile("src/test/java/lexer/test_data/SimpleCode.ex", lexerDefinitionList);
-        Assert.assertEquals(35, t.getTokenList().size());
-        Assert.assertEquals("93.23", t.getTokenList().get(4).getValue() );
-        Assert.assertEquals("number", t.getTokenList().get(4).getLexerDefinition().getName());
+        Assert.assertEquals(35, t.getIterable().size());
+        Assert.assertEquals("93.23", t.getIterable().get(4).getValue() );
+        Assert.assertEquals("number", t.getIterable().get(4).getLexerDefinition().getName());
         String expected = Files.readString(Path.of("src/test/java/lexer/results/SimpleCode.txt"), StandardCharsets.UTF_8);
-        Assert.assertEquals(expected, t.toString());
+        Assert.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(t.toString()));
     }
 
     @Test
@@ -49,9 +50,9 @@ public class LexerTest {
     public void testComments() throws IOException, LexerParseException {
         Lexer lexer = new Lexer();
         TokenList t = lexer.runForFile("src/test/java/lexer/test_data/CommentsTest.ex", lexerDefinitionList);
-        Assert.assertEquals(12, t.getTokenList().size());
+        Assert.assertEquals(12, t.getIterable().size());
         String expected = Files.readString(Path.of("src/test/java/lexer/results/CommentsTest.txt"), StandardCharsets.UTF_8);
-        Assert.assertEquals(expected, t.toString());
+        Assert.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(t.toString()));
     }
 
     @Test
@@ -65,8 +66,8 @@ public class LexerTest {
     @Test
     public void testWhitespace() throws IOException, LexerParseException {
         Lexer lexer = new Lexer();
-        TokenList t = lexer.runForFile("src/test/java/lexer/test_data/WhitespaceSimpleTest.ex", lexerDefinitionListWhitespace);
+        TokenList t = lexer.runForFile("src/test/java/lexer/test_data/WhitespaceSimpleTest.exw", lexerDefinitionListWhitespace);
         String expected = Files.readString(Path.of("src/test/java/lexer/results/WhitespaceSimpleTest.txt"), StandardCharsets.UTF_8);
-        Assert.assertEquals(expected, t.toString());
+        Assert.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(t.toString()));
     }
 }
