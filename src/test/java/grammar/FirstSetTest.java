@@ -72,4 +72,52 @@ public class FirstSetTest {
         Set<Symbol> symbolSet = FirstSet.generate(grammar, A).getSymbolList();
         Assert.assertEquals(Set.of(), symbolSet);
     }
+
+    @Test
+    public void testFirstSetForSetOfSymbols() {
+        /**
+         * Test for the first set of the following grammar:
+         *
+         * A    ->   B | epsilon
+         * B    ->   C | epsilon
+         * C    ->   c
+         */
+        Symbol A = new Symbol("A", false);
+        Symbol B = new Symbol("B", false);
+        Symbol C = new Symbol("C", false);
+        Symbol c = new Symbol("c", true);
+
+        GrammarRule g1 = new GrammarRule(A, List.of(B));
+        GrammarRule g2 = new GrammarRule(A, List.of(Symbol.EPSILON));
+        GrammarRule g3 = new GrammarRule(B, List.of(C));
+        GrammarRule g4 = new GrammarRule(B, List.of(Symbol.EPSILON));
+        GrammarRule g5 = new GrammarRule(C, List.of(c));
+
+        List<GrammarRule> grammar = List.of(g1, g2, g3, g4, g5);
+
+        /**
+         * This should return the first symbol set of a grammar rule equivalent to
+         *      DUMMY   ->  ABc
+         * That should be only c.
+         */
+        Set<Symbol> symbolSet = FirstSet.generate(grammar, List.of(A,B,c)).getSymbolList();
+        Assert.assertEquals(Set.of(c), symbolSet);
+
+        /**
+         * This should return the first symbol set of a grammar rule equivalent to
+         *      DUMMY   ->  AB
+         * That should be c and epsilon, as the c is not required anymore.
+         */
+        symbolSet = FirstSet.generate(grammar, List.of(A,B)).getSymbolList();
+        Assert.assertEquals(Set.of(c, Symbol.EPSILON), symbolSet);
+
+        /**
+         * This should return the first symbol of the grammar rule with A on the left hand side.
+         * This is c and epsilon
+         *
+         * The return values are different, because the method above requires the c at the end.
+         */
+        symbolSet = FirstSet.generate(grammar, A).getSymbolList();
+        Assert.assertEquals(Set.of(c, Symbol.EPSILON), symbolSet);
+    }
 }

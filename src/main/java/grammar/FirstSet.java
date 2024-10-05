@@ -23,15 +23,27 @@ public class FirstSet {
     }
 
     /**
+     * Creates the first set for a given symbol list.
+     * This implementation is basicly the same, as if there was a grammar rule that has exactly
+     * the list of symbols on the right hand side.
+     *
+     * E.g. createFor = [A,B,c]
+     *
+     * Will return FIRST(A).
+     * If A is nullable, then it will return FIRST(A) concatenated with FIRST(B).
+     * If B is also nullable, then it will return FIRST(A) concatenated with FIRST(B) concatenated with FIRST(c).
+     */
+    public static FirstSet generate(List<GrammarRule> grammarRules, List<Symbol> createFor) {
+        GrammarRule dummyRule = new GrammarRule(null, createFor);
+        return FirstSet.generate(grammarRules, dummyRule);
+    }
+
+    /**
      * Creates the first set for a given symbol. The symbol needs to be a nonterminal with a production
      */
     public static FirstSet generate(List<GrammarRule> grammarRules, Symbol createFor) {
-        Set<Symbol> firstSet = new HashSet<>();
-        List<GrammarRule> newRules = grammarRules.stream().filter((rule) -> rule.getLeftHandSymbol().equals(createFor)).toList();
-        for (GrammarRule rule : newRules) {
-            firstSet.addAll(FirstSet.generate(grammarRules, rule).getSymbolList());
-        }
-        return new FirstSet(firstSet);
+        GrammarRule dummyRule = new GrammarRule(null, List.of(createFor));
+        return FirstSet.generate(grammarRules, dummyRule);
     }
 
     /**
@@ -45,8 +57,10 @@ public class FirstSet {
 
     /**
      * Creates the first set for a given production.
+     * The history parameter keeps track on what rules have been called previously.
+     * This is required to prevent this function to stuck in an infinite recursion.
      */
-    public static FirstSet generate(List<GrammarRule> grammarRules, GrammarRule createFor, Set<GrammarRule> history) {
+    private static FirstSet generate(List<GrammarRule> grammarRules, GrammarRule createFor, Set<GrammarRule> history) {
         if(FirstSet.cache.containsKey(createFor)) {
             return FirstSet.cache.get(createFor);
         }
