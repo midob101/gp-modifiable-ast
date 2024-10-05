@@ -2,6 +2,11 @@ package grammar;
 
 import java.util.List;
 
+/**
+ * TODO: Rename to production
+ * Also adjust variable names, comments, etc.
+ * Keep it at production at all times.
+ */
 public class GrammarRule {
     private Symbol leftHandSymbol = null;
     private final List<Symbol> symbols;

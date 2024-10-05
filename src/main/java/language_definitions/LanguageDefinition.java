@@ -4,8 +4,7 @@ import grammar.GrammarRule;
 import grammar.Symbol;
 import lexer.LexerDefinition;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This file contains the configuration of a language
@@ -110,5 +109,14 @@ public class LanguageDefinition {
 
     public Symbol getGrammarStartSymbol() {
         return this.symbol;
+    }
+
+    public Set<Symbol> getAllGrammarSymbols() {
+        Set<Symbol> symbols = new LinkedHashSet<>();
+        for(GrammarRule grammarRule : grammarRules) {
+            symbols.addAll(grammarRule.getSymbols());
+            symbols.add(grammarRule.getLeftHandSymbol());
+        }
+        return symbols;
     }
 }

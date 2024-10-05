@@ -24,4 +24,8 @@ public class ItemSet {
     public Set<Item> getItems() {
         return this.items;
     }
+
+    public boolean isEmpty() {
+        return this.items.isEmpty();
+    }
 }

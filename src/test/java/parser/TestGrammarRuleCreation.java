@@ -2,9 +2,6 @@ package parser;
 
 import config_reader.ConfigReader;
 import language_definitions.LanguageDefinition;
-import lexer.Lexer;
-import lexer.TokenList;
-import lexer.exceptions.LexerParseException;
 import org.junit.Assert;
 import org.junit.Test;
 import test_utils.StringUtilities;

@@ -26,9 +26,20 @@ public class Item {
         return pos;
     }
 
+    public boolean isPosAtEnd() {
+        return this.grammarRule.getSymbols().size() <= pos;
+    }
+
     public Symbol getSymbolAtPos() {
-        if(this.grammarRule.getSymbols().size() > pos) {
+        if(!this.isPosAtEnd()) {
             return this.grammarRule.getSymbols().get(pos);
+        }
+        return null;
+    }
+
+    public Item getNextItem() {
+        if(!this.isPosAtEnd()) {
+            return new Item(grammarRule, pos+1, lookaheadSymbol);
         }
         return null;
     }

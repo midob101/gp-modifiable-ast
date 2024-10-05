@@ -31,9 +31,9 @@ public class Closure {
             // This is only done to prevent modifying the list we are iterating over.
             LinkedList<Item> addedItems = new LinkedList<>();
             for (Item item : itemSet.getItems()) {
-                if(!item.getSymbolAtPos().isTerminal()) {
+                if(!item.isPosAtEnd() && !item.getSymbolAtPos().isTerminal()) {
                     for(GrammarRule production: grammarRules) {
-                        if(production.getLeftHandSymbol() == item.getSymbolAtPos()) {
+                        if(production.getLeftHandSymbol().equals(item.getSymbolAtPos())) {
                             List<Symbol> calculateFirstFor = item.getRemainingSymbols();
                             calculateFirstFor.add(item.getLookaheadSymbol());
                             FirstSet first = FirstSet.generate(grammarRules, calculateFirstFor);
