@@ -3,5 +3,6 @@ package logger;
 public enum LoggerComponents {
     LEXER,
     PARSER,
-    LANGUAGE_DEFINITIONS
+    LANGUAGE_DEFINITIONS,
+    CONFIG_READER
 }

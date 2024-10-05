@@ -1,8 +1,0 @@
-{
-  "languageName": "Whitespace sensitive example Language",
-  "fileExtension": "exw",
-  "singleLineCommentAvailable": true,
-  "singleLineCommentStyle": "//",
-  "multiLineCommentAvailable": false,
-  "caseSensitive": true
-}

@@ -1,26 +1,24 @@
 package language_definitions;
 
+import lexer.LexerDefinition;
+
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * This file contains the configuration of a language
  * The values are injected by the json parser.
  */
 public class LanguageDefinition {
-    @SuppressWarnings("unused")
     private String languageName;
-    @SuppressWarnings("unused")
     private String fileExtension;
-    @SuppressWarnings("unused")
     private boolean singleLineCommentAvailable;
-    @SuppressWarnings("unused")
     private String singleLineCommentStyle;
-    @SuppressWarnings("unused")
     private boolean multiLineCommentAvailable;
-    @SuppressWarnings("unused")
     private String multiLineCommentStyleStart;
-    @SuppressWarnings("unused")
     private String multilineCommentStyleEnd;
-    @SuppressWarnings("unused")
     private boolean caseSensitive;
+    private final List<LexerDefinition> lexerDefinitionList = new LinkedList<>();
 
     public String getLanguageName() {
         return languageName;
@@ -52,5 +50,45 @@ public class LanguageDefinition {
 
     public boolean isCaseSensitive() {
         return caseSensitive;
+    }
+
+    public void setLanguageName(String languageName) {
+        this.languageName = languageName;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
+
+    public void setSingleLineCommentAvailable(boolean singleLineCommentAvailable) {
+        this.singleLineCommentAvailable = singleLineCommentAvailable;
+    }
+
+    public void setSingleLineCommentStyle(String singleLineCommentStyle) {
+        this.singleLineCommentStyle = singleLineCommentStyle;
+    }
+
+    public void setMultiLineCommentAvailable(boolean multiLineCommentAvailable) {
+        this.multiLineCommentAvailable = multiLineCommentAvailable;
+    }
+
+    public void setMultiLineCommentStyleStart(String multiLineCommentStyleStart) {
+        this.multiLineCommentStyleStart = multiLineCommentStyleStart;
+    }
+
+    public void setMultilineCommentStyleEnd(String multilineCommentStyleEnd) {
+        this.multilineCommentStyleEnd = multilineCommentStyleEnd;
+    }
+
+    public void setCaseSensitive(boolean caseSensitive) {
+        this.caseSensitive = caseSensitive;
+    }
+
+    public void addLexerDefinition(LexerDefinition lexerDefinition) {
+        lexerDefinitionList.add(lexerDefinition);
+    }
+
+    public List<LexerDefinition> getLexerDefinitionList() {
+        return lexerDefinitionList;
     }
 }

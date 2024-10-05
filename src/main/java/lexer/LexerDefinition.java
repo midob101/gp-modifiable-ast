@@ -15,14 +15,14 @@ public class LexerDefinition {
     private boolean keepInAST = true;
     private ICustomMatcher customMatcher = null;
 
-    public LexerDefinition(String name, String pattern, String literal, boolean keepInAST) {
+    public LexerDefinition(String name, String pattern, String literal) {
         this.name = name;
         this.pattern = pattern;
         this.literal = literal;
         this.keepInAST = keepInAST;
     }
 
-    public LexerDefinition(String name, ICustomMatcher customMatcher, boolean keepInAST) {
+    public LexerDefinition(String name, ICustomMatcher customMatcher) {
         this.name = name;
         this.customMatcher = customMatcher;
         this.keepInAST = keepInAST;
@@ -46,6 +46,10 @@ public class LexerDefinition {
 
     public boolean getKeepInAST() {
         return keepInAST;
+    }
+
+    public void setKeepInAST(boolean keepInAST) {
+        this.keepInAST = keepInAST;
     }
 
     @Override

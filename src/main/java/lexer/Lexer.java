@@ -1,5 +1,6 @@
 package lexer;
 
+import language_definitions.LanguageDefinition;
 import lexer.custom_matchers.SingleLineCommentMatcher;
 import lexer.exceptions.LexerParseException;
 import lexer.post_process.LexerPostProcess;
@@ -18,8 +19,8 @@ import java.util.regex.Pattern;
  * It can also reverse the process to create from a list of tokens a file.
  */
 public class Lexer {
-    public TokenList runForFile(String fileName, LexerDefinitionList lexerDefinitionList) throws IOException, LexerParseException {
-        LexerContext context = new LexerContext(new File(fileName), lexerDefinitionList);
+    public TokenList runForFile(String fileName, LanguageDefinition languageDefinition) throws IOException, LexerParseException {
+        LexerContext context = new LexerContext(new File(fileName), languageDefinition.getLexerDefinitionList());
         runForContext(context);
         System.out.println(SingleLineCommentMatcher.class);
         return context.getTokenList();
@@ -43,15 +44,13 @@ public class Lexer {
             Logger.debug(LoggerComponents.LEXER, "Starting to parse next token, current line " + lineNumber + ", column " + columnNumber);
         }
 
-
-
         LexerDefinition match = null;
         int matchLength = -1;
 
         /*
          * TODO: Think about running through the definition list from back first, exit on first match
          */
-        for (LexerDefinition lexerDefinition: context.getLexerDefinitionList().getDefinitionList()) {
+        for (LexerDefinition lexerDefinition: context.getLexerDefinitionList()) {
             LexerDefinition newMatch = null;
 
             String matchedString = getNextTokenByLiteral(context, lexerDefinition);
