@@ -11,6 +11,22 @@ public class GrammarRule {
         this.symbols = symbols;
     }
 
+    public List<Symbol> getSymbols() {
+        return symbols;
+    }
+
+    public Symbol getFirstSymbol() {
+        return symbols.get(0);
+    }
+
+    public Symbol getLeftHandSymbol() {
+        return leftHandSymbol;
+    }
+
+    public boolean isNullable() {
+        return this.symbols.size() == 1 && this.symbols.get(0) == Symbol.EPSILON;
+    }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
