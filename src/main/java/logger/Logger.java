@@ -14,13 +14,13 @@ public class Logger {
     }
 
     public static void warn(LoggerComponents component, String message) {
-        if(LOG_LEVEL == LOG_LEVELS.WARN) {
+        if(LOG_LEVEL == LOG_LEVELS.DEBUG || LOG_LEVEL == LOG_LEVELS.WARN) {
             System.err.println("["+component+"] " + message);
         }
     }
 
     public static void err(LoggerComponents component, String message) {
-        if(LOG_LEVEL == LOG_LEVELS.ERROR) {
+        if(LOG_LEVEL == LOG_LEVELS.DEBUG || LOG_LEVEL == LOG_LEVELS.WARN || LOG_LEVEL == LOG_LEVELS.ERROR) {
             System.err.println("["+component+"] " + message);
         }
     }

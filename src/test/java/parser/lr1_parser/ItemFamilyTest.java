@@ -24,7 +24,7 @@ public class ItemFamilyTest {
      * which is based on pp. 231-236 Aho/Sethi/Ullman (Compilers: Principles, Techniques, and Tools)
      */
     @Test
-    public void testItemFammilyCreation() throws IOException {
+    public void testItemFamilyCreation() throws IOException {
         LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/aabaaab.txt"));
         ItemFamily itemFamily = new ItemFamily();
         itemFamily.create(languageDefinition);

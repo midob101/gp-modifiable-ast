@@ -5,6 +5,7 @@ import grammar.Symbol;
 import lexer.LexerDefinition;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * This file contains the configuration of a language
@@ -118,5 +119,10 @@ public class LanguageDefinition {
             symbols.add(grammarRule.getLeftHandSymbol());
         }
         return symbols;
+    }
+
+    public Set<Symbol> getAllNonTerminalSymbols() {
+        Set<Symbol> symbols = this.getAllGrammarSymbols();
+        return symbols.stream().filter((symbol) -> !symbol.isTerminal()).collect(Collectors.toSet());
     }
 }

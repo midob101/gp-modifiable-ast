@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class ItemSet {
+
     // Use a LinkedHashSet to guarantee the same order every time when printing the items
     // This is only required for the test suites to reliably detect where which entry is.
     private Set<Item> items = new LinkedHashSet<>();
@@ -28,4 +29,6 @@ public class ItemSet {
     public boolean isEmpty() {
         return this.items.isEmpty();
     }
+
+
 }
