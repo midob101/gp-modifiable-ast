@@ -1,5 +1,7 @@
 package language_definitions;
 
+import grammar.GrammarRule;
+import grammar.Symbol;
 import lexer.LexerDefinition;
 
 import java.util.LinkedList;
@@ -19,6 +21,8 @@ public class LanguageDefinition {
     private String multilineCommentStyleEnd;
     private boolean caseSensitive;
     private final List<LexerDefinition> lexerDefinitionList = new LinkedList<>();
+    private final List<GrammarRule> grammarRules = new LinkedList<>();
+    private Symbol symbol;
 
     public String getLanguageName() {
         return languageName;
@@ -90,5 +94,21 @@ public class LanguageDefinition {
 
     public List<LexerDefinition> getLexerDefinitionList() {
         return lexerDefinitionList;
+    }
+
+    public void addGrammarRule(GrammarRule grammarRule) {
+        this.grammarRules.add(grammarRule);
+    }
+
+    public List<GrammarRule> getGrammarRules() {
+        return grammarRules;
+    }
+
+    public void setGrammarStartSymbol(Symbol symbol) {
+        this.symbol = symbol;
+    }
+
+    public Symbol getGrammarStartSymbol() {
+        return this.symbol;
     }
 }

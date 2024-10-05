@@ -1,5 +1,7 @@
 package config_reader;
 
+import grammar.GrammarRule;
+import grammar.Symbol;
 import language_definitions.LanguageDefinition;
 import language_definitions.LanguageDefinitions;
 import lexer.CustomMatcherRegistry;
@@ -11,8 +13,7 @@ import logger.Logger;
 import logger.LoggerComponents;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * This class is responsible for reading the configuration of a language from a given configuration file.
@@ -37,6 +38,7 @@ public class ConfigReader {
                     case "LEXER_RULES":
                     case "HIDDEN_LEXER_RULES":
                     case "LEXER_POSTPROCESSORS":
+                    case "GRAMMAR_RULES":
                         segment = line;
                         segmentChanged = true;
                         break;
@@ -68,6 +70,9 @@ public class ConfigReader {
                             break;
                         case "LEXER_POSTPROCESSORS":
                             ConfigReader.readLexerPostprocessors(concatted, resultLanguage);
+                            break;
+                        case "GRAMMAR_RULES":
+                            ConfigReader.readGrammarRules(concatted, resultLanguage);
                             break;
                     }
 
@@ -119,6 +124,9 @@ public class ConfigReader {
                 break;
             case "case_sensitive":
                 languageDefinition.setCaseSensitive(Boolean.parseBoolean(value));
+                break;
+            case "grammar_start":
+                languageDefinition.setGrammarStartSymbol(new Symbol(value, false));
                 break;
         }
     }
@@ -180,6 +188,35 @@ public class ConfigReader {
         String[] postprocessors = list.split(",");
         for(String postprocessor: postprocessors) {
             LexerPostProcessRegistry.registerCustomMatcher(resultLanguage.getLanguageName(), postprocessor.trim());
+        }
+    }
+
+    /**
+     * Creates the grammar rules for a definition
+     */
+    private static void readGrammarRules(String concatted, LanguageDefinition resultLanguage) {
+        String[] parts = concatted.split("->");
+        String name = parts[0].trim();
+        Symbol leftHandSideSymbol = new Symbol(name, false);
+        String[] ruleDefinitions = parts[1].split("\\|");
+        for(String ruleDefinition: ruleDefinitions) {
+            List<Symbol> symbols = new LinkedList<>();
+            ruleDefinition = ruleDefinition.trim().replaceAll("\\s+", " ");
+            String[] symbolsAsString = ruleDefinition.split("\\s+");
+            for(String symbolName: symbolsAsString) {
+                if(symbolName.equals("EPSILON")) {
+                    symbols.add(Symbol.EPSILON);
+                } else {
+                    boolean isTerminal = false;
+                    if(symbolName.matches("[a-z_0-9]+")) {
+                        isTerminal = true;
+                    }
+                    symbols.add(new Symbol(symbolName, isTerminal));
+                }
+            }
+
+            GrammarRule grammarRule = new GrammarRule(leftHandSideSymbol, symbols);
+            resultLanguage.addGrammarRule(grammarRule);
         }
     }
 }

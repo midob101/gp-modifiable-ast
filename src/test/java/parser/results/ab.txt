@@ -1,0 +1,6 @@
+[S -> [A - Nonterminal,B - Nonterminal,]
+, A -> [a - Terminal,A - Nonterminal,]
+, A -> [EPSILON - Terminal,]
+, B -> [b - Terminal,]
+, B -> [b - Terminal,B - Nonterminal,]
+]
