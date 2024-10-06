@@ -1,4 +1,4 @@
-package parser.lr1_parser.items;
+package parser.lr1_parser;
 
 import grammar.GrammarRule;
 import grammar.Symbol;
@@ -6,6 +6,10 @@ import language_definitions.LanguageDefinition;
 import lexer.TokenList;
 import logger.Logger;
 import logger.LoggerComponents;
+import parser.lr1_parser.action_table.*;
+import parser.lr1_parser.action_table.BaseAction;
+import parser.lr1_parser.items.ItemFamily;
+import parser.lr1_parser.items.ItemSet;
 
 import java.util.Stack;
 

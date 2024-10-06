@@ -1,4 +1,6 @@
-package parser.lr1_parser.items;
+package parser.lr1_parser.action_table;
+
+import parser.lr1_parser.items.ItemSet;
 
 public class ShiftAction extends BaseAction {
     private final ItemSet shiftTo;

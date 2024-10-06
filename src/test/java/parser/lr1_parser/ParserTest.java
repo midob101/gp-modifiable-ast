@@ -7,7 +7,6 @@ import lexer.TokenList;
 import lexer.exceptions.LexerParseException;
 import org.junit.Assert;
 import org.junit.Test;
-import parser.lr1_parser.items.Parser;
 
 import java.io.File;
 import java.io.IOException;

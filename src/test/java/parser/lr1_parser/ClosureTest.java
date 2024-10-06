@@ -4,7 +4,6 @@ import grammar.GrammarRule;
 import grammar.Symbol;
 import org.junit.Assert;
 import org.junit.Test;
-import parser.lr1_parser.items.Closure;
 import parser.lr1_parser.items.Item;
 import parser.lr1_parser.items.ItemSet;
 import test_utils.StringUtilities;

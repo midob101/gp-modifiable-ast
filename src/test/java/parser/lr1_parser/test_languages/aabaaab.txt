@@ -1,9 +1,5 @@
 LANGUAGE_DEF
-    name = aaabaaab;
     file_extension = ab;
-    single_line_comment_available = false;
-    multi_line_comment_available = false;
-    case_sensitive = true;
     grammar_start = S;
 
 LEXER_RULES

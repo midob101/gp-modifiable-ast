@@ -1,7 +1,9 @@
-package parser.lr1_parser.items;
+package parser.lr1_parser;
 
 import grammar.GrammarRule;
 import grammar.Symbol;
+import parser.lr1_parser.items.Item;
+import parser.lr1_parser.items.ItemSet;
 
 import java.util.HashMap;
 import java.util.List;

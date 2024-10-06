@@ -1,6 +1,8 @@
-package parser.lr1_parser.items;
+package parser.lr1_parser.action_table;
 
 import grammar.Symbol;
+import parser.lr1_parser.Successor;
+import parser.lr1_parser.items.*;
 
 import java.util.HashMap;
 

@@ -3,6 +3,8 @@ package parser.lr1_parser.items;
 import grammar.GrammarRule;
 import grammar.Symbol;
 import language_definitions.LanguageDefinition;
+import parser.lr1_parser.Closure;
+import parser.lr1_parser.Successor;
 
 import java.util.LinkedList;
 import java.util.List;

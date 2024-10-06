@@ -12,17 +12,17 @@ import java.util.stream.Collectors;
  * The values are injected by the json parser.
  */
 public class LanguageDefinition {
-    private String languageName;
+    private String languageName = "undefined";
     private String fileExtension;
-    private boolean singleLineCommentAvailable;
+    private boolean singleLineCommentAvailable = false;
     private String singleLineCommentStyle;
-    private boolean multiLineCommentAvailable;
+    private boolean multiLineCommentAvailable = false;
     private String multiLineCommentStyleStart;
     private String multilineCommentStyleEnd;
-    private boolean caseSensitive;
+    private boolean caseSensitive = true;
     private final List<LexerDefinition> lexerDefinitionList = new LinkedList<>();
     private final List<GrammarRule> grammarRules = new LinkedList<>();
-    private Symbol symbol;
+    private Symbol grammarStartSymbol;
 
     public String getLanguageName() {
         return languageName;
@@ -105,11 +105,11 @@ public class LanguageDefinition {
     }
 
     public void setGrammarStartSymbol(Symbol symbol) {
-        this.symbol = symbol;
+        this.grammarStartSymbol = symbol;
     }
 
     public Symbol getGrammarStartSymbol() {
-        return this.symbol;
+        return this.grammarStartSymbol;
     }
 
     public Set<Symbol> getAllGrammarSymbols() {

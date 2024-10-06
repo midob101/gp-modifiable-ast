@@ -1,6 +1,9 @@
-package parser.lr1_parser.items;
+package parser.lr1_parser.action_table;
 
 import grammar.Symbol;
+import parser.lr1_parser.items.ItemFamily;
+import parser.lr1_parser.items.ItemSet;
+import parser.lr1_parser.Successor;
 
 import java.util.HashMap;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package parser.lr1_parser.items;
+package parser.lr1_parser;
 
 import grammar.Symbol;
 import lexer.Token;
