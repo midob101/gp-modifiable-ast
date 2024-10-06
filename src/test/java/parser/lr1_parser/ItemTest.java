@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import parser.lr1_parser.items.Item;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class ItemTest {
@@ -50,5 +49,15 @@ public class ItemTest {
 
         Item item = new Item(new GrammarRule(s1, List.of(s1, s2, s3)), 2, null);
         Assert.assertEquals(List.of(), item.getRemainingSymbols());
+    }
+
+    @Test
+    public void testGetRemainingSymbolsMiddle() {
+        Symbol s1 = new Symbol("s1", false);
+        Symbol s2 = new Symbol("s2", false);
+        Symbol s3 = new Symbol("s3", false);
+
+        Item item = new Item(new GrammarRule(s1, List.of(s1, s2, s3)), 1, null);
+        Assert.assertEquals(List.of(s3), item.getRemainingSymbols());
     }
 }
