@@ -13,7 +13,7 @@ public class PrettyPrintItemFamily {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         for(ItemSet itemSet: itemFamily.getItemSets()) {
-            sb.append("I_").append(i).append(":     ");
+            sb.append("I_").append(itemSet).append(":     ");
             for(Item item: itemSet.getItems()) {
                 GrammarRule rule = item.getGrammarRule();
                 sb.append(rule.getLeftHandSymbol().name())

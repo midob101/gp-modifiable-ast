@@ -205,7 +205,7 @@ public class ConfigReader {
             String[] symbolsAsString = ruleDefinition.split("\\s+");
             for(String symbolName: symbolsAsString) {
                 if(symbolName.equals("EPSILON")) {
-                    symbols.add(Symbol.EPSILON);
+                    //symbols.add(Symbol.EPSILON);
                 } else {
                     boolean isTerminal = false;
                     if(symbolName.matches("[a-z_0-9]+")) {

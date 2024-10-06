@@ -30,4 +30,22 @@ public class ParserTest {
 
         Assert.assertFalse(Parser.isValid(tokenList, languageDefinition));
     }
+
+    @Test
+    public void testParser3() throws IOException, LexerParseException {
+        LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/brackets.txt"));
+        Lexer lexer = new Lexer();
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/brackets.bracket", languageDefinition);
+
+        Assert.assertTrue(Parser.isValid(tokenList, languageDefinition));
+    }
+
+    @Test
+    public void testParser4() throws IOException, LexerParseException {
+        LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/math.txt"));
+        Lexer lexer = new Lexer();
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/valid_calculation.math", languageDefinition);
+
+        Assert.assertTrue(Parser.isValid(tokenList, languageDefinition));
+    }
 }

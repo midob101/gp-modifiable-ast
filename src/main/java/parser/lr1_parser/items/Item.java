@@ -5,7 +5,6 @@ import grammar.Symbol;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class Item {
     private final GrammarRule grammarRule;
@@ -47,7 +46,7 @@ public class Item {
     public List<Symbol> getRemainingSymbols() {
         LinkedList<Symbol> remainingSymbols = new LinkedList<>();
         int size = this.grammarRule.getSymbols().size();
-        for(int i = pos + 1; i < size - pos; i++) {
+        for(int i = pos + 1; i < size; i++) {
             remainingSymbols.add(this.grammarRule.getSymbols().get(i));
         }
         return remainingSymbols;

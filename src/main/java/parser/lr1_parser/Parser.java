@@ -37,6 +37,7 @@ public class Parser {
                     ItemSet shiftTo = shiftAction.getShiftTo();
                     stack.push(shiftTo);
                     next = tokenConsumer.consume();
+                    Logger.debug(LoggerComponents.PARSER, "Shifting new state onto stack");
                 } else if(action.getClass() == ReduceAction.class) {
                     ReduceAction reduceAction = (ReduceAction) action;
                     GrammarRule rule = reduceAction.getReducedRule();
@@ -46,6 +47,7 @@ public class Parser {
                     }
                     currentTopOfStack = stack.peek();
                     stack.push(gotoTable.getTarget(currentTopOfStack, s));
+                    Logger.debug(LoggerComponents.PARSER, "Reducing grammar rule " + rule);
                 } else if(action.getClass() == AcceptAction.class) {
                     return true;
                 }
