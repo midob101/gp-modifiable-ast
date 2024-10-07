@@ -3,6 +3,7 @@ package parser.lr1_parser;
 import grammar.GrammarRule;
 import grammar.Symbol;
 import language_definitions.LanguageDefinition;
+import lexer.Token;
 import lexer.TokenList;
 import logger.Logger;
 import logger.LoggerComponents;
@@ -27,6 +28,7 @@ public class Parser {
 
         TokenConsumer tokenConsumer = new TokenConsumer(tokenList);
         Symbol next = tokenConsumer.consume();
+        Token nextToken = tokenConsumer.consumeToken();
 
         while(true) {
             ItemSet currentTopOfStack = stack.peek();
@@ -37,6 +39,7 @@ public class Parser {
                     ItemSet shiftTo = shiftAction.getShiftTo();
                     stack.push(shiftTo);
                     next = tokenConsumer.consume();
+                    nextToken = tokenConsumer.consumeToken();
                     Logger.debug(LoggerComponents.PARSER, "Shifting new state onto stack");
                 } else if(action.getClass() == ReduceAction.class) {
                     ReduceAction reduceAction = (ReduceAction) action;
@@ -52,6 +55,7 @@ public class Parser {
                     return true;
                 }
             } else {
+                System.out.println(nextToken);
                 Logger.err(LoggerComponents.PARSER, "Invalid source, does not match the grammar definitions.");
                 return false;
             }

@@ -1,0 +1,116 @@
+LANGUAGE_DEF
+    name = minijava;
+    file_extension = java;
+    single_line_comment_available = true;
+    single_line_comment_style = //;
+    multi_line_comment_available = true;
+    multi_line_comment_style_start = /*;
+    multi_line_comment_style_end = */;
+    case_sensitive = true;
+    grammar_start = S;
+
+LEXER_RULES
+    whitespace              =   regex(\s+);
+    identifier              =   regex([a-zA-Z_][a-zA-Z_0-9]*);
+    integer_literal         =   regex([0-9]+(\.[0-9]+)?);
+    true_literal            =   "true";
+    false_literal           =   "false";
+    this_expression         =   "this";
+    new_expression          =   "new";
+    class_stmt              =   "class";
+    public_stmt             =   "public";
+    static_stmt             =   "static";
+    return_stmt             =   "return";
+    extents_stmt            =   "extends";
+    void_type               =   "void";
+    main_identifier         =   "main";
+    string_type             =   "String";
+    int_type                =   "int";
+    boolean_type            =   "boolean";
+    array_length_stmt       =   "length";
+    not                     =   "!";
+    bracket_open            =   "(";
+    bracket_close           =   ")";
+    curly_bracket_open      =   "{";
+    curly_bracket_close     =   "}";
+    square_bracket_open     =   "[";
+    square_bracket_close    =   "]";
+    dot                     =   ".";
+    comma                   =   ",";
+    semicolon               =   ";";
+    if                      =   "if";
+    else                    =   "else";
+    while                   =   "while";
+    assignment              =   "=";
+    plus                    =   "+";
+    minus                   =   "-";
+    multiply                =   "*";
+    less_then               =   "<";
+    and                     =   "&&";
+    or                      =   "||";
+    println                 =   "System.out.println";
+    Single line comment     =   customMatcher(singleLineCommentMatcher);
+    Multi line comment      =   customMatcher(multiLineCommentMatcher);
+
+HIDDEN_LEXER_RULES
+    whitespace, Single line comment, Multi line comment;
+
+GRAMMAR_RULES
+    S                           ->  MAIN_CLASS TYPE_DECLARATIONS;
+    TYPE_DECLARATIONS           ->  TYPE_DECLARATION TYPE_DECLARATIONS | TYPE_DECLARATION | EPSILON;
+    TYPE_DECLARATION            ->  CLASS_DECLARATION | CLASS_EXTENTS_DECLARATION;
+    CLASS_DECLARATION           ->  class_stmt identifier curly_bracket_open VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close;
+    CLASS_EXTENTS_DECLARATION   ->  class_stmt identifier extents_stmt identifier curly_bracket_open VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close;
+    MAIN_CLASS                  ->  class_stmt identifier curly_bracket_open public_stmt static_stmt void_type main_identifier
+                                    bracket_open string_type square_bracket_open square_bracket_close identifier bracket_close
+                                    curly_bracket_open VAR_DECLARATIONS STATEMENTS curly_bracket_close curly_bracket_close;
+    METHOD_DECLARATIONS         ->  METHOD_DECLARATIONS METHOD_DECLARATION | METHOD_DECLARATION | EPSILON;
+    METHOD_DECLARATION          ->  public_stmt TYPE identifier bracket_open FORMAL_PARAMETER_LIST bracket_close curly_bracket_open VAR_DECLARATIONS STATEMENTS return_stmt EXPRESSION semicolon curly_bracket_close;
+    FORMAL_PARAMETER_LIST       ->  FORMAL_PARAMETER_LIST comma FORMAL_PARAMETER | FORMAL_PARAMETER | EPSILON;
+    FORMAL_PARAMETER            ->  TYPE identifier;
+    VAR_DECLARATIONS            ->  VAR_DECLARATIONS VAR_DECLARATION | VAR_DECLARATION | EPSILON;
+    STATEMENTS                  ->  STATEMENTS STATEMENT | STATEMENT | EPSILON;
+    VAR_DECLARATION             ->  TYPE identifier semicolon;
+    STATEMENT                   ->  BLOCK | ASSIGNMENT_STATEMENT | ARRAY_ASSIGNMENT_STATEMENT | IF_STATEMENT | WHILE_STATEMENT | PRINT_STATEMENT;
+    BLOCK                       ->  curly_bracket_open STATEMENTS curly_bracket_close;
+    ASSIGNMENT_STATEMENT        ->  identifier assignment EXPRESSION semicolon;
+    ARRAY_ASSIGNMENT_STATEMENT  ->  identifier square_bracket_open EXPRESSION square_bracket_close assignment EXPRESSION semicolon;
+    IF_STATEMENT                ->  if bracket_open EXPRESSION bracket_close STATEMENT else STATEMENT;
+    WHILE_STATEMENT             ->  while bracket_open EXPRESSION bracket_close STATEMENT;
+    PRINT_STATEMENT             ->  println bracket_open EXPRESSION bracket_close semicolon;
+    TYPE                        ->  ARRAY_TYPE | BOOLEAN_TYPE | INTEGER_TYPE | identifier;
+    ARRAY_TYPE                  ->  int_type square_bracket_open square_bracket_close;
+    BOOLEAN_TYPE                ->  boolean_type;
+    INTEGER_TYPE                ->  int_type;
+    EXPRESSION                  ->  AND_EXPRESSION
+                                    | COMPARE_EXPRESSION
+                                    | PLUS_EXPRESSION
+                                    | MINUS_EXPRESSION
+                                    | TIMES_EXPRESSION
+                                    | ARRAY_LOOKUP
+                                    | ARRAY_LENGTH
+                                    | MESSAGE_SEND
+                                    | CLAUSE;
+    AND_EXPRESSION              ->  CLAUSE and CLAUSE;
+    COMPARE_EXPRESSION          ->  PRIMARY_EXPRESSION less_then PRIMARY_EXPRESSION;
+    PLUS_EXPRESSION             ->  PRIMARY_EXPRESSION plus PRIMARY_EXPRESSION;
+    MINUS_EXPRESSION            ->  PRIMARY_EXPRESSION minus PRIMARY_EXPRESSION;
+    TIMES_EXPRESSION            ->  PRIMARY_EXPRESSION multiply PRIMARY_EXPRESSION;
+    ARRAY_LOOKUP                ->  PRIMARY_EXPRESSION square_bracket_open PRIMARY_EXPRESSION square_bracket_close;
+    ARRAY_LENGTH                ->  PRIMARY_EXPRESSION dot array_length_stmt;
+    MESSAGE_SEND                ->  PRIMARY_EXPRESSION dot identifier bracket_open bracket_close |
+                                    PRIMARY_EXPRESSION dot identifier bracket_open EXPRESSION_LIST bracket_close;
+    EXPRESSION_LIST             ->  EXPRESSION | EXPRESSION_LIST comma EXPRESSION;
+    CLAUSE                      ->  NOT_EXPRESSION | PRIMARY_EXPRESSION;
+    NOT_EXPRESSION              ->  not CLAUSE;
+    PRIMARY_EXPRESSION          ->  integer_literal
+                                    | true_literal
+                                    | false_literal
+                                    | identifier
+                                    | this_expression
+                                    | ARRAY_ALLOCATION_EXPRESSION
+                                    | ALLOCATION_EXPRESSION
+                                    | BRACKET_EXPRESSION;
+    ARRAY_ALLOCATION_EXPRESSION ->  new_expression int_type square_bracket_open EXPRESSION square_bracket_close;
+    ALLOCATION_EXPRESSION       ->  new_expression identifier bracket_open bracket_close;
+    BRACKET_EXPRESSION          ->  bracket_open EXPRESSION bracket_close;

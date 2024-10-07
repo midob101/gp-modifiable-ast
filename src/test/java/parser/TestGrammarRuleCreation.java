@@ -1,6 +1,7 @@
 package parser;
 
 import config_reader.ConfigReader;
+import config_reader.ConfigReaderException;
 import language_definitions.LanguageDefinition;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,7 +16,7 @@ import java.nio.file.Path;
 public class TestGrammarRuleCreation {
 
     @Test
-    public void testCreation() throws IOException {
+    public void testCreation() throws IOException, ConfigReaderException {
         LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/languages/ab.txt"));
         String expected = Files.readString(Path.of("src/test/java/parser/results/ab.txt"), StandardCharsets.UTF_8);
         Assert.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(languageDefinition.getGrammarRules().toString()));

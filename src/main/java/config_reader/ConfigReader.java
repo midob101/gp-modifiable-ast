@@ -22,7 +22,7 @@ public class ConfigReader {
     /**
      * Initiates the read process
      */
-    public static LanguageDefinition read(File file) throws FileNotFoundException {
+    public static LanguageDefinition read(File file) throws ConfigReaderException {
         Logger.debug(LoggerComponents.CONFIG_READER, "Reading language definitions from " + file);
         String segment = "";
         String concatted = ""; // Keeps track of the current statement, it can span over multiple lines.
@@ -54,8 +54,7 @@ public class ConfigReader {
                 // No segment change was detected.
                 if(line.trim().endsWith(";")) {
                     // Line ends with a semicolon, all data for this configuration has been collected.
-                    concatted = concatted + line;
-                    concatted = concatted.replace(";", "");
+                    concatted = concatted + line.substring(0, line.length() - 1);
 
                     // Depending on the segment, trigger a different action
                     switch(segment) {
@@ -83,9 +82,12 @@ public class ConfigReader {
                 }
             }
         } catch (IOException | LexerMissingCustomMatcherException e) {
-            throw new RuntimeException(e);
+            throw new ConfigReaderException(e);
         }
         LanguageDefinitions.addLanguageDefinition(resultLanguage);
+        if(!resultLanguage.isValid()) {
+            throw new ConfigReaderException("Invalid language definition.");
+        }
         return resultLanguage;
     }
 

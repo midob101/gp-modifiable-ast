@@ -3,6 +3,8 @@ package language_definitions;
 import grammar.GrammarRule;
 import grammar.Symbol;
 import lexer.LexerDefinition;
+import logger.Logger;
+import logger.LoggerComponents;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -124,5 +126,24 @@ public class LanguageDefinition {
     public Set<Symbol> getAllNonTerminalSymbols() {
         Set<Symbol> symbols = this.getAllGrammarSymbols();
         return symbols.stream().filter((symbol) -> !symbol.isTerminal()).collect(Collectors.toSet());
+    }
+
+    public boolean isValid() {
+        boolean isValid = true;
+        List<LexerDefinition> terminals = this.getLexerDefinitionList();
+        List<GrammarRule> grammarRules = this.getGrammarRules();
+
+        for(Symbol symbol : this.getAllGrammarSymbols()) {
+            if(!symbol.isTerminal()) {
+                if(grammarRules.stream().filter((rule) -> rule.getLeftHandSymbol().equals(symbol)).findAny().isEmpty()) {
+                    Logger.err(LoggerComponents.CONFIG_READER, "Missing definition of non terminal " + symbol.name());
+                }
+            } else {
+                if(terminals.stream().filter((terminal) -> terminal.getName().equals(symbol.name())).findAny().isEmpty()) {
+                    Logger.err(LoggerComponents.CONFIG_READER, "Missing definition of terminal " + symbol.name());
+                }
+            }
+        }
+        return isValid;
     }
 }

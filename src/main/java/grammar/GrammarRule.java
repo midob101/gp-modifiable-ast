@@ -21,6 +21,9 @@ public class GrammarRule {
     }
 
     public Symbol getFirstSymbol() {
+        if(this.isNullable()) {
+            return null;
+        }
         return symbols.get(0);
     }
 
@@ -29,7 +32,7 @@ public class GrammarRule {
     }
 
     public boolean isNullable() {
-        return this.symbols.size() == 1 && this.symbols.get(0) == Symbol.EPSILON;
+        return this.symbols.size() == 0;
     }
 
     @Override

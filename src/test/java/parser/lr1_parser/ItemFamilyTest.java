@@ -1,6 +1,7 @@
 package parser.lr1_parser;
 
 import config_reader.ConfigReader;
+import config_reader.ConfigReaderException;
 import language_definitions.LanguageDefinition;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class ItemFamilyTest {
      * which is based on pp. 231-236 Aho/Sethi/Ullman (Compilers: Principles, Techniques, and Tools)
      */
     @Test
-    public void testItemFamilyCreation() throws IOException {
+    public void testItemFamilyCreation() throws IOException, ConfigReaderException {
         LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/aabaaab.txt"));
         ItemFamily itemFamily = new ItemFamily();
         itemFamily.create(languageDefinition);

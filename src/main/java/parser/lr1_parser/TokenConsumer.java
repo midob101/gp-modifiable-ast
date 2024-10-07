@@ -9,15 +9,23 @@ import java.util.Queue;
 
 public class TokenConsumer {
     Queue<Symbol> symbols = new LinkedList<>();
+    Queue<Token> tokens = new LinkedList<>();
 
     public TokenConsumer(TokenList tokenList) {
         for(Token t: tokenList.getIterable()) {
-            symbols.add(new Symbol(t.getLexerDefinition().getName(), true));
+            if(t.getKeepInAST()) {
+                symbols.add(new Symbol(t.getLexerDefinition().getName(), true));
+                tokens.add(t);
+            }
         }
         symbols.add(Symbol.END_OF_INPUT);
     }
 
     public Symbol consume() {
         return symbols.poll();
+    }
+
+    public Token consumeToken() {
+        return tokens.poll();
     }
 }

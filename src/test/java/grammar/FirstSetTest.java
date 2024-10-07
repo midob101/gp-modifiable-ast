@@ -30,11 +30,11 @@ public class FirstSetTest {
 
         GrammarRule g1 = new GrammarRule(S, List.of(A, B));
         GrammarRule g2 = new GrammarRule(A, List.of(C, a));
-        GrammarRule g3 = new GrammarRule(A, List.of(Symbol.EPSILON));
+        GrammarRule g3 = new GrammarRule(A, List.of());
         GrammarRule g4 = new GrammarRule(B, List.of(B, a, A, C));
         GrammarRule g5 = new GrammarRule(B, List.of(c));
         GrammarRule g6 = new GrammarRule(C, List.of(b));
-        GrammarRule g7 = new GrammarRule(C, List.of(Symbol.EPSILON));
+        GrammarRule g7 = new GrammarRule(C, List.of());
 
         List<GrammarRule> grammar = List.of(g1, g2, g3, g4, g5, g6, g7);
 
@@ -88,9 +88,9 @@ public class FirstSetTest {
         Symbol c = new Symbol("c", true);
 
         GrammarRule g1 = new GrammarRule(A, List.of(B));
-        GrammarRule g2 = new GrammarRule(A, List.of(Symbol.EPSILON));
+        GrammarRule g2 = new GrammarRule(A, List.of());
         GrammarRule g3 = new GrammarRule(B, List.of(C));
-        GrammarRule g4 = new GrammarRule(B, List.of(Symbol.EPSILON));
+        GrammarRule g4 = new GrammarRule(B, List.of());
         GrammarRule g5 = new GrammarRule(C, List.of(c));
 
         List<GrammarRule> grammar = List.of(g1, g2, g3, g4, g5);
