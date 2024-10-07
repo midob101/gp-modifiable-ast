@@ -49,11 +49,11 @@ LEXER_RULES
     and                     =   "&&";
     or                      =   "||";
     println                 =   "System.out.println";
-    Single line comment     =   customMatcher(singleLineCommentMatcher);
-    Multi line comment      =   customMatcher(multiLineCommentMatcher);
+    single_line_comment     =   customMatcher(singleLineCommentMatcher);
+    multi_line_comment      =   customMatcher(multiLineCommentMatcher);
 
 HIDDEN_LEXER_RULES
-    whitespace, Single line comment, Multi line comment;
+    whitespace, single_line_comment, multi_line_comment;
 
 GRAMMAR_RULES
     S                           ->  MAIN_CLASS TYPE_DECLARATIONS;
