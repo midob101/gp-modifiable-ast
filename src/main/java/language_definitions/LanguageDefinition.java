@@ -137,10 +137,12 @@ public class LanguageDefinition {
             if(!symbol.isTerminal()) {
                 if(grammarRules.stream().filter((rule) -> rule.getLeftHandSymbol().equals(symbol)).findAny().isEmpty()) {
                     Logger.err(LoggerComponents.CONFIG_READER, "Missing definition of non terminal " + symbol.name());
+                    isValid = false;
                 }
             } else {
                 if(terminals.stream().filter((terminal) -> terminal.getName().equals(symbol.name())).findAny().isEmpty()) {
                     Logger.err(LoggerComponents.CONFIG_READER, "Missing definition of terminal " + symbol.name());
+                    isValid = false;
                 }
             }
         }
