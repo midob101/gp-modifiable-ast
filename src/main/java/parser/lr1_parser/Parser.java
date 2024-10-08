@@ -16,6 +16,11 @@ import java.util.Stack;
 
 public class Parser {
 
+    public static void clearCache() {
+        FirstSet.clearCache();
+        Successor.clearCache();
+    }
+
     public static boolean isValid(TokenList tokenList, LanguageDefinition languageDefinition) {
         ItemFamily itemFamily = new ItemFamily();
         itemFamily.create(languageDefinition);
@@ -44,8 +49,8 @@ public class Parser {
                 } else if(action.getClass() == ReduceAction.class) {
                     ReduceAction reduceAction = (ReduceAction) action;
                     GrammarRule rule = reduceAction.getReducedRule();
-                    Symbol s = rule.getLeftHandSymbol();
-                    for(int i = 0; i < rule.getSymbols().size(); i++) {
+                    Symbol s = rule.leftHandSymbol();
+                    for(int i = 0; i < rule.symbols().size(); i++) {
                         stack.pop();
                     }
                     currentTopOfStack = stack.peek();

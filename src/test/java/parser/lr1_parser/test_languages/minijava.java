@@ -5,7 +5,7 @@ class SubclassReturnValue
         B b;
         A a;
         int[] asd;
-        asd = new int[4];
+        asd = new int[4+1];
 
         b = new B();
 

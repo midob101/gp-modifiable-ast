@@ -19,7 +19,7 @@ public class ItemSet {
 
     public boolean hasSimilarItem(Item item) {
         for(Item existing: items) {
-            if(existing.isEqualTo(item)) {
+            if(existing.equals(item)) {
                 return true;
             }
         }

@@ -1,4 +1,7 @@
-package grammar;
+package parser.lr1_parser;
+
+import grammar.GrammarRule;
+import grammar.Symbol;
 
 import java.util.*;
 
@@ -20,6 +23,10 @@ public class FirstSet {
 
     public Set<Symbol> getSymbolList() {
         return firstSet;
+    }
+
+    public static void clearCache() {
+        FirstSet.cache.clear();
     }
 
     /**
@@ -73,14 +80,14 @@ public class FirstSet {
             firstSet.add(first);
         } else {
             boolean allNullable = true;
-            for(Symbol s: createFor.getSymbols()) {
+            for(Symbol s: createFor.symbols()) {
                 if(s.isTerminal()) {
                     firstSet.add(s);
                     allNullable = false;
                     break;
                 }
                 boolean selfRecursive = false;
-                List<GrammarRule> newRules = grammarRules.stream().filter((rule) -> rule.getLeftHandSymbol().equals(s)).toList();
+                List<GrammarRule> newRules = grammarRules.stream().filter((rule) -> rule.leftHandSymbol().equals(s)).toList();
                 boolean nullable = false;
                 for(GrammarRule rule: newRules) {
                     // Only run recursively if it is not stuck in a loop

@@ -6,8 +6,8 @@ import language_definitions.LanguageDefinition;
 import lexer.Lexer;
 import lexer.TokenList;
 import lexer.exceptions.LexerParseException;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class ParserTest {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/aabaaab_valid.ab", languageDefinition);
 
-        Assert.assertTrue(Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertTrue(Parser.isValid(tokenList, languageDefinition));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class ParserTest {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/aabaaab_invalid.ab", languageDefinition);
 
-        Assert.assertFalse(Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertFalse(Parser.isValid(tokenList, languageDefinition));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class ParserTest {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/brackets.bracket", languageDefinition);
 
-        Assert.assertTrue(Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertTrue(Parser.isValid(tokenList, languageDefinition));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class ParserTest {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/valid_calculation.math", languageDefinition);
 
-        Assert.assertTrue(Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertTrue(Parser.isValid(tokenList, languageDefinition));
     }
 
     @Test
@@ -56,6 +56,6 @@ public class ParserTest {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava.java", languageDefinition);
 
-        Assert.assertTrue(Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertTrue(Parser.isValid(tokenList, languageDefinition));
     }
 }

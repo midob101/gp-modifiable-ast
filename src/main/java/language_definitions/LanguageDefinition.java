@@ -117,8 +117,8 @@ public class LanguageDefinition {
     public Set<Symbol> getAllGrammarSymbols() {
         Set<Symbol> symbols = new LinkedHashSet<>();
         for(GrammarRule grammarRule : grammarRules) {
-            symbols.addAll(grammarRule.getSymbols());
-            symbols.add(grammarRule.getLeftHandSymbol());
+            symbols.addAll(grammarRule.symbols());
+            symbols.add(grammarRule.leftHandSymbol());
         }
         return symbols;
     }
@@ -135,7 +135,7 @@ public class LanguageDefinition {
 
         for(Symbol symbol : this.getAllGrammarSymbols()) {
             if(!symbol.isTerminal()) {
-                if(grammarRules.stream().filter((rule) -> rule.getLeftHandSymbol().equals(symbol)).findAny().isEmpty()) {
+                if(grammarRules.stream().filter((rule) -> rule.leftHandSymbol().equals(symbol)).findAny().isEmpty()) {
                     Logger.err(LoggerComponents.CONFIG_READER, "Missing definition of non terminal " + symbol.name());
                     isValid = false;
                 }

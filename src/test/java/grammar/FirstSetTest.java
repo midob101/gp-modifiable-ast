@@ -1,12 +1,20 @@
 package grammar;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import parser.lr1_parser.FirstSet;
+import parser.lr1_parser.Parser;
 
 import java.util.List;
 import java.util.Set;
 
 public class FirstSetTest {
+
+    @BeforeEach
+    public void beforeEach() {
+        Parser.clearCache();
+    }
 
     @Test
     public void testFirstSet() {
@@ -39,16 +47,16 @@ public class FirstSetTest {
         List<GrammarRule> grammar = List.of(g1, g2, g3, g4, g5, g6, g7);
 
         Set<Symbol> symbolSet = FirstSet.generate(grammar, S).getSymbolList();
-        Assert.assertEquals(Set.of(a, b, c), symbolSet);
+        Assertions.assertEquals(Set.of(a, b, c), symbolSet);
 
         symbolSet = FirstSet.generate(grammar, A).getSymbolList();
-        Assert.assertEquals(Set.of(a, b, Symbol.EPSILON), symbolSet);
+        Assertions.assertEquals(Set.of(a, b, Symbol.EPSILON), symbolSet);
 
         symbolSet = FirstSet.generate(grammar, B).getSymbolList();
-        Assert.assertEquals(Set.of(c), symbolSet);
+        Assertions.assertEquals(Set.of(c), symbolSet);
 
         symbolSet = FirstSet.generate(grammar, C).getSymbolList();
-        Assert.assertEquals(Set.of(b, Symbol.EPSILON), symbolSet);
+        Assertions.assertEquals(Set.of(b, Symbol.EPSILON), symbolSet);
     }
 
     @Test
@@ -70,7 +78,7 @@ public class FirstSetTest {
         List<GrammarRule> grammar = List.of(g1, g2);
 
         Set<Symbol> symbolSet = FirstSet.generate(grammar, A).getSymbolList();
-        Assert.assertEquals(Set.of(), symbolSet);
+        Assertions.assertEquals(Set.of(), symbolSet);
     }
 
     @Test
@@ -101,7 +109,7 @@ public class FirstSetTest {
          * That should be only c.
          */
         Set<Symbol> symbolSet = FirstSet.generate(grammar, List.of(A,B,c)).getSymbolList();
-        Assert.assertEquals(Set.of(c), symbolSet);
+        Assertions.assertEquals(Set.of(c), symbolSet);
 
         /**
          * This should return the first symbol set of a grammar rule equivalent to
@@ -109,7 +117,7 @@ public class FirstSetTest {
          * That should be c and epsilon, as the c is not required anymore.
          */
         symbolSet = FirstSet.generate(grammar, List.of(A,B)).getSymbolList();
-        Assert.assertEquals(Set.of(c, Symbol.EPSILON), symbolSet);
+        Assertions.assertEquals(Set.of(c, Symbol.EPSILON), symbolSet);
 
         /**
          * This should return the first symbol of the grammar rule with A on the left hand side.
@@ -118,6 +126,6 @@ public class FirstSetTest {
          * The return values are different, because the method above requires the c at the end.
          */
         symbolSet = FirstSet.generate(grammar, A).getSymbolList();
-        Assert.assertEquals(Set.of(c, Symbol.EPSILON), symbolSet);
+        Assertions.assertEquals(Set.of(c, Symbol.EPSILON), symbolSet);
     }
 }

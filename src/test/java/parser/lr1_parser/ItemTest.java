@@ -2,8 +2,8 @@ package parser.lr1_parser;
 
 import grammar.GrammarRule;
 import grammar.Symbol;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import parser.lr1_parser.items.Item;
 
 import java.util.List;
@@ -16,10 +16,10 @@ public class ItemTest {
         Symbol s2 = new Symbol("s2", false);
 
         Item item = new Item(new GrammarRule(s1, List.of(s1, s2)), 0, null);
-        Assert.assertEquals(s1, item.getSymbolAtPos());
+        Assertions.assertEquals(s1, item.getSymbolAtPos());
 
         item = new Item(new GrammarRule(s1, List.of(s1, s2)), 1, null);
-        Assert.assertEquals(s2, item.getSymbolAtPos());
+        Assertions.assertEquals(s2, item.getSymbolAtPos());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class ItemTest {
         Symbol s2 = new Symbol("s2", false);
 
         Item item = new Item(new GrammarRule(s1, List.of(s1, s2)), 2, null);
-        Assert.assertNull(item.getSymbolAtPos());
+        Assertions.assertNull(item.getSymbolAtPos());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class ItemTest {
         Symbol s3 = new Symbol("s3", false);
 
         Item item = new Item(new GrammarRule(s1, List.of(s1, s2, s3)), 0, null);
-        Assert.assertEquals(List.of(s2, s3), item.getRemainingSymbols());
+        Assertions.assertEquals(List.of(s2, s3), item.getRemainingSymbols());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class ItemTest {
         Symbol s3 = new Symbol("s3", false);
 
         Item item = new Item(new GrammarRule(s1, List.of(s1, s2, s3)), 2, null);
-        Assert.assertEquals(List.of(), item.getRemainingSymbols());
+        Assertions.assertEquals(List.of(), item.getRemainingSymbols());
     }
 
     @Test
@@ -58,6 +58,6 @@ public class ItemTest {
         Symbol s3 = new Symbol("s3", false);
 
         Item item = new Item(new GrammarRule(s1, List.of(s1, s2, s3)), 1, null);
-        Assert.assertEquals(List.of(s3), item.getRemainingSymbols());
+        Assertions.assertEquals(List.of(s3), item.getRemainingSymbols());
     }
 }

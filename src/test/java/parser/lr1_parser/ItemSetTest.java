@@ -2,8 +2,8 @@ package parser.lr1_parser;
 
 import grammar.GrammarRule;
 import grammar.Symbol;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import parser.lr1_parser.items.Item;
 import parser.lr1_parser.items.ItemSet;
 
@@ -24,7 +24,7 @@ public class ItemSetTest {
         itemSet.addItem(item);
 
 
-        Assert.assertTrue(itemSet.hasSimilarItem(item2));
+        Assertions.assertEquals(1, itemSet.getItems().size());
     }
 
     @Test
@@ -40,6 +40,6 @@ public class ItemSetTest {
         itemSet.addItem(item);
         itemSet.addItem(item2);
 
-        Assert.assertEquals(2, itemSet.getItems().size());
+        Assertions.assertEquals(2, itemSet.getItems().size());
     }
 }

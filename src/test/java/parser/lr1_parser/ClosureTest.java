@@ -2,8 +2,8 @@ package parser.lr1_parser;
 
 import grammar.GrammarRule;
 import grammar.Symbol;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import parser.lr1_parser.items.Item;
 import parser.lr1_parser.items.ItemSet;
 import test_utils.StringUtilities;
@@ -52,7 +52,7 @@ public class ClosureTest {
         Closure.decorateClosure(List.of(g1,g2,g3,g4), itemSet);
 
         String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/ClosureTest.txt"), StandardCharsets.UTF_8);
-        Assert.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(itemSet.getItems().toString()));
+        Assertions.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(itemSet.getItems().toString()));
     }
 
     @Test
@@ -90,6 +90,6 @@ public class ClosureTest {
         Closure.decorateClosure(List.of(g1,g2,g3,g4), itemSet);
 
         String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/ClosureTest2.txt"), StandardCharsets.UTF_8);
-        Assert.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(itemSet.getItems().toString()));
+        Assertions.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(itemSet.getItems().toString()));
     }
 }

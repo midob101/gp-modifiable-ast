@@ -5,6 +5,7 @@ import grammar.Symbol;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Item {
     private final GrammarRule grammarRule;
@@ -26,12 +27,12 @@ public class Item {
     }
 
     public boolean isPosAtEnd() {
-        return this.grammarRule.getSymbols().size() <= pos;
+        return this.grammarRule.symbols().size() <= pos;
     }
 
     public Symbol getSymbolAtPos() {
         if(!this.isPosAtEnd()) {
-            return this.grammarRule.getSymbols().get(pos);
+            return this.grammarRule.symbols().get(pos);
         }
         return null;
     }
@@ -45,9 +46,9 @@ public class Item {
 
     public List<Symbol> getRemainingSymbols() {
         LinkedList<Symbol> remainingSymbols = new LinkedList<>();
-        int size = this.grammarRule.getSymbols().size();
+        int size = this.grammarRule.symbols().size();
         for(int i = pos + 1; i < size; i++) {
-            remainingSymbols.add(this.grammarRule.getSymbols().get(i));
+            remainingSymbols.add(this.grammarRule.symbols().get(i));
         }
         return remainingSymbols;
     }
@@ -56,10 +57,16 @@ public class Item {
         return lookaheadSymbol;
     }
 
-    public boolean isEqualTo(Item other) {
-        return other.getPos() == this.getPos() &&
-                other.getLookaheadSymbol() == this.getLookaheadSymbol() &&
-                other.getGrammarRule() == this.getGrammarRule();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Item item)) return false;
+        return pos == item.pos && Objects.equals(grammarRule, item.grammarRule) && Objects.equals(lookaheadSymbol, item.lookaheadSymbol);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(grammarRule, pos, lookaheadSymbol);
     }
 
     @Override

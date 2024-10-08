@@ -1,6 +1,5 @@
 package parser.lr1_parser;
 
-import grammar.FirstSet;
 import grammar.GrammarRule;
 import grammar.Symbol;
 import parser.lr1_parser.items.Item;
@@ -35,7 +34,7 @@ public class Closure {
             for (Item item : itemSet.getItems()) {
                 if(!item.isPosAtEnd() && !item.getSymbolAtPos().isTerminal()) {
                     for(GrammarRule production: grammarRules) {
-                        if(production.getLeftHandSymbol().equals(item.getSymbolAtPos())) {
+                        if(production.leftHandSymbol().equals(item.getSymbolAtPos())) {
                             List<Symbol> calculateFirstFor = item.getRemainingSymbols();
                             calculateFirstFor.add(item.getLookaheadSymbol());
                             FirstSet first = FirstSet.generate(grammarRules, calculateFirstFor);

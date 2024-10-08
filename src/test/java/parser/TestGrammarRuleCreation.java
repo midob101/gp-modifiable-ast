@@ -3,8 +3,8 @@ package parser;
 import config_reader.ConfigReader;
 import config_reader.ConfigReaderException;
 import language_definitions.LanguageDefinition;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import test_utils.StringUtilities;
 
 import java.io.File;
@@ -19,6 +19,6 @@ public class TestGrammarRuleCreation {
     public void testCreation() throws IOException, ConfigReaderException {
         LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/languages/ab.txt"));
         String expected = Files.readString(Path.of("src/test/java/parser/results/ab.txt"), StandardCharsets.UTF_8);
-        Assert.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(languageDefinition.getGrammarRules().toString()));
+        Assertions.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(languageDefinition.getGrammarRules().toString()));
     }
 }

@@ -17,6 +17,10 @@ public class Successor {
      */
     private static HashMap<ItemSet, HashMap<Symbol, ItemSet>> cache = new HashMap<>();
 
+    public static void clearCache() {
+        Successor.cache.clear();
+    }
+
     public static ItemSet generateSuccessor(List<GrammarRule> g, ItemSet source, Symbol x) {
         if(cache.containsKey(source) && cache.get(source).containsKey(x)) {
             return cache.get(source).get(x);

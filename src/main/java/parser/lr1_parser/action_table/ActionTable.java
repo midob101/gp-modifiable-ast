@@ -41,10 +41,10 @@ public class ActionTable {
 
         for(ItemSet itemSet : family.getItemSets()) {
             for(Item item: itemSet.getItems()) {
-                if(item.isPosAtEnd() && !item.getGrammarRule().getLeftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
+                if(item.isPosAtEnd() && !item.getGrammarRule().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
                     actionTable.setAction(itemSet, item.getLookaheadSymbol(), new ReduceAction(item.getGrammarRule()));
                 }
-                if(item.isPosAtEnd() && item.getGrammarRule().getLeftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
+                if(item.isPosAtEnd() && item.getGrammarRule().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
                     actionTable.setAction(itemSet, item.getLookaheadSymbol(), new AcceptAction());
                 }
                 if(!item.isPosAtEnd() && item.getSymbolAtPos().isTerminal()) {

@@ -3,8 +3,8 @@ package parser.lr1_parser;
 import config_reader.ConfigReader;
 import config_reader.ConfigReaderException;
 import language_definitions.LanguageDefinition;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import parser.lr1_parser.items.ItemFamily;
 import parser.lr1_parser.items.PrettyPrintItemFamily;
 import test_utils.StringUtilities;
@@ -30,7 +30,7 @@ public class ItemFamilyTest {
         ItemFamily itemFamily = new ItemFamily();
         itemFamily.create(languageDefinition);
         String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/ItemFamilyTest.txt"), StandardCharsets.UTF_8);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 StringUtilities.trimEmptyLines(StringUtilities.useCRLF(expected)),
                 StringUtilities.trimEmptyLines(StringUtilities.useCRLF(PrettyPrintItemFamily.getItemFamilyString(itemFamily)))
         );

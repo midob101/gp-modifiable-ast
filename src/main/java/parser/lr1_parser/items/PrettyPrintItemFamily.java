@@ -16,10 +16,10 @@ public class PrettyPrintItemFamily {
             sb.append("I_").append(itemSet).append(":     ");
             for(Item item: itemSet.getItems()) {
                 GrammarRule rule = item.getGrammarRule();
-                sb.append(rule.getLeftHandSymbol().name())
+                sb.append(rule.leftHandSymbol().name())
                         .append(" -> ");
                 int curPos = 0;
-                for(Symbol symbol: rule.getSymbols()) {
+                for(Symbol symbol: rule.symbols()) {
                     if(curPos == item.getPos()) {
                         sb.append(".");
                     }
