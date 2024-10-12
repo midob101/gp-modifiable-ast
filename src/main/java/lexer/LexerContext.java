@@ -94,7 +94,7 @@ public class LexerContext {
      * Checks if the parsing of this file is completed.
      */
     public boolean isDone() {
-        return this.parseIndex == this.sourceCode.length();
+        return this.parseIndex >= this.sourceCode.length();
     }
 
     public void addToken(Token token) {

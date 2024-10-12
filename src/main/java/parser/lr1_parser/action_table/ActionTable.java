@@ -1,10 +1,13 @@
 package parser.lr1_parser.action_table;
 
 import grammar.Symbol;
+import logger.Logger;
+import logger.LoggerComponents;
 import parser.lr1_parser.Successor;
 import parser.lr1_parser.items.*;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class ActionTable {
     private final HashMap<ItemSet, HashMap<Symbol, BaseAction>> actionMap = new HashMap<ItemSet, HashMap<Symbol, BaseAction>>();
@@ -19,11 +22,11 @@ public class ActionTable {
         }
 
         HashMap<Symbol, BaseAction> actions = actionMap.get(itemSet);
-        if(actions.containsKey(s)) {
-            // TODO: Better error message.
-            // Reduce-Reduce/Shift-Reduce conflict
-            // Deactivated for now, needs a process to check if the action beeing set is not the same as already defined.
-           //throw new RuntimeException("An action for the key " + s + " already exists for the given item set.");
+        if(actions.containsKey(s) && !actions.get(s).equals(action)) {
+            Logger.err(LoggerComponents.PARSER, "Symbol: " + s);
+            Logger.err(LoggerComponents.PARSER, "Existing action: " + actions.get(s).toString());
+            Logger.err(LoggerComponents.PARSER, "New action: " + action.toString());
+            throw new RuntimeException("An action for the key " + s + " already exists for the given item set.");
         }
         actions.put(s, action);
     }
@@ -33,7 +36,15 @@ public class ActionTable {
             throw new RuntimeException("getAction can only be called on a terminal symbol");
         }
 
+        if(!actionMap.containsKey(itemSet)) {
+            throw new RuntimeException("getAction called on non existing item set");
+        }
+
         return actionMap.get(itemSet).get(s);
+    }
+
+    public Set<Symbol> getExpectedSymbols(ItemSet itemSet) {
+        return actionMap.get(itemSet).keySet();
     }
 
     public static ActionTable createFromFamily(ItemFamily family) {

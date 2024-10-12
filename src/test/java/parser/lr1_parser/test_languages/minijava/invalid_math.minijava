@@ -1,0 +1,16 @@
+/**
+ * Complete example, tries to cover all rules of minijava.
+ *
+ * Grammar is based on https://cgi.di.uoa.gr/~thp06/project_files/minijava-new/minijava.html
+ */
+
+// Main class.
+class Main
+{
+    // Main method.
+    public static void main(String[] args)
+    {
+        int a;
+        a = 399 + 321 + 123; // Grammar does not allow 3 terms without brackets.
+    }
+}

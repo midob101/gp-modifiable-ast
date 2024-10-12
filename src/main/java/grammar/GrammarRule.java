@@ -18,7 +18,7 @@ public record GrammarRule(Symbol leftHandSymbol, List<Symbol> symbols) {
     }
 
     public boolean isNullable() {
-        return this.symbols.size() == 0;
+        return this.symbols.isEmpty();
     }
 
     @Override
