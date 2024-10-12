@@ -23,7 +23,7 @@ public class SingleLineCommentMatcher implements ICustomMatcher {
             if(context.getNextNChars(singleLineCommentStyle.length()).equals(singleLineCommentStyle)) {
                 // Find the end of line. This will be the comment token
                 String remaining = context.getRemainingSource();
-                Pattern p = Pattern.compile(".*\r\n|\r|\n");
+                Pattern p = Pattern.compile(".*(\r\n|\r|\n|$)");
                 Matcher matcher = p.matcher(remaining);
                 if (matcher.find()) {
                     return matcher.group();
