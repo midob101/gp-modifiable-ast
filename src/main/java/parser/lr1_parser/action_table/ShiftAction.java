@@ -26,4 +26,9 @@ public class ShiftAction extends BaseAction {
     public int hashCode() {
         return Objects.hashCode(shiftTo);
     }
+
+    @Override
+    public String toString() {
+        return "ShiftAction{ShiftTo=" + shiftTo.toString() + "}";
+    }
 }

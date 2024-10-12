@@ -26,4 +26,9 @@ public class ReduceAction extends BaseAction {
     public int hashCode() {
         return Objects.hashCode(reducedRule);
     }
+
+    @Override
+    public String toString() {
+        return "ReduceAction{GrammarProduction=" + reducedRule + "}";
+    }
 }

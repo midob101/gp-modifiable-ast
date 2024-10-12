@@ -60,7 +60,8 @@ public class Parser {
                     return true;
                 }
             } else {
-                System.out.println(nextToken);
+                Logger.err(LoggerComponents.PARSER, "Next Token: " + (nextToken != null ? nextToken.toString() : "undefined"));
+                Logger.err(LoggerComponents.PARSER, "Expected one of: " + actionTable.getExpectedSymbols(currentTopOfStack).toString());
                 Logger.err(LoggerComponents.PARSER, "Invalid source, does not match the grammar definitions.");
                 return false;
             }
