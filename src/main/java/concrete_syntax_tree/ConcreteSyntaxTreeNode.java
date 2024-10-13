@@ -60,7 +60,11 @@ public class ConcreteSyntaxTreeNode {
         if(this.rule != null) {
             buffer.append(getRule().leftHandSymbol().name());
         } else if(getToken() != null) {
-            buffer.append(getToken().getValue());
+            if(getToken().getKeepInAST()) {
+                buffer.append(getToken().getValue());
+            } else {
+                buffer.append(getToken().getLexerDefinition().getName());
+            }
         } else {
             buffer.append("UNDEFINED");
         }

@@ -41,44 +41,8 @@ public class Parser {
      * @return the valid flag
      */
     public boolean isValid(TokenList tokenList) {
-        Stack<ItemSet> stack = new Stack<>();
-        stack.push(itemFamily.getStart());
-
-        TokenConsumer tokenConsumer = new TokenConsumer(tokenList);
-        Symbol next = tokenConsumer.consume();
-        Token nextToken = tokenConsumer.consumeToken();
-
-        while(true) {
-            ItemSet currentTopOfStack = stack.peek();
-            BaseAction action = actionTable.getAction(currentTopOfStack, next);
-            if(action != null) {
-                if(action.getClass() == ShiftAction.class) {
-                    ShiftAction shiftAction = (ShiftAction) action;
-                    ItemSet shiftTo = shiftAction.getShiftTo();
-                    stack.push(shiftTo);
-                    next = tokenConsumer.consume();
-                    nextToken = tokenConsumer.consumeToken();
-                    Logger.debug(LoggerComponents.PARSER, "Shifting new state onto stack");
-                } else if(action.getClass() == ReduceAction.class) {
-                    ReduceAction reduceAction = (ReduceAction) action;
-                    GrammarRule rule = reduceAction.getReducedRule();
-                    Symbol s = rule.leftHandSymbol();
-                    for(int i = 0; i < rule.symbols().size(); i++) {
-                        stack.pop();
-                    }
-                    currentTopOfStack = stack.peek();
-                    stack.push(gotoTable.getTarget(currentTopOfStack, s));
-                    Logger.debug(LoggerComponents.PARSER, "Reducing grammar rule " + rule);
-                } else if(action.getClass() == AcceptAction.class) {
-                    return true;
-                }
-            } else {
-                Logger.err(LoggerComponents.PARSER, "Next Token: " + (nextToken != null ? nextToken.toString() : "undefined"));
-                Logger.err(LoggerComponents.PARSER, "Expected one of: " + actionTable.getExpectedSymbols(currentTopOfStack).toString());
-                Logger.err(LoggerComponents.PARSER, "Invalid source, does not match the grammar definitions.");
-                return false;
-            }
-        }
+        ConcreteSyntaxTreeNode tree = this.createCST(tokenList);
+        return tree != null;
     }
 
     /**
@@ -95,43 +59,97 @@ public class Parser {
         Symbol next = tokenConsumer.consume();
         Token nextToken = tokenConsumer.consumeToken();
 
-        LinkedList<ConcreteSyntaxTreeNode> dangling = new LinkedList<>();
+        LinkedList<ConcreteSyntaxTreeNode> danglingTreeNodes = new LinkedList<>();
 
         while(true) {
-            ItemSet currentTopOfStack = stack.peek();
-            BaseAction action = actionTable.getAction(currentTopOfStack, next);
-            if(action != null) {
-                if(action.getClass() == ShiftAction.class) {
-                    ShiftAction shiftAction = (ShiftAction) action;
-                    ItemSet shiftTo = shiftAction.getShiftTo();
-                    stack.push(shiftTo);
-                    dangling.add(new ConcreteSyntaxTreeNode(nextToken, next));
-                    next = tokenConsumer.consume();
-                    nextToken = tokenConsumer.consumeToken();
-                    Logger.debug(LoggerComponents.PARSER, "Shifting new state onto stack " + (nextToken != null ? nextToken.toString() : ""));
-                } else if(action.getClass() == ReduceAction.class) {
-                    ReduceAction reduceAction = (ReduceAction) action;
-                    GrammarRule rule = reduceAction.getReducedRule();
-                    Symbol s = rule.leftHandSymbol();
-                    ConcreteSyntaxTreeNode newNode = new ConcreteSyntaxTreeNode(rule);
-                    for(int i = 0; i < rule.symbols().size(); i++) {
-                        stack.pop();
-                        newNode.addChild(dangling.removeLast());
-                    }
-                    currentTopOfStack = stack.peek();
-                    stack.push(gotoTable.getTarget(currentTopOfStack, s));
-
-                    dangling.add(newNode);
-                    Logger.debug(LoggerComponents.PARSER, "Reducing grammar rule " + rule);
-                } else if(action.getClass() == AcceptAction.class) {
-                    return dangling.getFirst();
-                }
+            if (next.name().equals(Symbol.INTERNAL_PARSE_IRRELEVANT_NAME)) {
+                // This node is not part of the grammar. Create a tree node and continue.
+                danglingTreeNodes.add(new ConcreteSyntaxTreeNode(nextToken, next));
+                next = tokenConsumer.consume();
+                nextToken = tokenConsumer.consumeToken();
             } else {
-                Logger.err(LoggerComponents.PARSER, "Next Token: " + (nextToken != null ? nextToken.toString() : "undefined"));
-                Logger.err(LoggerComponents.PARSER, "Expected one of: " + actionTable.getExpectedSymbols(currentTopOfStack).toString());
-                Logger.err(LoggerComponents.PARSER, "Invalid source, does not match the grammar definitions.");
-                return null;
+                // This node is part of the grammar. Get the action from the action table and perform the
+                // defined action for this node.
+                ItemSet currentTopOfStack = stack.peek();
+                BaseAction action = actionTable.getAction(currentTopOfStack, next);
+                if (action != null) {
+                    if (action.getClass() == ShiftAction.class) {
+                        // Read the next token from the input and shift to a new state.
+                        ShiftAction shiftAction = (ShiftAction) action;
+                        ItemSet shiftTo = shiftAction.getShiftTo();
+                        stack.push(shiftTo);
+                        danglingTreeNodes.add(new ConcreteSyntaxTreeNode(nextToken, next));
+                        next = tokenConsumer.consume();
+                        nextToken = tokenConsumer.consumeToken();
+                        Logger.debug(LoggerComponents.PARSER, "Shifting new state onto stack " + (nextToken != null ? nextToken.toString() : ""));
+                    } else if (action.getClass() == ReduceAction.class) {
+                        // Reduce the production matched.
+                        ReduceAction reduceAction = (ReduceAction) action;
+                        GrammarRule rule = reduceAction.getReducedRule();
+                        Symbol s = rule.leftHandSymbol();
+                        ConcreteSyntaxTreeNode newNode = new ConcreteSyntaxTreeNode(rule);
+                        int remaining = rule.symbols().size();
+                        for (int i = 0; i < rule.symbols().size(); i++) {
+                            stack.pop();
+                            ConcreteSyntaxTreeNode child = danglingTreeNodes.removeLast();
+                            newNode.addChild(child);
+                            if (child.getSymbol() == null || !child.getSymbol().name().equals(Symbol.INTERNAL_PARSE_IRRELEVANT_NAME)) {
+                                remaining--;
+                            }
+                        }
+                        // In case there were internal parse irrelevant nodes on the danglingTreeNodes stack, we need to remove
+                        // enough elements from this list until we have removed exactly as many non parse irrelevant nodes
+                        // as there are symbols on the right hand side of the production.
+                        while (remaining != 0) {
+                            ConcreteSyntaxTreeNode child = danglingTreeNodes.removeLast();
+                            newNode.addChild(child);
+                            if (child.getSymbol() == null || !child.getSymbol().name().equals(Symbol.INTERNAL_PARSE_IRRELEVANT_NAME)) {
+                                remaining--;
+                            }
+                        }
+                        currentTopOfStack = stack.peek();
+                        stack.push(gotoTable.getTarget(currentTopOfStack, s));
+
+                        danglingTreeNodes.add(newNode);
+                        Logger.debug(LoggerComponents.PARSER, "Reducing grammar rule " + rule);
+                    } else if (action.getClass() == AcceptAction.class) {
+                        return getRootNode(danglingTreeNodes);
+                    }
+                } else {
+                    Logger.err(LoggerComponents.PARSER, "Next Token: " + (nextToken != null ? nextToken.toString() : "undefined"));
+                    Logger.err(LoggerComponents.PARSER, "Expected one of: " + actionTable.getExpectedSymbols(currentTopOfStack).toString());
+                    Logger.err(LoggerComponents.PARSER, "Invalid source, does not match the grammar definitions.");
+                    return null;
+                }
             }
         }
+    }
+
+    /**
+     * Given a list of tree nodes, this function collapses them into one single root node.
+     * For this there should only be exactly one node in the list that is not a INTERNAL_PARSE_IRRELEVANT_NAME node.
+     *
+     * This is required as INTERNAL_PARSE_IRRELEVANT_NAME nodes would otherwise not be part of the CST if they are
+     * before the start node of the grammar in the file.
+     *
+     * @param danglingTreeNodes the list of the remaining tree nodes
+     * @return the main node
+     */
+    private ConcreteSyntaxTreeNode getRootNode(LinkedList<ConcreteSyntaxTreeNode> danglingTreeNodes) {
+        ConcreteSyntaxTreeNode rootNode = null;
+        for(ConcreteSyntaxTreeNode node: danglingTreeNodes) {
+            if(node.getRule() != null) {
+                rootNode = node;
+                break;
+            }
+        }
+        if(rootNode == null) {
+            throw new RuntimeException("No main node was detected after the parsing process");
+        }
+        danglingTreeNodes.remove(rootNode);
+        for(ConcreteSyntaxTreeNode node: danglingTreeNodes) {
+            rootNode.addChild(node);
+        }
+        return rootNode;
     }
 }

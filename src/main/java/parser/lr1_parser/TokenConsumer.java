@@ -19,6 +19,9 @@ public class TokenConsumer {
             if(t.getKeepInAST()) {
                 symbols.add(new Symbol(t.getLexerDefinition().getName(), true));
                 tokens.add(t);
+            } else {
+                symbols.add(new Symbol(Symbol.INTERNAL_PARSE_IRRELEVANT_NAME, false));
+                tokens.add(t);
             }
         }
         symbols.add(Symbol.END_OF_INPUT);

@@ -1,28 +1,46 @@
 S
+├── single_line_comment
+├── whitespace
+├── multi_line_comment
 ├── MAIN_CLASS
 │   ├── class
+│   ├── whitespace
 │   ├── Main
+│   ├── whitespace
 │   ├── {
+│   ├── whitespace
+│   ├── single_line_comment
+│   ├── whitespace
 │   ├── public
+│   ├── whitespace
 │   ├── static
+│   ├── whitespace
 │   ├── void
+│   ├── whitespace
 │   ├── main
 │   ├── (
 │   ├── String
 │   ├── [
 │   ├── ]
+│   ├── whitespace
 │   ├── args
 │   ├── )
+│   ├── whitespace
 │   ├── {
+│   ├── whitespace
 │   ├── VAR_DECLARATIONS
 │   │   ├── VAR_DECLARATIONS
 │   │   └── VAR_DECLARATION
 │   │       ├── TYPE
 │   │       │   └── INTEGER_TYPE
-│   │       │       └── int
+│   │       │       ├── int
+│   │       │       └── whitespace
 │   │       ├── asd
-│   │       └── ;
+│   │       ├── ;
+│   │       └── whitespace
 │   ├── STATEMENTS
 │   ├── }
-│   └── }
+│   ├── whitespace
+│   ├── }
+│   └── whitespace
 └── CLASS_DECLARATIONS
