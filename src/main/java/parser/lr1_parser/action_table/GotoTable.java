@@ -55,14 +55,15 @@ public class GotoTable {
      *
      * @param nonTerminals all non-terminal symbols of the language grammar
      * @param family the complete item family
+     * @param successor the successor instance
      * @return the generated goto table
      */
-    public static GotoTable createFromFamily(Set<Symbol> nonTerminals, ItemFamily family) {
+    public static GotoTable createFromFamily(Set<Symbol> nonTerminals, ItemFamily family, Successor successor) {
         GotoTable gotoTable = new GotoTable();
 
         for(ItemSet itemSet: family.getItemSets()) {
             for(Symbol nonTerminal: nonTerminals) {
-                ItemSet gotoTarget = Successor.getFromCache(itemSet, nonTerminal);
+                ItemSet gotoTarget = successor.getFromCache(itemSet, nonTerminal);
                 if(gotoTarget != null) {
                     gotoTable.setTarget(itemSet, nonTerminal, gotoTarget);
                 }

@@ -7,6 +7,7 @@ import lexer.Lexer;
 import lexer.TokenList;
 import lexer.exceptions.LexerParseException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,50 +19,73 @@ import java.util.stream.Stream;
 
 public class ParserTest {
 
+    private static Parser aabaabParser;
+    private static Parser bracketsParser;
+    private static Parser mathParser;
+    private static Parser miniJavaParser;
+    private static LanguageDefinition aabaabLanguageDefinition;
+    private static LanguageDefinition bracketsLanguageDefinition;
+    private static LanguageDefinition mathLanguageDefinition;
+    private static LanguageDefinition miniJavaLanguageDefinition;
+
+    @BeforeAll
+    static void setUpBeforeClass() throws Exception {
+        aabaabLanguageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/aabaaab.txt"));
+        aabaabParser = new Parser();
+        aabaabParser.initialize(aabaabLanguageDefinition);
+
+        bracketsLanguageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/brackets.txt"));
+        bracketsParser = new Parser();
+        bracketsParser.initialize(bracketsLanguageDefinition);
+
+        mathLanguageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/math.txt"));
+        mathParser = new Parser();
+        mathParser.initialize(mathLanguageDefinition);
+
+        miniJavaLanguageDefinition = ConfigReader.read(new File("src/main/resources/languages/minijava.txt"));
+        miniJavaParser = new Parser();
+        miniJavaParser.initialize(miniJavaLanguageDefinition);
+    }
+
     @Test
     public void testParser() throws IOException, LexerParseException, ConfigReaderException {
-        LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/aabaaab.txt"));
         Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/aabaaab_valid.ab", languageDefinition);
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/aabaaab_valid.ab", aabaabLanguageDefinition);
 
-        Assertions.assertTrue(Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertTrue(aabaabParser.isValid(tokenList));
     }
 
     @Test
     public void testParser2() throws IOException, LexerParseException, ConfigReaderException {
-        LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/aabaaab.txt"));
         Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/aabaaab_invalid.ab", languageDefinition);
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/aabaaab_invalid.ab", aabaabLanguageDefinition);
 
-        Assertions.assertFalse(Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertFalse(aabaabParser.isValid(tokenList));
     }
 
     @Test
     public void testParser3() throws IOException, LexerParseException, ConfigReaderException {
-        LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/brackets.txt"));
         Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/brackets.bracket", languageDefinition);
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/brackets.bracket", bracketsLanguageDefinition);
 
-        Assertions.assertTrue(Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertTrue(bracketsParser.isValid(tokenList));
     }
 
     @Test
     public void testParser4() throws IOException, LexerParseException, ConfigReaderException {
-        LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/math.txt"));
         Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/valid_calculation.math", languageDefinition);
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/valid_calculation.math", mathLanguageDefinition);
 
-        Assertions.assertTrue(Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertTrue(mathParser.isValid(tokenList));
     }
 
     @ParameterizedTest(name="Test mini java {index} for source file {0}, should be {1}")
     @MethodSource("miniJavaProvider")
     public void testMiniJava(String src, boolean isValid) throws IOException, LexerParseException, ConfigReaderException {
-        LanguageDefinition languageDefinition = ConfigReader.read(new File("src/main/resources/languages/minijava.txt"));
         Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, languageDefinition);
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, miniJavaLanguageDefinition);
 
-        Assertions.assertEquals(isValid, Parser.isValid(tokenList, languageDefinition));
+        Assertions.assertEquals(isValid, miniJavaParser.isValid(tokenList));
     }
 
     private static Stream<Arguments> miniJavaProvider() {

@@ -28,7 +28,8 @@ public class ItemFamilyTest {
     public void testItemFamilyCreation() throws IOException, ConfigReaderException {
         LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/parser/lr1_parser/test_languages/aabaaab.txt"));
         ItemFamily itemFamily = new ItemFamily();
-        itemFamily.create(languageDefinition);
+        Successor successor = new Successor();
+        itemFamily.create(languageDefinition, successor);
         String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/ItemFamilyTest.txt"), StandardCharsets.UTF_8);
         Assertions.assertEquals(
                 StringUtilities.trimEmptyLines(StringUtilities.useCRLF(expected)),

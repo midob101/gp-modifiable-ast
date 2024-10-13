@@ -76,9 +76,10 @@ public class ActionTable {
      * Creates a new action table based on a family
      *
      * @param family The complete item family.
+     * @param successor The successor instance
      * @return The full action table
      */
-    public static ActionTable createFromFamily(ItemFamily family) {
+    public static ActionTable createFromFamily(ItemFamily family, Successor successor) {
         ActionTable actionTable = new ActionTable();
 
         for(ItemSet itemSet : family.getItemSets()) {
@@ -90,7 +91,7 @@ public class ActionTable {
                     actionTable.setAction(itemSet, item.lookaheadSymbol(), new AcceptAction());
                 }
                 if(!item.isPosAtEnd() && item.getSymbolAtPos().isTerminal()) {
-                    ItemSet shiftTarget = Successor.getFromCache(itemSet, item.getSymbolAtPos());
+                    ItemSet shiftTarget = successor.getFromCache(itemSet, item.getSymbolAtPos());
                     if(shiftTarget != null) {
                         actionTable.setAction(itemSet, item.getSymbolAtPos(), new ShiftAction(shiftTarget));
                     }

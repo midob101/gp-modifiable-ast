@@ -1,20 +1,13 @@
 package grammar;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import parser.lr1_parser.FirstSet;
-import parser.lr1_parser.Parser;
 
 import java.util.List;
 import java.util.Set;
 
 public class FirstSetTest {
-
-    @BeforeEach
-    public void beforeEach() {
-        Parser.clearCache();
-    }
 
     @Test
     public void testFirstSet() {

@@ -5,7 +5,7 @@ public class Logger {
         DEBUG, WARN, ERROR
     }
 
-    public final static LOG_LEVELS LOG_LEVEL = LOG_LEVELS.ERROR;
+    public final static LOG_LEVELS LOG_LEVEL = LOG_LEVELS.DEBUG;
 
     public static void debug(LoggerComponents component, String message) {
         if(LOG_LEVEL == LOG_LEVELS.DEBUG) {

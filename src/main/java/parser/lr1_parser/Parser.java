@@ -16,25 +16,29 @@ import java.util.Stack;
 
 public class Parser {
 
-    public static void clearCache() {
-        FirstSet.clearCache();
-        Successor.clearCache();
+    private ItemFamily itemFamily = new ItemFamily();
+    private ActionTable actionTable = null;
+    private GotoTable gotoTable = null;
+
+    /**
+     * Creates the item family, the action table and the goto table for the parser.
+     * @param languageDefinition The language definition for which the parser should work
+     */
+    public void initialize(LanguageDefinition languageDefinition) {
+        Successor successor = new Successor();
+
+        itemFamily.create(languageDefinition, successor);
+        actionTable = ActionTable.createFromFamily(itemFamily, successor);
+        gotoTable = GotoTable.createFromFamily(languageDefinition.getAllNonTerminalSymbols(), itemFamily, successor);
     }
 
     /**
      * Checks if a given token list matches the productions of a language definition.
      *
      * @param tokenList The token list from the lexer process
-     * @param languageDefinition The language definition for which the productions are used.
      * @return the valid flag
      */
-    public static boolean isValid(TokenList tokenList, LanguageDefinition languageDefinition) {
-        ItemFamily itemFamily = new ItemFamily();
-        itemFamily.create(languageDefinition);
-
-        ActionTable actionTable = ActionTable.createFromFamily(itemFamily);
-        GotoTable gotoTable = GotoTable.createFromFamily(languageDefinition.getAllNonTerminalSymbols(), itemFamily);
-
+    public boolean isValid(TokenList tokenList) {
         Stack<ItemSet> stack = new Stack<>();
         stack.push(itemFamily.getStart());
 

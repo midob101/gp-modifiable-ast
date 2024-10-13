@@ -27,8 +27,9 @@ public class ItemFamily {
      * new successors can be generated anymore.
      *
      * @param languageDefinition The language definition file.
+     * @param successor The successor instance
      */
-    public void create(LanguageDefinition languageDefinition) {
+    public void create(LanguageDefinition languageDefinition, Successor successor) {
         List<GrammarRule> grammarRules = languageDefinition.getGrammarRules();
         Set<Symbol> allGrammarSymbols = languageDefinition.getAllGrammarSymbols();
         Symbol startSymbol = languageDefinition.getGrammarStartSymbol();
@@ -45,13 +46,13 @@ public class ItemFamily {
         while(!toBeDone.isEmpty()) {
             ItemSet itemSet = toBeDone.poll();
             for(Symbol symbol : allGrammarSymbols) {
-                ItemSet successor = Successor.generateSuccessor(grammarRules, itemSet, symbol, this);
-                if(!successor.isEmpty()) {
-                    ItemSet existing = this.getSimilarItemSet(successor);
+                ItemSet successorSet = successor.generateSuccessor(grammarRules, itemSet, symbol, this);
+                if(!successorSet.isEmpty()) {
+                    ItemSet existing = this.getSimilarItemSet(successorSet);
                     if(existing == null) {
-                        Logger.debug(LoggerComponents.PARSER, "Adding new item set for " + itemSet + " and symbol " + symbol + " - " + successor);
-                        this.itemSets.add(successor);
-                        toBeDone.add(successor);
+                        Logger.debug(LoggerComponents.PARSER, "Adding new item set for " + itemSet + " and symbol " + symbol + " - " + successorSet);
+                        this.itemSets.add(successorSet);
+                        toBeDone.add(successorSet);
                     }
                 }
             }

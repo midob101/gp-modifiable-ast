@@ -12,11 +12,6 @@ import java.util.*;
  */
 public class FirstSet {
     private Set<Symbol> firstSet;
-    // A cache for faster lookups.
-    // It gets filled during the calculations
-
-    // TODO: They should be dependent on the language definition.
-    private static HashMap<GrammarRule, FirstSet> cache = new HashMap<>();
 
     private FirstSet(Set<Symbol> firstSet) {
         // Should never be called from outside.
@@ -25,10 +20,6 @@ public class FirstSet {
 
     public Set<Symbol> getSymbolList() {
         return firstSet;
-    }
-
-    public static void clearCache() {
-        FirstSet.cache.clear();
     }
 
     /**
@@ -70,10 +61,6 @@ public class FirstSet {
      * This is required to prevent this function to stuck in an infinite recursion.
      */
     private static FirstSet generate(List<GrammarRule> grammarRules, GrammarRule createFor, Set<GrammarRule> history) {
-        if(FirstSet.cache.containsKey(createFor)) {
-            return FirstSet.cache.get(createFor);
-        }
-
         Set<Symbol> firstSet = new HashSet<>();
         Symbol first = createFor.getFirstSymbol();
         if(createFor.isNullable()) {
@@ -123,7 +110,6 @@ public class FirstSet {
             }
         }
 
-        FirstSet.cache.put(createFor, new FirstSet(firstSet));
-        return FirstSet.cache.get(createFor);
+        return new FirstSet(firstSet);
     }
 }
