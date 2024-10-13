@@ -3,7 +3,10 @@ package syntax_tree;
 import grammar.GrammarRule;
 import grammar.Symbol;
 import grammar.SymbolModifier;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AbstractSyntaxTreeFactory {
     /**
@@ -55,13 +58,22 @@ public class AbstractSyntaxTreeFactory {
     private static void postProcess(AbstractSyntaxTreeNode root) {
         if(root.getRule() != null) {
             List<List<SymbolModifier>> modifiers = root.getRule().getSymbolModifiers();
-            int idx = 0;
-            for(AbstractSyntaxTreeNode child: root.getChildren()) {
-                applyRhsModifiers(child, modifiers.get(idx));
-                postProcess(child);
-                idx++;
+            Map<AbstractSyntaxTreeNode, List<SymbolModifier>> modifierMap = new HashMap<>();
+            List<AbstractSyntaxTreeNode> children = root.getChildren();
+            // Create a map that keeps maps the child nodes to their modifiers.
+            // This is required as the rhs and lhs modifiers can modify the tree structure.
+            // The modifiers are applied from the bottom up. First the modifiers are executed on the leaves
+            // and at the end for the root node.
+            for(int i = 0; i < children.size(); i++) {
+                modifierMap.put(children.get(i), modifiers.get(i));
             }
-            // LHS Modifiers can modify the tree structure, they need to run after the rhs modifiers.
+
+            for(int i = 0; i < children.size(); i++) {
+                AbstractSyntaxTreeNode child = children.get(i);
+                postProcess(child);
+                applyRhsModifiers(child, modifierMap.get(child));
+            }
+
             applyLhsModifiers(root, root.getRule().getLeftHandModifiers());
         }
     }
@@ -119,6 +131,9 @@ public class AbstractSyntaxTreeFactory {
                     break;
                 case SymbolModifier.HIDDEN:
                     node.setHidden();
+                    break;
+                case SymbolModifier.INLINE:
+                    node.getParent().replaceChild(node, node.getAllChildren());
                     break;
             }
         }

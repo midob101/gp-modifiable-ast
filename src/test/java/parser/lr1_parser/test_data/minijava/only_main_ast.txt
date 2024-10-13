@@ -1,19 +1,16 @@
 S
-├── MAIN_CLASS
-│   ├── className: Main
-│   ├── public_stmt: public
-│   ├── static_stmt: static
-│   ├── void_type: void
-│   ├── main_identifier: main
-│   ├── string_type: String
-│   ├── square_bracket_open: [
-│   ├── square_bracket_close: ]
-│   ├── identifier: args
-│   ├── VAR_DECLARATIONS
-│   │   └── VAR_DECLARATION
-│   │       ├── TYPE
-│   │       │   └── INTEGER_TYPE
-│   │       │       └── int_type: int
-│   │       └── identifier: asd
-│   └── STATEMENTS
-└── CLASS_DECLARATIONS
+└── MAIN_CLASS
+    ├── className: Main
+    ├── public_stmt: public
+    ├── static_stmt: static
+    ├── void_type: void
+    ├── main_identifier: main
+    ├── string_type: String
+    ├── square_bracket_open: [
+    ├── square_bracket_close: ]
+    ├── identifier: args
+    └── VAR_DECLARATION
+        ├── TYPE
+        │   └── INTEGER_TYPE
+        │       └── int_type: int
+        └── identifier: asd
