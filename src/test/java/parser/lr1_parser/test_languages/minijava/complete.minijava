@@ -77,6 +77,8 @@ class A
 
     public int get_sum(int a, int b)
     {
+        int sum_test;
+        sum_test = this.get_sum(random_int_array);
         return a+b;   // Return integer literal
     }
 

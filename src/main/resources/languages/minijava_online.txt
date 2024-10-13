@@ -1,0 +1,73 @@
+# Grammar that can be entered on https://jsmachines.sourceforge.net/machines/lr1.html
+S' -> S
+S                           ->  MAIN_CLASS CLASS_DECLARATIONS
+CLASS_DECLARATIONS          ->  CLASS_DECLARATION CLASS_DECLARATIONS
+CLASS_DECLARATIONS          -> ''
+CLASS_DECLARATION           ->  class_stmt identifier curly_bracket_open VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close
+CLASS_DECLARATION           ->  class_stmt identifier extents_stmt identifier curly_bracket_open VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close
+MAIN_CLASS                  ->  class_stmt identifier curly_bracket_open public_stmt static_stmt void_type main_identifier bracket_open string_type square_bracket_open square_bracket_close identifier bracket_close curly_bracket_open VAR_DECLARATIONS STATEMENTS curly_bracket_close curly_bracket_close
+METHOD_DECLARATIONS         ->  METHOD_DECLARATION METHOD_DECLARATIONS
+METHOD_DECLARATIONS         ->  ''
+METHOD_DECLARATION          ->  public_stmt TYPE identifier bracket_open FORMAL_PARAMETER_LIST bracket_close curly_bracket_open VAR_DECLARATIONS STATEMENTS return_stmt EXPRESSION semicolon curly_bracket_close
+FORMAL_PARAMETER_LIST       ->  FORMAL_PARAMETER_LIST comma FORMAL_PARAMETER
+FORMAL_PARAMETER_LIST       ->  FORMAL_PARAMETER
+FORMAL_PARAMETER_LIST       ->  ''
+FORMAL_PARAMETER            ->  TYPE identifier
+VAR_DECLARATIONS            ->  VAR_DECLARATIONS VAR_DECLARATION
+VAR_DECLARATIONS            ->  ''
+STATEMENTS                  ->  STATEMENT STATEMENTS
+STATEMENTS                  ->  ''
+VAR_DECLARATION             ->  TYPE identifier semicolon
+STATEMENT                   ->  BLOCK
+STATEMENT                   ->  ASSIGNMENT_STATEMENT
+STATEMENT                   ->  ARRAY_ASSIGNMENT_STATEMENT
+STATEMENT                   ->  IF_STATEMENT
+STATEMENT                   ->  WHILE_STATEMENT
+STATEMENT                   ->  PRINT_STATEMENT
+BLOCK                       ->  curly_bracket_open STATEMENTS curly_bracket_close
+ASSIGNMENT_STATEMENT        ->  identifier assignment EXPRESSION semicolon
+ARRAY_ASSIGNMENT_STATEMENT  ->  identifier square_bracket_open EXPRESSION square_bracket_close assignment EXPRESSION semicolon
+IF_STATEMENT                ->  if bracket_open EXPRESSION bracket_close STATEMENT else STATEMENT
+WHILE_STATEMENT             ->  while bracket_open EXPRESSION bracket_close STATEMENT
+PRINT_STATEMENT             ->  println bracket_open EXPRESSION bracket_close semicolon
+TYPE                        ->  ARRAY_TYPE
+TYPE                        ->  BOOLEAN_TYPE
+TYPE                        ->  INTEGER_TYPE
+TYPE                        ->   identifier
+ARRAY_TYPE                  ->  int_type square_bracket_open square_bracket_close
+BOOLEAN_TYPE                ->  boolean_type
+INTEGER_TYPE                ->  int_type
+EXPRESSION                  ->  AND_EXPRESSION
+EXPRESSION                  ->  COMPARE_EXPRESSION
+EXPRESSION                  ->  PLUS_EXPRESSION
+EXPRESSION                  ->  MINUS_EXPRESSION
+EXPRESSION                  ->  TIMES_EXPRESSION
+EXPRESSION                  ->  ARRAY_LOOKUP
+EXPRESSION                  ->  ARRAY_LENGTH
+EXPRESSION                  ->  MESSAGE_SEND
+EXPRESSION                  ->  CLAUSE
+AND_EXPRESSION              ->  CLAUSE and CLAUSE
+COMPARE_EXPRESSION          ->  PRIMARY_EXPRESSION less_then PRIMARY_EXPRESSION
+PLUS_EXPRESSION             ->  PRIMARY_EXPRESSION plus PRIMARY_EXPRESSION
+MINUS_EXPRESSION            ->  PRIMARY_EXPRESSION minus PRIMARY_EXPRESSION
+TIMES_EXPRESSION            ->  PRIMARY_EXPRESSION multiply PRIMARY_EXPRESSION
+ARRAY_LOOKUP                ->  PRIMARY_EXPRESSION square_bracket_open PRIMARY_EXPRESSION square_bracket_close
+ARRAY_LENGTH                ->  PRIMARY_EXPRESSION dot array_length_stmt
+MESSAGE_SEND                ->  PRIMARY_EXPRESSION dot identifier bracket_open bracket_close
+MESSAGE_SEND                ->  PRIMARY_EXPRESSION dot identifier bracket_open EXPRESSION_LIST bracket_close
+EXPRESSION_LIST             ->  EXPRESSION
+EXPRESSION_LIST             ->  EXPRESSION_LIST comma EXPRESSION
+CLAUSE                      ->  NOT_EXPRESSION
+CLAUSE                      ->  PRIMARY_EXPRESSION
+NOT_EXPRESSION              ->  not CLAUSE
+PRIMARY_EXPRESSION          ->  integer_literal
+PRIMARY_EXPRESSION          ->  true_literal
+PRIMARY_EXPRESSION          ->  false_literal
+PRIMARY_EXPRESSION          ->  identifier
+PRIMARY_EXPRESSION          ->  this_expression
+PRIMARY_EXPRESSION          ->  ARRAY_ALLOCATION_EXPRESSION
+PRIMARY_EXPRESSION          ->  ALLOCATION_EXPRESSION
+PRIMARY_EXPRESSION          ->  BRACKET_EXPRESSION
+ARRAY_ALLOCATION_EXPRESSION ->  new_expression int_type square_bracket_open EXPRESSION square_bracket_close
+ALLOCATION_EXPRESSION       ->  new_expression identifier bracket_open bracket_close
+BRACKET_EXPRESSION          ->  bracket_open EXPRESSION bracket_close

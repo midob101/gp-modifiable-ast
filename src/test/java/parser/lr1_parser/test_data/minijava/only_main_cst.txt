@@ -1,0 +1,28 @@
+S
+├── MAIN_CLASS
+│   ├── class
+│   ├── Main
+│   ├── {
+│   ├── public
+│   ├── static
+│   ├── void
+│   ├── main
+│   ├── (
+│   ├── String
+│   ├── [
+│   ├── ]
+│   ├── args
+│   ├── )
+│   ├── {
+│   ├── VAR_DECLARATIONS
+│   │   ├── VAR_DECLARATIONS
+│   │   └── VAR_DECLARATION
+│   │       ├── TYPE
+│   │       │   └── INTEGER_TYPE
+│   │       │       └── int
+│   │       ├── asd
+│   │       └── ;
+│   ├── STATEMENTS
+│   ├── }
+│   └── }
+└── CLASS_DECLARATIONS

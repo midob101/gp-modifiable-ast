@@ -7,6 +7,7 @@ import parser.lr1_parser.Successor;
 import parser.lr1_parser.items.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Set;
  * This is not done by a two-dimensional array, instead it keeps track of the available entries through hashmaps.
  */
 public class ActionTable {
-    private final HashMap<ItemSet, HashMap<Symbol, BaseAction>> actionMap = new HashMap<>();
+    private final HashMap<ItemSet, HashMap<Symbol, BaseAction>> actionMap = new LinkedHashMap<>();
 
     /**
      * Sets an action for a given item set and symbol.
@@ -82,7 +83,7 @@ public class ActionTable {
     public static ActionTable createFromFamily(ItemFamily family, Successor successor) {
         ActionTable actionTable = new ActionTable();
 
-        for(ItemSet itemSet : family.getItemSets()) {
+        for(ItemSet itemSet: family.getItemSets()) {
             for(Item item: itemSet.getItems()) {
                 if(item.isPosAtEnd() && !item.grammarRule().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
                     actionTable.setAction(itemSet, item.lookaheadSymbol(), new ReduceAction(item.grammarRule()));

@@ -1,0 +1,774 @@
+S
+├── MAIN_CLASS
+│   ├── class
+│   ├── SubclassReturnValue
+│   ├── {
+│   ├── public
+│   ├── static
+│   ├── void
+│   ├── main
+│   ├── (
+│   ├── String
+│   ├── [
+│   ├── ]
+│   ├── args
+│   ├── )
+│   ├── {
+│   ├── VAR_DECLARATIONS
+│   │   ├── VAR_DECLARATIONS
+│   │   │   ├── VAR_DECLARATIONS
+│   │   │   │   ├── VAR_DECLARATIONS
+│   │   │   │   │   ├── VAR_DECLARATIONS
+│   │   │   │   │   └── VAR_DECLARATION
+│   │   │   │   │       ├── TYPE
+│   │   │   │   │       │   └── A
+│   │   │   │   │       ├── a
+│   │   │   │   │       └── ;
+│   │   │   │   └── VAR_DECLARATION
+│   │   │   │       ├── TYPE
+│   │   │   │       │   └── INTEGER_TYPE
+│   │   │   │       │       └── int
+│   │   │   │       ├── _int_value
+│   │   │   │       └── ;
+│   │   │   └── VAR_DECLARATION
+│   │   │       ├── TYPE
+│   │   │       │   └── ARRAY_TYPE
+│   │   │       │       ├── int
+│   │   │       │       ├── [
+│   │   │       │       └── ]
+│   │   │       ├── _int_array
+│   │   │       └── ;
+│   │   └── VAR_DECLARATION
+│   │       ├── TYPE
+│   │       │   └── BOOLEAN_TYPE
+│   │       │       └── boolean
+│   │       ├── bool_value
+│   │       └── ;
+│   ├── STATEMENTS
+│   │   ├── STATEMENT
+│   │   │   └── BLOCK
+│   │   │       ├── {
+│   │   │       ├── STATEMENTS
+│   │   │       │   ├── STATEMENT
+│   │   │       │   │   └── ASSIGNMENT_STATEMENT
+│   │   │       │   │       ├── a
+│   │   │       │   │       ├── =
+│   │   │       │   │       ├── EXPRESSION
+│   │   │       │   │       │   └── CLAUSE
+│   │   │       │   │       │       └── PRIMARY_EXPRESSION
+│   │   │       │   │       │           └── ALLOCATION_EXPRESSION
+│   │   │       │   │       │               ├── new
+│   │   │       │   │       │               ├── A
+│   │   │       │   │       │               ├── (
+│   │   │       │   │       │               └── )
+│   │   │       │   │       └── ;
+│   │   │       │   └── STATEMENTS
+│   │   │       │       ├── STATEMENT
+│   │   │       │       │   └── ASSIGNMENT_STATEMENT
+│   │   │       │       │       ├── _int_value
+│   │   │       │       │       ├── =
+│   │   │       │       │       ├── EXPRESSION
+│   │   │       │       │       │   └── CLAUSE
+│   │   │       │       │       │       └── PRIMARY_EXPRESSION
+│   │   │       │       │       │           └── 5
+│   │   │       │       │       └── ;
+│   │   │       │       └── STATEMENTS
+│   │   │       │           ├── STATEMENT
+│   │   │       │           │   └── ASSIGNMENT_STATEMENT
+│   │   │       │           │       ├── _int_array
+│   │   │       │           │       ├── =
+│   │   │       │           │       ├── EXPRESSION
+│   │   │       │           │       │   └── CLAUSE
+│   │   │       │           │       │       └── PRIMARY_EXPRESSION
+│   │   │       │           │       │           └── ARRAY_ALLOCATION_EXPRESSION
+│   │   │       │           │       │               ├── new
+│   │   │       │           │       │               ├── int
+│   │   │       │           │       │               ├── [
+│   │   │       │           │       │               ├── EXPRESSION
+│   │   │       │           │       │               │   └── MINUS_EXPRESSION
+│   │   │       │           │       │               │       ├── PRIMARY_EXPRESSION
+│   │   │       │           │       │               │       │   └── 5
+│   │   │       │           │       │               │       ├── -
+│   │   │       │           │       │               │       └── PRIMARY_EXPRESSION
+│   │   │       │           │       │               │           └── 2
+│   │   │       │           │       │               └── ]
+│   │   │       │           │       └── ;
+│   │   │       │           └── STATEMENTS
+│   │   │       │               ├── STATEMENT
+│   │   │       │               │   └── ARRAY_ASSIGNMENT_STATEMENT
+│   │   │       │               │       ├── _int_array
+│   │   │       │               │       ├── [
+│   │   │       │               │       ├── EXPRESSION
+│   │   │       │               │       │   └── CLAUSE
+│   │   │       │               │       │       └── PRIMARY_EXPRESSION
+│   │   │       │               │       │           └── 0
+│   │   │       │               │       ├── ]
+│   │   │       │               │       ├── =
+│   │   │       │               │       ├── EXPRESSION
+│   │   │       │               │       │   └── CLAUSE
+│   │   │       │               │       │       └── PRIMARY_EXPRESSION
+│   │   │       │               │       │           └── 10
+│   │   │       │               │       └── ;
+│   │   │       │               └── STATEMENTS
+│   │   │       │                   ├── STATEMENT
+│   │   │       │                   │   └── ASSIGNMENT_STATEMENT
+│   │   │       │                   │       ├── bool_value
+│   │   │       │                   │       ├── =
+│   │   │       │                   │       ├── EXPRESSION
+│   │   │       │                   │       │   └── CLAUSE
+│   │   │       │                   │       │       └── PRIMARY_EXPRESSION
+│   │   │       │                   │       │           └── true
+│   │   │       │                   │       └── ;
+│   │   │       │                   └── STATEMENTS
+│   │   │       │                       ├── STATEMENT
+│   │   │       │                       │   └── ASSIGNMENT_STATEMENT
+│   │   │       │                       │       ├── bool_value
+│   │   │       │                       │       ├── =
+│   │   │       │                       │       ├── EXPRESSION
+│   │   │       │                       │       │   └── CLAUSE
+│   │   │       │                       │       │       └── PRIMARY_EXPRESSION
+│   │   │       │                       │       │           └── false
+│   │   │       │                       │       └── ;
+│   │   │       │                       └── STATEMENTS
+│   │   │       │                           ├── STATEMENT
+│   │   │       │                           │   └── IF_STATEMENT
+│   │   │       │                           │       ├── if
+│   │   │       │                           │       ├── (
+│   │   │       │                           │       ├── EXPRESSION
+│   │   │       │                           │       │   └── CLAUSE
+│   │   │       │                           │       │       └── PRIMARY_EXPRESSION
+│   │   │       │                           │       │           └── bool_value
+│   │   │       │                           │       ├── )
+│   │   │       │                           │       ├── STATEMENT
+│   │   │       │                           │       │   └── BLOCK
+│   │   │       │                           │       │       ├── {
+│   │   │       │                           │       │       ├── STATEMENTS
+│   │   │       │                           │       │       │   ├── STATEMENT
+│   │   │       │                           │       │       │   │   └── WHILE_STATEMENT
+│   │   │       │                           │       │       │   │       ├── while
+│   │   │       │                           │       │       │   │       ├── (
+│   │   │       │                           │       │       │   │       ├── EXPRESSION
+│   │   │       │                           │       │       │   │       │   └── AND_EXPRESSION
+│   │   │       │                           │       │       │   │       │       ├── CLAUSE
+│   │   │       │                           │       │       │   │       │       │   └── PRIMARY_EXPRESSION
+│   │   │       │                           │       │       │   │       │       │       └── bool_value
+│   │   │       │                           │       │       │   │       │       ├── &&
+│   │   │       │                           │       │       │   │       │       └── CLAUSE
+│   │   │       │                           │       │       │   │       │           └── PRIMARY_EXPRESSION
+│   │   │       │                           │       │       │   │       │               └── BRACKET_EXPRESSION
+│   │   │       │                           │       │       │   │       │                   ├── (
+│   │   │       │                           │       │       │   │       │                   ├── EXPRESSION
+│   │   │       │                           │       │       │   │       │                   │   └── AND_EXPRESSION
+│   │   │       │                           │       │       │   │       │                   │       ├── CLAUSE
+│   │   │       │                           │       │       │   │       │                   │       │   └── PRIMARY_EXPRESSION
+│   │   │       │                           │       │       │   │       │                   │       │       └── false
+│   │   │       │                           │       │       │   │       │                   │       ├── &&
+│   │   │       │                           │       │       │   │       │                   │       └── CLAUSE
+│   │   │       │                           │       │       │   │       │                   │           └── PRIMARY_EXPRESSION
+│   │   │       │                           │       │       │   │       │                   │               └── BRACKET_EXPRESSION
+│   │   │       │                           │       │       │   │       │                   │                   ├── (
+│   │   │       │                           │       │       │   │       │                   │                   ├── EXPRESSION
+│   │   │       │                           │       │       │   │       │                   │                   │   └── COMPARE_EXPRESSION
+│   │   │       │                           │       │       │   │       │                   │                   │       ├── PRIMARY_EXPRESSION
+│   │   │       │                           │       │       │   │       │                   │                   │       │   └── 1
+│   │   │       │                           │       │       │   │       │                   │                   │       ├── <
+│   │   │       │                           │       │       │   │       │                   │                   │       └── PRIMARY_EXPRESSION
+│   │   │       │                           │       │       │   │       │                   │                   │           └── 5
+│   │   │       │                           │       │       │   │       │                   │                   └── )
+│   │   │       │                           │       │       │   │       │                   └── )
+│   │   │       │                           │       │       │   │       ├── )
+│   │   │       │                           │       │       │   │       └── STATEMENT
+│   │   │       │                           │       │       │   │           └── BLOCK
+│   │   │       │                           │       │       │   │               ├── {
+│   │   │       │                           │       │       │   │               ├── STATEMENTS
+│   │   │       │                           │       │       │   │               └── }
+│   │   │       │                           │       │       │   └── STATEMENTS
+│   │   │       │                           │       │       └── }
+│   │   │       │                           │       ├── else
+│   │   │       │                           │       └── STATEMENT
+│   │   │       │                           │           └── BLOCK
+│   │   │       │                           │               ├── {
+│   │   │       │                           │               ├── STATEMENTS
+│   │   │       │                           │               │   ├── STATEMENT
+│   │   │       │                           │               │   │   └── PRINT_STATEMENT
+│   │   │       │                           │               │   │       ├── System.out.println
+│   │   │       │                           │               │   │       ├── (
+│   │   │       │                           │               │   │       ├── EXPRESSION
+│   │   │       │                           │               │   │       │   └── CLAUSE
+│   │   │       │                           │               │   │       │       └── PRIMARY_EXPRESSION
+│   │   │       │                           │               │   │       │           └── _int_value
+│   │   │       │                           │               │   │       ├── )
+│   │   │       │                           │               │   │       └── ;
+│   │   │       │                           │               │   └── STATEMENTS
+│   │   │       │                           │               │       ├── STATEMENT
+│   │   │       │                           │               │       │   └── PRINT_STATEMENT
+│   │   │       │                           │               │       │       ├── System.out.println
+│   │   │       │                           │               │       │       ├── (
+│   │   │       │                           │               │       │       ├── EXPRESSION
+│   │   │       │                           │               │       │       │   └── PLUS_EXPRESSION
+│   │   │       │                           │               │       │       │       ├── PRIMARY_EXPRESSION
+│   │   │       │                           │               │       │       │       │   └── _int_value
+│   │   │       │                           │               │       │       │       ├── +
+│   │   │       │                           │               │       │       │       └── PRIMARY_EXPRESSION
+│   │   │       │                           │               │       │       │           └── BRACKET_EXPRESSION
+│   │   │       │                           │               │       │       │               ├── (
+│   │   │       │                           │               │       │       │               ├── EXPRESSION
+│   │   │       │                           │               │       │       │               │   └── ARRAY_LOOKUP
+│   │   │       │                           │               │       │       │               │       ├── PRIMARY_EXPRESSION
+│   │   │       │                           │               │       │       │               │       │   └── _int_array
+│   │   │       │                           │               │       │       │               │       ├── [
+│   │   │       │                           │               │       │       │               │       ├── PRIMARY_EXPRESSION
+│   │   │       │                           │               │       │       │               │       │   └── 2
+│   │   │       │                           │               │       │       │               │       └── ]
+│   │   │       │                           │               │       │       │               └── )
+│   │   │       │                           │               │       │       ├── )
+│   │   │       │                           │               │       │       └── ;
+│   │   │       │                           │               │       └── STATEMENTS
+│   │   │       │                           │               └── }
+│   │   │       │                           └── STATEMENTS
+│   │   │       └── }
+│   │   └── STATEMENTS
+│   │       ├── STATEMENT
+│   │       │   └── ARRAY_ASSIGNMENT_STATEMENT
+│   │       │       ├── _int_array
+│   │       │       ├── [
+│   │       │       ├── EXPRESSION
+│   │       │       │   └── CLAUSE
+│   │       │       │       └── PRIMARY_EXPRESSION
+│   │       │       │           └── 2
+│   │       │       ├── ]
+│   │       │       ├── =
+│   │       │       ├── EXPRESSION
+│   │       │       │   └── CLAUSE
+│   │       │       │       └── PRIMARY_EXPRESSION
+│   │       │       │           └── 12939291
+│   │       │       └── ;
+│   │       └── STATEMENTS
+│   │           ├── STATEMENT
+│   │           │   └── ASSIGNMENT_STATEMENT
+│   │           │       ├── _int_value
+│   │           │       ├── =
+│   │           │       ├── EXPRESSION
+│   │           │       │   └── TIMES_EXPRESSION
+│   │           │       │       ├── PRIMARY_EXPRESSION
+│   │           │       │       │   └── 5
+│   │           │       │       ├── *
+│   │           │       │       └── PRIMARY_EXPRESSION
+│   │           │       │           └── _int_value
+│   │           │       └── ;
+│   │           └── STATEMENTS
+│   │               ├── STATEMENT
+│   │               │   └── ASSIGNMENT_STATEMENT
+│   │               │       ├── _int_value
+│   │               │       ├── =
+│   │               │       ├── EXPRESSION
+│   │               │       │   └── PLUS_EXPRESSION
+│   │               │       │       ├── PRIMARY_EXPRESSION
+│   │               │       │       │   └── 5
+│   │               │       │       ├── +
+│   │               │       │       └── PRIMARY_EXPRESSION
+│   │               │       │           └── _int_value
+│   │               │       └── ;
+│   │               └── STATEMENTS
+│   │                   ├── STATEMENT
+│   │                   │   └── ASSIGNMENT_STATEMENT
+│   │                   │       ├── _int_value
+│   │                   │       ├── =
+│   │                   │       ├── EXPRESSION
+│   │                   │       │   └── MINUS_EXPRESSION
+│   │                   │       │       ├── PRIMARY_EXPRESSION
+│   │                   │       │       │   └── 5
+│   │                   │       │       ├── -
+│   │                   │       │       └── PRIMARY_EXPRESSION
+│   │                   │       │           └── _int_value
+│   │                   │       └── ;
+│   │                   └── STATEMENTS
+│   ├── }
+│   └── }
+└── CLASS_DECLARATIONS
+    ├── CLASS_DECLARATION
+    │   ├── class
+    │   ├── A
+    │   ├── {
+    │   ├── VAR_DECLARATIONS
+    │   │   ├── VAR_DECLARATIONS
+    │   │   │   ├── VAR_DECLARATIONS
+    │   │   │   │   ├── VAR_DECLARATIONS
+    │   │   │   │   │   ├── VAR_DECLARATIONS
+    │   │   │   │   │   └── VAR_DECLARATION
+    │   │   │   │   │       ├── TYPE
+    │   │   │   │   │       │   └── A
+    │   │   │   │   │       ├── a
+    │   │   │   │   │       └── ;
+    │   │   │   │   └── VAR_DECLARATION
+    │   │   │   │       ├── TYPE
+    │   │   │   │       │   └── INTEGER_TYPE
+    │   │   │   │       │       └── int
+    │   │   │   │       ├── _int_value
+    │   │   │   │       └── ;
+    │   │   │   └── VAR_DECLARATION
+    │   │   │       ├── TYPE
+    │   │   │       │   └── ARRAY_TYPE
+    │   │   │       │       ├── int
+    │   │   │       │       ├── [
+    │   │   │       │       └── ]
+    │   │   │       ├── _int_array
+    │   │   │       └── ;
+    │   │   └── VAR_DECLARATION
+    │   │       ├── TYPE
+    │   │       │   └── BOOLEAN_TYPE
+    │   │       │       └── boolean
+    │   │       ├── bool_value
+    │   │       └── ;
+    │   ├── METHOD_DECLARATIONS
+    │   │   ├── METHOD_DECLARATION
+    │   │   │   ├── public
+    │   │   │   ├── TYPE
+    │   │   │   │   └── INTEGER_TYPE
+    │   │   │   │       └── int
+    │   │   │   ├── get_int_literal
+    │   │   │   ├── (
+    │   │   │   ├── FORMAL_PARAMETER_LIST
+    │   │   │   ├── )
+    │   │   │   ├── {
+    │   │   │   ├── VAR_DECLARATIONS
+    │   │   │   ├── STATEMENTS
+    │   │   │   ├── return
+    │   │   │   ├── EXPRESSION
+    │   │   │   │   └── CLAUSE
+    │   │   │   │       └── PRIMARY_EXPRESSION
+    │   │   │   │           └── 5
+    │   │   │   ├── ;
+    │   │   │   └── }
+    │   │   └── METHOD_DECLARATIONS
+    │   │       ├── METHOD_DECLARATION
+    │   │       │   ├── public
+    │   │       │   ├── TYPE
+    │   │       │   │   └── INTEGER_TYPE
+    │   │       │   │       └── int
+    │   │       │   ├── get_int_literal2
+    │   │       │   ├── (
+    │   │       │   ├── FORMAL_PARAMETER_LIST
+    │   │       │   ├── )
+    │   │       │   ├── {
+    │   │       │   ├── VAR_DECLARATIONS
+    │   │       │   │   ├── VAR_DECLARATIONS
+    │   │       │   │   └── VAR_DECLARATION
+    │   │       │   │       ├── TYPE
+    │   │       │   │       │   └── INTEGER_TYPE
+    │   │       │   │       │       └── int
+    │   │       │   │       ├── ret
+    │   │       │   │       └── ;
+    │   │       │   ├── STATEMENTS
+    │   │       │   │   ├── STATEMENT
+    │   │       │   │   │   └── ASSIGNMENT_STATEMENT
+    │   │       │   │   │       ├── ret
+    │   │       │   │   │       ├── =
+    │   │       │   │   │       ├── EXPRESSION
+    │   │       │   │   │       │   └── CLAUSE
+    │   │       │   │   │       │       └── PRIMARY_EXPRESSION
+    │   │       │   │   │       │           └── 928
+    │   │       │   │   │       └── ;
+    │   │       │   │   └── STATEMENTS
+    │   │       │   │       ├── STATEMENT
+    │   │       │   │       │   └── ASSIGNMENT_STATEMENT
+    │   │       │   │       │       ├── ret
+    │   │       │   │       │       ├── =
+    │   │       │   │       │       ├── EXPRESSION
+    │   │       │   │       │       │   └── PLUS_EXPRESSION
+    │   │       │   │       │       │       ├── PRIMARY_EXPRESSION
+    │   │       │   │       │       │       │   └── ret
+    │   │       │   │       │       │       ├── +
+    │   │       │   │       │       │       └── PRIMARY_EXPRESSION
+    │   │       │   │       │       │           └── 12423
+    │   │       │   │       │       └── ;
+    │   │       │   │       └── STATEMENTS
+    │   │       │   ├── return
+    │   │       │   ├── EXPRESSION
+    │   │       │   │   └── CLAUSE
+    │   │       │   │       └── PRIMARY_EXPRESSION
+    │   │       │   │           └── ret
+    │   │       │   ├── ;
+    │   │       │   └── }
+    │   │       └── METHOD_DECLARATIONS
+    │   │           ├── METHOD_DECLARATION
+    │   │           │   ├── public
+    │   │           │   ├── TYPE
+    │   │           │   │   └── INTEGER_TYPE
+    │   │           │   │       └── int
+    │   │           │   ├── get_sum
+    │   │           │   ├── (
+    │   │           │   ├── FORMAL_PARAMETER_LIST
+    │   │           │   │   ├── FORMAL_PARAMETER_LIST
+    │   │           │   │   │   └── FORMAL_PARAMETER
+    │   │           │   │   │       ├── TYPE
+    │   │           │   │   │       │   └── INTEGER_TYPE
+    │   │           │   │   │       │       └── int
+    │   │           │   │   │       └── a
+    │   │           │   │   ├── ,
+    │   │           │   │   └── FORMAL_PARAMETER
+    │   │           │   │       ├── TYPE
+    │   │           │   │       │   └── INTEGER_TYPE
+    │   │           │   │       │       └── int
+    │   │           │   │       └── b
+    │   │           │   ├── )
+    │   │           │   ├── {
+    │   │           │   ├── VAR_DECLARATIONS
+    │   │           │   │   ├── VAR_DECLARATIONS
+    │   │           │   │   └── VAR_DECLARATION
+    │   │           │   │       ├── TYPE
+    │   │           │   │       │   └── INTEGER_TYPE
+    │   │           │   │       │       └── int
+    │   │           │   │       ├── sum_test
+    │   │           │   │       └── ;
+    │   │           │   ├── STATEMENTS
+    │   │           │   │   ├── STATEMENT
+    │   │           │   │   │   └── ASSIGNMENT_STATEMENT
+    │   │           │   │   │       ├── sum_test
+    │   │           │   │   │       ├── =
+    │   │           │   │   │       ├── EXPRESSION
+    │   │           │   │   │       │   └── MESSAGE_SEND
+    │   │           │   │   │       │       ├── PRIMARY_EXPRESSION
+    │   │           │   │   │       │       │   └── this
+    │   │           │   │   │       │       ├── .
+    │   │           │   │   │       │       ├── get_sum
+    │   │           │   │   │       │       ├── (
+    │   │           │   │   │       │       ├── EXPRESSION_LIST
+    │   │           │   │   │       │       │   └── EXPRESSION
+    │   │           │   │   │       │       │       └── CLAUSE
+    │   │           │   │   │       │       │           └── PRIMARY_EXPRESSION
+    │   │           │   │   │       │       │               └── random_int_array
+    │   │           │   │   │       │       └── )
+    │   │           │   │   │       └── ;
+    │   │           │   │   └── STATEMENTS
+    │   │           │   ├── return
+    │   │           │   ├── EXPRESSION
+    │   │           │   │   └── PLUS_EXPRESSION
+    │   │           │   │       ├── PRIMARY_EXPRESSION
+    │   │           │   │       │   └── a
+    │   │           │   │       ├── +
+    │   │           │   │       └── PRIMARY_EXPRESSION
+    │   │           │   │           └── b
+    │   │           │   ├── ;
+    │   │           │   └── }
+    │   │           └── METHOD_DECLARATIONS
+    │   │               ├── METHOD_DECLARATION
+    │   │               │   ├── public
+    │   │               │   ├── TYPE
+    │   │               │   │   └── INTEGER_TYPE
+    │   │               │   │       └── int
+    │   │               │   ├── get_sum
+    │   │               │   ├── (
+    │   │               │   ├── FORMAL_PARAMETER_LIST
+    │   │               │   │   └── FORMAL_PARAMETER
+    │   │               │   │       ├── TYPE
+    │   │               │   │       │   └── ARRAY_TYPE
+    │   │               │   │       │       ├── int
+    │   │               │   │       │       ├── [
+    │   │               │   │       │       └── ]
+    │   │               │   │       └── a
+    │   │               │   ├── )
+    │   │               │   ├── {
+    │   │               │   ├── VAR_DECLARATIONS
+    │   │               │   │   ├── VAR_DECLARATIONS
+    │   │               │   │   │   ├── VAR_DECLARATIONS
+    │   │               │   │   │   └── VAR_DECLARATION
+    │   │               │   │   │       ├── TYPE
+    │   │               │   │   │       │   └── INTEGER_TYPE
+    │   │               │   │   │       │       └── int
+    │   │               │   │   │       ├── i
+    │   │               │   │   │       └── ;
+    │   │               │   │   └── VAR_DECLARATION
+    │   │               │   │       ├── TYPE
+    │   │               │   │       │   └── INTEGER_TYPE
+    │   │               │   │       │       └── int
+    │   │               │   │       ├── sum
+    │   │               │   │       └── ;
+    │   │               │   ├── STATEMENTS
+    │   │               │   │   ├── STATEMENT
+    │   │               │   │   │   └── ASSIGNMENT_STATEMENT
+    │   │               │   │   │       ├── i
+    │   │               │   │   │       ├── =
+    │   │               │   │   │       ├── EXPRESSION
+    │   │               │   │   │       │   └── CLAUSE
+    │   │               │   │   │       │       └── PRIMARY_EXPRESSION
+    │   │               │   │   │       │           └── 0
+    │   │               │   │   │       └── ;
+    │   │               │   │   └── STATEMENTS
+    │   │               │   │       ├── STATEMENT
+    │   │               │   │       │   └── ASSIGNMENT_STATEMENT
+    │   │               │   │       │       ├── sum
+    │   │               │   │       │       ├── =
+    │   │               │   │       │       ├── EXPRESSION
+    │   │               │   │       │       │   └── CLAUSE
+    │   │               │   │       │       │       └── PRIMARY_EXPRESSION
+    │   │               │   │       │       │           └── 0
+    │   │               │   │       │       └── ;
+    │   │               │   │       └── STATEMENTS
+    │   │               │   │           ├── STATEMENT
+    │   │               │   │           │   └── WHILE_STATEMENT
+    │   │               │   │           │       ├── while
+    │   │               │   │           │       ├── (
+    │   │               │   │           │       ├── EXPRESSION
+    │   │               │   │           │       │   └── COMPARE_EXPRESSION
+    │   │               │   │           │       │       ├── PRIMARY_EXPRESSION
+    │   │               │   │           │       │       │   └── i
+    │   │               │   │           │       │       ├── <
+    │   │               │   │           │       │       └── PRIMARY_EXPRESSION
+    │   │               │   │           │       │           └── BRACKET_EXPRESSION
+    │   │               │   │           │       │               ├── (
+    │   │               │   │           │       │               ├── EXPRESSION
+    │   │               │   │           │       │               │   └── ARRAY_LENGTH
+    │   │               │   │           │       │               │       ├── PRIMARY_EXPRESSION
+    │   │               │   │           │       │               │       │   └── a
+    │   │               │   │           │       │               │       ├── .
+    │   │               │   │           │       │               │       └── length
+    │   │               │   │           │       │               └── )
+    │   │               │   │           │       ├── )
+    │   │               │   │           │       └── STATEMENT
+    │   │               │   │           │           └── BLOCK
+    │   │               │   │           │               ├── {
+    │   │               │   │           │               ├── STATEMENTS
+    │   │               │   │           │               │   ├── STATEMENT
+    │   │               │   │           │               │   │   └── ASSIGNMENT_STATEMENT
+    │   │               │   │           │               │   │       ├── sum
+    │   │               │   │           │               │   │       ├── =
+    │   │               │   │           │               │   │       ├── EXPRESSION
+    │   │               │   │           │               │   │       │   └── PLUS_EXPRESSION
+    │   │               │   │           │               │   │       │       ├── PRIMARY_EXPRESSION
+    │   │               │   │           │               │   │       │       │   └── sum
+    │   │               │   │           │               │   │       │       ├── +
+    │   │               │   │           │               │   │       │       └── PRIMARY_EXPRESSION
+    │   │               │   │           │               │   │       │           └── BRACKET_EXPRESSION
+    │   │               │   │           │               │   │       │               ├── (
+    │   │               │   │           │               │   │       │               ├── EXPRESSION
+    │   │               │   │           │               │   │       │               │   └── ARRAY_LOOKUP
+    │   │               │   │           │               │   │       │               │       ├── PRIMARY_EXPRESSION
+    │   │               │   │           │               │   │       │               │       │   └── a
+    │   │               │   │           │               │   │       │               │       ├── [
+    │   │               │   │           │               │   │       │               │       ├── PRIMARY_EXPRESSION
+    │   │               │   │           │               │   │       │               │       │   └── i
+    │   │               │   │           │               │   │       │               │       └── ]
+    │   │               │   │           │               │   │       │               └── )
+    │   │               │   │           │               │   │       └── ;
+    │   │               │   │           │               │   └── STATEMENTS
+    │   │               │   │           │               │       ├── STATEMENT
+    │   │               │   │           │               │       │   └── ASSIGNMENT_STATEMENT
+    │   │               │   │           │               │       │       ├── i
+    │   │               │   │           │               │       │       ├── =
+    │   │               │   │           │               │       │       ├── EXPRESSION
+    │   │               │   │           │               │       │       │   └── PLUS_EXPRESSION
+    │   │               │   │           │               │       │       │       ├── PRIMARY_EXPRESSION
+    │   │               │   │           │               │       │       │       │   └── i
+    │   │               │   │           │               │       │       │       ├── +
+    │   │               │   │           │               │       │       │       └── PRIMARY_EXPRESSION
+    │   │               │   │           │               │       │       │           └── 1
+    │   │               │   │           │               │       │       └── ;
+    │   │               │   │           │               │       └── STATEMENTS
+    │   │               │   │           │               └── }
+    │   │               │   │           └── STATEMENTS
+    │   │               │   ├── return
+    │   │               │   ├── EXPRESSION
+    │   │               │   │   └── CLAUSE
+    │   │               │   │       └── PRIMARY_EXPRESSION
+    │   │               │   │           └── sum
+    │   │               │   ├── ;
+    │   │               │   └── }
+    │   │               └── METHOD_DECLARATIONS
+    │   │                   ├── METHOD_DECLARATION
+    │   │                   │   ├── public
+    │   │                   │   ├── TYPE
+    │   │                   │   │   └── ARRAY_TYPE
+    │   │                   │   │       ├── int
+    │   │                   │   │       ├── [
+    │   │                   │   │       └── ]
+    │   │                   │   ├── get_array
+    │   │                   │   ├── (
+    │   │                   │   ├── FORMAL_PARAMETER_LIST
+    │   │                   │   │   ├── FORMAL_PARAMETER_LIST
+    │   │                   │   │   │   └── FORMAL_PARAMETER
+    │   │                   │   │   │       ├── TYPE
+    │   │                   │   │   │       │   └── INTEGER_TYPE
+    │   │                   │   │   │       │       └── int
+    │   │                   │   │   │       └── a
+    │   │                   │   │   ├── ,
+    │   │                   │   │   └── FORMAL_PARAMETER
+    │   │                   │   │       ├── TYPE
+    │   │                   │   │       │   └── INTEGER_TYPE
+    │   │                   │   │       │       └── int
+    │   │                   │   │       └── b
+    │   │                   │   ├── )
+    │   │                   │   ├── {
+    │   │                   │   ├── VAR_DECLARATIONS
+    │   │                   │   │   ├── VAR_DECLARATIONS
+    │   │                   │   │   └── VAR_DECLARATION
+    │   │                   │   │       ├── TYPE
+    │   │                   │   │       │   └── ARRAY_TYPE
+    │   │                   │   │       │       ├── int
+    │   │                   │   │       │       ├── [
+    │   │                   │   │       │       └── ]
+    │   │                   │   │       ├── ret
+    │   │                   │   │       └── ;
+    │   │                   │   ├── STATEMENTS
+    │   │                   │   │   ├── STATEMENT
+    │   │                   │   │   │   └── ASSIGNMENT_STATEMENT
+    │   │                   │   │   │       ├── ret
+    │   │                   │   │   │       ├── =
+    │   │                   │   │   │       ├── EXPRESSION
+    │   │                   │   │   │       │   └── CLAUSE
+    │   │                   │   │   │       │       └── PRIMARY_EXPRESSION
+    │   │                   │   │   │       │           └── ARRAY_ALLOCATION_EXPRESSION
+    │   │                   │   │   │       │               ├── new
+    │   │                   │   │   │       │               ├── int
+    │   │                   │   │   │       │               ├── [
+    │   │                   │   │   │       │               ├── EXPRESSION
+    │   │                   │   │   │       │               │   └── CLAUSE
+    │   │                   │   │   │       │               │       └── PRIMARY_EXPRESSION
+    │   │                   │   │   │       │               │           └── 2
+    │   │                   │   │   │       │               └── ]
+    │   │                   │   │   │       └── ;
+    │   │                   │   │   └── STATEMENTS
+    │   │                   │   │       ├── STATEMENT
+    │   │                   │   │       │   └── ARRAY_ASSIGNMENT_STATEMENT
+    │   │                   │   │       │       ├── ret
+    │   │                   │   │       │       ├── [
+    │   │                   │   │       │       ├── EXPRESSION
+    │   │                   │   │       │       │   └── CLAUSE
+    │   │                   │   │       │       │       └── PRIMARY_EXPRESSION
+    │   │                   │   │       │       │           └── 0
+    │   │                   │   │       │       ├── ]
+    │   │                   │   │       │       ├── =
+    │   │                   │   │       │       ├── EXPRESSION
+    │   │                   │   │       │       │   └── CLAUSE
+    │   │                   │   │       │       │       └── PRIMARY_EXPRESSION
+    │   │                   │   │       │       │           └── a
+    │   │                   │   │       │       └── ;
+    │   │                   │   │       └── STATEMENTS
+    │   │                   │   │           ├── STATEMENT
+    │   │                   │   │           │   └── ARRAY_ASSIGNMENT_STATEMENT
+    │   │                   │   │           │       ├── ret
+    │   │                   │   │           │       ├── [
+    │   │                   │   │           │       ├── EXPRESSION
+    │   │                   │   │           │       │   └── CLAUSE
+    │   │                   │   │           │       │       └── PRIMARY_EXPRESSION
+    │   │                   │   │           │       │           └── 1
+    │   │                   │   │           │       ├── ]
+    │   │                   │   │           │       ├── =
+    │   │                   │   │           │       ├── EXPRESSION
+    │   │                   │   │           │       │   └── CLAUSE
+    │   │                   │   │           │       │       └── PRIMARY_EXPRESSION
+    │   │                   │   │           │       │           └── b
+    │   │                   │   │           │       └── ;
+    │   │                   │   │           └── STATEMENTS
+    │   │                   │   ├── return
+    │   │                   │   ├── EXPRESSION
+    │   │                   │   │   └── CLAUSE
+    │   │                   │   │       └── PRIMARY_EXPRESSION
+    │   │                   │   │           └── ret
+    │   │                   │   ├── ;
+    │   │                   │   └── }
+    │   │                   └── METHOD_DECLARATIONS
+    │   └── }
+    └── CLASS_DECLARATIONS
+        ├── CLASS_DECLARATION
+        │   ├── class
+        │   ├── B
+        │   ├── extends
+        │   ├── A
+        │   ├── {
+        │   ├── VAR_DECLARATIONS
+        │   ├── METHOD_DECLARATIONS
+        │   │   ├── METHOD_DECLARATION
+        │   │   │   ├── public
+        │   │   │   ├── TYPE
+        │   │   │   │   └── A
+        │   │   │   ├── foo
+        │   │   │   ├── (
+        │   │   │   ├── FORMAL_PARAMETER_LIST
+        │   │   │   ├── )
+        │   │   │   ├── {
+        │   │   │   ├── VAR_DECLARATIONS
+        │   │   │   ├── STATEMENTS
+        │   │   │   ├── return
+        │   │   │   ├── EXPRESSION
+        │   │   │   │   └── CLAUSE
+        │   │   │   │       └── PRIMARY_EXPRESSION
+        │   │   │   │           └── ALLOCATION_EXPRESSION
+        │   │   │   │               ├── new
+        │   │   │   │               ├── B
+        │   │   │   │               ├── (
+        │   │   │   │               └── )
+        │   │   │   ├── ;
+        │   │   │   └── }
+        │   │   └── METHOD_DECLARATIONS
+        │   └── }
+        └── CLASS_DECLARATIONS
+            ├── CLASS_DECLARATION
+            │   ├── class
+            │   ├── C
+            │   ├── extends
+            │   ├── B
+            │   ├── {
+            │   ├── VAR_DECLARATIONS
+            │   ├── METHOD_DECLARATIONS
+            │   │   ├── METHOD_DECLARATION
+            │   │   │   ├── public
+            │   │   │   ├── TYPE
+            │   │   │   │   └── A
+            │   │   │   ├── foo
+            │   │   │   ├── (
+            │   │   │   ├── FORMAL_PARAMETER_LIST
+            │   │   │   │   ├── FORMAL_PARAMETER_LIST
+            │   │   │   │   │   ├── FORMAL_PARAMETER_LIST
+            │   │   │   │   │   │   ├── FORMAL_PARAMETER_LIST
+            │   │   │   │   │   │   │   └── FORMAL_PARAMETER
+            │   │   │   │   │   │   │       ├── TYPE
+            │   │   │   │   │   │   │       │   └── INTEGER_TYPE
+            │   │   │   │   │   │   │       │       └── int
+            │   │   │   │   │   │   │       └── a
+            │   │   │   │   │   │   ├── ,
+            │   │   │   │   │   │   └── FORMAL_PARAMETER
+            │   │   │   │   │   │       ├── TYPE
+            │   │   │   │   │   │       │   └── INTEGER_TYPE
+            │   │   │   │   │   │       │       └── int
+            │   │   │   │   │   │       └── b
+            │   │   │   │   │   ├── ,
+            │   │   │   │   │   └── FORMAL_PARAMETER
+            │   │   │   │   │       ├── TYPE
+            │   │   │   │   │       │   └── ARRAY_TYPE
+            │   │   │   │   │       │       ├── int
+            │   │   │   │   │       │       ├── [
+            │   │   │   │   │       │       └── ]
+            │   │   │   │   │       └── c
+            │   │   │   │   ├── ,
+            │   │   │   │   └── FORMAL_PARAMETER
+            │   │   │   │       ├── TYPE
+            │   │   │   │       │   └── BOOLEAN_TYPE
+            │   │   │   │       │       └── boolean
+            │   │   │   │       └── d
+            │   │   │   ├── )
+            │   │   │   ├── {
+            │   │   │   ├── VAR_DECLARATIONS
+            │   │   │   ├── STATEMENTS
+            │   │   │   ├── return
+            │   │   │   ├── EXPRESSION
+            │   │   │   │   └── CLAUSE
+            │   │   │   │       └── PRIMARY_EXPRESSION
+            │   │   │   │           └── ALLOCATION_EXPRESSION
+            │   │   │   │               ├── new
+            │   │   │   │               ├── B
+            │   │   │   │               ├── (
+            │   │   │   │               └── )
+            │   │   │   ├── ;
+            │   │   │   └── }
+            │   │   └── METHOD_DECLARATIONS
+            │   └── }
+            └── CLASS_DECLARATIONS
+                ├── CLASS_DECLARATION
+                │   ├── class
+                │   ├── D
+                │   ├── {
+                │   ├── VAR_DECLARATIONS
+                │   ├── METHOD_DECLARATIONS
+                │   └── }
+                └── CLASS_DECLARATIONS
