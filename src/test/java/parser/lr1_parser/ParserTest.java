@@ -26,7 +26,6 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 public class ParserTest {
-
     private static Parser aabaabParser;
     private static Parser bracketsParser;
     private static Parser mathParser;
@@ -87,7 +86,7 @@ public class ParserTest {
         Assertions.assertTrue(mathParser.isValid(tokenList));
     }
 
-    @ParameterizedTest(name="Test mini java {index} for source file {0}, should be {1}")
+    @ParameterizedTest(name="Test mini java cst generation {index} for source file {0}, should be equal to {1}")
     @MethodSource("miniJavaCstProvider")
     public void testMiniJavaCst(String src, String comparisonFile) throws IOException, LexerParseException, ConfigReaderException {
         Lexer lexer = new Lexer();
@@ -102,7 +101,7 @@ public class ParserTest {
         );
     }
 
-    @ParameterizedTest(name="Test mini java {index} for source file {0}, should be {1}")
+    @ParameterizedTest(name="Test mini java ast generation {index} for source file {0}, should be equal to {1}")
     @MethodSource("miniJavaAstProvider")
     public void testMiniJavaAst(String src, String comparisonFile) throws IOException, LexerParseException, ConfigReaderException {
         Lexer lexer = new Lexer();
@@ -115,6 +114,21 @@ public class ParserTest {
         Assertions.assertEquals(
                 StringUtilities.trimEmptyLines(StringUtilities.useCRLF(expected)),
                 StringUtilities.trimEmptyLines(StringUtilities.useCRLF(prettyPrinted))
+        );
+    }
+
+    @ParameterizedTest(name="Test mini java back to source {index} for source file {0}")
+    @MethodSource("miniJavaBackToSourceProvider")
+    public void testMiniJavaBackToSource(String src) throws IOException, LexerParseException, ConfigReaderException {
+        Lexer lexer = new Lexer();
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, miniJavaLanguageDefinition);
+
+        String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_languages/minijava/" + src), StandardCharsets.UTF_8);
+        ConcreteSyntaxTreeNode cst = miniJavaParser.createCST(tokenList);
+        AbstractSyntaxTreeNode ast = AbstractSyntaxTreeFactory.create(cst);
+        Assertions.assertEquals(
+                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(expected)),
+                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(ast.getSourceCode()))
         );
     }
 
@@ -138,6 +152,13 @@ public class ParserTest {
         return Stream.of(
                 Arguments.of("complete.minijava", "complete_ast.txt"),
                 Arguments.of("only_main.minijava", "only_main_ast.txt")
+        );
+    }
+
+    private static Stream<Arguments> miniJavaBackToSourceProvider() {
+        return Stream.of(
+                Arguments.of("complete.minijava"),
+                Arguments.of("only_main.minijava")
         );
     }
 

@@ -78,4 +78,19 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
         children.addAll(idx, newChilds);
         children.remove(original);
     }
+
+    public String getSourceCode() {
+        StringBuilder sb = new StringBuilder();
+        createSourceCode(sb);
+        return sb.toString();
+    }
+
+    private void createSourceCode(StringBuilder builder) {
+        if(this.token != null) {
+            builder.append(token.getValue());
+        }
+        for(AbstractSyntaxTreeNode treeNode: getAllChildren()) {
+            treeNode.createSourceCode(builder);
+        }
+    }
 }

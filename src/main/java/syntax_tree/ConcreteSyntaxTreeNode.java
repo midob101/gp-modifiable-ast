@@ -27,7 +27,7 @@ public class ConcreteSyntaxTreeNode implements IPrintableTreeNode<ConcreteSyntax
     }
 
     public void addChild(ConcreteSyntaxTreeNode child) {
-        children.push(child);
+        children.addFirst(child);
     }
 
     @Override
