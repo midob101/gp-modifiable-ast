@@ -12,6 +12,7 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
     protected LinkedList<AbstractSyntaxTreeNode> children = new LinkedList<>();
     private boolean hidden = false;
     private String alias = null;
+    private AbstractSyntaxTreeNode parent = null;
 
     public AbstractSyntaxTreeNode(Token token) {
         this.token = token;
@@ -37,6 +38,14 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
         this.hidden = true;
     }
 
+    protected void setParent(AbstractSyntaxTreeNode parent) {
+        this.parent = parent;
+    }
+
+    public AbstractSyntaxTreeNode getParent() {
+        return parent;
+    }
+
     @Override
     public String getDisplayValue() {
         if(this.rule != null) {
@@ -56,7 +65,17 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
         return children.stream().filter(AbstractSyntaxTreeNode::isVisible).toList();
     }
 
+    public List<AbstractSyntaxTreeNode> getAllChildren() {
+        return children;
+    }
+
     public void setAlias(String value) {
         this.alias = value;
+    }
+
+    public void replaceChild(AbstractSyntaxTreeNode original, List<AbstractSyntaxTreeNode> newChilds) {
+        int idx = children.indexOf(original);
+        children.addAll(idx, newChilds);
+        children.remove(original);
     }
 }

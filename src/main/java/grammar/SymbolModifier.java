@@ -5,6 +5,7 @@ import java.util.Objects;
 public class SymbolModifier {
     public final static String HIDDEN = "hidden";
     public final static String ALIAS = "alias";
+    public final static String LIST = "list";
 
     private final String value;
     private final String modifier;

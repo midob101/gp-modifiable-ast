@@ -9,7 +9,7 @@ public class ConfigReaderTest {
 
     @Test
     public void testSplitNameWithModifiers() {
-        NameAndModifiers nameAndModifiers = ConfigReader.splitNameWithModifiers("  PRODUCTION_NAME   [hidden, alias = 192, alias=produ, foobar  ]");
+        NameAndModifiers nameAndModifiers = ConfigReader.splitNameWithModifiers("  PRODUCTION_NAME   [hidden, alias = 192, alias=produ, foobar  ]  ");
 
         Assertions.assertEquals("PRODUCTION_NAME", nameAndModifiers.name());
         Assertions.assertEquals(4, nameAndModifiers.modifiers().size());

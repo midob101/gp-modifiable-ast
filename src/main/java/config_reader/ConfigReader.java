@@ -235,7 +235,7 @@ public class ConfigReader {
     public static NameAndModifiers splitNameWithModifiers(String input) {
         String[] parts = input.split("\\[");
         String name = parts[0].trim();
-        String modifierString = parts.length > 1 ? parts[1].substring(0, parts[1].length()-1) : null;
+        String modifierString = parts.length > 1 ? parts[1].trim().substring(0, parts[1].trim().length()-1) : null;
         LinkedList<SymbolModifier> modifierList = new LinkedList<>();
         if(modifierString != null) {
             String[] modifiers = modifierString.split(",");

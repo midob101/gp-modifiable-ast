@@ -10,24 +10,20 @@ S
 │   ├── square_bracket_close: ]
 │   ├── identifier: args
 │   ├── VAR_DECLARATIONS
-│   │   ├── VAR_DECLARATIONS
-│   │   │   ├── VAR_DECLARATIONS
-│   │   │   │   ├── VAR_DECLARATIONS
-│   │   │   │   │   ├── VAR_DECLARATIONS
-│   │   │   │   │   └── VAR_DECLARATION
-│   │   │   │   │       ├── TYPE
-│   │   │   │   │       │   └── identifier: A
-│   │   │   │   │       └── identifier: a
-│   │   │   │   └── VAR_DECLARATION
-│   │   │   │       ├── TYPE
-│   │   │   │       │   └── INTEGER_TYPE
-│   │   │   │       │       └── int_type: int
-│   │   │   │       └── identifier: _int_value
-│   │   │   └── VAR_DECLARATION
-│   │   │       ├── TYPE
-│   │   │       │   └── ARRAY_TYPE
-│   │   │       │       └── int_type: int
-│   │   │       └── identifier: _int_array
+│   │   ├── VAR_DECLARATION
+│   │   │   ├── TYPE
+│   │   │   │   └── identifier: A
+│   │   │   └── identifier: a
+│   │   ├── VAR_DECLARATION
+│   │   │   ├── TYPE
+│   │   │   │   └── INTEGER_TYPE
+│   │   │   │       └── int_type: int
+│   │   │   └── identifier: _int_value
+│   │   ├── VAR_DECLARATION
+│   │   │   ├── TYPE
+│   │   │   │   └── ARRAY_TYPE
+│   │   │   │       └── int_type: int
+│   │   │   └── identifier: _int_array
 │   │   └── VAR_DECLARATION
 │   │       ├── TYPE
 │   │       │   └── BOOLEAN_TYPE
@@ -45,186 +41,167 @@ S
 │       │           │               └── PRIMARY_EXPRESSION
 │       │           │                   └── ALLOCATION_EXPRESSION
 │       │           │                       └── identifier: A
-│       │           └── STATEMENTS
-│       │               ├── STATEMENT
-│       │               │   └── ASSIGNMENT_STATEMENT
-│       │               │       ├── identifier: _int_value
-│       │               │       └── EXPRESSION
-│       │               │           └── CLAUSE
-│       │               │               └── PRIMARY_EXPRESSION
-│       │               │                   └── integer_literal: 5
-│       │               └── STATEMENTS
-│       │                   ├── STATEMENT
-│       │                   │   └── ASSIGNMENT_STATEMENT
-│       │                   │       ├── identifier: _int_array
-│       │                   │       └── EXPRESSION
-│       │                   │           └── CLAUSE
-│       │                   │               └── PRIMARY_EXPRESSION
-│       │                   │                   └── ARRAY_ALLOCATION_EXPRESSION
-│       │                   │                       ├── int_type: int
-│       │                   │                       └── EXPRESSION
-│       │                   │                           └── MINUS_EXPRESSION
-│       │                   │                               ├── left
-│       │                   │                               │   └── integer_literal: 5
-│       │                   │                               └── right
-│       │                   │                                   └── integer_literal: 2
-│       │                   └── STATEMENTS
-│       │                       ├── STATEMENT
-│       │                       │   └── ARRAY_ASSIGNMENT_STATEMENT
-│       │                       │       ├── identifier: _int_array
-│       │                       │       ├── EXPRESSION
-│       │                       │       │   └── CLAUSE
-│       │                       │       │       └── PRIMARY_EXPRESSION
-│       │                       │       │           └── integer_literal: 0
-│       │                       │       └── EXPRESSION
-│       │                       │           └── CLAUSE
-│       │                       │               └── PRIMARY_EXPRESSION
-│       │                       │                   └── integer_literal: 10
-│       │                       └── STATEMENTS
-│       │                           ├── STATEMENT
-│       │                           │   └── ASSIGNMENT_STATEMENT
-│       │                           │       ├── identifier: bool_value
-│       │                           │       └── EXPRESSION
-│       │                           │           └── CLAUSE
-│       │                           │               └── PRIMARY_EXPRESSION
-│       │                           │                   └── true_literal: true
+│       │           ├── STATEMENT
+│       │           │   └── ASSIGNMENT_STATEMENT
+│       │           │       ├── identifier: _int_value
+│       │           │       └── EXPRESSION
+│       │           │           └── CLAUSE
+│       │           │               └── PRIMARY_EXPRESSION
+│       │           │                   └── integer_literal: 5
+│       │           ├── STATEMENT
+│       │           │   └── ASSIGNMENT_STATEMENT
+│       │           │       ├── identifier: _int_array
+│       │           │       └── EXPRESSION
+│       │           │           └── CLAUSE
+│       │           │               └── PRIMARY_EXPRESSION
+│       │           │                   └── ARRAY_ALLOCATION_EXPRESSION
+│       │           │                       ├── int_type: int
+│       │           │                       └── EXPRESSION
+│       │           │                           └── MINUS_EXPRESSION
+│       │           │                               ├── left
+│       │           │                               │   └── integer_literal: 5
+│       │           │                               └── right
+│       │           │                                   └── integer_literal: 2
+│       │           ├── STATEMENT
+│       │           │   └── ARRAY_ASSIGNMENT_STATEMENT
+│       │           │       ├── identifier: _int_array
+│       │           │       ├── EXPRESSION
+│       │           │       │   └── CLAUSE
+│       │           │       │       └── PRIMARY_EXPRESSION
+│       │           │       │           └── integer_literal: 0
+│       │           │       └── EXPRESSION
+│       │           │           └── CLAUSE
+│       │           │               └── PRIMARY_EXPRESSION
+│       │           │                   └── integer_literal: 10
+│       │           ├── STATEMENT
+│       │           │   └── ASSIGNMENT_STATEMENT
+│       │           │       ├── identifier: bool_value
+│       │           │       └── EXPRESSION
+│       │           │           └── CLAUSE
+│       │           │               └── PRIMARY_EXPRESSION
+│       │           │                   └── true_literal: true
+│       │           ├── STATEMENT
+│       │           │   └── ASSIGNMENT_STATEMENT
+│       │           │       ├── identifier: bool_value
+│       │           │       └── EXPRESSION
+│       │           │           └── CLAUSE
+│       │           │               └── PRIMARY_EXPRESSION
+│       │           │                   └── false_literal: false
+│       │           └── STATEMENT
+│       │               └── IF_STATEMENT
+│       │                   ├── EXPRESSION
+│       │                   │   └── CLAUSE
+│       │                   │       └── PRIMARY_EXPRESSION
+│       │                   │           └── identifier: bool_value
+│       │                   ├── then
+│       │                   │   └── BLOCK
+│       │                   │       └── STATEMENTS
+│       │                   │           └── STATEMENT
+│       │                   │               └── WHILE_STATEMENT
+│       │                   │                   ├── EXPRESSION
+│       │                   │                   │   └── AND_EXPRESSION
+│       │                   │                   │       ├── left
+│       │                   │                   │       │   └── PRIMARY_EXPRESSION
+│       │                   │                   │       │       └── identifier: bool_value
+│       │                   │                   │       └── right
+│       │                   │                   │           └── PRIMARY_EXPRESSION
+│       │                   │                   │               └── BRACKET_EXPRESSION
+│       │                   │                   │                   └── EXPRESSION
+│       │                   │                   │                       └── AND_EXPRESSION
+│       │                   │                   │                           ├── left
+│       │                   │                   │                           │   └── PRIMARY_EXPRESSION
+│       │                   │                   │                           │       └── false_literal: false
+│       │                   │                   │                           └── right
+│       │                   │                   │                               └── PRIMARY_EXPRESSION
+│       │                   │                   │                                   └── BRACKET_EXPRESSION
+│       │                   │                   │                                       └── EXPRESSION
+│       │                   │                   │                                           └── COMPARE_EXPRESSION
+│       │                   │                   │                                               ├── left
+│       │                   │                   │                                               │   └── integer_literal: 1
+│       │                   │                   │                                               └── right
+│       │                   │                   │                                                   └── integer_literal: 5
+│       │                   │                   └── STATEMENT
+│       │                   │                       └── BLOCK
+│       │                   │                           └── STATEMENTS
+│       │                   └── else
+│       │                       └── BLOCK
 │       │                           └── STATEMENTS
 │       │                               ├── STATEMENT
-│       │                               │   └── ASSIGNMENT_STATEMENT
-│       │                               │       ├── identifier: bool_value
+│       │                               │   └── PRINT_STATEMENT
 │       │                               │       └── EXPRESSION
 │       │                               │           └── CLAUSE
 │       │                               │               └── PRIMARY_EXPRESSION
-│       │                               │                   └── false_literal: false
-│       │                               └── STATEMENTS
-│       │                                   ├── STATEMENT
-│       │                                   │   └── IF_STATEMENT
-│       │                                   │       ├── EXPRESSION
-│       │                                   │       │   └── CLAUSE
-│       │                                   │       │       └── PRIMARY_EXPRESSION
-│       │                                   │       │           └── identifier: bool_value
-│       │                                   │       ├── STATEMENT
-│       │                                   │       │   └── BLOCK
-│       │                                   │       │       └── STATEMENTS
-│       │                                   │       │           ├── STATEMENT
-│       │                                   │       │           │   └── WHILE_STATEMENT
-│       │                                   │       │           │       ├── EXPRESSION
-│       │                                   │       │           │       │   └── AND_EXPRESSION
-│       │                                   │       │           │       │       ├── left
-│       │                                   │       │           │       │       │   └── PRIMARY_EXPRESSION
-│       │                                   │       │           │       │       │       └── identifier: bool_value
-│       │                                   │       │           │       │       └── right
-│       │                                   │       │           │       │           └── PRIMARY_EXPRESSION
-│       │                                   │       │           │       │               └── BRACKET_EXPRESSION
-│       │                                   │       │           │       │                   └── EXPRESSION
-│       │                                   │       │           │       │                       └── AND_EXPRESSION
-│       │                                   │       │           │       │                           ├── left
-│       │                                   │       │           │       │                           │   └── PRIMARY_EXPRESSION
-│       │                                   │       │           │       │                           │       └── false_literal: false
-│       │                                   │       │           │       │                           └── right
-│       │                                   │       │           │       │                               └── PRIMARY_EXPRESSION
-│       │                                   │       │           │       │                                   └── BRACKET_EXPRESSION
-│       │                                   │       │           │       │                                       └── EXPRESSION
-│       │                                   │       │           │       │                                           └── COMPARE_EXPRESSION
-│       │                                   │       │           │       │                                               ├── left
-│       │                                   │       │           │       │                                               │   └── integer_literal: 1
-│       │                                   │       │           │       │                                               └── right
-│       │                                   │       │           │       │                                                   └── integer_literal: 5
-│       │                                   │       │           │       └── STATEMENT
-│       │                                   │       │           │           └── BLOCK
-│       │                                   │       │           │               └── STATEMENTS
-│       │                                   │       │           └── STATEMENTS
-│       │                                   │       └── STATEMENT
-│       │                                   │           └── BLOCK
-│       │                                   │               └── STATEMENTS
-│       │                                   │                   ├── STATEMENT
-│       │                                   │                   │   └── PRINT_STATEMENT
-│       │                                   │                   │       └── EXPRESSION
-│       │                                   │                   │           └── CLAUSE
-│       │                                   │                   │               └── PRIMARY_EXPRESSION
-│       │                                   │                   │                   └── identifier: _int_value
-│       │                                   │                   └── STATEMENTS
-│       │                                   │                       ├── STATEMENT
-│       │                                   │                       │   └── PRINT_STATEMENT
-│       │                                   │                       │       └── EXPRESSION
-│       │                                   │                       │           └── PLUS_EXPRESSION
-│       │                                   │                       │               ├── left
-│       │                                   │                       │               │   └── identifier: _int_value
-│       │                                   │                       │               └── right
-│       │                                   │                       │                   └── BRACKET_EXPRESSION
-│       │                                   │                       │                       └── EXPRESSION
-│       │                                   │                       │                           └── ARRAY_LOOKUP
-│       │                                   │                       │                               ├── PRIMARY_EXPRESSION
-│       │                                   │                       │                               │   └── identifier: _int_array
-│       │                                   │                       │                               └── PRIMARY_EXPRESSION
-│       │                                   │                       │                                   └── integer_literal: 2
-│       │                                   │                       └── STATEMENTS
-│       │                                   └── STATEMENTS
-│       └── STATEMENTS
-│           ├── STATEMENT
-│           │   └── ARRAY_ASSIGNMENT_STATEMENT
-│           │       ├── identifier: _int_array
-│           │       ├── EXPRESSION
-│           │       │   └── CLAUSE
-│           │       │       └── PRIMARY_EXPRESSION
-│           │       │           └── integer_literal: 2
-│           │       └── EXPRESSION
-│           │           └── CLAUSE
-│           │               └── PRIMARY_EXPRESSION
-│           │                   └── integer_literal: 12939291
-│           └── STATEMENTS
-│               ├── STATEMENT
-│               │   └── ASSIGNMENT_STATEMENT
-│               │       ├── identifier: _int_value
-│               │       └── EXPRESSION
-│               │           └── TIMES_EXPRESSION
-│               │               ├── left
-│               │               │   └── integer_literal: 5
-│               │               └── right
-│               │                   └── identifier: _int_value
-│               └── STATEMENTS
-│                   ├── STATEMENT
-│                   │   └── ASSIGNMENT_STATEMENT
-│                   │       ├── identifier: _int_value
-│                   │       └── EXPRESSION
-│                   │           └── PLUS_EXPRESSION
-│                   │               ├── left
-│                   │               │   └── integer_literal: 5
-│                   │               └── right
-│                   │                   └── identifier: _int_value
-│                   └── STATEMENTS
-│                       ├── STATEMENT
-│                       │   └── ASSIGNMENT_STATEMENT
-│                       │       ├── identifier: _int_value
-│                       │       └── EXPRESSION
-│                       │           └── MINUS_EXPRESSION
-│                       │               ├── left
-│                       │               │   └── integer_literal: 5
-│                       │               └── right
-│                       │                   └── identifier: _int_value
-│                       └── STATEMENTS
+│       │                               │                   └── identifier: _int_value
+│       │                               └── STATEMENT
+│       │                                   └── PRINT_STATEMENT
+│       │                                       └── EXPRESSION
+│       │                                           └── PLUS_EXPRESSION
+│       │                                               ├── left
+│       │                                               │   └── identifier: _int_value
+│       │                                               └── right
+│       │                                                   └── BRACKET_EXPRESSION
+│       │                                                       └── EXPRESSION
+│       │                                                           └── ARRAY_LOOKUP
+│       │                                                               ├── PRIMARY_EXPRESSION
+│       │                                                               │   └── identifier: _int_array
+│       │                                                               └── PRIMARY_EXPRESSION
+│       │                                                                   └── integer_literal: 2
+│       ├── STATEMENT
+│       │   └── ARRAY_ASSIGNMENT_STATEMENT
+│       │       ├── identifier: _int_array
+│       │       ├── EXPRESSION
+│       │       │   └── CLAUSE
+│       │       │       └── PRIMARY_EXPRESSION
+│       │       │           └── integer_literal: 2
+│       │       └── EXPRESSION
+│       │           └── CLAUSE
+│       │               └── PRIMARY_EXPRESSION
+│       │                   └── integer_literal: 12939291
+│       ├── STATEMENT
+│       │   └── ASSIGNMENT_STATEMENT
+│       │       ├── identifier: _int_value
+│       │       └── EXPRESSION
+│       │           └── TIMES_EXPRESSION
+│       │               ├── left
+│       │               │   └── integer_literal: 5
+│       │               └── right
+│       │                   └── identifier: _int_value
+│       ├── STATEMENT
+│       │   └── ASSIGNMENT_STATEMENT
+│       │       ├── identifier: _int_value
+│       │       └── EXPRESSION
+│       │           └── PLUS_EXPRESSION
+│       │               ├── left
+│       │               │   └── integer_literal: 5
+│       │               └── right
+│       │                   └── identifier: _int_value
+│       └── STATEMENT
+│           └── ASSIGNMENT_STATEMENT
+│               ├── identifier: _int_value
+│               └── EXPRESSION
+│                   └── MINUS_EXPRESSION
+│                       ├── left
+│                       │   └── integer_literal: 5
+│                       └── right
+│                           └── identifier: _int_value
 └── CLASS_DECLARATIONS
     ├── CLASS_DECLARATION
     │   ├── className: A
     │   ├── VAR_DECLARATIONS
-    │   │   ├── VAR_DECLARATIONS
-    │   │   │   ├── VAR_DECLARATIONS
-    │   │   │   │   ├── VAR_DECLARATIONS
-    │   │   │   │   │   ├── VAR_DECLARATIONS
-    │   │   │   │   │   └── VAR_DECLARATION
-    │   │   │   │   │       ├── TYPE
-    │   │   │   │   │       │   └── identifier: A
-    │   │   │   │   │       └── identifier: a
-    │   │   │   │   └── VAR_DECLARATION
-    │   │   │   │       ├── TYPE
-    │   │   │   │       │   └── INTEGER_TYPE
-    │   │   │   │       │       └── int_type: int
-    │   │   │   │       └── identifier: _int_value
-    │   │   │   └── VAR_DECLARATION
-    │   │   │       ├── TYPE
-    │   │   │       │   └── ARRAY_TYPE
-    │   │   │       │       └── int_type: int
-    │   │   │       └── identifier: _int_array
+    │   │   ├── VAR_DECLARATION
+    │   │   │   ├── TYPE
+    │   │   │   │   └── identifier: A
+    │   │   │   └── identifier: a
+    │   │   ├── VAR_DECLARATION
+    │   │   │   ├── TYPE
+    │   │   │   │   └── INTEGER_TYPE
+    │   │   │   │       └── int_type: int
+    │   │   │   └── identifier: _int_value
+    │   │   ├── VAR_DECLARATION
+    │   │   │   ├── TYPE
+    │   │   │   │   └── ARRAY_TYPE
+    │   │   │   │       └── int_type: int
+    │   │   │   └── identifier: _int_array
     │   │   └── VAR_DECLARATION
     │   │       ├── TYPE
     │   │       │   └── BOOLEAN_TYPE
@@ -245,322 +222,290 @@ S
     │       │       └── CLAUSE
     │       │           └── PRIMARY_EXPRESSION
     │       │               └── integer_literal: 5
-    │       └── METHOD_DECLARATIONS
-    │           ├── METHOD_DECLARATION
-    │           │   ├── public_stmt: public
-    │           │   ├── TYPE
-    │           │   │   └── INTEGER_TYPE
-    │           │   │       └── int_type: int
-    │           │   ├── functionName: get_int_literal2
-    │           │   ├── FORMAL_PARAMETER_LIST
-    │           │   ├── VAR_DECLARATIONS
-    │           │   │   ├── VAR_DECLARATIONS
-    │           │   │   └── VAR_DECLARATION
-    │           │   │       ├── TYPE
-    │           │   │       │   └── INTEGER_TYPE
-    │           │   │       │       └── int_type: int
-    │           │   │       └── identifier: ret
-    │           │   ├── STATEMENTS
-    │           │   │   ├── STATEMENT
-    │           │   │   │   └── ASSIGNMENT_STATEMENT
-    │           │   │   │       ├── identifier: ret
-    │           │   │   │       └── EXPRESSION
-    │           │   │   │           └── CLAUSE
-    │           │   │   │               └── PRIMARY_EXPRESSION
-    │           │   │   │                   └── integer_literal: 928
-    │           │   │   └── STATEMENTS
-    │           │   │       ├── STATEMENT
-    │           │   │       │   └── ASSIGNMENT_STATEMENT
-    │           │   │       │       ├── identifier: ret
-    │           │   │       │       └── EXPRESSION
-    │           │   │       │           └── PLUS_EXPRESSION
-    │           │   │       │               ├── left
-    │           │   │       │               │   └── identifier: ret
-    │           │   │       │               └── right
-    │           │   │       │                   └── integer_literal: 12423
-    │           │   │       └── STATEMENTS
-    │           │   ├── return_stmt: return
-    │           │   └── EXPRESSION
-    │           │       └── CLAUSE
-    │           │           └── PRIMARY_EXPRESSION
-    │           │               └── identifier: ret
-    │           └── METHOD_DECLARATIONS
-    │               ├── METHOD_DECLARATION
-    │               │   ├── public_stmt: public
-    │               │   ├── TYPE
-    │               │   │   └── INTEGER_TYPE
-    │               │   │       └── int_type: int
-    │               │   ├── functionName: get_sum
-    │               │   ├── FORMAL_PARAMETER_LIST
-    │               │   │   ├── FORMAL_PARAMETER_LIST
-    │               │   │   │   └── FORMAL_PARAMETER
-    │               │   │   │       ├── TYPE
-    │               │   │   │       │   └── INTEGER_TYPE
-    │               │   │   │       │       └── int_type: int
-    │               │   │   │       └── parameterName: a
-    │               │   │   └── FORMAL_PARAMETER
-    │               │   │       ├── TYPE
-    │               │   │       │   └── INTEGER_TYPE
-    │               │   │       │       └── int_type: int
-    │               │   │       └── parameterName: b
-    │               │   ├── VAR_DECLARATIONS
-    │               │   │   ├── VAR_DECLARATIONS
-    │               │   │   └── VAR_DECLARATION
-    │               │   │       ├── TYPE
-    │               │   │       │   └── INTEGER_TYPE
-    │               │   │       │       └── int_type: int
-    │               │   │       └── identifier: sum_test
-    │               │   ├── STATEMENTS
-    │               │   │   ├── STATEMENT
-    │               │   │   │   └── ASSIGNMENT_STATEMENT
-    │               │   │   │       ├── identifier: sum_test
-    │               │   │   │       └── EXPRESSION
-    │               │   │   │           └── MESSAGE_SEND
-    │               │   │   │               ├── calledOn
-    │               │   │   │               │   └── this_expression: this
-    │               │   │   │               ├── functionName: get_sum
-    │               │   │   │               └── EXPRESSION_LIST
-    │               │   │   │                   └── EXPRESSION
-    │               │   │   │                       └── CLAUSE
-    │               │   │   │                           └── PRIMARY_EXPRESSION
-    │               │   │   │                               └── identifier: random_int_array
-    │               │   │   └── STATEMENTS
-    │               │   ├── return_stmt: return
-    │               │   └── EXPRESSION
-    │               │       └── PLUS_EXPRESSION
-    │               │           ├── left
-    │               │           │   └── identifier: a
-    │               │           └── right
-    │               │               └── identifier: b
-    │               └── METHOD_DECLARATIONS
-    │                   ├── METHOD_DECLARATION
-    │                   │   ├── public_stmt: public
-    │                   │   ├── TYPE
-    │                   │   │   └── INTEGER_TYPE
-    │                   │   │       └── int_type: int
-    │                   │   ├── functionName: get_sum
-    │                   │   ├── FORMAL_PARAMETER_LIST
-    │                   │   │   └── FORMAL_PARAMETER
-    │                   │   │       ├── TYPE
-    │                   │   │       │   └── ARRAY_TYPE
-    │                   │   │       │       └── int_type: int
-    │                   │   │       └── parameterName: a
-    │                   │   ├── VAR_DECLARATIONS
-    │                   │   │   ├── VAR_DECLARATIONS
-    │                   │   │   │   ├── VAR_DECLARATIONS
-    │                   │   │   │   └── VAR_DECLARATION
-    │                   │   │   │       ├── TYPE
-    │                   │   │   │       │   └── INTEGER_TYPE
-    │                   │   │   │       │       └── int_type: int
-    │                   │   │   │       └── identifier: i
-    │                   │   │   └── VAR_DECLARATION
-    │                   │   │       ├── TYPE
-    │                   │   │       │   └── INTEGER_TYPE
-    │                   │   │       │       └── int_type: int
-    │                   │   │       └── identifier: sum
-    │                   │   ├── STATEMENTS
-    │                   │   │   ├── STATEMENT
-    │                   │   │   │   └── ASSIGNMENT_STATEMENT
-    │                   │   │   │       ├── identifier: i
-    │                   │   │   │       └── EXPRESSION
-    │                   │   │   │           └── CLAUSE
-    │                   │   │   │               └── PRIMARY_EXPRESSION
-    │                   │   │   │                   └── integer_literal: 0
-    │                   │   │   └── STATEMENTS
-    │                   │   │       ├── STATEMENT
-    │                   │   │       │   └── ASSIGNMENT_STATEMENT
-    │                   │   │       │       ├── identifier: sum
-    │                   │   │       │       └── EXPRESSION
-    │                   │   │       │           └── CLAUSE
-    │                   │   │       │               └── PRIMARY_EXPRESSION
-    │                   │   │       │                   └── integer_literal: 0
-    │                   │   │       └── STATEMENTS
-    │                   │   │           ├── STATEMENT
-    │                   │   │           │   └── WHILE_STATEMENT
-    │                   │   │           │       ├── EXPRESSION
-    │                   │   │           │       │   └── COMPARE_EXPRESSION
-    │                   │   │           │       │       ├── left
-    │                   │   │           │       │       │   └── identifier: i
-    │                   │   │           │       │       └── right
-    │                   │   │           │       │           └── BRACKET_EXPRESSION
-    │                   │   │           │       │               └── EXPRESSION
-    │                   │   │           │       │                   └── ARRAY_LENGTH
-    │                   │   │           │       │                       ├── PRIMARY_EXPRESSION
-    │                   │   │           │       │                       │   └── identifier: a
-    │                   │   │           │       │                       └── array_length_stmt: length
-    │                   │   │           │       └── STATEMENT
-    │                   │   │           │           └── BLOCK
-    │                   │   │           │               └── STATEMENTS
-    │                   │   │           │                   ├── STATEMENT
-    │                   │   │           │                   │   └── ASSIGNMENT_STATEMENT
-    │                   │   │           │                   │       ├── identifier: sum
-    │                   │   │           │                   │       └── EXPRESSION
-    │                   │   │           │                   │           └── PLUS_EXPRESSION
-    │                   │   │           │                   │               ├── left
-    │                   │   │           │                   │               │   └── identifier: sum
-    │                   │   │           │                   │               └── right
-    │                   │   │           │                   │                   └── BRACKET_EXPRESSION
-    │                   │   │           │                   │                       └── EXPRESSION
-    │                   │   │           │                   │                           └── ARRAY_LOOKUP
-    │                   │   │           │                   │                               ├── PRIMARY_EXPRESSION
-    │                   │   │           │                   │                               │   └── identifier: a
-    │                   │   │           │                   │                               └── PRIMARY_EXPRESSION
-    │                   │   │           │                   │                                   └── identifier: i
-    │                   │   │           │                   └── STATEMENTS
-    │                   │   │           │                       ├── STATEMENT
-    │                   │   │           │                       │   └── ASSIGNMENT_STATEMENT
-    │                   │   │           │                       │       ├── identifier: i
-    │                   │   │           │                       │       └── EXPRESSION
-    │                   │   │           │                       │           └── PLUS_EXPRESSION
-    │                   │   │           │                       │               ├── left
-    │                   │   │           │                       │               │   └── identifier: i
-    │                   │   │           │                       │               └── right
-    │                   │   │           │                       │                   └── integer_literal: 1
-    │                   │   │           │                       └── STATEMENTS
-    │                   │   │           └── STATEMENTS
-    │                   │   ├── return_stmt: return
-    │                   │   └── EXPRESSION
-    │                   │       └── CLAUSE
-    │                   │           └── PRIMARY_EXPRESSION
-    │                   │               └── identifier: sum
-    │                   └── METHOD_DECLARATIONS
-    │                       ├── METHOD_DECLARATION
-    │                       │   ├── public_stmt: public
-    │                       │   ├── TYPE
-    │                       │   │   └── ARRAY_TYPE
-    │                       │   │       └── int_type: int
-    │                       │   ├── functionName: get_array
-    │                       │   ├── FORMAL_PARAMETER_LIST
-    │                       │   │   ├── FORMAL_PARAMETER_LIST
-    │                       │   │   │   └── FORMAL_PARAMETER
-    │                       │   │   │       ├── TYPE
-    │                       │   │   │       │   └── INTEGER_TYPE
-    │                       │   │   │       │       └── int_type: int
-    │                       │   │   │       └── parameterName: a
-    │                       │   │   └── FORMAL_PARAMETER
-    │                       │   │       ├── TYPE
-    │                       │   │       │   └── INTEGER_TYPE
-    │                       │   │       │       └── int_type: int
-    │                       │   │       └── parameterName: b
-    │                       │   ├── VAR_DECLARATIONS
-    │                       │   │   ├── VAR_DECLARATIONS
-    │                       │   │   └── VAR_DECLARATION
-    │                       │   │       ├── TYPE
-    │                       │   │       │   └── ARRAY_TYPE
-    │                       │   │       │       └── int_type: int
-    │                       │   │       └── identifier: ret
-    │                       │   ├── STATEMENTS
-    │                       │   │   ├── STATEMENT
-    │                       │   │   │   └── ASSIGNMENT_STATEMENT
-    │                       │   │   │       ├── identifier: ret
-    │                       │   │   │       └── EXPRESSION
-    │                       │   │   │           └── CLAUSE
-    │                       │   │   │               └── PRIMARY_EXPRESSION
-    │                       │   │   │                   └── ARRAY_ALLOCATION_EXPRESSION
-    │                       │   │   │                       ├── int_type: int
-    │                       │   │   │                       └── EXPRESSION
-    │                       │   │   │                           └── CLAUSE
-    │                       │   │   │                               └── PRIMARY_EXPRESSION
-    │                       │   │   │                                   └── integer_literal: 2
-    │                       │   │   └── STATEMENTS
-    │                       │   │       ├── STATEMENT
-    │                       │   │       │   └── ARRAY_ASSIGNMENT_STATEMENT
-    │                       │   │       │       ├── identifier: ret
-    │                       │   │       │       ├── EXPRESSION
-    │                       │   │       │       │   └── CLAUSE
-    │                       │   │       │       │       └── PRIMARY_EXPRESSION
-    │                       │   │       │       │           └── integer_literal: 0
-    │                       │   │       │       └── EXPRESSION
-    │                       │   │       │           └── CLAUSE
-    │                       │   │       │               └── PRIMARY_EXPRESSION
-    │                       │   │       │                   └── identifier: a
-    │                       │   │       └── STATEMENTS
-    │                       │   │           ├── STATEMENT
-    │                       │   │           │   └── ARRAY_ASSIGNMENT_STATEMENT
-    │                       │   │           │       ├── identifier: ret
-    │                       │   │           │       ├── EXPRESSION
-    │                       │   │           │       │   └── CLAUSE
-    │                       │   │           │       │       └── PRIMARY_EXPRESSION
-    │                       │   │           │       │           └── integer_literal: 1
-    │                       │   │           │       └── EXPRESSION
-    │                       │   │           │           └── CLAUSE
-    │                       │   │           │               └── PRIMARY_EXPRESSION
-    │                       │   │           │                   └── identifier: b
-    │                       │   │           └── STATEMENTS
-    │                       │   ├── return_stmt: return
-    │                       │   └── EXPRESSION
-    │                       │       └── CLAUSE
-    │                       │           └── PRIMARY_EXPRESSION
-    │                       │               └── identifier: ret
-    │                       └── METHOD_DECLARATIONS
-    └── CLASS_DECLARATIONS
-        ├── CLASS_DECLARATION
-        │   ├── className: B
-        │   ├── extendedClassName: A
-        │   ├── VAR_DECLARATIONS
-        │   └── METHOD_DECLARATIONS
-        │       ├── METHOD_DECLARATION
-        │       │   ├── public_stmt: public
-        │       │   ├── TYPE
-        │       │   │   └── identifier: A
-        │       │   ├── functionName: foo
-        │       │   ├── FORMAL_PARAMETER_LIST
-        │       │   ├── VAR_DECLARATIONS
-        │       │   ├── STATEMENTS
-        │       │   ├── return_stmt: return
-        │       │   └── EXPRESSION
-        │       │       └── CLAUSE
-        │       │           └── PRIMARY_EXPRESSION
-        │       │               └── ALLOCATION_EXPRESSION
-        │       │                   └── identifier: B
-        │       └── METHOD_DECLARATIONS
-        └── CLASS_DECLARATIONS
-            ├── CLASS_DECLARATION
-            │   ├── className: C
-            │   ├── extendedClassName: B
-            │   ├── VAR_DECLARATIONS
-            │   └── METHOD_DECLARATIONS
-            │       ├── METHOD_DECLARATION
-            │       │   ├── public_stmt: public
-            │       │   ├── TYPE
-            │       │   │   └── identifier: A
-            │       │   ├── functionName: foo
-            │       │   ├── FORMAL_PARAMETER_LIST
-            │       │   │   ├── FORMAL_PARAMETER_LIST
-            │       │   │   │   ├── FORMAL_PARAMETER_LIST
-            │       │   │   │   │   ├── FORMAL_PARAMETER_LIST
-            │       │   │   │   │   │   └── FORMAL_PARAMETER
-            │       │   │   │   │   │       ├── TYPE
-            │       │   │   │   │   │       │   └── INTEGER_TYPE
-            │       │   │   │   │   │       │       └── int_type: int
-            │       │   │   │   │   │       └── parameterName: a
-            │       │   │   │   │   └── FORMAL_PARAMETER
-            │       │   │   │   │       ├── TYPE
-            │       │   │   │   │       │   └── INTEGER_TYPE
-            │       │   │   │   │       │       └── int_type: int
-            │       │   │   │   │       └── parameterName: b
-            │       │   │   │   └── FORMAL_PARAMETER
-            │       │   │   │       ├── TYPE
-            │       │   │   │       │   └── ARRAY_TYPE
-            │       │   │   │       │       └── int_type: int
-            │       │   │   │       └── parameterName: c
-            │       │   │   └── FORMAL_PARAMETER
-            │       │   │       ├── TYPE
-            │       │   │       │   └── BOOLEAN_TYPE
-            │       │   │       │       └── boolean_type: boolean
-            │       │   │       └── parameterName: d
-            │       │   ├── VAR_DECLARATIONS
-            │       │   ├── STATEMENTS
-            │       │   ├── return_stmt: return
-            │       │   └── EXPRESSION
-            │       │       └── CLAUSE
-            │       │           └── PRIMARY_EXPRESSION
-            │       │               └── ALLOCATION_EXPRESSION
-            │       │                   └── identifier: B
-            │       └── METHOD_DECLARATIONS
-            └── CLASS_DECLARATIONS
-                ├── CLASS_DECLARATION
-                │   ├── className: D
-                │   ├── VAR_DECLARATIONS
-                │   └── METHOD_DECLARATIONS
-                └── CLASS_DECLARATIONS
+    │       ├── METHOD_DECLARATION
+    │       │   ├── public_stmt: public
+    │       │   ├── TYPE
+    │       │   │   └── INTEGER_TYPE
+    │       │   │       └── int_type: int
+    │       │   ├── functionName: get_int_literal2
+    │       │   ├── FORMAL_PARAMETER_LIST
+    │       │   ├── VAR_DECLARATIONS
+    │       │   │   └── VAR_DECLARATION
+    │       │   │       ├── TYPE
+    │       │   │       │   └── INTEGER_TYPE
+    │       │   │       │       └── int_type: int
+    │       │   │       └── identifier: ret
+    │       │   ├── STATEMENTS
+    │       │   │   ├── STATEMENT
+    │       │   │   │   └── ASSIGNMENT_STATEMENT
+    │       │   │   │       ├── identifier: ret
+    │       │   │   │       └── EXPRESSION
+    │       │   │   │           └── CLAUSE
+    │       │   │   │               └── PRIMARY_EXPRESSION
+    │       │   │   │                   └── integer_literal: 928
+    │       │   │   └── STATEMENT
+    │       │   │       └── ASSIGNMENT_STATEMENT
+    │       │   │           ├── identifier: ret
+    │       │   │           └── EXPRESSION
+    │       │   │               └── PLUS_EXPRESSION
+    │       │   │                   ├── left
+    │       │   │                   │   └── identifier: ret
+    │       │   │                   └── right
+    │       │   │                       └── integer_literal: 12423
+    │       │   ├── return_stmt: return
+    │       │   └── EXPRESSION
+    │       │       └── CLAUSE
+    │       │           └── PRIMARY_EXPRESSION
+    │       │               └── identifier: ret
+    │       ├── METHOD_DECLARATION
+    │       │   ├── public_stmt: public
+    │       │   ├── TYPE
+    │       │   │   └── INTEGER_TYPE
+    │       │   │       └── int_type: int
+    │       │   ├── functionName: get_sum
+    │       │   ├── FORMAL_PARAMETER_LIST
+    │       │   │   ├── FORMAL_PARAMETER
+    │       │   │   │   ├── TYPE
+    │       │   │   │   │   └── INTEGER_TYPE
+    │       │   │   │   │       └── int_type: int
+    │       │   │   │   └── parameterName: a
+    │       │   │   └── FORMAL_PARAMETER
+    │       │   │       ├── TYPE
+    │       │   │       │   └── INTEGER_TYPE
+    │       │   │       │       └── int_type: int
+    │       │   │       └── parameterName: b
+    │       │   ├── VAR_DECLARATIONS
+    │       │   │   └── VAR_DECLARATION
+    │       │   │       ├── TYPE
+    │       │   │       │   └── INTEGER_TYPE
+    │       │   │       │       └── int_type: int
+    │       │   │       └── identifier: sum_test
+    │       │   ├── STATEMENTS
+    │       │   │   └── STATEMENT
+    │       │   │       └── ASSIGNMENT_STATEMENT
+    │       │   │           ├── identifier: sum_test
+    │       │   │           └── EXPRESSION
+    │       │   │               └── MESSAGE_SEND
+    │       │   │                   ├── calledOn
+    │       │   │                   │   └── this_expression: this
+    │       │   │                   ├── functionName: get_sum
+    │       │   │                   └── EXPRESSION_LIST
+    │       │   │                       └── EXPRESSION
+    │       │   │                           └── CLAUSE
+    │       │   │                               └── PRIMARY_EXPRESSION
+    │       │   │                                   └── identifier: random_int_array
+    │       │   ├── return_stmt: return
+    │       │   └── EXPRESSION
+    │       │       └── PLUS_EXPRESSION
+    │       │           ├── left
+    │       │           │   └── identifier: a
+    │       │           └── right
+    │       │               └── identifier: b
+    │       ├── METHOD_DECLARATION
+    │       │   ├── public_stmt: public
+    │       │   ├── TYPE
+    │       │   │   └── INTEGER_TYPE
+    │       │   │       └── int_type: int
+    │       │   ├── functionName: get_sum
+    │       │   ├── FORMAL_PARAMETER_LIST
+    │       │   │   └── FORMAL_PARAMETER
+    │       │   │       ├── TYPE
+    │       │   │       │   └── ARRAY_TYPE
+    │       │   │       │       └── int_type: int
+    │       │   │       └── parameterName: a
+    │       │   ├── VAR_DECLARATIONS
+    │       │   │   ├── VAR_DECLARATION
+    │       │   │   │   ├── TYPE
+    │       │   │   │   │   └── INTEGER_TYPE
+    │       │   │   │   │       └── int_type: int
+    │       │   │   │   └── identifier: i
+    │       │   │   └── VAR_DECLARATION
+    │       │   │       ├── TYPE
+    │       │   │       │   └── INTEGER_TYPE
+    │       │   │       │       └── int_type: int
+    │       │   │       └── identifier: sum
+    │       │   ├── STATEMENTS
+    │       │   │   ├── STATEMENT
+    │       │   │   │   └── ASSIGNMENT_STATEMENT
+    │       │   │   │       ├── identifier: i
+    │       │   │   │       └── EXPRESSION
+    │       │   │   │           └── CLAUSE
+    │       │   │   │               └── PRIMARY_EXPRESSION
+    │       │   │   │                   └── integer_literal: 0
+    │       │   │   ├── STATEMENT
+    │       │   │   │   └── ASSIGNMENT_STATEMENT
+    │       │   │   │       ├── identifier: sum
+    │       │   │   │       └── EXPRESSION
+    │       │   │   │           └── CLAUSE
+    │       │   │   │               └── PRIMARY_EXPRESSION
+    │       │   │   │                   └── integer_literal: 0
+    │       │   │   └── STATEMENT
+    │       │   │       └── WHILE_STATEMENT
+    │       │   │           ├── EXPRESSION
+    │       │   │           │   └── COMPARE_EXPRESSION
+    │       │   │           │       ├── left
+    │       │   │           │       │   └── identifier: i
+    │       │   │           │       └── right
+    │       │   │           │           └── BRACKET_EXPRESSION
+    │       │   │           │               └── EXPRESSION
+    │       │   │           │                   └── ARRAY_LENGTH
+    │       │   │           │                       ├── PRIMARY_EXPRESSION
+    │       │   │           │                       │   └── identifier: a
+    │       │   │           │                       └── array_length_stmt: length
+    │       │   │           └── STATEMENT
+    │       │   │               └── BLOCK
+    │       │   │                   └── STATEMENTS
+    │       │   │                       ├── STATEMENT
+    │       │   │                       │   └── ASSIGNMENT_STATEMENT
+    │       │   │                       │       ├── identifier: sum
+    │       │   │                       │       └── EXPRESSION
+    │       │   │                       │           └── PLUS_EXPRESSION
+    │       │   │                       │               ├── left
+    │       │   │                       │               │   └── identifier: sum
+    │       │   │                       │               └── right
+    │       │   │                       │                   └── BRACKET_EXPRESSION
+    │       │   │                       │                       └── EXPRESSION
+    │       │   │                       │                           └── ARRAY_LOOKUP
+    │       │   │                       │                               ├── PRIMARY_EXPRESSION
+    │       │   │                       │                               │   └── identifier: a
+    │       │   │                       │                               └── PRIMARY_EXPRESSION
+    │       │   │                       │                                   └── identifier: i
+    │       │   │                       └── STATEMENT
+    │       │   │                           └── ASSIGNMENT_STATEMENT
+    │       │   │                               ├── identifier: i
+    │       │   │                               └── EXPRESSION
+    │       │   │                                   └── PLUS_EXPRESSION
+    │       │   │                                       ├── left
+    │       │   │                                       │   └── identifier: i
+    │       │   │                                       └── right
+    │       │   │                                           └── integer_literal: 1
+    │       │   ├── return_stmt: return
+    │       │   └── EXPRESSION
+    │       │       └── CLAUSE
+    │       │           └── PRIMARY_EXPRESSION
+    │       │               └── identifier: sum
+    │       └── METHOD_DECLARATION
+    │           ├── public_stmt: public
+    │           ├── TYPE
+    │           │   └── ARRAY_TYPE
+    │           │       └── int_type: int
+    │           ├── functionName: get_array
+    │           ├── FORMAL_PARAMETER_LIST
+    │           │   ├── FORMAL_PARAMETER
+    │           │   │   ├── TYPE
+    │           │   │   │   └── INTEGER_TYPE
+    │           │   │   │       └── int_type: int
+    │           │   │   └── parameterName: a
+    │           │   └── FORMAL_PARAMETER
+    │           │       ├── TYPE
+    │           │       │   └── INTEGER_TYPE
+    │           │       │       └── int_type: int
+    │           │       └── parameterName: b
+    │           ├── VAR_DECLARATIONS
+    │           │   └── VAR_DECLARATION
+    │           │       ├── TYPE
+    │           │       │   └── ARRAY_TYPE
+    │           │       │       └── int_type: int
+    │           │       └── identifier: ret
+    │           ├── STATEMENTS
+    │           │   ├── STATEMENT
+    │           │   │   └── ASSIGNMENT_STATEMENT
+    │           │   │       ├── identifier: ret
+    │           │   │       └── EXPRESSION
+    │           │   │           └── CLAUSE
+    │           │   │               └── PRIMARY_EXPRESSION
+    │           │   │                   └── ARRAY_ALLOCATION_EXPRESSION
+    │           │   │                       ├── int_type: int
+    │           │   │                       └── EXPRESSION
+    │           │   │                           └── CLAUSE
+    │           │   │                               └── PRIMARY_EXPRESSION
+    │           │   │                                   └── integer_literal: 2
+    │           │   ├── STATEMENT
+    │           │   │   └── ARRAY_ASSIGNMENT_STATEMENT
+    │           │   │       ├── identifier: ret
+    │           │   │       ├── EXPRESSION
+    │           │   │       │   └── CLAUSE
+    │           │   │       │       └── PRIMARY_EXPRESSION
+    │           │   │       │           └── integer_literal: 0
+    │           │   │       └── EXPRESSION
+    │           │   │           └── CLAUSE
+    │           │   │               └── PRIMARY_EXPRESSION
+    │           │   │                   └── identifier: a
+    │           │   └── STATEMENT
+    │           │       └── ARRAY_ASSIGNMENT_STATEMENT
+    │           │           ├── identifier: ret
+    │           │           ├── EXPRESSION
+    │           │           │   └── CLAUSE
+    │           │           │       └── PRIMARY_EXPRESSION
+    │           │           │           └── integer_literal: 1
+    │           │           └── EXPRESSION
+    │           │               └── CLAUSE
+    │           │                   └── PRIMARY_EXPRESSION
+    │           │                       └── identifier: b
+    │           ├── return_stmt: return
+    │           └── EXPRESSION
+    │               └── CLAUSE
+    │                   └── PRIMARY_EXPRESSION
+    │                       └── identifier: ret
+    ├── CLASS_DECLARATION
+    │   ├── className: B
+    │   ├── extendedClassName: A
+    │   ├── VAR_DECLARATIONS
+    │   └── METHOD_DECLARATIONS
+    │       └── METHOD_DECLARATION
+    │           ├── public_stmt: public
+    │           ├── TYPE
+    │           │   └── identifier: A
+    │           ├── functionName: foo
+    │           ├── FORMAL_PARAMETER_LIST
+    │           ├── VAR_DECLARATIONS
+    │           ├── STATEMENTS
+    │           ├── return_stmt: return
+    │           └── EXPRESSION
+    │               └── CLAUSE
+    │                   └── PRIMARY_EXPRESSION
+    │                       └── ALLOCATION_EXPRESSION
+    │                           └── identifier: B
+    ├── CLASS_DECLARATION
+    │   ├── className: C
+    │   ├── extendedClassName: B
+    │   ├── VAR_DECLARATIONS
+    │   └── METHOD_DECLARATIONS
+    │       └── METHOD_DECLARATION
+    │           ├── public_stmt: public
+    │           ├── TYPE
+    │           │   └── identifier: A
+    │           ├── functionName: foo
+    │           ├── FORMAL_PARAMETER_LIST
+    │           │   ├── FORMAL_PARAMETER
+    │           │   │   ├── TYPE
+    │           │   │   │   └── INTEGER_TYPE
+    │           │   │   │       └── int_type: int
+    │           │   │   └── parameterName: a
+    │           │   ├── FORMAL_PARAMETER
+    │           │   │   ├── TYPE
+    │           │   │   │   └── INTEGER_TYPE
+    │           │   │   │       └── int_type: int
+    │           │   │   └── parameterName: b
+    │           │   ├── FORMAL_PARAMETER
+    │           │   │   ├── TYPE
+    │           │   │   │   └── ARRAY_TYPE
+    │           │   │   │       └── int_type: int
+    │           │   │   └── parameterName: c
+    │           │   └── FORMAL_PARAMETER
+    │           │       ├── TYPE
+    │           │       │   └── BOOLEAN_TYPE
+    │           │       │       └── boolean_type: boolean
+    │           │       └── parameterName: d
+    │           ├── VAR_DECLARATIONS
+    │           ├── STATEMENTS
+    │           ├── return_stmt: return
+    │           └── EXPRESSION
+    │               └── CLAUSE
+    │                   └── PRIMARY_EXPRESSION
+    │                       └── ALLOCATION_EXPRESSION
+    │                           └── identifier: B
+    └── CLASS_DECLARATION
+        ├── className: D
+        ├── VAR_DECLARATIONS
+        └── METHOD_DECLARATIONS

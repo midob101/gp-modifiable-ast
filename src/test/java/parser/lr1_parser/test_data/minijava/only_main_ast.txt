@@ -10,7 +10,6 @@ S
 │   ├── square_bracket_close: ]
 │   ├── identifier: args
 │   ├── VAR_DECLARATIONS
-│   │   ├── VAR_DECLARATIONS
 │   │   └── VAR_DECLARATION
 │   │       ├── TYPE
 │   │       │   └── INTEGER_TYPE

@@ -57,24 +57,24 @@ HIDDEN_LEXER_RULES
 
 GRAMMAR_RULES
     S                           ->  MAIN_CLASS CLASS_DECLARATIONS;
-    CLASS_DECLARATIONS          ->  CLASS_DECLARATION CLASS_DECLARATIONS | EPSILON;
+    CLASS_DECLARATIONS[list]    ->  CLASS_DECLARATION CLASS_DECLARATIONS | EPSILON;
     CLASS_DECLARATION           ->  class_stmt[hidden] identifier[alias=className] curly_bracket_open[hidden] VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close[hidden];
     CLASS_DECLARATION           ->  class_stmt[hidden] identifier[alias=className] extents_stmt[hidden] identifier[alias=extendedClassName] curly_bracket_open[hidden] VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close[hidden];
     MAIN_CLASS                  ->  class_stmt[hidden] identifier[alias=className] curly_bracket_open[hidden] public_stmt static_stmt void_type main_identifier
                                     bracket_open[hidden] string_type square_bracket_open square_bracket_close identifier bracket_close[hidden]
                                     curly_bracket_open[hidden] VAR_DECLARATIONS STATEMENTS curly_bracket_close[hidden] curly_bracket_close[hidden];
-    METHOD_DECLARATIONS         ->  METHOD_DECLARATION METHOD_DECLARATIONS | EPSILON;
+    METHOD_DECLARATIONS[list]   ->  METHOD_DECLARATION METHOD_DECLARATIONS | EPSILON;
     METHOD_DECLARATION          ->  public_stmt TYPE identifier[alias=functionName] bracket_open[hidden] FORMAL_PARAMETER_LIST bracket_close[hidden] curly_bracket_open[hidden] VAR_DECLARATIONS STATEMENTS return_stmt EXPRESSION semicolon[hidden] curly_bracket_close[hidden];
-    FORMAL_PARAMETER_LIST       ->  FORMAL_PARAMETER_LIST comma[hidden] FORMAL_PARAMETER | FORMAL_PARAMETER | EPSILON;
+    FORMAL_PARAMETER_LIST[list] ->  FORMAL_PARAMETER_LIST comma[hidden] FORMAL_PARAMETER | FORMAL_PARAMETER | EPSILON;
     FORMAL_PARAMETER            ->  TYPE identifier[alias=parameterName];
-    VAR_DECLARATIONS            ->  VAR_DECLARATIONS VAR_DECLARATION | EPSILON;
-    STATEMENTS                  ->  STATEMENT STATEMENTS | EPSILON;
+    VAR_DECLARATIONS[list]      ->  VAR_DECLARATIONS VAR_DECLARATION | EPSILON;
+    STATEMENTS[list]            ->  STATEMENT STATEMENTS | EPSILON;
     VAR_DECLARATION             ->  TYPE identifier semicolon[hidden];
     STATEMENT                   ->  BLOCK | ASSIGNMENT_STATEMENT | ARRAY_ASSIGNMENT_STATEMENT | IF_STATEMENT | WHILE_STATEMENT | PRINT_STATEMENT;
     BLOCK                       ->  curly_bracket_open[hidden] STATEMENTS curly_bracket_close[hidden];
     ASSIGNMENT_STATEMENT        ->  identifier assignment[hidden] EXPRESSION semicolon[hidden];
     ARRAY_ASSIGNMENT_STATEMENT  ->  identifier square_bracket_open[hidden] EXPRESSION square_bracket_close[hidden] assignment[hidden] EXPRESSION semicolon[hidden];
-    IF_STATEMENT                ->  if[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] STATEMENT else[hidden] STATEMENT;
+    IF_STATEMENT                ->  if[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] STATEMENT[alias=then] else[hidden] STATEMENT[alias=else];
     WHILE_STATEMENT             ->  while[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] STATEMENT;
     PRINT_STATEMENT             ->  println[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] semicolon[hidden];
     TYPE                        ->  ARRAY_TYPE | BOOLEAN_TYPE | INTEGER_TYPE | identifier;
