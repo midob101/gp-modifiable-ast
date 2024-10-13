@@ -147,8 +147,8 @@ public class Parser {
             throw new RuntimeException("No main node was detected after the parsing process");
         }
         danglingTreeNodes.remove(rootNode);
-        for(ConcreteSyntaxTreeNode node: danglingTreeNodes) {
-            rootNode.addChild(node);
+        while(!danglingTreeNodes.isEmpty()) {
+            rootNode.addChild(danglingTreeNodes.removeLast());
         }
         return rootNode;
     }

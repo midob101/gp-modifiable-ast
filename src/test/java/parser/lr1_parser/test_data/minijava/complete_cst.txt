@@ -1,7 +1,7 @@
 S
-├── single_line_comment
-├── whitespace
 ├── multi_line_comment
+├── whitespace
+├── single_line_comment
 ├── MAIN_CLASS
 │   ├── class
 │   ├── whitespace
