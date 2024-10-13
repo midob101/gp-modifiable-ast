@@ -1,6 +1,6 @@
 S
 ├── MAIN_CLASS
-│   ├── identifier: SubclassReturnValue
+│   ├── className: SubclassReturnValue
 │   ├── public_stmt: public
 │   ├── static_stmt: static
 │   ├── void_type: void
@@ -64,9 +64,9 @@ S
 │       │                   │                       ├── int_type: int
 │       │                   │                       └── EXPRESSION
 │       │                   │                           └── MINUS_EXPRESSION
-│       │                   │                               ├── PRIMARY_EXPRESSION
+│       │                   │                               ├── left
 │       │                   │                               │   └── integer_literal: 5
-│       │                   │                               └── PRIMARY_EXPRESSION
+│       │                   │                               └── right
 │       │                   │                                   └── integer_literal: 2
 │       │                   └── STATEMENTS
 │       │                       ├── STATEMENT
@@ -110,25 +110,25 @@ S
 │       │                                   │       │           │   └── WHILE_STATEMENT
 │       │                                   │       │           │       ├── EXPRESSION
 │       │                                   │       │           │       │   └── AND_EXPRESSION
-│       │                                   │       │           │       │       ├── CLAUSE
+│       │                                   │       │           │       │       ├── left
 │       │                                   │       │           │       │       │   └── PRIMARY_EXPRESSION
 │       │                                   │       │           │       │       │       └── identifier: bool_value
-│       │                                   │       │           │       │       └── CLAUSE
+│       │                                   │       │           │       │       └── right
 │       │                                   │       │           │       │           └── PRIMARY_EXPRESSION
 │       │                                   │       │           │       │               └── BRACKET_EXPRESSION
 │       │                                   │       │           │       │                   └── EXPRESSION
 │       │                                   │       │           │       │                       └── AND_EXPRESSION
-│       │                                   │       │           │       │                           ├── CLAUSE
+│       │                                   │       │           │       │                           ├── left
 │       │                                   │       │           │       │                           │   └── PRIMARY_EXPRESSION
 │       │                                   │       │           │       │                           │       └── false_literal: false
-│       │                                   │       │           │       │                           └── CLAUSE
+│       │                                   │       │           │       │                           └── right
 │       │                                   │       │           │       │                               └── PRIMARY_EXPRESSION
 │       │                                   │       │           │       │                                   └── BRACKET_EXPRESSION
 │       │                                   │       │           │       │                                       └── EXPRESSION
 │       │                                   │       │           │       │                                           └── COMPARE_EXPRESSION
-│       │                                   │       │           │       │                                               ├── PRIMARY_EXPRESSION
+│       │                                   │       │           │       │                                               ├── left
 │       │                                   │       │           │       │                                               │   └── integer_literal: 1
-│       │                                   │       │           │       │                                               └── PRIMARY_EXPRESSION
+│       │                                   │       │           │       │                                               └── right
 │       │                                   │       │           │       │                                                   └── integer_literal: 5
 │       │                                   │       │           │       └── STATEMENT
 │       │                                   │       │           │           └── BLOCK
@@ -148,9 +148,9 @@ S
 │       │                                   │                       │   └── PRINT_STATEMENT
 │       │                                   │                       │       └── EXPRESSION
 │       │                                   │                       │           └── PLUS_EXPRESSION
-│       │                                   │                       │               ├── PRIMARY_EXPRESSION
+│       │                                   │                       │               ├── left
 │       │                                   │                       │               │   └── identifier: _int_value
-│       │                                   │                       │               └── PRIMARY_EXPRESSION
+│       │                                   │                       │               └── right
 │       │                                   │                       │                   └── BRACKET_EXPRESSION
 │       │                                   │                       │                       └── EXPRESSION
 │       │                                   │                       │                           └── ARRAY_LOOKUP
@@ -178,9 +178,9 @@ S
 │               │       ├── identifier: _int_value
 │               │       └── EXPRESSION
 │               │           └── TIMES_EXPRESSION
-│               │               ├── PRIMARY_EXPRESSION
+│               │               ├── left
 │               │               │   └── integer_literal: 5
-│               │               └── PRIMARY_EXPRESSION
+│               │               └── right
 │               │                   └── identifier: _int_value
 │               └── STATEMENTS
 │                   ├── STATEMENT
@@ -188,9 +188,9 @@ S
 │                   │       ├── identifier: _int_value
 │                   │       └── EXPRESSION
 │                   │           └── PLUS_EXPRESSION
-│                   │               ├── PRIMARY_EXPRESSION
+│                   │               ├── left
 │                   │               │   └── integer_literal: 5
-│                   │               └── PRIMARY_EXPRESSION
+│                   │               └── right
 │                   │                   └── identifier: _int_value
 │                   └── STATEMENTS
 │                       ├── STATEMENT
@@ -198,14 +198,14 @@ S
 │                       │       ├── identifier: _int_value
 │                       │       └── EXPRESSION
 │                       │           └── MINUS_EXPRESSION
-│                       │               ├── PRIMARY_EXPRESSION
+│                       │               ├── left
 │                       │               │   └── integer_literal: 5
-│                       │               └── PRIMARY_EXPRESSION
+│                       │               └── right
 │                       │                   └── identifier: _int_value
 │                       └── STATEMENTS
 └── CLASS_DECLARATIONS
     ├── CLASS_DECLARATION
-    │   ├── identifier: A
+    │   ├── className: A
     │   ├── VAR_DECLARATIONS
     │   │   ├── VAR_DECLARATIONS
     │   │   │   ├── VAR_DECLARATIONS
@@ -236,7 +236,7 @@ S
     │       │   ├── TYPE
     │       │   │   └── INTEGER_TYPE
     │       │   │       └── int_type: int
-    │       │   ├── identifier: get_int_literal
+    │       │   ├── functionName: get_int_literal
     │       │   ├── FORMAL_PARAMETER_LIST
     │       │   ├── VAR_DECLARATIONS
     │       │   ├── STATEMENTS
@@ -251,7 +251,7 @@ S
     │           │   ├── TYPE
     │           │   │   └── INTEGER_TYPE
     │           │   │       └── int_type: int
-    │           │   ├── identifier: get_int_literal2
+    │           │   ├── functionName: get_int_literal2
     │           │   ├── FORMAL_PARAMETER_LIST
     │           │   ├── VAR_DECLARATIONS
     │           │   │   ├── VAR_DECLARATIONS
@@ -274,9 +274,9 @@ S
     │           │   │       │       ├── identifier: ret
     │           │   │       │       └── EXPRESSION
     │           │   │       │           └── PLUS_EXPRESSION
-    │           │   │       │               ├── PRIMARY_EXPRESSION
+    │           │   │       │               ├── left
     │           │   │       │               │   └── identifier: ret
-    │           │   │       │               └── PRIMARY_EXPRESSION
+    │           │   │       │               └── right
     │           │   │       │                   └── integer_literal: 12423
     │           │   │       └── STATEMENTS
     │           │   ├── return_stmt: return
@@ -290,19 +290,19 @@ S
     │               │   ├── TYPE
     │               │   │   └── INTEGER_TYPE
     │               │   │       └── int_type: int
-    │               │   ├── identifier: get_sum
+    │               │   ├── functionName: get_sum
     │               │   ├── FORMAL_PARAMETER_LIST
     │               │   │   ├── FORMAL_PARAMETER_LIST
     │               │   │   │   └── FORMAL_PARAMETER
     │               │   │   │       ├── TYPE
     │               │   │   │       │   └── INTEGER_TYPE
     │               │   │   │       │       └── int_type: int
-    │               │   │   │       └── identifier: a
+    │               │   │   │       └── parameterName: a
     │               │   │   └── FORMAL_PARAMETER
     │               │   │       ├── TYPE
     │               │   │       │   └── INTEGER_TYPE
     │               │   │       │       └── int_type: int
-    │               │   │       └── identifier: b
+    │               │   │       └── parameterName: b
     │               │   ├── VAR_DECLARATIONS
     │               │   │   ├── VAR_DECLARATIONS
     │               │   │   └── VAR_DECLARATION
@@ -316,9 +316,9 @@ S
     │               │   │   │       ├── identifier: sum_test
     │               │   │   │       └── EXPRESSION
     │               │   │   │           └── MESSAGE_SEND
-    │               │   │   │               ├── PRIMARY_EXPRESSION
+    │               │   │   │               ├── calledOn
     │               │   │   │               │   └── this_expression: this
-    │               │   │   │               ├── identifier: get_sum
+    │               │   │   │               ├── functionName: get_sum
     │               │   │   │               └── EXPRESSION_LIST
     │               │   │   │                   └── EXPRESSION
     │               │   │   │                       └── CLAUSE
@@ -328,9 +328,9 @@ S
     │               │   ├── return_stmt: return
     │               │   └── EXPRESSION
     │               │       └── PLUS_EXPRESSION
-    │               │           ├── PRIMARY_EXPRESSION
+    │               │           ├── left
     │               │           │   └── identifier: a
-    │               │           └── PRIMARY_EXPRESSION
+    │               │           └── right
     │               │               └── identifier: b
     │               └── METHOD_DECLARATIONS
     │                   ├── METHOD_DECLARATION
@@ -338,13 +338,13 @@ S
     │                   │   ├── TYPE
     │                   │   │   └── INTEGER_TYPE
     │                   │   │       └── int_type: int
-    │                   │   ├── identifier: get_sum
+    │                   │   ├── functionName: get_sum
     │                   │   ├── FORMAL_PARAMETER_LIST
     │                   │   │   └── FORMAL_PARAMETER
     │                   │   │       ├── TYPE
     │                   │   │       │   └── ARRAY_TYPE
     │                   │   │       │       └── int_type: int
-    │                   │   │       └── identifier: a
+    │                   │   │       └── parameterName: a
     │                   │   ├── VAR_DECLARATIONS
     │                   │   │   ├── VAR_DECLARATIONS
     │                   │   │   │   ├── VAR_DECLARATIONS
@@ -379,9 +379,9 @@ S
     │                   │   │           │   └── WHILE_STATEMENT
     │                   │   │           │       ├── EXPRESSION
     │                   │   │           │       │   └── COMPARE_EXPRESSION
-    │                   │   │           │       │       ├── PRIMARY_EXPRESSION
+    │                   │   │           │       │       ├── left
     │                   │   │           │       │       │   └── identifier: i
-    │                   │   │           │       │       └── PRIMARY_EXPRESSION
+    │                   │   │           │       │       └── right
     │                   │   │           │       │           └── BRACKET_EXPRESSION
     │                   │   │           │       │               └── EXPRESSION
     │                   │   │           │       │                   └── ARRAY_LENGTH
@@ -396,9 +396,9 @@ S
     │                   │   │           │                   │       ├── identifier: sum
     │                   │   │           │                   │       └── EXPRESSION
     │                   │   │           │                   │           └── PLUS_EXPRESSION
-    │                   │   │           │                   │               ├── PRIMARY_EXPRESSION
+    │                   │   │           │                   │               ├── left
     │                   │   │           │                   │               │   └── identifier: sum
-    │                   │   │           │                   │               └── PRIMARY_EXPRESSION
+    │                   │   │           │                   │               └── right
     │                   │   │           │                   │                   └── BRACKET_EXPRESSION
     │                   │   │           │                   │                       └── EXPRESSION
     │                   │   │           │                   │                           └── ARRAY_LOOKUP
@@ -412,9 +412,9 @@ S
     │                   │   │           │                       │       ├── identifier: i
     │                   │   │           │                       │       └── EXPRESSION
     │                   │   │           │                       │           └── PLUS_EXPRESSION
-    │                   │   │           │                       │               ├── PRIMARY_EXPRESSION
+    │                   │   │           │                       │               ├── left
     │                   │   │           │                       │               │   └── identifier: i
-    │                   │   │           │                       │               └── PRIMARY_EXPRESSION
+    │                   │   │           │                       │               └── right
     │                   │   │           │                       │                   └── integer_literal: 1
     │                   │   │           │                       └── STATEMENTS
     │                   │   │           └── STATEMENTS
@@ -429,19 +429,19 @@ S
     │                       │   ├── TYPE
     │                       │   │   └── ARRAY_TYPE
     │                       │   │       └── int_type: int
-    │                       │   ├── identifier: get_array
+    │                       │   ├── functionName: get_array
     │                       │   ├── FORMAL_PARAMETER_LIST
     │                       │   │   ├── FORMAL_PARAMETER_LIST
     │                       │   │   │   └── FORMAL_PARAMETER
     │                       │   │   │       ├── TYPE
     │                       │   │   │       │   └── INTEGER_TYPE
     │                       │   │   │       │       └── int_type: int
-    │                       │   │   │       └── identifier: a
+    │                       │   │   │       └── parameterName: a
     │                       │   │   └── FORMAL_PARAMETER
     │                       │   │       ├── TYPE
     │                       │   │       │   └── INTEGER_TYPE
     │                       │   │       │       └── int_type: int
-    │                       │   │       └── identifier: b
+    │                       │   │       └── parameterName: b
     │                       │   ├── VAR_DECLARATIONS
     │                       │   │   ├── VAR_DECLARATIONS
     │                       │   │   └── VAR_DECLARATION
@@ -495,15 +495,15 @@ S
     │                       └── METHOD_DECLARATIONS
     └── CLASS_DECLARATIONS
         ├── CLASS_DECLARATION
-        │   ├── identifier: B
-        │   ├── identifier: A
+        │   ├── className: B
+        │   ├── extendedClassName: A
         │   ├── VAR_DECLARATIONS
         │   └── METHOD_DECLARATIONS
         │       ├── METHOD_DECLARATION
         │       │   ├── public_stmt: public
         │       │   ├── TYPE
         │       │   │   └── identifier: A
-        │       │   ├── identifier: foo
+        │       │   ├── functionName: foo
         │       │   ├── FORMAL_PARAMETER_LIST
         │       │   ├── VAR_DECLARATIONS
         │       │   ├── STATEMENTS
@@ -516,15 +516,15 @@ S
         │       └── METHOD_DECLARATIONS
         └── CLASS_DECLARATIONS
             ├── CLASS_DECLARATION
-            │   ├── identifier: C
-            │   ├── identifier: B
+            │   ├── className: C
+            │   ├── extendedClassName: B
             │   ├── VAR_DECLARATIONS
             │   └── METHOD_DECLARATIONS
             │       ├── METHOD_DECLARATION
             │       │   ├── public_stmt: public
             │       │   ├── TYPE
             │       │   │   └── identifier: A
-            │       │   ├── identifier: foo
+            │       │   ├── functionName: foo
             │       │   ├── FORMAL_PARAMETER_LIST
             │       │   │   ├── FORMAL_PARAMETER_LIST
             │       │   │   │   ├── FORMAL_PARAMETER_LIST
@@ -533,22 +533,22 @@ S
             │       │   │   │   │   │       ├── TYPE
             │       │   │   │   │   │       │   └── INTEGER_TYPE
             │       │   │   │   │   │       │       └── int_type: int
-            │       │   │   │   │   │       └── identifier: a
+            │       │   │   │   │   │       └── parameterName: a
             │       │   │   │   │   └── FORMAL_PARAMETER
             │       │   │   │   │       ├── TYPE
             │       │   │   │   │       │   └── INTEGER_TYPE
             │       │   │   │   │       │       └── int_type: int
-            │       │   │   │   │       └── identifier: b
+            │       │   │   │   │       └── parameterName: b
             │       │   │   │   └── FORMAL_PARAMETER
             │       │   │   │       ├── TYPE
             │       │   │   │       │   └── ARRAY_TYPE
             │       │   │   │       │       └── int_type: int
-            │       │   │   │       └── identifier: c
+            │       │   │   │       └── parameterName: c
             │       │   │   └── FORMAL_PARAMETER
             │       │   │       ├── TYPE
             │       │   │       │   └── BOOLEAN_TYPE
             │       │   │       │       └── boolean_type: boolean
-            │       │   │       └── identifier: d
+            │       │   │       └── parameterName: d
             │       │   ├── VAR_DECLARATIONS
             │       │   ├── STATEMENTS
             │       │   ├── return_stmt: return
@@ -560,7 +560,7 @@ S
             │       └── METHOD_DECLARATIONS
             └── CLASS_DECLARATIONS
                 ├── CLASS_DECLARATION
-                │   ├── identifier: D
+                │   ├── className: D
                 │   ├── VAR_DECLARATIONS
                 │   └── METHOD_DECLARATIONS
                 └── CLASS_DECLARATIONS

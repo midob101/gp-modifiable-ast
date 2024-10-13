@@ -1,6 +1,6 @@
 S
 ├── MAIN_CLASS
-│   ├── identifier: Main
+│   ├── className: Main
 │   ├── public_stmt: public
 │   ├── static_stmt: static
 │   ├── void_type: void

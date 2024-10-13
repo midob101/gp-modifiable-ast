@@ -3,14 +3,28 @@ package grammar;
 import java.util.Objects;
 
 public class SymbolModifier {
-    private String modifier;
+    public final static String HIDDEN = "hidden";
+    public final static String ALIAS = "alias";
+
+    private final String value;
+    private final String modifier;
 
     public SymbolModifier(String modifier) {
         this.modifier = modifier;
+        this.value = null;
+    }
+
+    public SymbolModifier(String modifier, String value) {
+        this.modifier = modifier;
+        this.value = value;
     }
 
     public String getModifier() {
         return modifier;
+    }
+
+    public String getValue() {
+        return value;
     }
 
     @Override

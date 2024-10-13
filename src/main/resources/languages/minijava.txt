@@ -58,15 +58,15 @@ HIDDEN_LEXER_RULES
 GRAMMAR_RULES
     S                           ->  MAIN_CLASS CLASS_DECLARATIONS;
     CLASS_DECLARATIONS          ->  CLASS_DECLARATION CLASS_DECLARATIONS | EPSILON;
-    CLASS_DECLARATION           ->  class_stmt[hidden] identifier curly_bracket_open[hidden] VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close[hidden];
-    CLASS_DECLARATION           ->  class_stmt[hidden] identifier extents_stmt[hidden] identifier curly_bracket_open[hidden] VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close[hidden];
-    MAIN_CLASS                  ->  class_stmt[hidden] identifier curly_bracket_open[hidden] public_stmt static_stmt void_type main_identifier
+    CLASS_DECLARATION           ->  class_stmt[hidden] identifier[alias=className] curly_bracket_open[hidden] VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close[hidden];
+    CLASS_DECLARATION           ->  class_stmt[hidden] identifier[alias=className] extents_stmt[hidden] identifier[alias=extendedClassName] curly_bracket_open[hidden] VAR_DECLARATIONS METHOD_DECLARATIONS curly_bracket_close[hidden];
+    MAIN_CLASS                  ->  class_stmt[hidden] identifier[alias=className] curly_bracket_open[hidden] public_stmt static_stmt void_type main_identifier
                                     bracket_open[hidden] string_type square_bracket_open square_bracket_close identifier bracket_close[hidden]
                                     curly_bracket_open[hidden] VAR_DECLARATIONS STATEMENTS curly_bracket_close[hidden] curly_bracket_close[hidden];
     METHOD_DECLARATIONS         ->  METHOD_DECLARATION METHOD_DECLARATIONS | EPSILON;
-    METHOD_DECLARATION          ->  public_stmt TYPE identifier bracket_open[hidden] FORMAL_PARAMETER_LIST bracket_close[hidden] curly_bracket_open[hidden] VAR_DECLARATIONS STATEMENTS return_stmt EXPRESSION semicolon[hidden] curly_bracket_close[hidden];
+    METHOD_DECLARATION          ->  public_stmt TYPE identifier[alias=functionName] bracket_open[hidden] FORMAL_PARAMETER_LIST bracket_close[hidden] curly_bracket_open[hidden] VAR_DECLARATIONS STATEMENTS return_stmt EXPRESSION semicolon[hidden] curly_bracket_close[hidden];
     FORMAL_PARAMETER_LIST       ->  FORMAL_PARAMETER_LIST comma[hidden] FORMAL_PARAMETER | FORMAL_PARAMETER | EPSILON;
-    FORMAL_PARAMETER            ->  TYPE identifier;
+    FORMAL_PARAMETER            ->  TYPE identifier[alias=parameterName];
     VAR_DECLARATIONS            ->  VAR_DECLARATIONS VAR_DECLARATION | EPSILON;
     STATEMENTS                  ->  STATEMENT STATEMENTS | EPSILON;
     VAR_DECLARATION             ->  TYPE identifier semicolon[hidden];
@@ -90,15 +90,15 @@ GRAMMAR_RULES
                                     | ARRAY_LENGTH
                                     | MESSAGE_SEND
                                     | CLAUSE;
-    AND_EXPRESSION              ->  CLAUSE and[hidden] CLAUSE;
-    COMPARE_EXPRESSION          ->  PRIMARY_EXPRESSION less_then[hidden] PRIMARY_EXPRESSION;
-    PLUS_EXPRESSION             ->  PRIMARY_EXPRESSION plus[hidden] PRIMARY_EXPRESSION;
-    MINUS_EXPRESSION            ->  PRIMARY_EXPRESSION minus[hidden] PRIMARY_EXPRESSION;
-    TIMES_EXPRESSION            ->  PRIMARY_EXPRESSION multiply[hidden] PRIMARY_EXPRESSION;
+    AND_EXPRESSION              ->  CLAUSE[alias=left] and[hidden] CLAUSE[alias=right];
+    COMPARE_EXPRESSION          ->  PRIMARY_EXPRESSION[alias=left] less_then[hidden] PRIMARY_EXPRESSION[alias=right];
+    PLUS_EXPRESSION             ->  PRIMARY_EXPRESSION[alias=left] plus[hidden] PRIMARY_EXPRESSION[alias=right];
+    MINUS_EXPRESSION            ->  PRIMARY_EXPRESSION[alias=left] minus[hidden] PRIMARY_EXPRESSION[alias=right];
+    TIMES_EXPRESSION            ->  PRIMARY_EXPRESSION[alias=left] multiply[hidden] PRIMARY_EXPRESSION[alias=right];
     ARRAY_LOOKUP                ->  PRIMARY_EXPRESSION square_bracket_open[hidden] PRIMARY_EXPRESSION square_bracket_close[hidden];
     ARRAY_LENGTH                ->  PRIMARY_EXPRESSION dot[hidden] array_length_stmt;
-    MESSAGE_SEND                ->  PRIMARY_EXPRESSION dot[hidden] identifier bracket_open[hidden] bracket_close[hidden] |
-                                    PRIMARY_EXPRESSION dot[hidden] identifier bracket_open[hidden] EXPRESSION_LIST bracket_close[hidden];
+    MESSAGE_SEND                ->  PRIMARY_EXPRESSION[alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] bracket_close[hidden] |
+                                    PRIMARY_EXPRESSION[alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] EXPRESSION_LIST bracket_close[hidden];
     EXPRESSION_LIST             ->  EXPRESSION | EXPRESSION_LIST comma[hidden] EXPRESSION;
     CLAUSE                      ->  NOT_EXPRESSION | PRIMARY_EXPRESSION;
     NOT_EXPRESSION              ->  not[hidden] CLAUSE;

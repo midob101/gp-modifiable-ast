@@ -223,7 +223,12 @@ public class ConfigReader {
                     if(modifierString != null) {
                         String[] modifiers = modifierString.split(";");
                         for(String modifier: modifiers) {
-                            modifierList.add(new SymbolModifier(modifier));
+                            if(!modifier.contains("=")) {
+                                modifierList.add(new SymbolModifier(modifier));
+                            } else {
+                                String[] modifierParts = modifier.split("=");
+                                modifierList.add(new SymbolModifier(modifierParts[0], modifierParts[1]));
+                            }
                         }
                     }
                     allSymbolModifiers.add(modifierList);

@@ -1,7 +1,6 @@
 package syntax_tree;
 
 import grammar.GrammarRule;
-import grammar.Symbol;
 import grammar.SymbolModifier;
 import java.util.List;
 
@@ -10,7 +9,6 @@ public class AbstractSyntaxTreeFactory {
         if(concreteSyntaxTreeNode.getRule() != null) {
             GrammarRule production = concreteSyntaxTreeNode.getRule();
             List<List<SymbolModifier>> allModifiers = production.getSymbolModifiers();
-            List<Symbol> symbols = production.getSymbols();
 
             AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(concreteSyntaxTreeNode.getRule());
             int realIdx = 0;
@@ -21,10 +19,7 @@ public class AbstractSyntaxTreeFactory {
                 AbstractSyntaxTreeNode childNode = create(currentTreeNode);
 
                 if(realIdx < allModifiers.size()) {
-                    List<SymbolModifier> modifiers = allModifiers.get(realIdx);
-                    if(modifiers.stream().anyMatch((mod) -> mod.getModifier().equals("hidden"))) {
-                        childNode.setHidden();
-                    }
+                    applyModifiers(childNode, allModifiers.get(realIdx));
                 }
                 if(currentTreeNode.getRule() != null || currentTreeNode.getToken().getKeepInAST()) {
                     realIdx++;
@@ -39,6 +34,20 @@ public class AbstractSyntaxTreeFactory {
                 node.setHidden();
             }
             return node;
+        }
+    }
+
+    private static void applyModifiers(AbstractSyntaxTreeNode node, List<SymbolModifier> modifiers) {
+        for(SymbolModifier modifier: modifiers) {
+            switch (modifier.getModifier()) {
+                case SymbolModifier.ALIAS:
+                    String value = modifier.getValue();
+                    node.setAlias(value);
+                    break;
+                case SymbolModifier.HIDDEN:
+                    node.setHidden();
+                    break;
+            }
         }
     }
 }

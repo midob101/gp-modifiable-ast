@@ -11,6 +11,7 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
     protected GrammarRule rule = null;
     protected LinkedList<AbstractSyntaxTreeNode> children = new LinkedList<>();
     private boolean hidden = false;
+    private String alias = null;
 
     public AbstractSyntaxTreeNode(Token token) {
         this.token = token;
@@ -39,9 +40,9 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
     @Override
     public String getDisplayValue() {
         if(this.rule != null) {
-            return getRule().leftHandSymbol().name();
+            return this.alias != null ? this.alias : getRule().leftHandSymbol().name();
         } else if(getToken() != null) {
-            return getToken().getLexerDefinition().getName() + ": " + getToken().getValue();
+            return (this.alias != null ? this.alias : getToken().getLexerDefinition().getName()) + ": " + getToken().getValue();
         }
         return "UNDEFINED";
     }
@@ -53,5 +54,9 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
     @Override
     public List<AbstractSyntaxTreeNode> getChildren() {
         return children.stream().filter(AbstractSyntaxTreeNode::isVisible).toList();
+    }
+
+    public void setAlias(String value) {
+        this.alias = value;
     }
 }
