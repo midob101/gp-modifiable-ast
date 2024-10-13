@@ -21,6 +21,13 @@ public class Parser {
         Successor.clearCache();
     }
 
+    /**
+     * Checks if a given token list matches the productions of a language definition.
+     *
+     * @param tokenList The token list from the lexer process
+     * @param languageDefinition The language definition for which the productions are used.
+     * @return the valid flag
+     */
     public static boolean isValid(TokenList tokenList, LanguageDefinition languageDefinition) {
         ItemFamily itemFamily = new ItemFamily();
         itemFamily.create(languageDefinition);

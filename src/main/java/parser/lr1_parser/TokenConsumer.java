@@ -7,6 +7,9 @@ import lexer.TokenList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Simple class to consume the token list from the lexer for the parsing process.
+ */
 public class TokenConsumer {
     Queue<Symbol> symbols = new LinkedList<>();
     Queue<Token> tokens = new LinkedList<>();

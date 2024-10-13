@@ -8,9 +8,20 @@ import parser.lr1_parser.Successor;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * This class keeps track of all the goto actions.
+ * This is not done by a two-dimensional array, instead it keeps track of the available entries through hashmaps.
+ */
 public class GotoTable {
-    private final HashMap<ItemSet, HashMap<Symbol, ItemSet>> gotoMap = new HashMap<ItemSet, HashMap<Symbol, ItemSet>>();
+    private final HashMap<ItemSet, HashMap<Symbol, ItemSet>> gotoMap = new HashMap<>();
 
+    /**
+     * Defines a goto target of an item set and symbol
+     *
+     * @param itemSet The source item set
+     * @param s the symbol that would trigger the goto
+     * @param target the target item set
+     */
     public void setTarget(ItemSet itemSet, Symbol s, ItemSet target) {
         if(s.isTerminal()) {
             throw new RuntimeException("setAction can only be called on a non terminal symbol");
@@ -24,6 +35,13 @@ public class GotoTable {
         actions.put(s, target);
     }
 
+    /**
+     * Gets the goto target
+     *
+     * @param itemSet the source item set
+     * @param s the symbol that triggers the goto
+     * @return the target item set
+     */
     public ItemSet getTarget(ItemSet itemSet, Symbol s) {
         if(s.isTerminal()) {
             throw new RuntimeException("setAction can only be called on a non terminal symbol");
@@ -32,6 +50,13 @@ public class GotoTable {
         return gotoMap.get(itemSet).get(s);
     }
 
+    /**
+     * Creates a new goto table based on an item family
+     *
+     * @param nonTerminals all non-terminal symbols of the language grammar
+     * @param family the complete item family
+     * @return the generated goto table
+     */
     public static GotoTable createFromFamily(Set<Symbol> nonTerminals, ItemFamily family) {
         GotoTable gotoTable = new GotoTable();
 

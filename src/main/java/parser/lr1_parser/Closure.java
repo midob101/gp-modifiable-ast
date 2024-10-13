@@ -11,6 +11,8 @@ import java.util.List;
 public class Closure {
     /**
      * Decorates an item set by the relevant grammar rules for this set.
+     * This function works in place. The item set passed as reference will be modified and new entries will be added
+     * if required.
      *
      * Algorithm:
      *      For each item A -> u.Bv, a:
@@ -23,6 +25,9 @@ public class Closure {
      *
      * This follows the algorithm defined in the following lecture (page 6).
      * https://web.stanford.edu/class/archive/cs/cs143/cs143.1128/handouts/110%20LR%20and%20SLR%20Parsing.pdf
+     *
+     * @param grammarRules The list of productions
+     * @param itemSet The item set to calculate the closure for
      */
     public static void decorateClosure(List<GrammarRule> grammarRules, ItemSet itemSet) {
         boolean hasChanges = true;
@@ -36,7 +41,7 @@ public class Closure {
                     for(GrammarRule production: grammarRules) {
                         if(production.leftHandSymbol().equals(item.getSymbolAtPos())) {
                             List<Symbol> calculateFirstFor = item.getRemainingSymbols();
-                            calculateFirstFor.add(item.getLookaheadSymbol());
+                            calculateFirstFor.add(item.lookaheadSymbol());
                             FirstSet first = FirstSet.generate(grammarRules, calculateFirstFor);
                             for(Symbol terminal: first.getSymbolList()) {
                                 addedItems.add(new Item(production, 0, terminal));

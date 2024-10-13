@@ -17,6 +17,12 @@ public class ItemSet {
         ItemSet.id = ItemSet.id + 1;
     }
 
+    /**
+     * Checks if this item set already contains a similar item.
+     *
+     * @param item The item to check if a similar item is in this item set.
+     * @return true if exists, false if no similar item exists.
+     */
     public boolean hasSimilarItem(Item item) {
         for(Item existing: items) {
             if(existing.equals(item)) {
@@ -26,14 +32,29 @@ public class ItemSet {
         return false;
     }
 
+    /**
+     * Adds a new item to this item set.
+     *
+     * @param item The item added
+     */
     public void addItem(Item item) {
         this.items.add(item);
     }
 
+    /**
+     * Gets all items of this item set.
+     *
+     * @return the item set
+     */
     public Set<Item> getItems() {
         return this.items;
     }
 
+    /**
+     * Checks if this item set is empty.
+     *
+     * @return true if empty, false otherwise.
+     */
     public boolean isEmpty() {
         return this.items.isEmpty();
     }

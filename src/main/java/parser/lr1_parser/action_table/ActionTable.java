@@ -9,9 +9,21 @@ import parser.lr1_parser.items.*;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * This class keeps track of all the shift, reduce and accept actions.
+ * This is not done by a two-dimensional array, instead it keeps track of the available entries through hashmaps.
+ */
 public class ActionTable {
-    private final HashMap<ItemSet, HashMap<Symbol, BaseAction>> actionMap = new HashMap<ItemSet, HashMap<Symbol, BaseAction>>();
+    private final HashMap<ItemSet, HashMap<Symbol, BaseAction>> actionMap = new HashMap<>();
 
+    /**
+     * Sets an action for a given item set and symbol.
+     * This function can throw if there is either a shift/reduce or a reduce/reduce conflict.
+     *
+     * @param itemSet The source item set
+     * @param s The symbol that should trigger a reduce or shift
+     * @param action Either a shift, reduce or accept action.
+     */
     public void setAction(ItemSet itemSet, Symbol s, BaseAction action) {
         if(!s.isTerminal()) {
             throw new RuntimeException("setAction can only be called on a terminal symbol");
@@ -31,6 +43,13 @@ public class ActionTable {
         actions.put(s, action);
     }
 
+    /**
+     * Gets an action for a given non-terminal symbol and source item set
+     *
+     * @param itemSet The source item set
+     * @param s The symbol that should trigger a reduce or shift
+     * @return The action defined for this item set and symbol
+     */
     public BaseAction getAction(ItemSet itemSet, Symbol s) {
         if(!s.isTerminal()) {
             throw new RuntimeException("getAction can only be called on a terminal symbol");
@@ -43,20 +62,32 @@ public class ActionTable {
         return actionMap.get(itemSet).get(s);
     }
 
+    /**
+     * Gets a set of symbol that would be expected for a given item set.
+     *
+     * @param itemSet The source item set
+     * @return A set of symbols that are defined for this item set
+     */
     public Set<Symbol> getExpectedSymbols(ItemSet itemSet) {
         return actionMap.get(itemSet).keySet();
     }
 
+    /**
+     * Creates a new action table based on a family
+     *
+     * @param family The complete item family.
+     * @return The full action table
+     */
     public static ActionTable createFromFamily(ItemFamily family) {
         ActionTable actionTable = new ActionTable();
 
         for(ItemSet itemSet : family.getItemSets()) {
             for(Item item: itemSet.getItems()) {
-                if(item.isPosAtEnd() && !item.getGrammarRule().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
-                    actionTable.setAction(itemSet, item.getLookaheadSymbol(), new ReduceAction(item.getGrammarRule()));
+                if(item.isPosAtEnd() && !item.grammarRule().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
+                    actionTable.setAction(itemSet, item.lookaheadSymbol(), new ReduceAction(item.grammarRule()));
                 }
-                if(item.isPosAtEnd() && item.getGrammarRule().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
-                    actionTable.setAction(itemSet, item.getLookaheadSymbol(), new AcceptAction());
+                if(item.isPosAtEnd() && item.grammarRule().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
+                    actionTable.setAction(itemSet, item.lookaheadSymbol(), new AcceptAction());
                 }
                 if(!item.isPosAtEnd() && item.getSymbolAtPos().isTerminal()) {
                     ItemSet shiftTarget = Successor.getFromCache(itemSet, item.getSymbolAtPos());

@@ -5,68 +5,46 @@ import grammar.Symbol;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
-public class Item {
-    private final GrammarRule grammarRule;
-    private final int pos;
-    private final Symbol lookaheadSymbol;
+public record Item(GrammarRule grammarRule, int pos, Symbol lookaheadSymbol) {
 
-    public Item(GrammarRule grammarRule, int pos, Symbol lookaheadSymbol) {
-        this.grammarRule = grammarRule;
-        this.pos = pos;
-        this.lookaheadSymbol = lookaheadSymbol;
-    }
-
-    public GrammarRule getGrammarRule() {
-        return grammarRule;
-    }
-
-    public int getPos() {
-        return pos;
-    }
-
+    /**
+     * @return true if the position is at the end of the grammar rule
+     */
     public boolean isPosAtEnd() {
         return this.grammarRule.symbols().size() <= pos;
     }
 
+    /**
+     * @return the symbol in the grammar rule that is at the current position
+     */
     public Symbol getSymbolAtPos() {
-        if(!this.isPosAtEnd()) {
+        if (!this.isPosAtEnd()) {
             return this.grammarRule.symbols().get(pos);
         }
         return null;
     }
 
+    /**
+     * @return a new item, with the same grammar rule and lookahead but the position advanced to the next symbol.
+     */
     public Item getNextItem() {
-        if(!this.isPosAtEnd()) {
-            return new Item(grammarRule, pos+1, lookaheadSymbol);
+        if (!this.isPosAtEnd()) {
+            return new Item(grammarRule, pos + 1, lookaheadSymbol);
         }
         return null;
     }
 
+    /**
+     * @return a list of the symbols that are after the current symbol marked by position.
+     */
     public List<Symbol> getRemainingSymbols() {
         LinkedList<Symbol> remainingSymbols = new LinkedList<>();
         int size = this.grammarRule.symbols().size();
-        for(int i = pos + 1; i < size; i++) {
+        for (int i = pos + 1; i < size; i++) {
             remainingSymbols.add(this.grammarRule.symbols().get(i));
         }
         return remainingSymbols;
-    }
-
-    public Symbol getLookaheadSymbol() {
-        return lookaheadSymbol;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Item item)) return false;
-        return pos == item.pos && Objects.equals(grammarRule, item.grammarRule) && Objects.equals(lookaheadSymbol, item.lookaheadSymbol);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(grammarRule, pos, lookaheadSymbol);
     }
 
     @Override

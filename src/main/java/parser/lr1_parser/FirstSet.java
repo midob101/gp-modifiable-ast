@@ -14,6 +14,8 @@ public class FirstSet {
     private Set<Symbol> firstSet;
     // A cache for faster lookups.
     // It gets filled during the calculations
+
+    // TODO: They should be dependent on the language definition.
     private static HashMap<GrammarRule, FirstSet> cache = new HashMap<>();
 
     private FirstSet(Set<Symbol> firstSet) {
