@@ -199,8 +199,8 @@ public class ConfigReader {
      */
     private static void readGrammarRules(String concatted, LanguageDefinition resultLanguage) {
         String[] parts = concatted.split("->");
-        String name = parts[0].trim();
-        Symbol leftHandSideSymbol = new Symbol(name, false);
+        NameAndModifiers lhsNameAndModifiers = splitNameWithModifiers(parts[0]);
+        Symbol leftHandSideSymbol = new Symbol(lhsNameAndModifiers.name(), false);
         String[] ruleDefinitions = parts[1].split("\\|");
         for(String ruleDefinition: ruleDefinitions) {
             List<Symbol> symbols = new LinkedList<>();
@@ -208,36 +208,47 @@ public class ConfigReader {
             ruleDefinition = ruleDefinition.trim().replaceAll("\\s+", " ");
             String[] symbolsAsString = ruleDefinition.split("\\s+");
             for(String symbolPart: symbolsAsString) {
-                if(symbolPart.equals("EPSILON")) {
-                    //symbols.add(Symbol.EPSILON);
-                } else {
-                    String[] symbolParts = symbolPart.split("\\[");
-                    String symbolName = symbolParts[0];
-                    String modifierString = symbolParts.length > 1 ? symbolParts[1].substring(0, symbolParts[1].length()-1) : null;
-                    LinkedList<SymbolModifier> modifierList = new LinkedList<>();
+                if(!symbolPart.equals("EPSILON")) {
+                    NameAndModifiers rhsNameAndModifiers = splitNameWithModifiers(symbolPart);
                     boolean isTerminal = false;
-                    if(symbolName.matches("[a-z_0-9]+")) {
+                    if(rhsNameAndModifiers.name().matches("[a-z_0-9]+")) {
                         isTerminal = true;
                     }
-                    Symbol newSymbol = new Symbol(symbolName, isTerminal);
-                    if(modifierString != null) {
-                        String[] modifiers = modifierString.split(";");
-                        for(String modifier: modifiers) {
-                            if(!modifier.contains("=")) {
-                                modifierList.add(new SymbolModifier(modifier));
-                            } else {
-                                String[] modifierParts = modifier.split("=");
-                                modifierList.add(new SymbolModifier(modifierParts[0], modifierParts[1]));
-                            }
-                        }
-                    }
-                    allSymbolModifiers.add(modifierList);
+                    Symbol newSymbol = new Symbol(rhsNameAndModifiers.name(), isTerminal);
+
+                    allSymbolModifiers.add(rhsNameAndModifiers.modifiers());
                     symbols.add(newSymbol);
                 }
             }
 
-            GrammarRule grammarRule = new GrammarRule(leftHandSideSymbol, symbols, allSymbolModifiers);
+            GrammarRule grammarRule = new GrammarRule(leftHandSideSymbol, symbols, allSymbolModifiers, lhsNameAndModifiers.modifiers());
             resultLanguage.addGrammarRule(grammarRule);
         }
+    }
+
+    /**
+     * Splits a name and returns a NameAndModifiers record. Input may be PRODUCTION_ABC[list]
+     *
+     * @param input the complete string
+     * @return A record with the name and the modifier list.
+     */
+    public static NameAndModifiers splitNameWithModifiers(String input) {
+        String[] parts = input.split("\\[");
+        String name = parts[0].trim();
+        String modifierString = parts.length > 1 ? parts[1].substring(0, parts[1].length()-1) : null;
+        LinkedList<SymbolModifier> modifierList = new LinkedList<>();
+        if(modifierString != null) {
+            String[] modifiers = modifierString.split(",");
+            for(String modifier: modifiers) {
+                if(!modifier.contains("=")) {
+                    modifierList.add(new SymbolModifier(modifier.trim()));
+                } else {
+                    String[] modifierParts = modifier.split("=");
+                    modifierList.add(new SymbolModifier(modifierParts[0].trim(), modifierParts[1].trim()));
+                }
+            }
+        }
+
+        return new NameAndModifiers(name, modifierList);
     }
 }
