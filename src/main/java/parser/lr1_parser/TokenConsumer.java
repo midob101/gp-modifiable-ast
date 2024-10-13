@@ -20,7 +20,7 @@ public class TokenConsumer {
                 symbols.add(new Symbol(t.getLexerDefinition().getName(), true));
                 tokens.add(t);
             } else {
-                symbols.add(new Symbol(Symbol.INTERNAL_PARSE_IRRELEVANT_NAME, false));
+                symbols.add(Symbol.IGNORE_IN_PARSE);
                 tokens.add(t);
             }
         }

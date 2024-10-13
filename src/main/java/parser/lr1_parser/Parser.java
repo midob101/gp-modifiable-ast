@@ -1,6 +1,6 @@
 package parser.lr1_parser;
 
-import concrete_syntax_tree.ConcreteSyntaxTreeNode;
+import syntax_tree.ConcreteSyntaxTreeNode;
 import grammar.GrammarRule;
 import grammar.Symbol;
 import language_definitions.LanguageDefinition;
@@ -62,9 +62,9 @@ public class Parser {
         LinkedList<ConcreteSyntaxTreeNode> danglingTreeNodes = new LinkedList<>();
 
         while(true) {
-            if (next.name().equals(Symbol.INTERNAL_PARSE_IRRELEVANT_NAME)) {
+            if (next.equals(Symbol.IGNORE_IN_PARSE)) {
                 // This node is not part of the grammar. Create a tree node and continue.
-                danglingTreeNodes.add(new ConcreteSyntaxTreeNode(nextToken, next));
+                danglingTreeNodes.add(new ConcreteSyntaxTreeNode(nextToken));
                 next = tokenConsumer.consume();
                 nextToken = tokenConsumer.consumeToken();
             } else {
@@ -78,7 +78,7 @@ public class Parser {
                         ShiftAction shiftAction = (ShiftAction) action;
                         ItemSet shiftTo = shiftAction.getShiftTo();
                         stack.push(shiftTo);
-                        danglingTreeNodes.add(new ConcreteSyntaxTreeNode(nextToken, next));
+                        danglingTreeNodes.add(new ConcreteSyntaxTreeNode(nextToken));
                         next = tokenConsumer.consume();
                         nextToken = tokenConsumer.consumeToken();
                         Logger.debug(LoggerComponents.PARSER, "Shifting new state onto stack " + (nextToken != null ? nextToken.toString() : ""));
@@ -88,12 +88,12 @@ public class Parser {
                         GrammarRule rule = reduceAction.getReducedRule();
                         Symbol s = rule.leftHandSymbol();
                         ConcreteSyntaxTreeNode newNode = new ConcreteSyntaxTreeNode(rule);
-                        int remaining = rule.symbols().size();
-                        for (int i = 0; i < rule.symbols().size(); i++) {
+                        int remaining = rule.getSymbols().size();
+                        for (int i = 0; i < rule.getSymbols().size(); i++) {
                             stack.pop();
                             ConcreteSyntaxTreeNode child = danglingTreeNodes.removeLast();
                             newNode.addChild(child);
-                            if (child.getSymbol() == null || !child.getSymbol().name().equals(Symbol.INTERNAL_PARSE_IRRELEVANT_NAME)) {
+                            if (child.getToken() == null || child.getToken().getKeepInAST()) {
                                 remaining--;
                             }
                         }
@@ -103,7 +103,7 @@ public class Parser {
                         while (remaining != 0) {
                             ConcreteSyntaxTreeNode child = danglingTreeNodes.removeLast();
                             newNode.addChild(child);
-                            if (child.getSymbol() == null || !child.getSymbol().name().equals(Symbol.INTERNAL_PARSE_IRRELEVANT_NAME)) {
+                            if (child.getToken() == null || child.getToken().getKeepInAST()) {
                                 remaining--;
                             }
                         }

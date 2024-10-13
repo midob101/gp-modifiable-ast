@@ -117,7 +117,7 @@ public class LanguageDefinition {
     public Set<Symbol> getAllGrammarSymbols() {
         Set<Symbol> symbols = new LinkedHashSet<>();
         for(GrammarRule grammarRule : grammarRules) {
-            symbols.addAll(grammarRule.symbols());
+            symbols.addAll(grammarRule.getSymbols());
             symbols.add(grammarRule.leftHandSymbol());
         }
         return symbols;

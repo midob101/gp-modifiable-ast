@@ -69,7 +69,7 @@ public class FirstSet {
             firstSet.add(first);
         } else {
             boolean allNullable = true;
-            for(Symbol s: createFor.symbols()) {
+            for(Symbol s: createFor.getSymbols()) {
                 if(s.isTerminal()) {
                     firstSet.add(s);
                     allNullable = false;

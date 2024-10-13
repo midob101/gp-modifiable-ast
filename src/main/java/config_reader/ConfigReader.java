@@ -2,6 +2,7 @@ package config_reader;
 
 import grammar.GrammarRule;
 import grammar.Symbol;
+import grammar.SymbolModifier;
 import language_definitions.LanguageDefinition;
 import language_definitions.LanguageDefinitions;
 import lexer.CustomMatcherRegistry;
@@ -203,21 +204,34 @@ public class ConfigReader {
         String[] ruleDefinitions = parts[1].split("\\|");
         for(String ruleDefinition: ruleDefinitions) {
             List<Symbol> symbols = new LinkedList<>();
+            List<List<SymbolModifier>> allSymbolModifiers = new LinkedList<>();
             ruleDefinition = ruleDefinition.trim().replaceAll("\\s+", " ");
             String[] symbolsAsString = ruleDefinition.split("\\s+");
-            for(String symbolName: symbolsAsString) {
-                if(symbolName.equals("EPSILON")) {
+            for(String symbolPart: symbolsAsString) {
+                if(symbolPart.equals("EPSILON")) {
                     //symbols.add(Symbol.EPSILON);
                 } else {
+                    String[] symbolParts = symbolPart.split("\\[");
+                    String symbolName = symbolParts[0];
+                    String modifierString = symbolParts.length > 1 ? symbolParts[1].substring(0, symbolParts[1].length()-1) : null;
+                    LinkedList<SymbolModifier> modifierList = new LinkedList<>();
                     boolean isTerminal = false;
                     if(symbolName.matches("[a-z_0-9]+")) {
                         isTerminal = true;
                     }
-                    symbols.add(new Symbol(symbolName, isTerminal));
+                    Symbol newSymbol = new Symbol(symbolName, isTerminal);
+                    if(modifierString != null) {
+                        String[] modifiers = modifierString.split(";");
+                        for(String modifier: modifiers) {
+                            modifierList.add(new SymbolModifier(modifier));
+                        }
+                    }
+                    allSymbolModifiers.add(modifierList);
+                    symbols.add(newSymbol);
                 }
             }
 
-            GrammarRule grammarRule = new GrammarRule(leftHandSideSymbol, symbols);
+            GrammarRule grammarRule = new GrammarRule(leftHandSideSymbol, symbols, allSymbolModifiers);
             resultLanguage.addGrammarRule(grammarRule);
         }
     }

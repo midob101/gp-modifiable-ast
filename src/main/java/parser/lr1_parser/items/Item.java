@@ -12,7 +12,7 @@ public record Item(GrammarRule grammarRule, int pos, Symbol lookaheadSymbol) {
      * @return true if the position is at the end of the grammar rule
      */
     public boolean isPosAtEnd() {
-        return this.grammarRule.symbols().size() <= pos;
+        return this.grammarRule.getSymbols().size() <= pos;
     }
 
     /**
@@ -20,7 +20,7 @@ public record Item(GrammarRule grammarRule, int pos, Symbol lookaheadSymbol) {
      */
     public Symbol getSymbolAtPos() {
         if (!this.isPosAtEnd()) {
-            return this.grammarRule.symbols().get(pos);
+            return this.grammarRule.getSymbols().get(pos);
         }
         return null;
     }
@@ -40,9 +40,9 @@ public record Item(GrammarRule grammarRule, int pos, Symbol lookaheadSymbol) {
      */
     public List<Symbol> getRemainingSymbols() {
         LinkedList<Symbol> remainingSymbols = new LinkedList<>();
-        int size = this.grammarRule.symbols().size();
+        int size = this.grammarRule.getSymbols().size();
         for (int i = pos + 1; i < size; i++) {
-            remainingSymbols.add(this.grammarRule.symbols().get(i));
+            remainingSymbols.add(this.grammarRule.getSymbols().get(i));
         }
         return remainingSymbols;
     }

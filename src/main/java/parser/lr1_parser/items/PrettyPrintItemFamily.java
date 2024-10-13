@@ -21,7 +21,7 @@ public class PrettyPrintItemFamily {
                 sb.append(rule.leftHandSymbol().name())
                         .append(" -> ");
                 int curPos = 0;
-                for(Symbol symbol: rule.symbols()) {
+                for(Symbol symbol: rule.getSymbols()) {
                     if(curPos == item.pos()) {
                         sb.append(".");
                     }

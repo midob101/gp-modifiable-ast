@@ -12,6 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import syntax_tree.AbstractSyntaxTreeFactory;
+import syntax_tree.AbstractSyntaxTreeNode;
+import syntax_tree.ConcreteSyntaxTreeNode;
+import syntax_tree.TreePrettyPrinter;
 import test_utils.StringUtilities;
 
 import java.io.File;
@@ -84,15 +88,33 @@ public class ParserTest {
     }
 
     @ParameterizedTest(name="Test mini java {index} for source file {0}, should be {1}")
-    @MethodSource("miniJavaProvider")
+    @MethodSource("miniJavaCstProvider")
     public void testMiniJavaCst(String src, String comparisonFile) throws IOException, LexerParseException, ConfigReaderException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, miniJavaLanguageDefinition);
 
         String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/minijava/" + comparisonFile), StandardCharsets.UTF_8);
+        ConcreteSyntaxTreeNode cst = miniJavaParser.createCST(tokenList);
+        String prettyPrinted = TreePrettyPrinter.print(cst);
         Assertions.assertEquals(
                 StringUtilities.trimEmptyLines(StringUtilities.useCRLF(expected)),
-                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(miniJavaParser.createCST(tokenList).toString()))
+                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(prettyPrinted))
+        );
+    }
+
+    @ParameterizedTest(name="Test mini java {index} for source file {0}, should be {1}")
+    @MethodSource("miniJavaAstProvider")
+    public void testMiniJavaAst(String src, String comparisonFile) throws IOException, LexerParseException, ConfigReaderException {
+        Lexer lexer = new Lexer();
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, miniJavaLanguageDefinition);
+
+        String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/minijava/" + comparisonFile), StandardCharsets.UTF_8);
+        ConcreteSyntaxTreeNode cst = miniJavaParser.createCST(tokenList);
+        AbstractSyntaxTreeNode ast = AbstractSyntaxTreeFactory.create(cst);
+        String prettyPrinted = TreePrettyPrinter.print(ast);
+        Assertions.assertEquals(
+                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(expected)),
+                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(prettyPrinted))
         );
     }
 
@@ -105,10 +127,17 @@ public class ParserTest {
         Assertions.assertNull(miniJavaParser.createCST(tokenList));
     }
 
-    private static Stream<Arguments> miniJavaProvider() {
+    private static Stream<Arguments> miniJavaCstProvider() {
         return Stream.of(
                 Arguments.of("complete.minijava", "complete_cst.txt"),
                 Arguments.of("only_main.minijava", "only_main_cst.txt")
+        );
+    }
+
+    private static Stream<Arguments> miniJavaAstProvider() {
+        return Stream.of(
+                Arguments.of("complete.minijava", "complete_ast.txt"),
+                Arguments.of("only_main.minijava", "only_main_ast.txt")
         );
     }
 

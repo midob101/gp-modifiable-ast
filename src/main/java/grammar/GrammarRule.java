@@ -1,5 +1,6 @@
 package grammar;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +9,31 @@ import java.util.Objects;
  * Also adjust variable names, comments, etc.
  * Keep it at production at all times.
  */
-public record GrammarRule(Symbol leftHandSymbol, List<Symbol> symbols) {
+public final class GrammarRule {
+    private final Symbol leftHandSymbol;
+    private final List<Symbol> symbols;
+    private final List<List<SymbolModifier>> symbolModifiers;
+
+    /**
+     *
+     */
+    public GrammarRule(Symbol leftHandSymbol, List<Symbol> symbols, List<List<SymbolModifier>> symbolModifiers) {
+        if(symbolModifiers.size() != symbols.size()) {
+            throw new RuntimeException("The symbol modifiers list has to be same length as the symbols list");
+        }
+        this.leftHandSymbol = leftHandSymbol;
+        this.symbols = symbols;
+        this.symbolModifiers = symbolModifiers;
+    }
+
+    public GrammarRule(Symbol leftHandSymbol, List<Symbol> symbols) {
+        this.leftHandSymbol = leftHandSymbol;
+        this.symbols = symbols;
+        this.symbolModifiers = new LinkedList<>();
+        for(Symbol s: symbols) {
+            symbolModifiers.add(new LinkedList<>());
+        }
+    }
 
     public Symbol getFirstSymbol() {
         if (this.isNullable()) {
@@ -36,4 +61,32 @@ public record GrammarRule(Symbol leftHandSymbol, List<Symbol> symbols) {
         output.append("]\r\n");
         return output.toString();
     }
+
+    public Symbol leftHandSymbol() {
+        return leftHandSymbol;
+    }
+
+    public List<Symbol> getSymbols() {
+        return symbols;
+    }
+
+    public List<List<SymbolModifier>> getSymbolModifiers() {
+        return symbolModifiers;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (GrammarRule) obj;
+        return Objects.equals(this.leftHandSymbol, that.leftHandSymbol) &&
+                Objects.equals(this.symbols, that.symbols) &&
+                Objects.equals(this.symbolModifiers, that.symbolModifiers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(leftHandSymbol, symbols, symbolModifiers);
+    }
+
 }
