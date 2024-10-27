@@ -7,7 +7,9 @@ import lexer.Token;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import syntax_tree.AbstractSyntaxTreeNode;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
+import syntax_tree.ast.ProductionTreeNode;
+import syntax_tree.ast.TokenTreeNode;
 
 public class TokenSelectorTest {
 
@@ -15,7 +17,7 @@ public class TokenSelectorTest {
     public void testProductionNode() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("test", false));
-        AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(r1);
+        ProductionTreeNode node = new ProductionTreeNode(r1);
         TokenSelector selector = new TokenSelector("test");
         Assertions.assertFalse(selector.matches(node));
     }
@@ -26,7 +28,7 @@ public class TokenSelectorTest {
         LexerDefinition l1 = Mockito.mock(LexerDefinition.class);
         Mockito.when(t1.getLexerDefinition()).thenReturn(l1);
         Mockito.when(l1.getName()).thenReturn("test_definition");
-        AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(t1);
+        TokenTreeNode node = new TokenTreeNode(t1);
         TokenSelector selector = new TokenSelector("test");
         Assertions.assertFalse(selector.matches(node));
     }
@@ -35,7 +37,7 @@ public class TokenSelectorTest {
     public void testDoesNotMatchAlias() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("test1", false));
-        AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(r1);
+        ProductionTreeNode node = new ProductionTreeNode(r1);
         node.setAlias("test1");
         TokenSelector selector = new TokenSelector("test1");
         Assertions.assertFalse(selector.matches(node));
@@ -48,7 +50,7 @@ public class TokenSelectorTest {
         Mockito.when(t1.getLexerDefinition()).thenReturn(l1);
         Mockito.when(l1.getName()).thenReturn("test");
 
-        AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(t1);
+        TokenTreeNode node = new TokenTreeNode(t1);
         TokenSelector selector = new TokenSelector("test");
 
         Assertions.assertTrue(selector.matches(node));

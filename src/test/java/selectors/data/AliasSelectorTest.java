@@ -7,14 +7,16 @@ import lexer.Token;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import syntax_tree.AbstractSyntaxTreeNode;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
+import syntax_tree.ast.ProductionTreeNode;
+import syntax_tree.ast.TokenTreeNode;
 
 public class AliasSelectorTest {
 
     @Test
     public void testNoAliasDefined() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
-        AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(r1);
+        ProductionTreeNode node = new ProductionTreeNode(r1);
         AliasSelector selector = new AliasSelector("test");
         Assertions.assertFalse(selector.matches(node));
     }
@@ -22,7 +24,7 @@ public class AliasSelectorTest {
     @Test
     public void testNoMatchingAliasDefined() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
-        AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(r1);
+        ProductionTreeNode node = new ProductionTreeNode(r1);
         node.setAlias("test1");
         AliasSelector selector = new AliasSelector("test");
         Assertions.assertFalse(selector.matches(node));
@@ -31,7 +33,7 @@ public class AliasSelectorTest {
     @Test
     public void testMatchingAliasDefined() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
-        AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(r1);
+        ProductionTreeNode node = new ProductionTreeNode(r1);
         node.setAlias("test");
         AliasSelector selector = new AliasSelector("test");
         Assertions.assertTrue(selector.matches(node));
@@ -41,7 +43,7 @@ public class AliasSelectorTest {
     public void testDoesNotMatchProductionName() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("TEST", false));
-        AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(r1);
+        ProductionTreeNode node = new ProductionTreeNode(r1);
         AliasSelector selector = new AliasSelector("TEST");
         Assertions.assertFalse(selector.matches(node));
     }
@@ -53,7 +55,7 @@ public class AliasSelectorTest {
         Mockito.when(t1.getLexerDefinition()).thenReturn(ld1);
         Mockito.when(ld1.getName()).thenReturn("TEST");
 
-        AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(t1);
+        TokenTreeNode node = new TokenTreeNode(t1);
         AliasSelector selector = new AliasSelector("TEST");
 
         Assertions.assertFalse(selector.matches(node));

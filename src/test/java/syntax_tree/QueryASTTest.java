@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import selectors.data.ProductionSelector;
+import syntax_tree.ast.ProductionTreeNode;
+import syntax_tree.ast.QueryResult;
+import syntax_tree.ast.StringTreeNode;
 import test_selectors.TrueSelector;
 
 import java.util.List;
@@ -14,7 +17,7 @@ public class QueryASTTest {
 
     @Test
     public void testFindYourselfWithQuery() {
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode("");
+        StringTreeNode root = new StringTreeNode("");
         QueryResult result = root.query(new TrueSelector());
         Assertions.assertFalse(result.isEmpty());
         Assertions.assertEquals(root, result.getResult().get(0));
@@ -22,24 +25,24 @@ public class QueryASTTest {
 
     @Test
     public void testDoNotFindYourselfWithQueryChildren() {
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode("");
+        StringTreeNode root = new StringTreeNode("");
         QueryResult result = root.queryChildren(new TrueSelector());
         Assertions.assertTrue(result.isEmpty());
     }
 
     @Test
     public void testDoNotFindYourselfWithQueryImmediateChildren() {
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode("");
+        StringTreeNode root = new StringTreeNode("");
         QueryResult result = root.queryImmediateChildren(new TrueSelector());
         Assertions.assertTrue(result.isEmpty());
     }
 
     @Test
     public void testQueryImmediateChildren() {
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode("");
-        AbstractSyntaxTreeNode immediateChildOne = new AbstractSyntaxTreeNode("");
-        AbstractSyntaxTreeNode immediateChildTwo = new AbstractSyntaxTreeNode("");
-        AbstractSyntaxTreeNode leaf = new AbstractSyntaxTreeNode("");
+        StringTreeNode root = new StringTreeNode("");
+        StringTreeNode immediateChildOne = new StringTreeNode("");
+        StringTreeNode immediateChildTwo = new StringTreeNode("");
+        StringTreeNode leaf = new StringTreeNode("");
 
         root.addChild(immediateChildOne);
         root.addChild(immediateChildTwo);
@@ -52,10 +55,10 @@ public class QueryASTTest {
 
     @Test
     public void testQueryChildren() {
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode("");
-        AbstractSyntaxTreeNode immediateChildOne = new AbstractSyntaxTreeNode("");
-        AbstractSyntaxTreeNode immediateChildTwo = new AbstractSyntaxTreeNode("");
-        AbstractSyntaxTreeNode leaf = new AbstractSyntaxTreeNode("");
+        StringTreeNode root = new StringTreeNode("");
+        StringTreeNode immediateChildOne = new StringTreeNode("");
+        StringTreeNode immediateChildTwo = new StringTreeNode("");
+        StringTreeNode leaf = new StringTreeNode("");
 
         root.addChild(immediateChildOne);
         root.addChild(immediateChildTwo);
@@ -74,10 +77,10 @@ public class QueryASTTest {
         Mockito.when(doesMatch.leftHandSymbol()).thenReturn(new Symbol("MATCH", false));
 
 
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode(doesMatch);
-        AbstractSyntaxTreeNode immediateChildOne = new AbstractSyntaxTreeNode(doesMatch);
-        AbstractSyntaxTreeNode immediateChildTwo = new AbstractSyntaxTreeNode(doesNotMatch);
-        AbstractSyntaxTreeNode leaf = new AbstractSyntaxTreeNode(doesMatch);
+        ProductionTreeNode root = new ProductionTreeNode(doesMatch);
+        ProductionTreeNode immediateChildOne = new ProductionTreeNode(doesMatch);
+        ProductionTreeNode immediateChildTwo = new ProductionTreeNode(doesNotMatch);
+        ProductionTreeNode leaf = new ProductionTreeNode(doesMatch);
 
         root.addChild(immediateChildOne);
         root.addChild(immediateChildTwo);

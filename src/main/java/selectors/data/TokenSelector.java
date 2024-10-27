@@ -1,7 +1,8 @@
 package selectors.data;
 
 import selectors.BaseSelector;
-import syntax_tree.AbstractSyntaxTreeNode;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
+import syntax_tree.ast.TokenTreeNode;
 
 /**
  * Selector that matches nodes with a specific token name.
@@ -15,6 +16,9 @@ public class TokenSelector extends BaseSelector {
 
     @Override
     public boolean matches(AbstractSyntaxTreeNode treeNode) {
-        return treeNode.getToken() != null && treeNode.getToken().getLexerDefinition().getName().equals(this.tokenName);
+        if(treeNode instanceof TokenTreeNode convertedNode) {
+            return convertedNode.getToken().getLexerDefinition().getName().equals(this.tokenName);
+        }
+        return false;
     }
 }

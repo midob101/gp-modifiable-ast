@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import test_selectors.FalseSelector;
 import test_selectors.TrueSelector;
-import syntax_tree.AbstractSyntaxTreeNode;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
 
 public class AndSelectorTest {
 

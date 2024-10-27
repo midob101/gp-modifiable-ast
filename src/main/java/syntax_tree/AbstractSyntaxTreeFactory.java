@@ -2,6 +2,9 @@ package syntax_tree;
 
 import grammar.Symbol;
 import grammar.SymbolModifier;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
+import syntax_tree.ast.ProductionTreeNode;
+import syntax_tree.ast.TokenTreeNode;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +34,7 @@ public class AbstractSyntaxTreeFactory {
      */
     private static AbstractSyntaxTreeNode createRecursive(ConcreteSyntaxTreeNode concreteSyntaxTreeNode) {
         if(concreteSyntaxTreeNode.getRule() != null) {
-            AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(concreteSyntaxTreeNode.getRule());
+            AbstractSyntaxTreeNode node = new ProductionTreeNode(concreteSyntaxTreeNode.getRule());
 
             for(int i = 0; i < concreteSyntaxTreeNode.getChildren().size(); i++) {
                 ConcreteSyntaxTreeNode currentTreeNode = concreteSyntaxTreeNode.getChildren().get(i);
@@ -41,8 +44,8 @@ public class AbstractSyntaxTreeFactory {
             }
             return node;
         } else {
-            AbstractSyntaxTreeNode node = new AbstractSyntaxTreeNode(concreteSyntaxTreeNode.getToken());
-            if(!node.getToken().getKeepInAST()) {
+            AbstractSyntaxTreeNode node = new TokenTreeNode(concreteSyntaxTreeNode.getToken());
+            if(!concreteSyntaxTreeNode.getToken().getKeepInAST()) {
                 node.setHidden();
             }
             return node;
@@ -55,10 +58,11 @@ public class AbstractSyntaxTreeFactory {
      * @param root the root node of the AST.
      */
     private static void postProcess(AbstractSyntaxTreeNode root) {
-        if(root.getRule() != null) {
-            List<List<SymbolModifier>> modifiers = root.getRule().getSymbolModifiers();
+        if(root instanceof ProductionTreeNode) {
+            ProductionTreeNode productionTreeNode = (ProductionTreeNode) root;
+            List<List<SymbolModifier>> modifiers = productionTreeNode.getRule().getSymbolModifiers();
             Map<AbstractSyntaxTreeNode, List<SymbolModifier>> modifierMap = new HashMap<>();
-            List<AbstractSyntaxTreeNode> children = root.getChildren();
+            List<AbstractSyntaxTreeNode> children = productionTreeNode.getChildren();
             // Create a map that keeps maps the child nodes to their modifiers.
             // This is required as the rhs and lhs modifiers can modify the tree structure.
             // The modifiers are applied from the bottom up. First the modifiers are executed on the leaves
@@ -73,7 +77,7 @@ public class AbstractSyntaxTreeFactory {
                 applyRhsModifiers(child, modifierMap.get(child));
             }
 
-            applyLhsModifiers(root, root.getRule().getLeftHandModifiers());
+            applyLhsModifiers(productionTreeNode, productionTreeNode.getRule().getLeftHandModifiers());
         }
     }
 
@@ -83,7 +87,7 @@ public class AbstractSyntaxTreeFactory {
      * @param node The node that should be modified
      * @param leftHandModifiers The modifiers that should be applied.
      */
-    private static void applyLhsModifiers(AbstractSyntaxTreeNode node, List<SymbolModifier> leftHandModifiers) {
+    private static void applyLhsModifiers(ProductionTreeNode node, List<SymbolModifier> leftHandModifiers) {
         for(SymbolModifier modifier: leftHandModifiers) {
             switch (modifier.getModifier()) {
                 case SymbolModifier.LIST:
@@ -99,17 +103,19 @@ public class AbstractSyntaxTreeFactory {
      *
      * @param node The node where the children should be flattened.
      */
-    private static void flattenList(AbstractSyntaxTreeNode node) {
+    private static void flattenList(ProductionTreeNode node) {
         Symbol lhsSymbol = node.getRule().leftHandSymbol();
 
         boolean hasChanges = true;
         while(hasChanges) {
             hasChanges = false;
             for(AbstractSyntaxTreeNode child: node.getChildren()) {
-                if(child.getRule() != null && child.getRule().leftHandSymbol().equals(lhsSymbol)) {
-                    node.replaceChild(child, child.getAllChildren());
-                    hasChanges = true;
-                    break;
+                if(child instanceof ProductionTreeNode childTmp) {
+                    if (childTmp.getRule().leftHandSymbol().equals(lhsSymbol)) {
+                        node.replaceChild(childTmp, childTmp.getAllChildren());
+                        hasChanges = true;
+                        break;
+                    }
                 }
             }
         }

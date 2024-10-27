@@ -1,7 +1,8 @@
 package selectors.data;
 
-import syntax_tree.AbstractSyntaxTreeNode;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
 import selectors.BaseSelector;
+import syntax_tree.ast.ProductionTreeNode;
 
 /**
  * Selector that matches nodes with a specific production name.
@@ -15,6 +16,9 @@ public class ProductionSelector extends BaseSelector {
 
     @Override
     public boolean matches(AbstractSyntaxTreeNode treeNode) {
-        return treeNode.getRule() != null && treeNode.getRule().leftHandSymbol().name().equals(this.production);
+        if(treeNode instanceof ProductionTreeNode convertedNode) {
+            return convertedNode.getRule().leftHandSymbol().name().equals(this.production);
+        }
+        return false;
     }
 }

@@ -1,8 +1,9 @@
-package syntax_tree;
+package syntax_tree.ast;
 
 import grammar.GrammarRule;
 import lexer.Token;
 import selectors.BaseSelector;
+import syntax_tree.IPrintableTreeNode;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,56 +13,18 @@ import java.util.List;
  *
  * There are three
  */
-public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntaxTreeNode> {
-    private String value = "";
-    private Token token = null;
-    private GrammarRule rule = null;
+public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntaxTreeNode> {
     private final LinkedList<AbstractSyntaxTreeNode> children = new LinkedList<>();
     private boolean hidden = false;
     private String alias = null;
     private AbstractSyntaxTreeNode parent = null;
 
-    /**
-     * Creates a tree node based on a lexer token
-     */
-    public AbstractSyntaxTreeNode(Token token) {
-        this.token = token;
-    }
-
-    /**
-     * Creates a tree node based on a grammar production rule
-     */
-    public AbstractSyntaxTreeNode(GrammarRule rule) {
-        this.rule = rule;
-    }
-
-
-    /**
-     * Creates a tree node based on a string
-     */
-    public AbstractSyntaxTreeNode(String value) {
-        this.value = value;
-    }
-
-    /**
-     * @return Token
-     */
-    public Token getToken() {
-        return token;
-    }
 
     /**
      * @return Alias
      */
     public String getAlias() {
         return alias;
-    }
-
-    /**
-     * @return production
-     */
-    public GrammarRule getRule() {
-        return rule;
     }
 
     /**
@@ -76,7 +39,7 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
     /**
      * Sets the hidden flag.
      */
-    protected void setHidden() {
+    public void setHidden() {
         this.hidden = true;
     }
 
@@ -85,7 +48,7 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
      *
      * @param parent
      */
-    protected void setParent(AbstractSyntaxTreeNode parent) {
+    public void setParent(AbstractSyntaxTreeNode parent) {
         this.parent = parent;
     }
 
@@ -96,23 +59,6 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
      */
     public AbstractSyntaxTreeNode getParent() {
         return parent;
-    }
-
-    /**
-     * Gets the display value for this tree node.
-     *
-     * @return String
-     */
-    @Override
-    public String getDisplayValue() {
-        if(this.rule != null) {
-            return this.alias != null ? this.alias : getRule().leftHandSymbol().name();
-        } else if(getToken() != null) {
-            return (this.alias != null ? this.alias : getToken().getLexerDefinition().getName()) + ": " + getToken().getValue();
-        } else if(!this.value.isBlank()) {
-            return this.value;
-        }
-        return "UNDEFINED";
     }
 
     /**
@@ -168,8 +114,8 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
      * Replaces this node with a string
      * @param replaceWith
      */
-    public void replaceSelfWithString(String replaceWith) {
-        this.parent.replaceChild(this, List.of(new AbstractSyntaxTreeNode(replaceWith)));
+    public void replaceSelf(AbstractSyntaxTreeNode replaceWith) {
+        this.parent.replaceChild(this, List.of(replaceWith));
     }
 
     /**
@@ -183,18 +129,16 @@ public class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntax
         return sb.toString();
     }
 
+    protected abstract String getSources();
+    public abstract String getDisplayValue();
+
     /**
      * Internal recursive function to create the source code.
      *
      * @param builder
      */
     private void createSourceCode(StringBuilder builder) {
-        if(this.token != null) {
-            builder.append(token.getValue());
-        }
-        if(this.value != null) {
-            builder.append(this.value);
-        }
+        builder.append(this.getSources());
         for(AbstractSyntaxTreeNode treeNode: getAllChildren()) {
             treeNode.createSourceCode(builder);
         }

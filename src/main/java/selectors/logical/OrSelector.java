@@ -1,6 +1,6 @@
 package selectors.logical;
 
-import syntax_tree.AbstractSyntaxTreeNode;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
 import selectors.BaseSelector;
 
 import java.util.Arrays;

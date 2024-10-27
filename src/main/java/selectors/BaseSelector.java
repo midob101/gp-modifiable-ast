@@ -1,6 +1,6 @@
 package selectors;
 
-import syntax_tree.AbstractSyntaxTreeNode;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
 
 /**
  * Base class for a selector.

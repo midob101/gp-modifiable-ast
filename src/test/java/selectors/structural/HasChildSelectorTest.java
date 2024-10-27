@@ -7,16 +7,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import selectors.data.TokenSelector;
+import syntax_tree.ast.ProductionTreeNode;
+import syntax_tree.ast.TokenTreeNode;
 import test_selectors.FalseSelector;
 import test_selectors.TrueSelector;
-import syntax_tree.AbstractSyntaxTreeNode;
 
 public class HasChildSelectorTest {
 
     @Test
     public void testNoChildren() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode(r1);
+        ProductionTreeNode root = new ProductionTreeNode(r1);
         HasChildSelector selector = new HasChildSelector(new TrueSelector());
         Assertions.assertFalse(selector.matches(root));
     }
@@ -25,8 +26,8 @@ public class HasChildSelectorTest {
     public void testOneChildTrueSelector() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
         GrammarRule r2 = Mockito.mock(GrammarRule.class);
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode(r1);
-        AbstractSyntaxTreeNode child = new AbstractSyntaxTreeNode(r2);
+        ProductionTreeNode root = new ProductionTreeNode(r1);
+        ProductionTreeNode child = new ProductionTreeNode(r2);
         root.addChild(child);
         HasChildSelector selector = new HasChildSelector(new TrueSelector());
         Assertions.assertTrue(selector.matches(root));
@@ -36,8 +37,8 @@ public class HasChildSelectorTest {
     public void testOneChildFalseSelector() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
         GrammarRule r2 = Mockito.mock(GrammarRule.class);
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode(r1);
-        AbstractSyntaxTreeNode child = new AbstractSyntaxTreeNode(r2);
+        ProductionTreeNode root = new ProductionTreeNode(r1);
+        ProductionTreeNode child = new ProductionTreeNode(r2);
         root.addChild(child);
         HasChildSelector selector = new HasChildSelector(new FalseSelector());
         Assertions.assertFalse(selector.matches(root));
@@ -52,9 +53,9 @@ public class HasChildSelectorTest {
         Mockito.when(t1.getLexerDefinition()).thenReturn(ld1);
         Mockito.when(ld1.getName()).thenReturn("TEST");
 
-        AbstractSyntaxTreeNode root = new AbstractSyntaxTreeNode(production);
-        AbstractSyntaxTreeNode firstLevelChild = new AbstractSyntaxTreeNode(production);
-        AbstractSyntaxTreeNode leafNode = new AbstractSyntaxTreeNode(t1);
+        ProductionTreeNode root = new ProductionTreeNode(production);
+        ProductionTreeNode firstLevelChild = new ProductionTreeNode(production);
+        TokenTreeNode leafNode = new TokenTreeNode(t1);
         root.addChild(firstLevelChild);
         firstLevelChild.addChild(leafNode);
         HasChildSelector selector = new HasChildSelector(new TokenSelector("TEST"));

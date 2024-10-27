@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
+import syntax_tree.ast.QueryResult;
 import test_selectors.TrueSelector;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package selectors.structural;
 
 import selectors.BaseSelector;
-import syntax_tree.AbstractSyntaxTreeNode;
+import syntax_tree.ast.AbstractSyntaxTreeNode;
 
 /**
  * Selector that matches on nodes that have atleast one child that matches another selector.

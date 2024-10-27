@@ -1,4 +1,4 @@
-package syntax_tree;
+package syntax_tree.ast;
 
 import selectors.BaseSelector;
 
