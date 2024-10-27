@@ -1,0 +1,102 @@
+/**
+ * Complete example, tries to cover all rules of minijava.
+ *
+ * Grammar is based on https://cgi.di.uoa.gr/~thp06/project_files/minijava-new/minijava.html
+ */
+
+// Main class.
+class SubclassReturnValue
+{
+    // Main method.
+    public static void main(String[] args)
+    {
+        // Variable declarations
+        // Testing all four types.
+        A a;
+        int   _int_value;
+        int[] _int_array;
+        boolean bool_value;
+
+        // Statements
+
+        // Block
+        {
+            // Statements
+            // Testing various assignments
+            if(bool_value) {
+                // while statement
+
+                while(bool_value && (false && (1 < 5))) {
+                    // Empty statement block
+                }
+            } else {
+                System.out.println(_int_value);
+                System.out.println(_int_value + (_int_array[2]));
+            }
+        }
+        // Statement after block
+        }
+}
+
+class A
+{
+    // Variable declarations
+    // Testing all four types.
+    A a;
+    int   _int_value;
+    int[] _int_array;
+    boolean bool_value;
+
+    public int get_int_literal()
+    {
+        return 5;   // Return integer literal
+    }
+
+    public int get_int_literal2()
+    {
+        int ret;
+        return ret;   // Return integer literal
+    }
+
+    public int get_sum(int a, int b)
+    {
+        int sum_test;
+        return a+b;   // Return integer literal
+    }
+
+    public int get_sum(int[] a)
+    {
+        int i;
+        int sum;
+        while(i < (a.length)) {
+            }
+        return sum;   // Return integer literal
+    }
+
+    public int[] get_array(int a, int b) {
+        int[] ret;
+        return ret;
+    }
+}
+
+class B extends A
+{
+    public A foo()
+    {
+        return new B();
+    }
+}
+
+class C extends B
+{
+    // All kinds of params
+    public A foo(int a, int b, int[] c, boolean d)
+    {
+        return new B();
+    }
+}
+
+// Empty class
+class D
+{
+}

@@ -12,10 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import syntax_tree.AbstractSyntaxTreeFactory;
-import syntax_tree.AbstractSyntaxTreeNode;
-import syntax_tree.ConcreteSyntaxTreeNode;
-import syntax_tree.TreePrettyPrinter;
+import syntax_tree.*;
+import selectors.data.ProductionSelector;
+import selectors.logical.OrSelector;
 import test_utils.StringUtilities;
 
 import java.io.File;
@@ -139,6 +138,31 @@ public class ParserTest {
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, miniJavaLanguageDefinition);
 
         Assertions.assertNull(miniJavaParser.createCST(tokenList));
+    }
+
+    @Test
+    public void testTransform() throws IOException, LexerParseException {
+        Lexer lexer = new Lexer();
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/complete.minijava", miniJavaLanguageDefinition);
+        ConcreteSyntaxTreeNode cst = miniJavaParser.createCST(tokenList);
+        AbstractSyntaxTreeNode ast = AbstractSyntaxTreeFactory.create(cst);
+
+        QueryResult list = ast.query(
+                new OrSelector(
+                        new ProductionSelector("ARRAY_ASSIGNMENT_STATEMENT"),
+                        new ProductionSelector("ASSIGNMENT_STATEMENT")
+                )
+        );
+
+        list.forEach((item) -> {
+            item.replaceSelfWithString("");
+        });
+
+        String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/minijava/complete_transformed.minijava"), StandardCharsets.UTF_8);
+        Assertions.assertEquals(
+                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(expected)),
+                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(ast.getSourceCode()))
+        );
     }
 
     private static Stream<Arguments> miniJavaCstProvider() {

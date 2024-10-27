@@ -1,6 +1,5 @@
 package syntax_tree;
 
-import grammar.GrammarRule;
 import grammar.Symbol;
 import grammar.SymbolModifier;
 
