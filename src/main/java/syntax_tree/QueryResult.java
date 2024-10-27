@@ -26,6 +26,16 @@ public class QueryResult implements Iterable<AbstractSyntaxTreeNode> {
         return new QueryResult(matches);
     }
 
+    public QueryResult queryChildren(BaseSelector selector) {
+        List<AbstractSyntaxTreeNode> matches = new LinkedList<>();
+
+        for(AbstractSyntaxTreeNode root: result) {
+            matches.addAll(root.queryChildren(selector).getResult());
+        }
+
+        return new QueryResult(matches);
+    }
+
     public QueryResult queryImmediateChildren(BaseSelector selector) {
         List<AbstractSyntaxTreeNode> matches = new LinkedList<>();
 
@@ -57,5 +67,14 @@ public class QueryResult implements Iterable<AbstractSyntaxTreeNode> {
 
     public boolean isEmpty() {
         return this.result.isEmpty();
+    }
+
+    public static QueryResult merge(QueryResult ...queryResults) {
+        // TODO: Remove duplicates!
+        List<AbstractSyntaxTreeNode> nodes = new LinkedList<>();
+        for(QueryResult result: queryResults) {
+            nodes.addAll(result.getResult());
+        }
+        return new QueryResult(nodes);
     }
 }
