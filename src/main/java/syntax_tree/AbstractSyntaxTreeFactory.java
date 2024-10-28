@@ -64,8 +64,7 @@ public class AbstractSyntaxTreeFactory {
      * @param root the root node of the AST.
      */
     private static void postProcess(AbstractSyntaxTreeNode root) {
-        if(root instanceof ProductionTreeNode) {
-            ProductionTreeNode productionTreeNode = (ProductionTreeNode) root;
+        if(root instanceof ProductionTreeNode productionTreeNode) {
             List<List<SymbolModifier>> modifiers = productionTreeNode.getRule().getSymbolModifiers();
             Map<AbstractSyntaxTreeNode, List<SymbolModifier>> modifierMap = new HashMap<>();
             List<AbstractSyntaxTreeNode> children = productionTreeNode.getChildren();
@@ -77,8 +76,7 @@ public class AbstractSyntaxTreeFactory {
                 modifierMap.put(children.get(i), modifiers.get(i));
             }
 
-            for(int i = 0; i < children.size(); i++) {
-                AbstractSyntaxTreeNode child = children.get(i);
+            for (AbstractSyntaxTreeNode child : children) {
                 postProcess(child);
                 applyRhsModifiers(child, modifierMap.get(child));
             }

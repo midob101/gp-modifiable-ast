@@ -13,10 +13,6 @@ public class ProductionTreeNode extends AbstractSyntaxTreeNode {
         this.production = rule;
     }
 
-    public GrammarRule getProduction() {
-        return this.production;
-    }
-
     /**
      * @return production
      */

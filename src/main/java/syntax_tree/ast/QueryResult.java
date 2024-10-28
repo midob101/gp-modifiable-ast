@@ -2,10 +2,7 @@ package syntax_tree.ast;
 
 import selectors.BaseSelector;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Spliterator;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class QueryResult implements Iterable<AbstractSyntaxTreeNode> {
@@ -70,10 +67,15 @@ public class QueryResult implements Iterable<AbstractSyntaxTreeNode> {
     }
 
     public static QueryResult merge(QueryResult ...queryResults) {
-        // TODO: Remove duplicates!
+        HashSet<AbstractSyntaxTreeNode> alreadyAdded = new HashSet<>();
         List<AbstractSyntaxTreeNode> nodes = new LinkedList<>();
         for(QueryResult result: queryResults) {
-            nodes.addAll(result.getResult());
+            for(AbstractSyntaxTreeNode node: result.getResult()) {
+                if(!alreadyAdded.contains(node)) {
+                    nodes.add(node);
+                    alreadyAdded.add(node);
+                }
+            }
         }
         return new QueryResult(nodes);
     }

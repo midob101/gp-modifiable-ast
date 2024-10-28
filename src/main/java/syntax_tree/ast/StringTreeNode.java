@@ -15,6 +15,10 @@ public class StringTreeNode extends AbstractSyntaxTreeNode {
         return this.value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     protected String getSources() {
         return this.value;
     }

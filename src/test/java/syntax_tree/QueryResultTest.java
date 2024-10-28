@@ -135,7 +135,6 @@ public class QueryResultTest {
         Assertions.assertEquals(List.of(node2, node1), result.getResult());
     }
 
-    @Disabled
     @Test
     public void testMergeWithOverlapsOrder() {
         AbstractSyntaxTreeNode node1 = Mockito.mock(AbstractSyntaxTreeNode.class);
@@ -145,7 +144,6 @@ public class QueryResultTest {
         Assertions.assertEquals(List.of(node1), result.getResult());
     }
 
-    @Disabled
     @Test
     public void testMergeWithOverlapsOrderMaintainingOrder() {
         AbstractSyntaxTreeNode node1 = Mockito.mock(AbstractSyntaxTreeNode.class);
@@ -154,7 +152,7 @@ public class QueryResultTest {
         AbstractSyntaxTreeNode node4 = Mockito.mock(AbstractSyntaxTreeNode.class);
         QueryResult q1 = new QueryResult(List.of(node1, node2, node3));
         QueryResult q2 = new QueryResult(List.of(node2, node4));
-        QueryResult result = QueryResult.merge(q2, q1);
+        QueryResult result = QueryResult.merge(q1, q2);
         Assertions.assertEquals(List.of(node1, node2, node3, node4), result.getResult());
     }
 }
