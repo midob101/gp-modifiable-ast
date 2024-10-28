@@ -22,7 +22,12 @@ public class TokenTreeNode extends AbstractSyntaxTreeNode {
      * @return String
      */
     public String getDisplayValue() {
-        return (this.getAlias() != null ? this.getAlias() : getToken().getLexerDefinition().getName()) + ": " + getToken().getValue();
+        String displayValue = "TokenTreeNode: " + getToken().getLexerDefinition().getName();
+        if(this.getAlias() != null) {
+            displayValue += ", alias:" + this.getAlias();
+        }
+        displayValue += " | value: " + this.token.getValue();
+        return displayValue;
     }
 
     protected String getSources() {

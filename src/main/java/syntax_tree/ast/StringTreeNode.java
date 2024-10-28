@@ -12,7 +12,7 @@ public class StringTreeNode extends AbstractSyntaxTreeNode {
      * @return String
      */
     public String getDisplayValue() {
-        return this.value;
+        return "StringTreeNode, value: " + this.value;
     }
 
     public String getValue() {

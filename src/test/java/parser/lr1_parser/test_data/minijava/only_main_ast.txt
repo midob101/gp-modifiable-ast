@@ -1,16 +1,16 @@
-S
-└── MAIN_CLASS
-    ├── className: Main
-    ├── public_stmt: public
-    ├── static_stmt: static
-    ├── void_type: void
-    ├── main_identifier: main
-    ├── string_type: String
-    ├── square_bracket_open: [
-    ├── square_bracket_close: ]
-    ├── identifier: args
-    └── VAR_DECLARATION
-        ├── TYPE
-        │   └── INTEGER_TYPE
-        │       └── int_type: int
-        └── identifier: asd
+ProductionTreeNode: S
+└── ProductionTreeNode: MAIN_CLASS
+    ├── TokenTreeNode: identifier, alias:className | value: Main
+    ├── TokenTreeNode: public_stmt | value: public
+    ├── TokenTreeNode: static_stmt | value: static
+    ├── TokenTreeNode: void_type | value: void
+    ├── TokenTreeNode: main_identifier | value: main
+    ├── TokenTreeNode: string_type | value: String
+    ├── TokenTreeNode: square_bracket_open | value: [
+    ├── TokenTreeNode: square_bracket_close | value: ]
+    ├── TokenTreeNode: identifier | value: args
+    └── ProductionTreeNode: VAR_DECLARATION
+        ├── ProductionTreeNode: TYPE
+        │   └── ProductionTreeNode: INTEGER_TYPE
+        │       └── TokenTreeNode: int_type | value: int
+        └── TokenTreeNode: identifier | value: asd

@@ -1,474 +1,474 @@
-S
-├── MAIN_CLASS
-│   ├── className: SubclassReturnValue
-│   ├── public_stmt: public
-│   ├── static_stmt: static
-│   ├── void_type: void
-│   ├── main_identifier: main
-│   ├── string_type: String
-│   ├── square_bracket_open: [
-│   ├── square_bracket_close: ]
-│   ├── identifier: args
-│   ├── VAR_DECLARATION
-│   │   ├── TYPE
-│   │   │   └── identifier: A
-│   │   └── identifier: a
-│   ├── VAR_DECLARATION
-│   │   ├── TYPE
-│   │   │   └── INTEGER_TYPE
-│   │   │       └── int_type: int
-│   │   └── identifier: _int_value
-│   ├── VAR_DECLARATION
-│   │   ├── TYPE
-│   │   │   └── ARRAY_TYPE
-│   │   │       └── int_type: int
-│   │   └── identifier: _int_array
-│   ├── VAR_DECLARATION
-│   │   ├── TYPE
-│   │   │   └── BOOLEAN_TYPE
-│   │   │       └── boolean_type: boolean
-│   │   └── identifier: bool_value
-│   ├── STATEMENT
-│   │   └── BLOCK
-│   │       ├── STATEMENT
-│   │       │   └── ASSIGNMENT_STATEMENT
-│   │       │       ├── identifier: a
-│   │       │       └── EXPRESSION
-│   │       │           └── CLAUSE
-│   │       │               └── PRIMARY_EXPRESSION
-│   │       │                   └── ALLOCATION_EXPRESSION
-│   │       │                       └── identifier: A
-│   │       ├── STATEMENT
-│   │       │   └── ASSIGNMENT_STATEMENT
-│   │       │       ├── identifier: _int_value
-│   │       │       └── EXPRESSION
-│   │       │           └── CLAUSE
-│   │       │               └── PRIMARY_EXPRESSION
-│   │       │                   └── integer_literal: 5
-│   │       ├── STATEMENT
-│   │       │   └── ASSIGNMENT_STATEMENT
-│   │       │       ├── identifier: _int_array
-│   │       │       └── EXPRESSION
-│   │       │           └── CLAUSE
-│   │       │               └── PRIMARY_EXPRESSION
-│   │       │                   └── ARRAY_ALLOCATION_EXPRESSION
-│   │       │                       ├── int_type: int
-│   │       │                       └── EXPRESSION
-│   │       │                           └── MINUS_EXPRESSION
-│   │       │                               ├── left
-│   │       │                               │   └── integer_literal: 5
-│   │       │                               └── right
-│   │       │                                   └── integer_literal: 2
-│   │       ├── STATEMENT
-│   │       │   └── ARRAY_ASSIGNMENT_STATEMENT
-│   │       │       ├── identifier: _int_array
-│   │       │       ├── EXPRESSION
-│   │       │       │   └── CLAUSE
-│   │       │       │       └── PRIMARY_EXPRESSION
-│   │       │       │           └── integer_literal: 0
-│   │       │       └── EXPRESSION
-│   │       │           └── CLAUSE
-│   │       │               └── PRIMARY_EXPRESSION
-│   │       │                   └── integer_literal: 10
-│   │       ├── STATEMENT
-│   │       │   └── ASSIGNMENT_STATEMENT
-│   │       │       ├── identifier: bool_value
-│   │       │       └── EXPRESSION
-│   │       │           └── CLAUSE
-│   │       │               └── PRIMARY_EXPRESSION
-│   │       │                   └── true_literal: true
-│   │       ├── STATEMENT
-│   │       │   └── ASSIGNMENT_STATEMENT
-│   │       │       ├── identifier: bool_value
-│   │       │       └── EXPRESSION
-│   │       │           └── CLAUSE
-│   │       │               └── PRIMARY_EXPRESSION
-│   │       │                   └── false_literal: false
-│   │       └── STATEMENT
-│   │           └── IF_STATEMENT
-│   │               ├── EXPRESSION
-│   │               │   └── CLAUSE
-│   │               │       └── PRIMARY_EXPRESSION
-│   │               │           └── identifier: bool_value
-│   │               ├── then
-│   │               │   └── BLOCK
-│   │               │       └── STATEMENT
-│   │               │           └── WHILE_STATEMENT
-│   │               │               ├── EXPRESSION
-│   │               │               │   └── AND_EXPRESSION
-│   │               │               │       ├── left
-│   │               │               │       │   └── PRIMARY_EXPRESSION
-│   │               │               │       │       └── identifier: bool_value
-│   │               │               │       └── right
-│   │               │               │           └── PRIMARY_EXPRESSION
-│   │               │               │               └── BRACKET_EXPRESSION
-│   │               │               │                   └── EXPRESSION
-│   │               │               │                       └── AND_EXPRESSION
-│   │               │               │                           ├── left
-│   │               │               │                           │   └── PRIMARY_EXPRESSION
-│   │               │               │                           │       └── false_literal: false
-│   │               │               │                           └── right
-│   │               │               │                               └── PRIMARY_EXPRESSION
-│   │               │               │                                   └── BRACKET_EXPRESSION
-│   │               │               │                                       └── EXPRESSION
-│   │               │               │                                           └── COMPARE_EXPRESSION
-│   │               │               │                                               ├── left
-│   │               │               │                                               │   └── integer_literal: 1
-│   │               │               │                                               └── right
-│   │               │               │                                                   └── integer_literal: 5
-│   │               │               └── STATEMENT
-│   │               │                   └── BLOCK
-│   │               └── else
-│   │                   └── BLOCK
-│   │                       ├── STATEMENT
-│   │                       │   └── PRINT_STATEMENT
-│   │                       │       └── EXPRESSION
-│   │                       │           └── CLAUSE
-│   │                       │               └── PRIMARY_EXPRESSION
-│   │                       │                   └── identifier: _int_value
-│   │                       └── STATEMENT
-│   │                           └── PRINT_STATEMENT
-│   │                               └── EXPRESSION
-│   │                                   └── PLUS_EXPRESSION
-│   │                                       ├── left
-│   │                                       │   └── identifier: _int_value
-│   │                                       └── right
-│   │                                           └── BRACKET_EXPRESSION
-│   │                                               └── EXPRESSION
-│   │                                                   └── ARRAY_LOOKUP
-│   │                                                       ├── PRIMARY_EXPRESSION
-│   │                                                       │   └── identifier: _int_array
-│   │                                                       └── PRIMARY_EXPRESSION
-│   │                                                           └── integer_literal: 2
-│   ├── STATEMENT
-│   │   └── ARRAY_ASSIGNMENT_STATEMENT
-│   │       ├── identifier: _int_array
-│   │       ├── EXPRESSION
-│   │       │   └── CLAUSE
-│   │       │       └── PRIMARY_EXPRESSION
-│   │       │           └── integer_literal: 2
-│   │       └── EXPRESSION
-│   │           └── CLAUSE
-│   │               └── PRIMARY_EXPRESSION
-│   │                   └── integer_literal: 12939291
-│   ├── STATEMENT
-│   │   └── ASSIGNMENT_STATEMENT
-│   │       ├── identifier: _int_value
-│   │       └── EXPRESSION
-│   │           └── TIMES_EXPRESSION
-│   │               ├── left
-│   │               │   └── integer_literal: 5
-│   │               └── right
-│   │                   └── identifier: _int_value
-│   ├── STATEMENT
-│   │   └── ASSIGNMENT_STATEMENT
-│   │       ├── identifier: _int_value
-│   │       └── EXPRESSION
-│   │           └── PLUS_EXPRESSION
-│   │               ├── left
-│   │               │   └── integer_literal: 5
-│   │               └── right
-│   │                   └── identifier: _int_value
-│   └── STATEMENT
-│       └── ASSIGNMENT_STATEMENT
-│           ├── identifier: _int_value
-│           └── EXPRESSION
-│               └── MINUS_EXPRESSION
-│                   ├── left
-│                   │   └── integer_literal: 5
-│                   └── right
-│                       └── identifier: _int_value
-├── CLASS_DECLARATION
-│   ├── className: A
-│   ├── VAR_DECLARATION
-│   │   ├── TYPE
-│   │   │   └── identifier: A
-│   │   └── identifier: a
-│   ├── VAR_DECLARATION
-│   │   ├── TYPE
-│   │   │   └── INTEGER_TYPE
-│   │   │       └── int_type: int
-│   │   └── identifier: _int_value
-│   ├── VAR_DECLARATION
-│   │   ├── TYPE
-│   │   │   └── ARRAY_TYPE
-│   │   │       └── int_type: int
-│   │   └── identifier: _int_array
-│   ├── VAR_DECLARATION
-│   │   ├── TYPE
-│   │   │   └── BOOLEAN_TYPE
-│   │   │       └── boolean_type: boolean
-│   │   └── identifier: bool_value
-│   ├── METHOD_DECLARATION
-│   │   ├── public_stmt: public
-│   │   ├── TYPE
-│   │   │   └── INTEGER_TYPE
-│   │   │       └── int_type: int
-│   │   ├── functionName: get_int_literal
-│   │   ├── return_stmt: return
-│   │   └── EXPRESSION
-│   │       └── CLAUSE
-│   │           └── PRIMARY_EXPRESSION
-│   │               └── integer_literal: 5
-│   ├── METHOD_DECLARATION
-│   │   ├── public_stmt: public
-│   │   ├── TYPE
-│   │   │   └── INTEGER_TYPE
-│   │   │       └── int_type: int
-│   │   ├── functionName: get_int_literal2
-│   │   ├── VAR_DECLARATION
-│   │   │   ├── TYPE
-│   │   │   │   └── INTEGER_TYPE
-│   │   │   │       └── int_type: int
-│   │   │   └── identifier: ret
-│   │   ├── STATEMENT
-│   │   │   └── ASSIGNMENT_STATEMENT
-│   │   │       ├── identifier: ret
-│   │   │       └── EXPRESSION
-│   │   │           └── CLAUSE
-│   │   │               └── PRIMARY_EXPRESSION
-│   │   │                   └── integer_literal: 928
-│   │   ├── STATEMENT
-│   │   │   └── ASSIGNMENT_STATEMENT
-│   │   │       ├── identifier: ret
-│   │   │       └── EXPRESSION
-│   │   │           └── PLUS_EXPRESSION
-│   │   │               ├── left
-│   │   │               │   └── identifier: ret
-│   │   │               └── right
-│   │   │                   └── integer_literal: 12423
-│   │   ├── return_stmt: return
-│   │   └── EXPRESSION
-│   │       └── CLAUSE
-│   │           └── PRIMARY_EXPRESSION
-│   │               └── identifier: ret
-│   ├── METHOD_DECLARATION
-│   │   ├── public_stmt: public
-│   │   ├── TYPE
-│   │   │   └── INTEGER_TYPE
-│   │   │       └── int_type: int
-│   │   ├── functionName: get_sum
-│   │   ├── FORMAL_PARAMETER
-│   │   │   ├── TYPE
-│   │   │   │   └── INTEGER_TYPE
-│   │   │   │       └── int_type: int
-│   │   │   └── parameterName: a
-│   │   ├── FORMAL_PARAMETER
-│   │   │   ├── TYPE
-│   │   │   │   └── INTEGER_TYPE
-│   │   │   │       └── int_type: int
-│   │   │   └── parameterName: b
-│   │   ├── VAR_DECLARATION
-│   │   │   ├── TYPE
-│   │   │   │   └── INTEGER_TYPE
-│   │   │   │       └── int_type: int
-│   │   │   └── identifier: sum_test
-│   │   ├── STATEMENT
-│   │   │   └── ASSIGNMENT_STATEMENT
-│   │   │       ├── identifier: sum_test
-│   │   │       └── EXPRESSION
-│   │   │           └── MESSAGE_SEND
-│   │   │               ├── calledOn
-│   │   │               │   └── this_expression: this
-│   │   │               ├── functionName: get_sum
-│   │   │               └── EXPRESSION_LIST
-│   │   │                   └── EXPRESSION
-│   │   │                       └── CLAUSE
-│   │   │                           └── PRIMARY_EXPRESSION
-│   │   │                               └── identifier: random_int_array
-│   │   ├── return_stmt: return
-│   │   └── EXPRESSION
-│   │       └── PLUS_EXPRESSION
-│   │           ├── left
-│   │           │   └── identifier: a
-│   │           └── right
-│   │               └── identifier: b
-│   ├── METHOD_DECLARATION
-│   │   ├── public_stmt: public
-│   │   ├── TYPE
-│   │   │   └── INTEGER_TYPE
-│   │   │       └── int_type: int
-│   │   ├── functionName: get_sum
-│   │   ├── FORMAL_PARAMETER
-│   │   │   ├── TYPE
-│   │   │   │   └── ARRAY_TYPE
-│   │   │   │       └── int_type: int
-│   │   │   └── parameterName: a
-│   │   ├── VAR_DECLARATION
-│   │   │   ├── TYPE
-│   │   │   │   └── INTEGER_TYPE
-│   │   │   │       └── int_type: int
-│   │   │   └── identifier: i
-│   │   ├── VAR_DECLARATION
-│   │   │   ├── TYPE
-│   │   │   │   └── INTEGER_TYPE
-│   │   │   │       └── int_type: int
-│   │   │   └── identifier: sum
-│   │   ├── STATEMENT
-│   │   │   └── ASSIGNMENT_STATEMENT
-│   │   │       ├── identifier: i
-│   │   │       └── EXPRESSION
-│   │   │           └── CLAUSE
-│   │   │               └── PRIMARY_EXPRESSION
-│   │   │                   └── integer_literal: 0
-│   │   ├── STATEMENT
-│   │   │   └── ASSIGNMENT_STATEMENT
-│   │   │       ├── identifier: sum
-│   │   │       └── EXPRESSION
-│   │   │           └── CLAUSE
-│   │   │               └── PRIMARY_EXPRESSION
-│   │   │                   └── integer_literal: 0
-│   │   ├── STATEMENT
-│   │   │   └── WHILE_STATEMENT
-│   │   │       ├── EXPRESSION
-│   │   │       │   └── COMPARE_EXPRESSION
-│   │   │       │       ├── left
-│   │   │       │       │   └── identifier: i
-│   │   │       │       └── right
-│   │   │       │           └── BRACKET_EXPRESSION
-│   │   │       │               └── EXPRESSION
-│   │   │       │                   └── ARRAY_LENGTH
-│   │   │       │                       ├── PRIMARY_EXPRESSION
-│   │   │       │                       │   └── identifier: a
-│   │   │       │                       └── array_length_stmt: length
-│   │   │       └── STATEMENT
-│   │   │           └── BLOCK
-│   │   │               ├── STATEMENT
-│   │   │               │   └── ASSIGNMENT_STATEMENT
-│   │   │               │       ├── identifier: sum
-│   │   │               │       └── EXPRESSION
-│   │   │               │           └── PLUS_EXPRESSION
-│   │   │               │               ├── left
-│   │   │               │               │   └── identifier: sum
-│   │   │               │               └── right
-│   │   │               │                   └── BRACKET_EXPRESSION
-│   │   │               │                       └── EXPRESSION
-│   │   │               │                           └── ARRAY_LOOKUP
-│   │   │               │                               ├── PRIMARY_EXPRESSION
-│   │   │               │                               │   └── identifier: a
-│   │   │               │                               └── PRIMARY_EXPRESSION
-│   │   │               │                                   └── identifier: i
-│   │   │               └── STATEMENT
-│   │   │                   └── ASSIGNMENT_STATEMENT
-│   │   │                       ├── identifier: i
-│   │   │                       └── EXPRESSION
-│   │   │                           └── PLUS_EXPRESSION
-│   │   │                               ├── left
-│   │   │                               │   └── identifier: i
-│   │   │                               └── right
-│   │   │                                   └── integer_literal: 1
-│   │   ├── return_stmt: return
-│   │   └── EXPRESSION
-│   │       └── CLAUSE
-│   │           └── PRIMARY_EXPRESSION
-│   │               └── identifier: sum
-│   └── METHOD_DECLARATION
-│       ├── public_stmt: public
-│       ├── TYPE
-│       │   └── ARRAY_TYPE
-│       │       └── int_type: int
-│       ├── functionName: get_array
-│       ├── FORMAL_PARAMETER
-│       │   ├── TYPE
-│       │   │   └── INTEGER_TYPE
-│       │   │       └── int_type: int
-│       │   └── parameterName: a
-│       ├── FORMAL_PARAMETER
-│       │   ├── TYPE
-│       │   │   └── INTEGER_TYPE
-│       │   │       └── int_type: int
-│       │   └── parameterName: b
-│       ├── VAR_DECLARATION
-│       │   ├── TYPE
-│       │   │   └── ARRAY_TYPE
-│       │   │       └── int_type: int
-│       │   └── identifier: ret
-│       ├── STATEMENT
-│       │   └── ASSIGNMENT_STATEMENT
-│       │       ├── identifier: ret
-│       │       └── EXPRESSION
-│       │           └── CLAUSE
-│       │               └── PRIMARY_EXPRESSION
-│       │                   └── ARRAY_ALLOCATION_EXPRESSION
-│       │                       ├── int_type: int
-│       │                       └── EXPRESSION
-│       │                           └── CLAUSE
-│       │                               └── PRIMARY_EXPRESSION
-│       │                                   └── integer_literal: 2
-│       ├── STATEMENT
-│       │   └── ARRAY_ASSIGNMENT_STATEMENT
-│       │       ├── identifier: ret
-│       │       ├── EXPRESSION
-│       │       │   └── CLAUSE
-│       │       │       └── PRIMARY_EXPRESSION
-│       │       │           └── integer_literal: 0
-│       │       └── EXPRESSION
-│       │           └── CLAUSE
-│       │               └── PRIMARY_EXPRESSION
-│       │                   └── identifier: a
-│       ├── STATEMENT
-│       │   └── ARRAY_ASSIGNMENT_STATEMENT
-│       │       ├── identifier: ret
-│       │       ├── EXPRESSION
-│       │       │   └── CLAUSE
-│       │       │       └── PRIMARY_EXPRESSION
-│       │       │           └── integer_literal: 1
-│       │       └── EXPRESSION
-│       │           └── CLAUSE
-│       │               └── PRIMARY_EXPRESSION
-│       │                   └── identifier: b
-│       ├── return_stmt: return
-│       └── EXPRESSION
-│           └── CLAUSE
-│               └── PRIMARY_EXPRESSION
-│                   └── identifier: ret
-├── CLASS_DECLARATION
-│   ├── className: B
-│   ├── extendedClassName: A
-│   └── METHOD_DECLARATION
-│       ├── public_stmt: public
-│       ├── TYPE
-│       │   └── identifier: A
-│       ├── functionName: foo
-│       ├── return_stmt: return
-│       └── EXPRESSION
-│           └── CLAUSE
-│               └── PRIMARY_EXPRESSION
-│                   └── ALLOCATION_EXPRESSION
-│                       └── identifier: B
-├── CLASS_DECLARATION
-│   ├── className: C
-│   ├── extendedClassName: B
-│   └── METHOD_DECLARATION
-│       ├── public_stmt: public
-│       ├── TYPE
-│       │   └── identifier: A
-│       ├── functionName: foo
-│       ├── FORMAL_PARAMETER
-│       │   ├── TYPE
-│       │   │   └── INTEGER_TYPE
-│       │   │       └── int_type: int
-│       │   └── parameterName: a
-│       ├── FORMAL_PARAMETER
-│       │   ├── TYPE
-│       │   │   └── INTEGER_TYPE
-│       │   │       └── int_type: int
-│       │   └── parameterName: b
-│       ├── FORMAL_PARAMETER
-│       │   ├── TYPE
-│       │   │   └── ARRAY_TYPE
-│       │   │       └── int_type: int
-│       │   └── parameterName: c
-│       ├── FORMAL_PARAMETER
-│       │   ├── TYPE
-│       │   │   └── BOOLEAN_TYPE
-│       │   │       └── boolean_type: boolean
-│       │   └── parameterName: d
-│       ├── return_stmt: return
-│       └── EXPRESSION
-│           └── CLAUSE
-│               └── PRIMARY_EXPRESSION
-│                   └── ALLOCATION_EXPRESSION
-│                       └── identifier: B
-└── CLASS_DECLARATION
-    └── className: D
+ProductionTreeNode: S
+├── ProductionTreeNode: MAIN_CLASS
+│   ├── TokenTreeNode: identifier, alias:className | value: SubclassReturnValue
+│   ├── TokenTreeNode: public_stmt | value: public
+│   ├── TokenTreeNode: static_stmt | value: static
+│   ├── TokenTreeNode: void_type | value: void
+│   ├── TokenTreeNode: main_identifier | value: main
+│   ├── TokenTreeNode: string_type | value: String
+│   ├── TokenTreeNode: square_bracket_open | value: [
+│   ├── TokenTreeNode: square_bracket_close | value: ]
+│   ├── TokenTreeNode: identifier | value: args
+│   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── TokenTreeNode: identifier | value: A
+│   │   └── TokenTreeNode: identifier | value: a
+│   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │       └── TokenTreeNode: int_type | value: int
+│   │   └── TokenTreeNode: identifier | value: _int_value
+│   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: ARRAY_TYPE
+│   │   │       └── TokenTreeNode: int_type | value: int
+│   │   └── TokenTreeNode: identifier | value: _int_array
+│   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: BOOLEAN_TYPE
+│   │   │       └── TokenTreeNode: boolean_type | value: boolean
+│   │   └── TokenTreeNode: identifier | value: bool_value
+│   ├── ProductionTreeNode: STATEMENT
+│   │   └── ProductionTreeNode: BLOCK
+│   │       ├── ProductionTreeNode: STATEMENT
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │       │       ├── TokenTreeNode: identifier | value: a
+│   │       │       └── ProductionTreeNode: EXPRESSION
+│   │       │           └── ProductionTreeNode: CLAUSE
+│   │       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │       │                   └── ProductionTreeNode: ALLOCATION_EXPRESSION
+│   │       │                       └── TokenTreeNode: identifier | value: A
+│   │       ├── ProductionTreeNode: STATEMENT
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │       │       ├── TokenTreeNode: identifier | value: _int_value
+│   │       │       └── ProductionTreeNode: EXPRESSION
+│   │       │           └── ProductionTreeNode: CLAUSE
+│   │       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │       │                   └── TokenTreeNode: integer_literal | value: 5
+│   │       ├── ProductionTreeNode: STATEMENT
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │       │       ├── TokenTreeNode: identifier | value: _int_array
+│   │       │       └── ProductionTreeNode: EXPRESSION
+│   │       │           └── ProductionTreeNode: CLAUSE
+│   │       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │       │                   └── ProductionTreeNode: ARRAY_ALLOCATION_EXPRESSION
+│   │       │                       ├── TokenTreeNode: int_type | value: int
+│   │       │                       └── ProductionTreeNode: EXPRESSION
+│   │       │                           └── ProductionTreeNode: MINUS_EXPRESSION
+│   │       │                               ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │       │                               │   └── TokenTreeNode: integer_literal | value: 5
+│   │       │                               └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │       │                                   └── TokenTreeNode: integer_literal | value: 2
+│   │       ├── ProductionTreeNode: STATEMENT
+│   │       │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT
+│   │       │       ├── TokenTreeNode: identifier | value: _int_array
+│   │       │       ├── ProductionTreeNode: EXPRESSION
+│   │       │       │   └── ProductionTreeNode: CLAUSE
+│   │       │       │       └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │       │       │           └── TokenTreeNode: integer_literal | value: 0
+│   │       │       └── ProductionTreeNode: EXPRESSION
+│   │       │           └── ProductionTreeNode: CLAUSE
+│   │       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │       │                   └── TokenTreeNode: integer_literal | value: 10
+│   │       ├── ProductionTreeNode: STATEMENT
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │       │       ├── TokenTreeNode: identifier | value: bool_value
+│   │       │       └── ProductionTreeNode: EXPRESSION
+│   │       │           └── ProductionTreeNode: CLAUSE
+│   │       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │       │                   └── TokenTreeNode: true_literal | value: true
+│   │       ├── ProductionTreeNode: STATEMENT
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │       │       ├── TokenTreeNode: identifier | value: bool_value
+│   │       │       └── ProductionTreeNode: EXPRESSION
+│   │       │           └── ProductionTreeNode: CLAUSE
+│   │       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │       │                   └── TokenTreeNode: false_literal | value: false
+│   │       └── ProductionTreeNode: STATEMENT
+│   │           └── ProductionTreeNode: IF_STATEMENT
+│   │               ├── ProductionTreeNode: EXPRESSION
+│   │               │   └── ProductionTreeNode: CLAUSE
+│   │               │       └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │               │           └── TokenTreeNode: identifier | value: bool_value
+│   │               ├── ProductionTreeNode: STATEMENT, alias:then
+│   │               │   └── ProductionTreeNode: BLOCK
+│   │               │       └── ProductionTreeNode: STATEMENT
+│   │               │           └── ProductionTreeNode: WHILE_STATEMENT
+│   │               │               ├── ProductionTreeNode: EXPRESSION
+│   │               │               │   └── ProductionTreeNode: AND_EXPRESSION
+│   │               │               │       ├── ProductionTreeNode: CLAUSE, alias:left
+│   │               │               │       │   └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │               │               │       │       └── TokenTreeNode: identifier | value: bool_value
+│   │               │               │       └── ProductionTreeNode: CLAUSE, alias:right
+│   │               │               │           └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │               │               │               └── ProductionTreeNode: BRACKET_EXPRESSION
+│   │               │               │                   └── ProductionTreeNode: EXPRESSION
+│   │               │               │                       └── ProductionTreeNode: AND_EXPRESSION
+│   │               │               │                           ├── ProductionTreeNode: CLAUSE, alias:left
+│   │               │               │                           │   └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │               │               │                           │       └── TokenTreeNode: false_literal | value: false
+│   │               │               │                           └── ProductionTreeNode: CLAUSE, alias:right
+│   │               │               │                               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │               │               │                                   └── ProductionTreeNode: BRACKET_EXPRESSION
+│   │               │               │                                       └── ProductionTreeNode: EXPRESSION
+│   │               │               │                                           └── ProductionTreeNode: COMPARE_EXPRESSION
+│   │               │               │                                               ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │               │               │                                               │   └── TokenTreeNode: integer_literal | value: 1
+│   │               │               │                                               └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │               │               │                                                   └── TokenTreeNode: integer_literal | value: 5
+│   │               │               └── ProductionTreeNode: STATEMENT
+│   │               │                   └── ProductionTreeNode: BLOCK
+│   │               └── ProductionTreeNode: STATEMENT, alias:else
+│   │                   └── ProductionTreeNode: BLOCK
+│   │                       ├── ProductionTreeNode: STATEMENT
+│   │                       │   └── ProductionTreeNode: PRINT_STATEMENT
+│   │                       │       └── ProductionTreeNode: EXPRESSION
+│   │                       │           └── ProductionTreeNode: CLAUSE
+│   │                       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │                       │                   └── TokenTreeNode: identifier | value: _int_value
+│   │                       └── ProductionTreeNode: STATEMENT
+│   │                           └── ProductionTreeNode: PRINT_STATEMENT
+│   │                               └── ProductionTreeNode: EXPRESSION
+│   │                                   └── ProductionTreeNode: PLUS_EXPRESSION
+│   │                                       ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │                                       │   └── TokenTreeNode: identifier | value: _int_value
+│   │                                       └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │                                           └── ProductionTreeNode: BRACKET_EXPRESSION
+│   │                                               └── ProductionTreeNode: EXPRESSION
+│   │                                                   └── ProductionTreeNode: ARRAY_LOOKUP
+│   │                                                       ├── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │                                                       │   └── TokenTreeNode: identifier | value: _int_array
+│   │                                                       └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │                                                           └── TokenTreeNode: integer_literal | value: 2
+│   ├── ProductionTreeNode: STATEMENT
+│   │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT
+│   │       ├── TokenTreeNode: identifier | value: _int_array
+│   │       ├── ProductionTreeNode: EXPRESSION
+│   │       │   └── ProductionTreeNode: CLAUSE
+│   │       │       └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │       │           └── TokenTreeNode: integer_literal | value: 2
+│   │       └── ProductionTreeNode: EXPRESSION
+│   │           └── ProductionTreeNode: CLAUSE
+│   │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │                   └── TokenTreeNode: integer_literal | value: 12939291
+│   ├── ProductionTreeNode: STATEMENT
+│   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │       ├── TokenTreeNode: identifier | value: _int_value
+│   │       └── ProductionTreeNode: EXPRESSION
+│   │           └── ProductionTreeNode: TIMES_EXPRESSION
+│   │               ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │               │   └── TokenTreeNode: integer_literal | value: 5
+│   │               └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │                   └── TokenTreeNode: identifier | value: _int_value
+│   ├── ProductionTreeNode: STATEMENT
+│   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │       ├── TokenTreeNode: identifier | value: _int_value
+│   │       └── ProductionTreeNode: EXPRESSION
+│   │           └── ProductionTreeNode: PLUS_EXPRESSION
+│   │               ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │               │   └── TokenTreeNode: integer_literal | value: 5
+│   │               └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │                   └── TokenTreeNode: identifier | value: _int_value
+│   └── ProductionTreeNode: STATEMENT
+│       └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│           ├── TokenTreeNode: identifier | value: _int_value
+│           └── ProductionTreeNode: EXPRESSION
+│               └── ProductionTreeNode: MINUS_EXPRESSION
+│                   ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│                   │   └── TokenTreeNode: integer_literal | value: 5
+│                   └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│                       └── TokenTreeNode: identifier | value: _int_value
+├── ProductionTreeNode: CLASS_DECLARATION
+│   ├── TokenTreeNode: identifier, alias:className | value: A
+│   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── TokenTreeNode: identifier | value: A
+│   │   └── TokenTreeNode: identifier | value: a
+│   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │       └── TokenTreeNode: int_type | value: int
+│   │   └── TokenTreeNode: identifier | value: _int_value
+│   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: ARRAY_TYPE
+│   │   │       └── TokenTreeNode: int_type | value: int
+│   │   └── TokenTreeNode: identifier | value: _int_array
+│   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: BOOLEAN_TYPE
+│   │   │       └── TokenTreeNode: boolean_type | value: boolean
+│   │   └── TokenTreeNode: identifier | value: bool_value
+│   ├── ProductionTreeNode: METHOD_DECLARATION
+│   │   ├── TokenTreeNode: public_stmt | value: public
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │       └── TokenTreeNode: int_type | value: int
+│   │   ├── TokenTreeNode: identifier, alias:functionName | value: get_int_literal
+│   │   ├── TokenTreeNode: return_stmt | value: return
+│   │   └── ProductionTreeNode: EXPRESSION
+│   │       └── ProductionTreeNode: CLAUSE
+│   │           └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │               └── TokenTreeNode: integer_literal | value: 5
+│   ├── ProductionTreeNode: METHOD_DECLARATION
+│   │   ├── TokenTreeNode: public_stmt | value: public
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │       └── TokenTreeNode: int_type | value: int
+│   │   ├── TokenTreeNode: identifier, alias:functionName | value: get_int_literal2
+│   │   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   │   ├── ProductionTreeNode: TYPE
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │   │       └── TokenTreeNode: int_type | value: int
+│   │   │   └── TokenTreeNode: identifier | value: ret
+│   │   ├── ProductionTreeNode: STATEMENT
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │   │       ├── TokenTreeNode: identifier | value: ret
+│   │   │       └── ProductionTreeNode: EXPRESSION
+│   │   │           └── ProductionTreeNode: CLAUSE
+│   │   │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │   │                   └── TokenTreeNode: integer_literal | value: 928
+│   │   ├── ProductionTreeNode: STATEMENT
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │   │       ├── TokenTreeNode: identifier | value: ret
+│   │   │       └── ProductionTreeNode: EXPRESSION
+│   │   │           └── ProductionTreeNode: PLUS_EXPRESSION
+│   │   │               ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │   │               │   └── TokenTreeNode: identifier | value: ret
+│   │   │               └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │   │                   └── TokenTreeNode: integer_literal | value: 12423
+│   │   ├── TokenTreeNode: return_stmt | value: return
+│   │   └── ProductionTreeNode: EXPRESSION
+│   │       └── ProductionTreeNode: CLAUSE
+│   │           └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │               └── TokenTreeNode: identifier | value: ret
+│   ├── ProductionTreeNode: METHOD_DECLARATION
+│   │   ├── TokenTreeNode: public_stmt | value: public
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │       └── TokenTreeNode: int_type | value: int
+│   │   ├── TokenTreeNode: identifier, alias:functionName | value: get_sum
+│   │   ├── ProductionTreeNode: FORMAL_PARAMETER
+│   │   │   ├── ProductionTreeNode: TYPE
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │   │       └── TokenTreeNode: int_type | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:parameterName | value: a
+│   │   ├── ProductionTreeNode: FORMAL_PARAMETER
+│   │   │   ├── ProductionTreeNode: TYPE
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │   │       └── TokenTreeNode: int_type | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:parameterName | value: b
+│   │   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   │   ├── ProductionTreeNode: TYPE
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │   │       └── TokenTreeNode: int_type | value: int
+│   │   │   └── TokenTreeNode: identifier | value: sum_test
+│   │   ├── ProductionTreeNode: STATEMENT
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │   │       ├── TokenTreeNode: identifier | value: sum_test
+│   │   │       └── ProductionTreeNode: EXPRESSION
+│   │   │           └── ProductionTreeNode: MESSAGE_SEND
+│   │   │               ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:calledOn
+│   │   │               │   └── TokenTreeNode: this_expression | value: this
+│   │   │               ├── TokenTreeNode: identifier, alias:functionName | value: get_sum
+│   │   │               └── ProductionTreeNode: EXPRESSION_LIST
+│   │   │                   └── ProductionTreeNode: EXPRESSION
+│   │   │                       └── ProductionTreeNode: CLAUSE
+│   │   │                           └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │   │                               └── TokenTreeNode: identifier | value: random_int_array
+│   │   ├── TokenTreeNode: return_stmt | value: return
+│   │   └── ProductionTreeNode: EXPRESSION
+│   │       └── ProductionTreeNode: PLUS_EXPRESSION
+│   │           ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │           │   └── TokenTreeNode: identifier | value: a
+│   │           └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │               └── TokenTreeNode: identifier | value: b
+│   ├── ProductionTreeNode: METHOD_DECLARATION
+│   │   ├── TokenTreeNode: public_stmt | value: public
+│   │   ├── ProductionTreeNode: TYPE
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │       └── TokenTreeNode: int_type | value: int
+│   │   ├── TokenTreeNode: identifier, alias:functionName | value: get_sum
+│   │   ├── ProductionTreeNode: FORMAL_PARAMETER
+│   │   │   ├── ProductionTreeNode: TYPE
+│   │   │   │   └── ProductionTreeNode: ARRAY_TYPE
+│   │   │   │       └── TokenTreeNode: int_type | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:parameterName | value: a
+│   │   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   │   ├── ProductionTreeNode: TYPE
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │   │       └── TokenTreeNode: int_type | value: int
+│   │   │   └── TokenTreeNode: identifier | value: i
+│   │   ├── ProductionTreeNode: VAR_DECLARATION
+│   │   │   ├── ProductionTreeNode: TYPE
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE
+│   │   │   │       └── TokenTreeNode: int_type | value: int
+│   │   │   └── TokenTreeNode: identifier | value: sum
+│   │   ├── ProductionTreeNode: STATEMENT
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │   │       ├── TokenTreeNode: identifier | value: i
+│   │   │       └── ProductionTreeNode: EXPRESSION
+│   │   │           └── ProductionTreeNode: CLAUSE
+│   │   │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │   │                   └── TokenTreeNode: integer_literal | value: 0
+│   │   ├── ProductionTreeNode: STATEMENT
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │   │       ├── TokenTreeNode: identifier | value: sum
+│   │   │       └── ProductionTreeNode: EXPRESSION
+│   │   │           └── ProductionTreeNode: CLAUSE
+│   │   │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │   │                   └── TokenTreeNode: integer_literal | value: 0
+│   │   ├── ProductionTreeNode: STATEMENT
+│   │   │   └── ProductionTreeNode: WHILE_STATEMENT
+│   │   │       ├── ProductionTreeNode: EXPRESSION
+│   │   │       │   └── ProductionTreeNode: COMPARE_EXPRESSION
+│   │   │       │       ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │   │       │       │   └── TokenTreeNode: identifier | value: i
+│   │   │       │       └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │   │       │           └── ProductionTreeNode: BRACKET_EXPRESSION
+│   │   │       │               └── ProductionTreeNode: EXPRESSION
+│   │   │       │                   └── ProductionTreeNode: ARRAY_LENGTH
+│   │   │       │                       ├── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │   │       │                       │   └── TokenTreeNode: identifier | value: a
+│   │   │       │                       └── TokenTreeNode: array_length_stmt | value: length
+│   │   │       └── ProductionTreeNode: STATEMENT
+│   │   │           └── ProductionTreeNode: BLOCK
+│   │   │               ├── ProductionTreeNode: STATEMENT
+│   │   │               │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │   │               │       ├── TokenTreeNode: identifier | value: sum
+│   │   │               │       └── ProductionTreeNode: EXPRESSION
+│   │   │               │           └── ProductionTreeNode: PLUS_EXPRESSION
+│   │   │               │               ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │   │               │               │   └── TokenTreeNode: identifier | value: sum
+│   │   │               │               └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │   │               │                   └── ProductionTreeNode: BRACKET_EXPRESSION
+│   │   │               │                       └── ProductionTreeNode: EXPRESSION
+│   │   │               │                           └── ProductionTreeNode: ARRAY_LOOKUP
+│   │   │               │                               ├── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │   │               │                               │   └── TokenTreeNode: identifier | value: a
+│   │   │               │                               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │   │               │                                   └── TokenTreeNode: identifier | value: i
+│   │   │               └── ProductionTreeNode: STATEMENT
+│   │   │                   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│   │   │                       ├── TokenTreeNode: identifier | value: i
+│   │   │                       └── ProductionTreeNode: EXPRESSION
+│   │   │                           └── ProductionTreeNode: PLUS_EXPRESSION
+│   │   │                               ├── ProductionTreeNode: PRIMARY_EXPRESSION, alias:left
+│   │   │                               │   └── TokenTreeNode: identifier | value: i
+│   │   │                               └── ProductionTreeNode: PRIMARY_EXPRESSION, alias:right
+│   │   │                                   └── TokenTreeNode: integer_literal | value: 1
+│   │   ├── TokenTreeNode: return_stmt | value: return
+│   │   └── ProductionTreeNode: EXPRESSION
+│   │       └── ProductionTreeNode: CLAUSE
+│   │           └── ProductionTreeNode: PRIMARY_EXPRESSION
+│   │               └── TokenTreeNode: identifier | value: sum
+│   └── ProductionTreeNode: METHOD_DECLARATION
+│       ├── TokenTreeNode: public_stmt | value: public
+│       ├── ProductionTreeNode: TYPE
+│       │   └── ProductionTreeNode: ARRAY_TYPE
+│       │       └── TokenTreeNode: int_type | value: int
+│       ├── TokenTreeNode: identifier, alias:functionName | value: get_array
+│       ├── ProductionTreeNode: FORMAL_PARAMETER
+│       │   ├── ProductionTreeNode: TYPE
+│       │   │   └── ProductionTreeNode: INTEGER_TYPE
+│       │   │       └── TokenTreeNode: int_type | value: int
+│       │   └── TokenTreeNode: identifier, alias:parameterName | value: a
+│       ├── ProductionTreeNode: FORMAL_PARAMETER
+│       │   ├── ProductionTreeNode: TYPE
+│       │   │   └── ProductionTreeNode: INTEGER_TYPE
+│       │   │       └── TokenTreeNode: int_type | value: int
+│       │   └── TokenTreeNode: identifier, alias:parameterName | value: b
+│       ├── ProductionTreeNode: VAR_DECLARATION
+│       │   ├── ProductionTreeNode: TYPE
+│       │   │   └── ProductionTreeNode: ARRAY_TYPE
+│       │   │       └── TokenTreeNode: int_type | value: int
+│       │   └── TokenTreeNode: identifier | value: ret
+│       ├── ProductionTreeNode: STATEMENT
+│       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT
+│       │       ├── TokenTreeNode: identifier | value: ret
+│       │       └── ProductionTreeNode: EXPRESSION
+│       │           └── ProductionTreeNode: CLAUSE
+│       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│       │                   └── ProductionTreeNode: ARRAY_ALLOCATION_EXPRESSION
+│       │                       ├── TokenTreeNode: int_type | value: int
+│       │                       └── ProductionTreeNode: EXPRESSION
+│       │                           └── ProductionTreeNode: CLAUSE
+│       │                               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│       │                                   └── TokenTreeNode: integer_literal | value: 2
+│       ├── ProductionTreeNode: STATEMENT
+│       │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT
+│       │       ├── TokenTreeNode: identifier | value: ret
+│       │       ├── ProductionTreeNode: EXPRESSION
+│       │       │   └── ProductionTreeNode: CLAUSE
+│       │       │       └── ProductionTreeNode: PRIMARY_EXPRESSION
+│       │       │           └── TokenTreeNode: integer_literal | value: 0
+│       │       └── ProductionTreeNode: EXPRESSION
+│       │           └── ProductionTreeNode: CLAUSE
+│       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│       │                   └── TokenTreeNode: identifier | value: a
+│       ├── ProductionTreeNode: STATEMENT
+│       │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT
+│       │       ├── TokenTreeNode: identifier | value: ret
+│       │       ├── ProductionTreeNode: EXPRESSION
+│       │       │   └── ProductionTreeNode: CLAUSE
+│       │       │       └── ProductionTreeNode: PRIMARY_EXPRESSION
+│       │       │           └── TokenTreeNode: integer_literal | value: 1
+│       │       └── ProductionTreeNode: EXPRESSION
+│       │           └── ProductionTreeNode: CLAUSE
+│       │               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│       │                   └── TokenTreeNode: identifier | value: b
+│       ├── TokenTreeNode: return_stmt | value: return
+│       └── ProductionTreeNode: EXPRESSION
+│           └── ProductionTreeNode: CLAUSE
+│               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│                   └── TokenTreeNode: identifier | value: ret
+├── ProductionTreeNode: CLASS_DECLARATION
+│   ├── TokenTreeNode: identifier, alias:className | value: B
+│   ├── TokenTreeNode: identifier, alias:extendedClassName | value: A
+│   └── ProductionTreeNode: METHOD_DECLARATION
+│       ├── TokenTreeNode: public_stmt | value: public
+│       ├── ProductionTreeNode: TYPE
+│       │   └── TokenTreeNode: identifier | value: A
+│       ├── TokenTreeNode: identifier, alias:functionName | value: foo
+│       ├── TokenTreeNode: return_stmt | value: return
+│       └── ProductionTreeNode: EXPRESSION
+│           └── ProductionTreeNode: CLAUSE
+│               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│                   └── ProductionTreeNode: ALLOCATION_EXPRESSION
+│                       └── TokenTreeNode: identifier | value: B
+├── ProductionTreeNode: CLASS_DECLARATION
+│   ├── TokenTreeNode: identifier, alias:className | value: C
+│   ├── TokenTreeNode: identifier, alias:extendedClassName | value: B
+│   └── ProductionTreeNode: METHOD_DECLARATION
+│       ├── TokenTreeNode: public_stmt | value: public
+│       ├── ProductionTreeNode: TYPE
+│       │   └── TokenTreeNode: identifier | value: A
+│       ├── TokenTreeNode: identifier, alias:functionName | value: foo
+│       ├── ProductionTreeNode: FORMAL_PARAMETER
+│       │   ├── ProductionTreeNode: TYPE
+│       │   │   └── ProductionTreeNode: INTEGER_TYPE
+│       │   │       └── TokenTreeNode: int_type | value: int
+│       │   └── TokenTreeNode: identifier, alias:parameterName | value: a
+│       ├── ProductionTreeNode: FORMAL_PARAMETER
+│       │   ├── ProductionTreeNode: TYPE
+│       │   │   └── ProductionTreeNode: INTEGER_TYPE
+│       │   │       └── TokenTreeNode: int_type | value: int
+│       │   └── TokenTreeNode: identifier, alias:parameterName | value: b
+│       ├── ProductionTreeNode: FORMAL_PARAMETER
+│       │   ├── ProductionTreeNode: TYPE
+│       │   │   └── ProductionTreeNode: ARRAY_TYPE
+│       │   │       └── TokenTreeNode: int_type | value: int
+│       │   └── TokenTreeNode: identifier, alias:parameterName | value: c
+│       ├── ProductionTreeNode: FORMAL_PARAMETER
+│       │   ├── ProductionTreeNode: TYPE
+│       │   │   └── ProductionTreeNode: BOOLEAN_TYPE
+│       │   │       └── TokenTreeNode: boolean_type | value: boolean
+│       │   └── TokenTreeNode: identifier, alias:parameterName | value: d
+│       ├── TokenTreeNode: return_stmt | value: return
+│       └── ProductionTreeNode: EXPRESSION
+│           └── ProductionTreeNode: CLAUSE
+│               └── ProductionTreeNode: PRIMARY_EXPRESSION
+│                   └── ProductionTreeNode: ALLOCATION_EXPRESSION
+│                       └── TokenTreeNode: identifier | value: B
+└── ProductionTreeNode: CLASS_DECLARATION
+    └── TokenTreeNode: identifier, alias:className | value: D

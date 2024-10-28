@@ -27,7 +27,11 @@ public class ProductionTreeNode extends AbstractSyntaxTreeNode {
      */
     @Override
     public String getDisplayValue() {
-        return this.getAlias() != null ? this.getAlias() : getRule().leftHandSymbol().name();
+        String displayValue = "ProductionTreeNode: " + getRule().leftHandSymbol().name();
+        if(this.getAlias() != null) {
+            displayValue += ", alias:" + this.getAlias();
+        }
+        return displayValue;
     }
 
     @Override

@@ -17,8 +17,6 @@ import selectors.data.ProductionSelector;
 import selectors.logical.OrSelector;
 import syntax_tree.ast.AbstractSyntaxTreeNode;
 import syntax_tree.ast.QueryResult;
-import syntax_tree.ast.StringTreeNode;
-import syntax_tree.ast.exceptions.ReplacingUnconnectedNode;
 import test_utils.StringUtilities;
 
 import java.io.File;
