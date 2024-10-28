@@ -18,6 +18,7 @@ import selectors.logical.OrSelector;
 import syntax_tree.ast.AbstractSyntaxTreeNode;
 import syntax_tree.ast.QueryResult;
 import syntax_tree.ast.StringTreeNode;
+import syntax_tree.ast.exceptions.ReplacingUnconnectedNode;
 import test_utils.StringUtilities;
 
 import java.io.File;
@@ -157,9 +158,7 @@ public class ParserTest {
                 )
         );
 
-        list.forEach((item) -> {
-            item.replaceSelf(new StringTreeNode(""));
-        });
+        list.forEach(AbstractSyntaxTreeNode::remove);
 
         String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/minijava/complete_transformed.minijava"), StandardCharsets.UTF_8);
         Assertions.assertEquals(

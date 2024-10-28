@@ -1,9 +1,10 @@
 package syntax_tree.ast;
 
-import grammar.GrammarRule;
-import lexer.Token;
 import selectors.BaseSelector;
 import syntax_tree.IPrintableTreeNode;
+import syntax_tree.ast.exceptions.AddingConnectedNode;
+import syntax_tree.ast.exceptions.ReplacingNonChildNode;
+import syntax_tree.ast.exceptions.ReplacingUnconnectedNode;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +20,6 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
     private String alias = null;
     private AbstractSyntaxTreeNode parent = null;
 
-
     /**
      * @return Alias
      */
@@ -29,11 +29,14 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
 
     /**
      * Add a child to the end of this node.
-     *
-     * @param child
      */
-    public void addChild(AbstractSyntaxTreeNode child) {
-        children.add(child);
+    public void addChild(AbstractSyntaxTreeNode child) throws AddingConnectedNode {
+        if(child.getParent() == null) {
+            children.add(child);
+            child.setParent(this);
+        } else {
+            throw new AddingConnectedNode();
+        }
     }
 
     /**
@@ -48,7 +51,7 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
      *
      * @param parent
      */
-    public void setParent(AbstractSyntaxTreeNode parent) {
+    private void setParent(AbstractSyntaxTreeNode parent) {
         this.parent = parent;
     }
 
@@ -66,7 +69,7 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
      *
      * @return boolean
      */
-    private boolean isVisible() {
+    public boolean isVisible() {
         return !this.hidden;
     }
 
@@ -86,7 +89,7 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
      * @return the complete list of children
      */
     public List<AbstractSyntaxTreeNode> getAllChildren() {
-        return children;
+        return (List<AbstractSyntaxTreeNode>) children.clone();
     }
 
     /**
@@ -102,20 +105,64 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
      * Replaces one child in this node.
      *
      * @param original to be replaced
-     * @param newChilds the nodes to be added at the index of the original node
+     * @param newChildren the nodes to be added at the index of the original node
      */
-    public void replaceChild(AbstractSyntaxTreeNode original, List<AbstractSyntaxTreeNode> newChilds) {
-        int idx = children.indexOf(original);
-        children.addAll(idx, newChilds);
-        children.remove(original);
+    public void replaceChild(AbstractSyntaxTreeNode original, List<AbstractSyntaxTreeNode> newChildren) throws ReplacingNonChildNode, AddingConnectedNode {
+        this.replaceChild(original, newChildren, false);
     }
 
     /**
-     * Replaces this node with a string
-     * @param replaceWith
+     * Replaces one child in this node.
+     *
+     * @param original to be replaced
+     * @param newChildren the nodes to be added at the index of the original node
+     * @param forced If true, the replacement is done even if a child already has a parent. This should be used with caution
+     *               and only be used when entirely sure that the subtree is dangling. Mostly this will be the case in the
+     *               AST generation and postprocessing rules.
      */
-    public void replaceSelf(AbstractSyntaxTreeNode replaceWith) {
-        this.parent.replaceChild(this, List.of(replaceWith));
+    public void replaceChild(AbstractSyntaxTreeNode original, List<AbstractSyntaxTreeNode> newChildren, boolean forced) throws ReplacingNonChildNode, AddingConnectedNode {
+        if(original.parent == this) {
+            if(!forced) {
+                if(newChildren.stream().anyMatch((child) -> child.getParent() != null)) {
+                    throw new AddingConnectedNode();
+                }
+            }
+            int idx = children.indexOf(original);
+            children.addAll(idx, newChildren);
+            children.remove(original);
+            original.setParent(null);
+            for(AbstractSyntaxTreeNode child: newChildren) {
+                child.setParent(this);
+            }
+        } else {
+            throw new ReplacingNonChildNode();
+        }
+    }
+
+    /**
+     * Replaces this node with a different tree node
+     */
+    public void replace(AbstractSyntaxTreeNode replaceWith) throws ReplacingUnconnectedNode {
+        if(this.parent != null) {
+            try {
+                this.parent.replaceChild(this, List.of(replaceWith));
+            } catch (ReplacingNonChildNode|AddingConnectedNode e) {
+                // We can safely ignore the exception at this point. We know, that the child is a direct
+                // child of the node.
+                throw new RuntimeException(e);
+            }
+        } else {
+            throw new ReplacingUnconnectedNode();
+        }
+    }
+
+    /**
+     * Removes this node
+     */
+    public void remove() {
+        if(this.parent != null) {
+            this.parent.removeChild(this);
+        }
     }
 
     /**
@@ -129,20 +176,10 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
         return sb.toString();
     }
 
-    protected abstract String getSources();
-    public abstract String getDisplayValue();
-
     /**
-     * Internal recursive function to create the source code.
-     *
-     * @param builder
+     * Gets the display value of this node, used for the AST display.
      */
-    private void createSourceCode(StringBuilder builder) {
-        builder.append(this.getSources());
-        for(AbstractSyntaxTreeNode treeNode: getAllChildren()) {
-            treeNode.createSourceCode(builder);
-        }
-    }
+    public abstract String getDisplayValue();
 
     /**
      * Finds all nodes in the entire subtree matching this selector.
@@ -194,6 +231,29 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
         }
 
         return new QueryResult(matches);
+    }
+
+    /**
+     * Gets the source code directly correlated to this node in particular. Does not include the children source code.
+     */
+    protected abstract String getSources();
+
+    /**
+     * Replaces one child in this node.
+     */
+    private void removeChild(AbstractSyntaxTreeNode child) {
+        children.remove(child);
+        child.setParent(null);
+    }
+
+    /**
+     * Internal recursive function to create the source code.
+     */
+    private void createSourceCode(StringBuilder builder) {
+        builder.append(this.getSources());
+        for(AbstractSyntaxTreeNode treeNode: getAllChildren()) {
+            treeNode.createSourceCode(builder);
+        }
     }
 
     /**

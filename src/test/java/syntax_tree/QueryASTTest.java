@@ -9,6 +9,7 @@ import selectors.data.ProductionSelector;
 import syntax_tree.ast.ProductionTreeNode;
 import syntax_tree.ast.QueryResult;
 import syntax_tree.ast.StringTreeNode;
+import syntax_tree.ast.exceptions.AddingConnectedNode;
 import test_selectors.TrueSelector;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class QueryASTTest {
     }
 
     @Test
-    public void testQueryImmediateChildren() {
+    public void testQueryImmediateChildren() throws AddingConnectedNode {
         StringTreeNode root = new StringTreeNode("");
         StringTreeNode immediateChildOne = new StringTreeNode("");
         StringTreeNode immediateChildTwo = new StringTreeNode("");
@@ -54,7 +55,7 @@ public class QueryASTTest {
     }
 
     @Test
-    public void testQueryChildren() {
+    public void testQueryChildren() throws AddingConnectedNode {
         StringTreeNode root = new StringTreeNode("");
         StringTreeNode immediateChildOne = new StringTreeNode("");
         StringTreeNode immediateChildTwo = new StringTreeNode("");
@@ -70,7 +71,7 @@ public class QueryASTTest {
     }
 
     @Test
-    public void testQueryWithFilter() {
+    public void testQueryWithFilter() throws AddingConnectedNode {
         GrammarRule doesNotMatch = Mockito.mock(GrammarRule.class);
         Mockito.when(doesNotMatch.leftHandSymbol()).thenReturn(new Symbol("DOES_NOT_MATCH", false));
         GrammarRule doesMatch = Mockito.mock(GrammarRule.class);

@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import selectors.data.TokenSelector;
 import syntax_tree.ast.ProductionTreeNode;
 import syntax_tree.ast.TokenTreeNode;
+import syntax_tree.ast.exceptions.AddingConnectedNode;
 import test_selectors.FalseSelector;
 import test_selectors.TrueSelector;
 
@@ -23,7 +24,7 @@ public class HasChildSelectorTest {
     }
 
     @Test
-    public void testOneChildTrueSelector() {
+    public void testOneChildTrueSelector() throws AddingConnectedNode {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
         GrammarRule r2 = Mockito.mock(GrammarRule.class);
         ProductionTreeNode root = new ProductionTreeNode(r1);
@@ -34,7 +35,7 @@ public class HasChildSelectorTest {
     }
 
     @Test
-    public void testOneChildFalseSelector() {
+    public void testOneChildFalseSelector() throws AddingConnectedNode {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
         GrammarRule r2 = Mockito.mock(GrammarRule.class);
         ProductionTreeNode root = new ProductionTreeNode(r1);
@@ -45,7 +46,7 @@ public class HasChildSelectorTest {
     }
 
     @Test
-    public void testNestedChild() {
+    public void testNestedChild() throws AddingConnectedNode {
         GrammarRule production = Mockito.mock(GrammarRule.class);
 
         Token t1 = Mockito.mock(Token.class);

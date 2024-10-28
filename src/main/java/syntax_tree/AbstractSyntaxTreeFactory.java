@@ -5,6 +5,8 @@ import grammar.SymbolModifier;
 import syntax_tree.ast.AbstractSyntaxTreeNode;
 import syntax_tree.ast.ProductionTreeNode;
 import syntax_tree.ast.TokenTreeNode;
+import syntax_tree.ast.exceptions.AddingConnectedNode;
+import syntax_tree.ast.exceptions.ReplacingNonChildNode;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,8 +41,12 @@ public class AbstractSyntaxTreeFactory {
             for(int i = 0; i < concreteSyntaxTreeNode.getChildren().size(); i++) {
                 ConcreteSyntaxTreeNode currentTreeNode = concreteSyntaxTreeNode.getChildren().get(i);
                 AbstractSyntaxTreeNode childNode = createRecursive(currentTreeNode);
-                node.addChild(childNode);
-                childNode.setParent(node);
+                try {
+                    node.addChild(childNode);
+                } catch (AddingConnectedNode e) {
+                    // Should never happen, the child node was just created.
+                    throw new RuntimeException(e);
+                }
             }
             return node;
         } else {
@@ -112,7 +118,13 @@ public class AbstractSyntaxTreeFactory {
             for(AbstractSyntaxTreeNode child: node.getChildren()) {
                 if(child instanceof ProductionTreeNode childTmp) {
                     if (childTmp.getRule().leftHandSymbol().equals(lhsSymbol)) {
-                        node.replaceChild(childTmp, childTmp.getAllChildren());
+                        try {
+                            node.replaceChild(childTmp, childTmp.getAllChildren(), true);
+                        } catch (ReplacingNonChildNode|AddingConnectedNode e) {
+                            // We can safely ignore the exception at this point. We know, that the child is a direct
+                            // child of the node and has no other parent.
+                            throw new RuntimeException(e);
+                        }
                         hasChanges = true;
                         break;
                     }
@@ -138,7 +150,13 @@ public class AbstractSyntaxTreeFactory {
                     node.setHidden();
                     break;
                 case SymbolModifier.INLINE:
-                    node.getParent().replaceChild(node, node.getAllChildren());
+                    try {
+                        node.getParent().replaceChild(node, node.getAllChildren(), true);
+                    } catch (ReplacingNonChildNode|AddingConnectedNode e) {
+                        // We can safely ignore the exception at this point. We know, that the child is a direct
+                        // child of the node.
+                        throw new RuntimeException(e);
+                    }
                     break;
             }
         }
