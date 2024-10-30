@@ -138,6 +138,7 @@ public class AbstractSyntaxTreeFactory {
      * @param modifiers The list of modifiers that are defined for this node on the parent.
      */
     private static void applyRhsModifiers(AbstractSyntaxTreeNode node, List<SymbolModifier> modifiers) {
+        // TODO: Verify the modifiers are applied to correct nodes.
         for(SymbolModifier modifier: modifiers) {
             switch (modifier.getModifier()) {
                 case SymbolModifier.ALIAS:

@@ -10,7 +10,7 @@ import syntax_tree.ast.ProductionTreeNode;
 import syntax_tree.ast.QueryResult;
 import syntax_tree.ast.StringTreeNode;
 import syntax_tree.ast.exceptions.AddingConnectedNode;
-import test_selectors.TrueSelector;
+import test_utils.selector_stubs.TrueSelectorStub;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class QueryASTTest {
     @Test
     public void testFindYourselfWithQuery() {
         StringTreeNode root = new StringTreeNode("");
-        QueryResult result = root.query(new TrueSelector());
+        QueryResult result = root.query(new TrueSelectorStub());
         Assertions.assertFalse(result.isEmpty());
         Assertions.assertEquals(root, result.getResult().get(0));
     }
@@ -27,14 +27,14 @@ public class QueryASTTest {
     @Test
     public void testDoNotFindYourselfWithQueryChildren() {
         StringTreeNode root = new StringTreeNode("");
-        QueryResult result = root.queryChildren(new TrueSelector());
+        QueryResult result = root.queryChildren(new TrueSelectorStub());
         Assertions.assertTrue(result.isEmpty());
     }
 
     @Test
     public void testDoNotFindYourselfWithQueryImmediateChildren() {
         StringTreeNode root = new StringTreeNode("");
-        QueryResult result = root.queryImmediateChildren(new TrueSelector());
+        QueryResult result = root.queryImmediateChildren(new TrueSelectorStub());
         Assertions.assertTrue(result.isEmpty());
     }
 
@@ -49,7 +49,7 @@ public class QueryASTTest {
         root.addChild(immediateChildTwo);
         immediateChildOne.addChild(leaf);
 
-        QueryResult result = root.queryImmediateChildren(new TrueSelector());
+        QueryResult result = root.queryImmediateChildren(new TrueSelectorStub());
         Assertions.assertFalse(result.isEmpty());
         Assertions.assertEquals(List.of(immediateChildOne, immediateChildTwo), result.getResult());
     }
@@ -65,7 +65,7 @@ public class QueryASTTest {
         root.addChild(immediateChildTwo);
         immediateChildOne.addChild(leaf);
 
-        QueryResult result = root.queryChildren(new TrueSelector());
+        QueryResult result = root.queryChildren(new TrueSelectorStub());
         Assertions.assertFalse(result.isEmpty());
         Assertions.assertEquals(List.of(immediateChildOne, leaf, immediateChildTwo), result.getResult());
     }

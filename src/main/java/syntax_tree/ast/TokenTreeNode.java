@@ -16,6 +16,13 @@ public class TokenTreeNode extends AbstractSyntaxTreeNode {
     public Token getToken() {
         return token;
     }
+
+    /**
+     * @return Token
+     */
+    public String getValue() {
+        return token.getValue();
+    }
     /**
      * Gets the display value for this tree node.
      *

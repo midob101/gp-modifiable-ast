@@ -1,0 +1,9 @@
+class ProofOfConcept
+{
+    public static void main(String[] args) {
+        a = t.translate(1); // should be transformed to NewTranslate.translate(1, true)
+        a = t.translate(2); // should be transformed to NewTranslate.translate(2, false)
+        a = t.translate(3); // should be transformed to NewTranslate.translate(3, true)
+        a = t.translate(4);  // should be transformed to NewTranslate.translate(4, false)
+    }
+}

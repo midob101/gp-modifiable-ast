@@ -1,19 +1,18 @@
 package syntax_tree;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import syntax_tree.ast.AbstractSyntaxTreeNode;
 import syntax_tree.ast.QueryResult;
-import test_selectors.TrueSelector;
+import test_utils.selector_stubs.TrueSelectorStub;
 
 import java.util.List;
 
 public class QueryResultTest {
     @Test
     public void testQueryWithoutNodes() {
-        TrueSelector selector = new TrueSelector();
+        TrueSelectorStub selector = new TrueSelectorStub();
         QueryResult initial = new QueryResult(List.of());
         QueryResult result = initial.query(selector);
         Assertions.assertTrue(result.isEmpty());
@@ -21,7 +20,7 @@ public class QueryResultTest {
 
     @Test
     public void testQueryChildrenWithoutNodes() {
-        TrueSelector selector = new TrueSelector();
+        TrueSelectorStub selector = new TrueSelectorStub();
         QueryResult initial = new QueryResult(List.of());
         QueryResult result = initial.queryChildren(selector);
         Assertions.assertTrue(result.isEmpty());
@@ -29,7 +28,7 @@ public class QueryResultTest {
 
     @Test
     public void testQueryImmediateChildrenWithoutNodes() {
-        TrueSelector selector = new TrueSelector();
+        TrueSelectorStub selector = new TrueSelectorStub();
         QueryResult initial = new QueryResult(List.of());
         QueryResult result = initial.queryImmediateChildren(selector);
         Assertions.assertTrue(result.isEmpty());
@@ -37,7 +36,7 @@ public class QueryResultTest {
 
     @Test
     public void testQuery() {
-        TrueSelector selector = new TrueSelector();
+        TrueSelectorStub selector = new TrueSelectorStub();
         AbstractSyntaxTreeNode node = Mockito.mock(AbstractSyntaxTreeNode.class);
         Mockito.when(node.query(selector)).thenReturn(new QueryResult(List.of()));
 
@@ -48,7 +47,7 @@ public class QueryResultTest {
     }
     @Test
     public void testQueryWithMultipleNodes() {
-        TrueSelector selector = new TrueSelector();
+        TrueSelectorStub selector = new TrueSelectorStub();
         AbstractSyntaxTreeNode node1 = Mockito.mock(AbstractSyntaxTreeNode.class);
         Mockito.when(node1.query(selector)).thenReturn(new QueryResult(List.of()));
         AbstractSyntaxTreeNode node2 = Mockito.mock(AbstractSyntaxTreeNode.class);
@@ -63,7 +62,7 @@ public class QueryResultTest {
 
     @Test
     public void testQueryChildren() {
-        TrueSelector selector = new TrueSelector();
+        TrueSelectorStub selector = new TrueSelectorStub();
         AbstractSyntaxTreeNode node = Mockito.mock(AbstractSyntaxTreeNode.class);
         Mockito.when(node.queryChildren(selector)).thenReturn(new QueryResult(List.of()));
 
@@ -75,7 +74,7 @@ public class QueryResultTest {
 
     @Test
     public void testQueryChildrenWithMultipleNodes() {
-        TrueSelector selector = new TrueSelector();
+        TrueSelectorStub selector = new TrueSelectorStub();
         AbstractSyntaxTreeNode node1 = Mockito.mock(AbstractSyntaxTreeNode.class);
         Mockito.when(node1.queryChildren(selector)).thenReturn(new QueryResult(List.of()));
         AbstractSyntaxTreeNode node2 = Mockito.mock(AbstractSyntaxTreeNode.class);
@@ -90,7 +89,7 @@ public class QueryResultTest {
 
     @Test
     public void testQueryImmediateChildren() {
-        TrueSelector selector = new TrueSelector();
+        TrueSelectorStub selector = new TrueSelectorStub();
         AbstractSyntaxTreeNode node = Mockito.mock(AbstractSyntaxTreeNode.class);
         Mockito.when(node.queryImmediateChildren(selector)).thenReturn(new QueryResult(List.of()));
 
@@ -102,7 +101,7 @@ public class QueryResultTest {
 
     @Test
     public void testQueryImmediateChildrenWithMultipleNodes() {
-        TrueSelector selector = new TrueSelector();
+        TrueSelectorStub selector = new TrueSelectorStub();
         AbstractSyntaxTreeNode node1 = Mockito.mock(AbstractSyntaxTreeNode.class);
         Mockito.when(node1.queryImmediateChildren(selector)).thenReturn(new QueryResult(List.of()));
         AbstractSyntaxTreeNode node2 = Mockito.mock(AbstractSyntaxTreeNode.class);

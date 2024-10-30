@@ -10,8 +10,8 @@ import selectors.data.TokenSelector;
 import syntax_tree.ast.ProductionTreeNode;
 import syntax_tree.ast.TokenTreeNode;
 import syntax_tree.ast.exceptions.AddingConnectedNode;
-import test_selectors.FalseSelector;
-import test_selectors.TrueSelector;
+import test_utils.selector_stubs.FalseSelectorStub;
+import test_utils.selector_stubs.TrueSelectorStub;
 
 public class HasChildSelectorTest {
 
@@ -19,7 +19,7 @@ public class HasChildSelectorTest {
     public void testNoChildren() {
         GrammarRule r1 = Mockito.mock(GrammarRule.class);
         ProductionTreeNode root = new ProductionTreeNode(r1);
-        HasChildSelector selector = new HasChildSelector(new TrueSelector());
+        HasChildSelector selector = new HasChildSelector(new TrueSelectorStub());
         Assertions.assertFalse(selector.matches(root));
     }
 
@@ -30,7 +30,7 @@ public class HasChildSelectorTest {
         ProductionTreeNode root = new ProductionTreeNode(r1);
         ProductionTreeNode child = new ProductionTreeNode(r2);
         root.addChild(child);
-        HasChildSelector selector = new HasChildSelector(new TrueSelector());
+        HasChildSelector selector = new HasChildSelector(new TrueSelectorStub());
         Assertions.assertTrue(selector.matches(root));
     }
 
@@ -41,7 +41,7 @@ public class HasChildSelectorTest {
         ProductionTreeNode root = new ProductionTreeNode(r1);
         ProductionTreeNode child = new ProductionTreeNode(r2);
         root.addChild(child);
-        HasChildSelector selector = new HasChildSelector(new FalseSelector());
+        HasChildSelector selector = new HasChildSelector(new FalseSelectorStub());
         Assertions.assertFalse(selector.matches(root));
     }
 

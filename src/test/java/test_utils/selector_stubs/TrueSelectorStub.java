@@ -1,9 +1,9 @@
-package test_selectors;
+package test_utils.selector_stubs;
 
 import selectors.BaseSelector;
 import syntax_tree.ast.AbstractSyntaxTreeNode;
 
-public class TrueSelector extends BaseSelector {
+public class TrueSelectorStub extends BaseSelector {
     @Override
     public boolean matches(AbstractSyntaxTreeNode treeNode) {
         return true;
