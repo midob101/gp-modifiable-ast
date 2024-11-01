@@ -4,5 +4,6 @@ public enum LoggerComponents {
     LEXER,
     PARSER,
     LANGUAGE_DEFINITIONS,
-    CONFIG_READER
+    CONFIG_READER,
+    MAIN
 }

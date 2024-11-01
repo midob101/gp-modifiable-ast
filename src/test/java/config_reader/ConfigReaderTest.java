@@ -1,7 +1,5 @@
-package ConfigReader;
+package config_reader;
 
-import config_reader.ConfigReader;
-import config_reader.NameAndModifiers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

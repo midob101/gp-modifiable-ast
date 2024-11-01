@@ -26,6 +26,13 @@ public class Lexer {
         return context.getTokenList();
     }
 
+    public TokenList runForFile(File file, LanguageDefinition languageDefinition) throws IOException, LexerParseException {
+        LexerContext context = new LexerContext(file, languageDefinition.getLexerDefinitionList());
+        runForContext(context);
+        System.out.println(SingleLineCommentMatcher.class);
+        return context.getTokenList();
+    }
+
     public String backToSource(TokenList tokenList) {
         return tokenList.backToSource();
     }

@@ -1,10 +1,7 @@
 package parser.lr1_parser;
 
-import config_reader.ConfigReader;
-import language_definitions.LanguageDefinition;
-import lexer.Lexer;
-import lexer.TokenList;
 import lexer.exceptions.LexerParseException;
+import main.GpModifiableAST;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,8 +11,6 @@ import selectors.data.TokenSelector;
 import selectors.data.TokenValueSelector;
 import selectors.logical.AndSelector;
 import selectors.structural.HasImmediateChildSelector;
-import syntax_tree.AbstractSyntaxTreeFactory;
-import syntax_tree.ConcreteSyntaxTreeNode;
 import syntax_tree.TreePrettyPrinter;
 import syntax_tree.ast.AbstractSyntaxTreeNode;
 import syntax_tree.ast.QueryResult;
@@ -31,22 +26,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ProofOfConceptTest {
-    private static Parser miniJavaParser;
-    private static LanguageDefinition miniJavaLanguageDefinition;
+    private static GpModifiableAST gpModifiableAST;
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
-        miniJavaLanguageDefinition = ConfigReader.read(new File("src/main/resources/languages/minijava.txt"));
-        miniJavaParser = new Parser();
-        miniJavaParser.initialize(miniJavaLanguageDefinition);
+        gpModifiableAST = new GpModifiableAST();
+        gpModifiableAST.load(new File("src/main/resources/languages/minijava.txt"));
     }
 
     @Test
     public void testProof() throws IOException, LexerParseException, ReplacingUnconnectedNode {
-        Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/proof_of_concept.minijava", miniJavaLanguageDefinition);
-        ConcreteSyntaxTreeNode cst = miniJavaParser.createCST(tokenList);
-        AbstractSyntaxTreeNode ast = AbstractSyntaxTreeFactory.create(cst);
+        AbstractSyntaxTreeNode ast = gpModifiableAST.createAst(new File("src/test/java/parser/lr1_parser/test_languages/minijava/proof_of_concept.minijava"));
         System.out.println(TreePrettyPrinter.print(ast));
 
         QueryResult messageSendEntries = ast.query(
