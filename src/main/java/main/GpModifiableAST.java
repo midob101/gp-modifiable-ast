@@ -62,7 +62,7 @@ public class GpModifiableAST {
      * @throws LexerParseException
      * @throws IOException
      */
-    public AbstractSyntaxTreeNode createAst(String input) throws LexerParseException, IOException {
+    public AbstractSyntaxTreeNode createAst(String input) throws LexerParseException {
         if(parser == null) {
             Logger.err(LoggerComponents.MAIN,"The language definition does not exist, please call load before.");
             throw new RuntimeException("The language definition does not exist, please call load before.");

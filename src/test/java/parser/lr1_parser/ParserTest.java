@@ -1,7 +1,6 @@
 package parser.lr1_parser;
 
 import config_reader.ConfigReader;
-import config_reader.ConfigReaderException;
 import language_definitions.LanguageDefinition;
 import lexer.Lexer;
 import lexer.TokenList;
@@ -56,7 +55,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testParser() throws IOException, LexerParseException, ConfigReaderException {
+    public void testParser() throws LexerParseException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForString("baab", aabaabLanguageDefinition);
 
@@ -64,7 +63,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testParser2() throws IOException, LexerParseException, ConfigReaderException {
+    public void testParser2() throws LexerParseException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbaab", aabaabLanguageDefinition);
 
@@ -72,7 +71,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testParser3() throws IOException, LexerParseException, ConfigReaderException {
+    public void testParser3() throws LexerParseException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForString("()((())(()))", bracketsLanguageDefinition);
 
@@ -80,7 +79,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testParser4() throws IOException, LexerParseException, ConfigReaderException {
+    public void testParser4() throws LexerParseException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForString("((3+4)*5)+5*102", mathLanguageDefinition);
 
@@ -88,7 +87,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testParser5() throws IOException, LexerParseException, ConfigReaderException {
+    public void testParser5() throws LexerParseException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForString("5+7", mathLanguageDefinition);
 
@@ -97,7 +96,7 @@ public class ParserTest {
 
     @ParameterizedTest(name="Test mini java cst generation {index} for source file {0}, should be equal to {1}")
     @MethodSource("miniJavaCstProvider")
-    public void testMiniJavaCst(String src, String comparisonFile) throws IOException, LexerParseException, ConfigReaderException {
+    public void testMiniJavaCst(String src, String comparisonFile) throws IOException, LexerParseException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, miniJavaLanguageDefinition);
 
@@ -112,7 +111,7 @@ public class ParserTest {
 
     @ParameterizedTest(name="Test mini java ast generation {index} for source file {0}, should be equal to {1}")
     @MethodSource("miniJavaAstProvider")
-    public void testMiniJavaAst(String src, String comparisonFile) throws IOException, LexerParseException, ConfigReaderException {
+    public void testMiniJavaAst(String src, String comparisonFile) throws IOException, LexerParseException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, miniJavaLanguageDefinition);
 
@@ -128,7 +127,7 @@ public class ParserTest {
 
     @ParameterizedTest(name="Test mini java back to source {index} for source file {0}")
     @MethodSource("miniJavaBackToSourceProvider")
-    public void testMiniJavaBackToSource(String src) throws IOException, LexerParseException, ConfigReaderException {
+    public void testMiniJavaBackToSource(String src) throws IOException, LexerParseException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, miniJavaLanguageDefinition);
 
@@ -143,7 +142,7 @@ public class ParserTest {
 
     @ParameterizedTest(name="Test mini java {index} for source file {0}, should be {1}")
     @MethodSource("invalidMiniJavaProvider")
-    public void testInvalidMiniJavaCst(String src) throws IOException, LexerParseException, ConfigReaderException {
+    public void testInvalidMiniJavaCst(String src) throws IOException, LexerParseException {
         Lexer lexer = new Lexer();
         TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/" + src, miniJavaLanguageDefinition);
 

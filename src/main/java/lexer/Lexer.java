@@ -30,7 +30,7 @@ public class Lexer {
         return context.getTokenList();
     }
 
-    public TokenList runForString(String contents, LanguageDefinition languageDefinition) throws IOException, LexerParseException {
+    public TokenList runForString(String contents, LanguageDefinition languageDefinition) throws LexerParseException {
         LexerContext context = new LexerContext(languageDefinition, contents);
         runForContext(context);
         return context.getTokenList();
