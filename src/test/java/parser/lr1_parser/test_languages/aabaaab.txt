@@ -1,5 +1,4 @@
 LANGUAGE_DEF
-    file_extension = ab;
     grammar_start = S;
 
 LEXER_RULES

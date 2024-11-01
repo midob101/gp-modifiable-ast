@@ -1,8 +1,6 @@
 package lexer;
 
-import generic.FileUtils;
 import language_definitions.LanguageDefinition;
-import language_definitions.LanguageDefinitions;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +28,11 @@ public class LexerContext {
     private final String sourceCode;
 
     /**
+     * The language definition used by the lexer context.
+     */
+    private final LanguageDefinition languageDefinition;
+
+    /**
      * The current position of the lexer in this file
      */
     private int parseIndex = 0;
@@ -44,10 +47,18 @@ public class LexerContext {
      */
     private final TokenList tokenList = new TokenList();
 
-    public LexerContext(File source, List<LexerDefinition> lexerDefinitionList) throws IOException {
+    public LexerContext(LanguageDefinition languageDefinition, File source) throws IOException {
         this.source = source;
         this.sourceCode = Files.readString(Path.of(source.getPath()), StandardCharsets.UTF_8);
-        this.lexerDefinitionList = lexerDefinitionList;
+        this.lexerDefinitionList = languageDefinition.getLexerDefinitionList();
+        this.languageDefinition = languageDefinition;
+    }
+
+    public LexerContext(LanguageDefinition languageDefinition, String source) {
+        this.source = null;
+        this.sourceCode = source;
+        this.lexerDefinitionList = languageDefinition.getLexerDefinitionList();
+        this.languageDefinition = languageDefinition;
     }
 
     public File getSource() {
@@ -116,11 +127,7 @@ public class LexerContext {
         return tokenList;
     }
 
-    public String getFileExtension() {
-        return FileUtils.getExtension(this.source);
-    }
-
     public LanguageDefinition getLanguageDefinition() {
-        return LanguageDefinitions.getLanguageDefinitionByFileExtension(this.getFileExtension());
+        return this.languageDefinition;
     }
 }

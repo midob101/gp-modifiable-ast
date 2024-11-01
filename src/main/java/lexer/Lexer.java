@@ -1,7 +1,6 @@
 package lexer;
 
 import language_definitions.LanguageDefinition;
-import lexer.custom_matchers.SingleLineCommentMatcher;
 import lexer.exceptions.LexerParseException;
 import lexer.post_process.LexerPostProcess;
 import logger.Logger;
@@ -20,16 +19,20 @@ import java.util.regex.Pattern;
  */
 public class Lexer {
     public TokenList runForFile(String fileName, LanguageDefinition languageDefinition) throws IOException, LexerParseException {
-        LexerContext context = new LexerContext(new File(fileName), languageDefinition.getLexerDefinitionList());
+        LexerContext context = new LexerContext(languageDefinition, new File(fileName));
         runForContext(context);
-        System.out.println(SingleLineCommentMatcher.class);
         return context.getTokenList();
     }
 
     public TokenList runForFile(File file, LanguageDefinition languageDefinition) throws IOException, LexerParseException {
-        LexerContext context = new LexerContext(file, languageDefinition.getLexerDefinitionList());
+        LexerContext context = new LexerContext(languageDefinition, file);
         runForContext(context);
-        System.out.println(SingleLineCommentMatcher.class);
+        return context.getTokenList();
+    }
+
+    public TokenList runForString(String contents, LanguageDefinition languageDefinition) throws IOException, LexerParseException {
+        LexerContext context = new LexerContext(languageDefinition, contents);
+        runForContext(context);
         return context.getTokenList();
     }
 

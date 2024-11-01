@@ -1,6 +1,5 @@
 LANGUAGE_DEF
     name = Whitespace sensitive example Language;
-    file_extension = exw;
     single_line_comment_available = true;
     single_line_comment_style = //;
     multi_line_comment_available = false;

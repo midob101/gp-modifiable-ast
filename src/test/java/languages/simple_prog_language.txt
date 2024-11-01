@@ -1,6 +1,5 @@
 LANGUAGE_DEF
     name = Example Language;
-    file_extension = ex;
     single_line_comment_available = true;
     single_line_comment_style = //;
     multi_line_comment_available = true;

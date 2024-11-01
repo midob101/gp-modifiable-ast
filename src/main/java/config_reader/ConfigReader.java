@@ -4,7 +4,6 @@ import grammar.Production;
 import grammar.Symbol;
 import grammar.SymbolModifier;
 import language_definitions.LanguageDefinition;
-import language_definitions.LanguageDefinitions;
 import lexer.CustomMatcherRegistry;
 import lexer.ICustomMatcher;
 import lexer.LexerDefinition;
@@ -85,7 +84,6 @@ public class ConfigReader {
         } catch (IOException | LexerMissingCustomMatcherException e) {
             throw new ConfigReaderException(e);
         }
-        LanguageDefinitions.addLanguageDefinition(resultLanguage);
         if(!resultLanguage.isValid()) {
             throw new ConfigReaderException("Invalid language definition.");
         }
@@ -106,9 +104,6 @@ public class ConfigReader {
         switch (key) {
             case "name":
                 languageDefinition.setLanguageName(value);
-                break;
-            case "file_extension":
-                languageDefinition.setFileExtension(value);
                 break;
             case "single_line_comment_available":
                 languageDefinition.setSingleLineCommentAvailable(Boolean.parseBoolean(value));

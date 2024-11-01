@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
  */
 public class LanguageDefinition {
     private String languageName = "undefined";
-    private String fileExtension;
     private boolean singleLineCommentAvailable = false;
     private String singleLineCommentStyle;
     private boolean multiLineCommentAvailable = false;
@@ -28,10 +27,6 @@ public class LanguageDefinition {
 
     public String getLanguageName() {
         return languageName;
-    }
-
-    public String getFileExtension() {
-        return fileExtension;
     }
 
     public boolean isSingleLineCommentAvailable() {
@@ -60,10 +55,6 @@ public class LanguageDefinition {
 
     public void setLanguageName(String languageName) {
         this.languageName = languageName;
-    }
-
-    public void setFileExtension(String fileExtension) {
-        this.fileExtension = fileExtension;
     }
 
     public void setSingleLineCommentAvailable(boolean singleLineCommentAvailable) {

@@ -55,6 +55,26 @@ public class GpModifiableAST {
     }
 
     /**
+     * Creates the AST for a given file.
+     *
+     * @param input The file to be parsed.
+     * @return The root node of the AST
+     * @throws LexerParseException
+     * @throws IOException
+     */
+    public AbstractSyntaxTreeNode createAst(String input) throws LexerParseException, IOException {
+        if(parser == null) {
+            Logger.err(LoggerComponents.MAIN,"The language definition does not exist, please call load before.");
+            throw new RuntimeException("The language definition does not exist, please call load before.");
+        }
+
+        Lexer lexer = new Lexer();
+        TokenList tokenList = lexer.runForString(input, languageDefinition);
+        ConcreteSyntaxTreeNode cst = parser.createCST(tokenList);
+        return AbstractSyntaxTreeFactory.create(cst);
+    }
+
+    /**
      * Saves the AST node to a given output file.
      *
      * The entire file contents are replaced with the contents of the passed node. If not called on the root node,

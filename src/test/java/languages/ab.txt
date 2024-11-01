@@ -1,6 +1,5 @@
 LANGUAGE_DEF
     name = ab;
-    file_extension = ab;
     single_line_comment_available = false;
     multi_line_comment_available = false;
     case_sensitive = true;

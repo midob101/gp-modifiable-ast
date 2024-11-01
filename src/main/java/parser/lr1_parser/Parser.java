@@ -116,6 +116,7 @@ public class Parser {
                         return getRootNode(danglingTreeNodes);
                     }
                 } else {
+                    Logger.err(LoggerComponents.PARSER, "The next token is not one of the expected ones.");
                     Logger.err(LoggerComponents.PARSER, "Next Token: " + (nextToken != null ? nextToken.toString() : "undefined"));
                     Logger.err(LoggerComponents.PARSER, "Expected one of: " + actionTable.getExpectedSymbols(currentTopOfStack).toString());
                     Logger.err(LoggerComponents.PARSER, "Invalid source, does not match the grammar definitions.");

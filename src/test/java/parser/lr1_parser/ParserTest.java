@@ -58,7 +58,7 @@ public class ParserTest {
     @Test
     public void testParser() throws IOException, LexerParseException, ConfigReaderException {
         Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/aabaaab_valid.ab", aabaabLanguageDefinition);
+        TokenList tokenList = lexer.runForString("baab", aabaabLanguageDefinition);
 
         Assertions.assertTrue(aabaabParser.isValid(tokenList));
     }
@@ -66,7 +66,7 @@ public class ParserTest {
     @Test
     public void testParser2() throws IOException, LexerParseException, ConfigReaderException {
         Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/aabaaab_invalid.ab", aabaabLanguageDefinition);
+        TokenList tokenList = lexer.runForString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbaab", aabaabLanguageDefinition);
 
         Assertions.assertFalse(aabaabParser.isValid(tokenList));
     }
@@ -74,7 +74,7 @@ public class ParserTest {
     @Test
     public void testParser3() throws IOException, LexerParseException, ConfigReaderException {
         Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/brackets.bracket", bracketsLanguageDefinition);
+        TokenList tokenList = lexer.runForString("()((())(()))", bracketsLanguageDefinition);
 
         Assertions.assertTrue(bracketsParser.isValid(tokenList));
     }
@@ -82,7 +82,15 @@ public class ParserTest {
     @Test
     public void testParser4() throws IOException, LexerParseException, ConfigReaderException {
         Lexer lexer = new Lexer();
-        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/valid_calculation.math", mathLanguageDefinition);
+        TokenList tokenList = lexer.runForString("((3+4)*5)+5*102", mathLanguageDefinition);
+
+        Assertions.assertTrue(mathParser.isValid(tokenList));
+    }
+
+    @Test
+    public void testParser5() throws IOException, LexerParseException, ConfigReaderException {
+        Lexer lexer = new Lexer();
+        TokenList tokenList = lexer.runForString("5+7", mathLanguageDefinition);
 
         Assertions.assertTrue(mathParser.isValid(tokenList));
     }

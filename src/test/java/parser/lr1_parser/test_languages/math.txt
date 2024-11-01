@@ -1,5 +1,4 @@
 LANGUAGE_DEF
-    file_extension = math;
     grammar_start = S;
 
 LEXER_RULES
