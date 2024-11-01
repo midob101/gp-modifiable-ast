@@ -15,6 +15,6 @@ public class AliasSelector extends BaseSelector {
 
     @Override
     public boolean matches(AbstractSyntaxTreeNode treeNode) {
-        return treeNode.getAlias() != null && treeNode.getAlias().equals(this.alias);
+        return treeNode.getAliases().contains(this.alias);
     }
 }

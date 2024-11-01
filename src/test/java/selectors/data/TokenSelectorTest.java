@@ -37,7 +37,7 @@ public class TokenSelectorTest {
         Production r1 = Mockito.mock(Production.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("test1", false));
         ProductionTreeNode node = new ProductionTreeNode(r1);
-        node.setAlias("test1");
+        node.addAlias("test1");
         TokenSelector selector = new TokenSelector("test1");
         Assertions.assertFalse(selector.matches(node));
     }

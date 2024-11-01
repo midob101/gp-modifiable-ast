@@ -24,7 +24,7 @@ public class AliasSelectorTest {
     public void testNoMatchingAliasDefined() {
         Production r1 = Mockito.mock(Production.class);
         ProductionTreeNode node = new ProductionTreeNode(r1);
-        node.setAlias("test1");
+        node.addAlias("test1");
         AliasSelector selector = new AliasSelector("test");
         Assertions.assertFalse(selector.matches(node));
     }
@@ -33,7 +33,7 @@ public class AliasSelectorTest {
     public void testMatchingAliasDefined() {
         Production r1 = Mockito.mock(Production.class);
         ProductionTreeNode node = new ProductionTreeNode(r1);
-        node.setAlias("test");
+        node.addAlias("test");
         AliasSelector selector = new AliasSelector("test");
         Assertions.assertTrue(selector.matches(node));
     }

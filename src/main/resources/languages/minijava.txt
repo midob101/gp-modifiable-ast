@@ -95,9 +95,9 @@ PRODUCTIONS
     MINUS_EXPRESSION            ->  PRIMARY_EXPRESSION[inline,alias=left] minus[hidden] PRIMARY_EXPRESSION[inline,alias=right];
     TIMES_EXPRESSION            ->  PRIMARY_EXPRESSION[inline,alias=left] multiply[hidden] PRIMARY_EXPRESSION[inline,alias=right];
     ARRAY_LOOKUP                ->  PRIMARY_EXPRESSION[inline] square_bracket_open[hidden] PRIMARY_EXPRESSION[inline] square_bracket_close[hidden];
-    ARRAY_LENGTH                ->  PRIMARY_EXPRESSION dot[hidden] array_length_stmt;
-    MESSAGE_SEND                ->  PRIMARY_EXPRESSION[alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] bracket_close[hidden] |
-                                    PRIMARY_EXPRESSION[alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] EXPRESSION_LIST bracket_close[hidden];
+    ARRAY_LENGTH                ->  PRIMARY_EXPRESSION[inline] dot[hidden] array_length_stmt;
+    MESSAGE_SEND                ->  PRIMARY_EXPRESSION[inline,alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] bracket_close[hidden] |
+                                    PRIMARY_EXPRESSION[inline,alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] EXPRESSION_LIST bracket_close[hidden];
     EXPRESSION_LIST[list]       ->  EXPRESSION | EXPRESSION_LIST comma[hidden] EXPRESSION;
     CLAUSE                      ->  NOT_EXPRESSION | PRIMARY_EXPRESSION[inline];
     NOT_EXPRESSION              ->  not[hidden] CLAUSE[inline];

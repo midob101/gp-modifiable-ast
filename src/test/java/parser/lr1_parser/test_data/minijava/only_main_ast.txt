@@ -1,16 +1,16 @@
-ProductionTreeNode: S
-└── ProductionTreeNode: MAIN_CLASS
-    ├── TokenTreeNode: identifier, alias:className | value: Main
-    ├── TokenTreeNode: public_stmt | value: public
-    ├── TokenTreeNode: static_stmt | value: static
-    ├── TokenTreeNode: void_type | value: void
-    ├── TokenTreeNode: main_identifier | value: main
-    ├── TokenTreeNode: string_type | value: String
-    ├── TokenTreeNode: square_bracket_open | value: [
-    ├── TokenTreeNode: square_bracket_close | value: ]
-    ├── TokenTreeNode: identifier | value: args
-    └── ProductionTreeNode: VAR_DECLARATION
-        ├── ProductionTreeNode: TYPE
-        │   └── ProductionTreeNode: INTEGER_TYPE
-        │       └── TokenTreeNode: int_type | value: int
-        └── TokenTreeNode: identifier | value: asd
+ProductionTreeNode: S, aliases:[]
+└── ProductionTreeNode: MAIN_CLASS, aliases:[]
+    ├── TokenTreeNode: identifier, alias:[className] | value: Main
+    ├── TokenTreeNode: public_stmt, alias:[] | value: public
+    ├── TokenTreeNode: static_stmt, alias:[] | value: static
+    ├── TokenTreeNode: void_type, alias:[] | value: void
+    ├── TokenTreeNode: main_identifier, alias:[] | value: main
+    ├── TokenTreeNode: string_type, alias:[] | value: String
+    ├── TokenTreeNode: square_bracket_open, alias:[] | value: [
+    ├── TokenTreeNode: square_bracket_close, alias:[] | value: ]
+    ├── TokenTreeNode: identifier, alias:[varName] | value: args
+    └── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+        ├── ProductionTreeNode: TYPE, aliases:[]
+        │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+        │       └── TokenTreeNode: int_type, alias:[] | value: int
+        └── TokenTreeNode: identifier, alias:[varName] | value: asd

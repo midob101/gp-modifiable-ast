@@ -34,7 +34,7 @@ public class ProductionSelectorTest {
         Production r1 = Mockito.mock(Production.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("TEST1", false));
         ProductionTreeNode node = new ProductionTreeNode(r1);
-        node.setAlias("TEST1");
+        node.addAlias("TEST1");
         ProductionSelector selector = new ProductionSelector("TEST");
         Assertions.assertFalse(selector.matches(node));
     }

@@ -30,8 +30,8 @@ public class TokenTreeNode extends AbstractSyntaxTreeNode {
      */
     public String getDisplayValue() {
         String displayValue = "TokenTreeNode: " + getToken().getLexerDefinition().getName();
-        if(this.getAlias() != null) {
-            displayValue += ", alias:" + this.getAlias();
+        if(this.getAliases() != null) {
+            displayValue += ", alias:" + this.getAliases();
         }
         displayValue += " | value: " + this.token.getValue();
         return displayValue;

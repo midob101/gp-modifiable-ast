@@ -6,8 +6,10 @@ import syntax_tree.ast.exceptions.AddingConnectedNode;
 import syntax_tree.ast.exceptions.ReplacingNonChildNode;
 import syntax_tree.ast.exceptions.ReplacingUnconnectedNode;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The abstract syntax tree node class.
@@ -17,13 +19,13 @@ import java.util.List;
 public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<AbstractSyntaxTreeNode> {
     private final LinkedList<AbstractSyntaxTreeNode> children = new LinkedList<>();
     private boolean hidden = false;
-    private String alias = null;
+    private Set<String> alias = new HashSet<>();
     private AbstractSyntaxTreeNode parent = null;
 
     /**
      * @return Alias
      */
-    public String getAlias() {
+    public Set<String> getAliases() {
         return alias;
     }
 
@@ -93,12 +95,21 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
     }
 
     /**
-     * Sets the alias of this node.
+     * Adds an alias to this node.
      *
      * @param value
      */
-    public void setAlias(String value) {
-        this.alias = value;
+    public void addAlias(String value) {
+        this.alias.add(value);
+    }
+
+    /**
+     * Adds multiple alias to this node.
+     *
+     * @param aliases
+     */
+    public void addAliases(Set<String> aliases) {
+        this.alias.addAll(aliases);
     }
 
     /**

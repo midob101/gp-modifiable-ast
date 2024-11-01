@@ -139,17 +139,27 @@ public class AbstractSyntaxTreeFactory {
      */
     private static void applyRhsModifiers(AbstractSyntaxTreeNode node, List<SymbolModifier> modifiers) {
         // TODO: Verify the modifiers are applied to correct nodes.
+
+        // Apply alias modifier first.
         for(SymbolModifier modifier: modifiers) {
             switch (modifier.getModifier()) {
                 case SymbolModifier.ALIAS:
                     String value = modifier.getValue();
-                    node.setAlias(value);
+                    node.addAlias(value);
                     break;
+            }
+        }
+        for(SymbolModifier modifier: modifiers) {
+            switch (modifier.getModifier()) {
                 case SymbolModifier.HIDDEN:
                     node.setHidden();
                     break;
                 case SymbolModifier.INLINE:
                     try {
+                        // Carry aliases down to all children
+                        for(AbstractSyntaxTreeNode child: node.getAllChildren()) {
+                            child.addAliases(node.getAliases());
+                        }
                         node.getParent().replaceChild(node, node.getAllChildren(), true);
                     } catch (ReplacingNonChildNode|AddingConnectedNode e) {
                         // We can safely ignore the exception at this point. We know, that the child is a direct
