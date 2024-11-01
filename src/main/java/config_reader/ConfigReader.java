@@ -23,12 +23,24 @@ public class ConfigReader {
      * Initiates the read process
      */
     public static LanguageDefinition read(File file) throws ConfigReaderException {
-        Logger.debug(LoggerComponents.CONFIG_READER, "Reading language definitions from " + file);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            return read(br);
+        } catch (FileNotFoundException e) {
+            throw new ConfigReaderException(e);
+        }
+    }
+
+    /**
+     * Initiates the read process
+     */
+    public static LanguageDefinition read(BufferedReader reader) throws ConfigReaderException {
+        Logger.debug(LoggerComponents.CONFIG_READER, "Reading language definitions from buffered reader");
         String segment = "";
         String concatted = ""; // Keeps track of the current statement, it can span over multiple lines.
-                               // Gets cleared either on segment change or if the line ends with a semicolon
+        // Gets cleared either on segment change or if the line ends with a semicolon
         LanguageDefinition resultLanguage = new LanguageDefinition();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = reader) {
             String line;
             while ((line = br.readLine()) != null) {
                 // First check if the line includes a segment change.

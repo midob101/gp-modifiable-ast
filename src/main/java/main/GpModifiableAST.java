@@ -3,6 +3,8 @@ package main;
 import config_reader.ConfigReader;
 import config_reader.ConfigReaderException;
 import language_definitions.LanguageDefinition;
+import language_definitions.PredefinedLanguages;
+import language_definitions.PredefinedLanguagesMap;
 import lexer.Lexer;
 import lexer.TokenList;
 import lexer.exceptions.LexerParseException;
@@ -13,6 +15,7 @@ import syntax_tree.AbstractSyntaxTreeFactory;
 import syntax_tree.ConcreteSyntaxTreeNode;
 import syntax_tree.ast.AbstractSyntaxTreeNode;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,6 +33,21 @@ public class GpModifiableAST {
      */
     public void load(File languageFile) throws ConfigReaderException {
         languageDefinition = ConfigReader.read(languageFile);
+        parser = new Parser();
+        parser.initialize(languageDefinition);
+    }
+
+    /**
+     * Generates all necessary informations required to parse a specific language.
+     * This function can be expensive for large language files. This should only called once for each language file.
+     *
+     * @param language The language that should be used.
+     * @throws ConfigReaderException
+     */
+    public void load(PredefinedLanguages language) throws ConfigReaderException, IOException {
+        PredefinedLanguagesMap languagesMap = new PredefinedLanguagesMap();
+        BufferedReader reader = languagesMap.getReader(language);
+        languageDefinition = ConfigReader.read(reader);
         parser = new Parser();
         parser.initialize(languageDefinition);
     }

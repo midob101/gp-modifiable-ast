@@ -60,7 +60,7 @@ PRODUCTIONS
     CLASS_DECLARATION           ->  class_stmt[hidden] identifier[alias=className] curly_bracket_open[hidden] VAR_DECLARATIONS[inline] METHOD_DECLARATIONS[inline] curly_bracket_close[hidden];
     CLASS_DECLARATION           ->  class_stmt[hidden] identifier[alias=className] extents_stmt[hidden] identifier[alias=extendedClassName] curly_bracket_open[hidden] VAR_DECLARATIONS[inline] METHOD_DECLARATIONS[inline] curly_bracket_close[hidden];
     MAIN_CLASS                  ->  class_stmt[hidden] identifier[alias=className] curly_bracket_open[hidden] public_stmt static_stmt void_type main_identifier
-                                    bracket_open[hidden] string_type square_bracket_open square_bracket_close identifier bracket_close[hidden]
+                                    bracket_open[hidden] string_type square_bracket_open square_bracket_close identifier[alias=varName] bracket_close[hidden]
                                     curly_bracket_open[hidden] VAR_DECLARATIONS[inline] STATEMENTS[inline] curly_bracket_close[hidden] curly_bracket_close[hidden];
     METHOD_DECLARATIONS[list]   ->  METHOD_DECLARATION METHOD_DECLARATIONS | EPSILON;
     METHOD_DECLARATION          ->  public_stmt TYPE identifier[alias=functionName] bracket_open[hidden] FORMAL_PARAMETER_LIST[inline] bracket_close[hidden] curly_bracket_open[hidden] VAR_DECLARATIONS[inline] STATEMENTS[inline] return_stmt EXPRESSION semicolon[hidden] curly_bracket_close[hidden];
@@ -68,15 +68,15 @@ PRODUCTIONS
     FORMAL_PARAMETER            ->  TYPE identifier[alias=parameterName];
     VAR_DECLARATIONS[list]      ->  VAR_DECLARATIONS VAR_DECLARATION | EPSILON;
     STATEMENTS[list]            ->  STATEMENT STATEMENTS | EPSILON;
-    VAR_DECLARATION             ->  TYPE identifier semicolon[hidden];
+    VAR_DECLARATION             ->  TYPE identifier[alias=varName] semicolon[hidden];
     STATEMENT                   ->  BLOCK | ASSIGNMENT_STATEMENT | ARRAY_ASSIGNMENT_STATEMENT | IF_STATEMENT | WHILE_STATEMENT | PRINT_STATEMENT;
     BLOCK                       ->  curly_bracket_open[hidden] STATEMENTS[inline] curly_bracket_close[hidden];
-    ASSIGNMENT_STATEMENT        ->  identifier assignment[hidden] EXPRESSION semicolon[hidden];
-    ARRAY_ASSIGNMENT_STATEMENT  ->  identifier square_bracket_open[hidden] EXPRESSION square_bracket_close[hidden] assignment[hidden] EXPRESSION semicolon[hidden];
+    ASSIGNMENT_STATEMENT        ->  identifier[alias=varName] assignment[hidden] EXPRESSION semicolon[hidden];
+    ARRAY_ASSIGNMENT_STATEMENT  ->  identifier[alias=varName] square_bracket_open[hidden] EXPRESSION square_bracket_close[hidden] assignment[hidden] EXPRESSION semicolon[hidden];
     IF_STATEMENT                ->  if[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] STATEMENT[alias=then] else[hidden] STATEMENT[alias=else];
     WHILE_STATEMENT             ->  while[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] STATEMENT;
     PRINT_STATEMENT             ->  println[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] semicolon[hidden];
-    TYPE                        ->  ARRAY_TYPE | BOOLEAN_TYPE | INTEGER_TYPE | identifier;
+    TYPE                        ->  ARRAY_TYPE | BOOLEAN_TYPE | INTEGER_TYPE | identifier[alias=className];
     ARRAY_TYPE                  ->  int_type square_bracket_open[hidden] square_bracket_close[hidden];
     BOOLEAN_TYPE                ->  boolean_type;
     INTEGER_TYPE                ->  int_type;
@@ -88,27 +88,27 @@ PRODUCTIONS
                                     | ARRAY_LOOKUP
                                     | ARRAY_LENGTH
                                     | MESSAGE_SEND
-                                    | CLAUSE;
-    AND_EXPRESSION              ->  CLAUSE[alias=left] and[hidden] CLAUSE[alias=right];
-    COMPARE_EXPRESSION          ->  PRIMARY_EXPRESSION[alias=left] less_then[hidden] PRIMARY_EXPRESSION[alias=right];
-    PLUS_EXPRESSION             ->  PRIMARY_EXPRESSION[alias=left] plus[hidden] PRIMARY_EXPRESSION[alias=right];
-    MINUS_EXPRESSION            ->  PRIMARY_EXPRESSION[alias=left] minus[hidden] PRIMARY_EXPRESSION[alias=right];
-    TIMES_EXPRESSION            ->  PRIMARY_EXPRESSION[alias=left] multiply[hidden] PRIMARY_EXPRESSION[alias=right];
-    ARRAY_LOOKUP                ->  PRIMARY_EXPRESSION square_bracket_open[hidden] PRIMARY_EXPRESSION square_bracket_close[hidden];
+                                    | CLAUSE[inline];
+    AND_EXPRESSION              ->  CLAUSE[inline,alias=left] and[hidden] CLAUSE[inline,alias=right];
+    COMPARE_EXPRESSION          ->  PRIMARY_EXPRESSION[inline,alias=left] less_then[hidden] PRIMARY_EXPRESSION[inline,alias=right];
+    PLUS_EXPRESSION             ->  PRIMARY_EXPRESSION[inline,alias=left] plus[hidden] PRIMARY_EXPRESSION[inline,alias=right];
+    MINUS_EXPRESSION            ->  PRIMARY_EXPRESSION[inline,alias=left] minus[hidden] PRIMARY_EXPRESSION[inline,alias=right];
+    TIMES_EXPRESSION            ->  PRIMARY_EXPRESSION[inline,alias=left] multiply[hidden] PRIMARY_EXPRESSION[inline,alias=right];
+    ARRAY_LOOKUP                ->  PRIMARY_EXPRESSION[inline] square_bracket_open[hidden] PRIMARY_EXPRESSION[inline] square_bracket_close[hidden];
     ARRAY_LENGTH                ->  PRIMARY_EXPRESSION dot[hidden] array_length_stmt;
     MESSAGE_SEND                ->  PRIMARY_EXPRESSION[alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] bracket_close[hidden] |
                                     PRIMARY_EXPRESSION[alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] EXPRESSION_LIST bracket_close[hidden];
-    EXPRESSION_LIST             ->  EXPRESSION | EXPRESSION_LIST comma[hidden] EXPRESSION;
-    CLAUSE                      ->  NOT_EXPRESSION | PRIMARY_EXPRESSION;
-    NOT_EXPRESSION              ->  not[hidden] CLAUSE;
+    EXPRESSION_LIST[list]       ->  EXPRESSION | EXPRESSION_LIST comma[hidden] EXPRESSION;
+    CLAUSE                      ->  NOT_EXPRESSION | PRIMARY_EXPRESSION[inline];
+    NOT_EXPRESSION              ->  not[hidden] CLAUSE[inline];
     PRIMARY_EXPRESSION          ->  integer_literal
                                     | true_literal
                                     | false_literal
-                                    | identifier
+                                    | identifier[alias=varName]
                                     | this_expression
                                     | ARRAY_ALLOCATION_EXPRESSION
                                     | ALLOCATION_EXPRESSION
                                     | BRACKET_EXPRESSION;
     ARRAY_ALLOCATION_EXPRESSION ->  new_expression[hidden] int_type square_bracket_open[hidden] EXPRESSION square_bracket_close[hidden];
-    ALLOCATION_EXPRESSION       ->  new_expression[hidden] identifier bracket_open[hidden] bracket_close[hidden];
+    ALLOCATION_EXPRESSION       ->  new_expression[hidden] identifier[alias=className] bracket_open[hidden] bracket_close[hidden];
     BRACKET_EXPRESSION          ->  bracket_open[hidden] EXPRESSION bracket_close[hidden];

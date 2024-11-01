@@ -1,5 +1,6 @@
 package parser.lr1_parser;
 
+import language_definitions.PredefinedLanguages;
 import lexer.exceptions.LexerParseException;
 import main.GpModifiableAST;
 import org.junit.jupiter.api.Assertions;
@@ -31,7 +32,7 @@ public class ProofOfConceptTest {
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
         gpModifiableAST = new GpModifiableAST();
-        gpModifiableAST.load(new File("src/main/resources/languages/minijava.txt"));
+        gpModifiableAST.load(PredefinedLanguages.MINIJAVA);
     }
 
     @Test
@@ -54,8 +55,6 @@ public class ProofOfConceptTest {
         for(AbstractSyntaxTreeNode node: messageSendEntries) {
             QueryResult passedValue = node.queryImmediateChildren(new ProductionSelector("EXPRESSION_LIST"))
                     .queryImmediateChildren(new ProductionSelector("EXPRESSION"))
-                    .queryImmediateChildren(new ProductionSelector("CLAUSE"))
-                    .queryImmediateChildren(new ProductionSelector("PRIMARY_EXPRESSION"))
                     .queryImmediateChildren(new TokenSelector("integer_literal"));
 
             TokenTreeNode param = (TokenTreeNode) passedValue.getResult().get(0);
