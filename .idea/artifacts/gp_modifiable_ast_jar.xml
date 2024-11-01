@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="gp-modifiable-ast:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/gp_modifiable_ast_jar</output-path>
+    <root id="archive" name="gp-modifiable-ast.jar">
+      <element id="module-output" name="gp-modifiable-ast" />
+    </root>
+  </artifact>
+</component>
