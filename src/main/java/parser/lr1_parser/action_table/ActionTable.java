@@ -85,10 +85,10 @@ public class ActionTable {
 
         for(ItemSet itemSet: family.getItemSets()) {
             for(Item item: itemSet.getItems()) {
-                if(item.isPosAtEnd() && !item.grammarRule().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
-                    actionTable.setAction(itemSet, item.lookaheadSymbol(), new ReduceAction(item.grammarRule()));
+                if(item.isPosAtEnd() && !item.production().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
+                    actionTable.setAction(itemSet, item.lookaheadSymbol(), new ReduceAction(item.production()));
                 }
-                if(item.isPosAtEnd() && item.grammarRule().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
+                if(item.isPosAtEnd() && item.production().leftHandSymbol().equals(Symbol.INTERNAL_START_COPY)) {
                     actionTable.setAction(itemSet, item.lookaheadSymbol(), new AcceptAction());
                 }
                 if(!item.isPosAtEnd() && item.getSymbolAtPos().isTerminal()) {

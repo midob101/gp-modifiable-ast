@@ -10,7 +10,7 @@ LEXER_RULES
     a =   "a";
     b =   "b";
 
-GRAMMAR_RULES
+PRODUCTIONS
     S   ->  A B;
     A   ->  a A | EPSILON;
     B   ->  b  | b B;

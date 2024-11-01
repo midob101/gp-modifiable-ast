@@ -1,6 +1,6 @@
 package parser.lr1_parser;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,10 +15,10 @@ public class ItemSetTest {
     public void testHasItem() {
         Symbol s1 = new Symbol("s1", false);
         Symbol s2 = new Symbol("s2", false);
-        GrammarRule grammarRule = new GrammarRule(s1, List.of(s1, s2));
+        Production production = new Production(s1, List.of(s1, s2));
 
-        Item item = new Item(grammarRule, 0, null);
-        Item item2 = new Item(grammarRule, 0, null);
+        Item item = new Item(production, 0, null);
+        Item item2 = new Item(production, 0, null);
 
         ItemSet itemSet = new ItemSet();
         itemSet.addItem(item);
@@ -31,10 +31,10 @@ public class ItemSetTest {
     public void testAddItems() {
         Symbol s1 = new Symbol("s1", false);
         Symbol s2 = new Symbol("s2", false);
-        GrammarRule grammarRule = new GrammarRule(s1, List.of(s1, s2));
+        Production production = new Production(s1, List.of(s1, s2));
 
-        Item item = new Item(grammarRule, 0, null);
-        Item item2 = new Item(grammarRule, 1, null);
+        Item item = new Item(production, 0, null);
+        Item item2 = new Item(production, 1, null);
 
         ItemSet itemSet = new ItemSet();
         itemSet.addItem(item);

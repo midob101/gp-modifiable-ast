@@ -1,6 +1,6 @@
 package syntax_tree;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -72,9 +72,9 @@ public class QueryASTTest {
 
     @Test
     public void testQueryWithFilter() throws AddingConnectedNode {
-        GrammarRule doesNotMatch = Mockito.mock(GrammarRule.class);
+        Production doesNotMatch = Mockito.mock(Production.class);
         Mockito.when(doesNotMatch.leftHandSymbol()).thenReturn(new Symbol("DOES_NOT_MATCH", false));
-        GrammarRule doesMatch = Mockito.mock(GrammarRule.class);
+        Production doesMatch = Mockito.mock(Production.class);
         Mockito.when(doesMatch.leftHandSymbol()).thenReturn(new Symbol("MATCH", false));
 
 

@@ -1,6 +1,6 @@
 package parser.lr1_parser;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -40,10 +40,10 @@ public class ClosureTest {
         Symbol a = new Symbol("a", true);
         Symbol b = new Symbol("b", true);
 
-        GrammarRule g1 = new GrammarRule(S, List.of(A, B));
-        GrammarRule g2 = new GrammarRule(A, List.of(a));
-        GrammarRule g3 = new GrammarRule(A, List.of(Symbol.EPSILON));
-        GrammarRule g4 = new GrammarRule(B, List.of(b));
+        Production g1 = new Production(S, List.of(A, B));
+        Production g2 = new Production(A, List.of(a));
+        Production g3 = new Production(A, List.of(Symbol.EPSILON));
+        Production g4 = new Production(B, List.of(b));
 
         Item start = new Item(g1, 0, Symbol.END_OF_INPUT);
         ItemSet itemSet = new ItemSet();
@@ -78,10 +78,10 @@ public class ClosureTest {
         Symbol a = new Symbol("a", true);
         Symbol b = new Symbol("b", true);
 
-        GrammarRule g1 = new GrammarRule(S, List.of(A, B));
-        GrammarRule g2 = new GrammarRule(A, List.of(a));
-        GrammarRule g3 = new GrammarRule(A, List.of(Symbol.EPSILON));
-        GrammarRule g4 = new GrammarRule(B, List.of(b));
+        Production g1 = new Production(S, List.of(A, B));
+        Production g2 = new Production(A, List.of(a));
+        Production g3 = new Production(A, List.of(Symbol.EPSILON));
+        Production g4 = new Production(B, List.of(b));
 
         Item start = new Item(g1, 1, a);
         ItemSet itemSet = new ItemSet();

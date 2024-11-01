@@ -11,7 +11,7 @@ LEXER_RULES
     bracket_close = ")";
     id = regex(\d+);
 
-GRAMMAR_RULES
+PRODUCTIONS
     S   ->  S add T | S subtract T | T;
     T   ->  T multiply F | T divide F | F;
     F   ->  bracket_open S bracket_close | id;

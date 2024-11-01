@@ -1,29 +1,29 @@
 package syntax_tree;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import lexer.Token;
 
 import java.util.LinkedList;
 
 public class ConcreteSyntaxTreeNode implements IPrintableTreeNode<ConcreteSyntaxTreeNode> {
     protected Token token = null;
-    protected GrammarRule rule = null;
+    protected Production production = null;
     protected LinkedList<ConcreteSyntaxTreeNode> children = new LinkedList<>();
 
     public ConcreteSyntaxTreeNode(Token token) {
         this.token = token;
     }
 
-    public ConcreteSyntaxTreeNode(GrammarRule rule) {
-        this.rule = rule;
+    public ConcreteSyntaxTreeNode(Production production) {
+        this.production = production;
     }
 
     public Token getToken() {
         return token;
     }
 
-    public GrammarRule getRule() {
-        return rule;
+    public Production getProduction() {
+        return production;
     }
 
     public void addChild(ConcreteSyntaxTreeNode child) {
@@ -32,8 +32,8 @@ public class ConcreteSyntaxTreeNode implements IPrintableTreeNode<ConcreteSyntax
 
     @Override
     public String getDisplayValue() {
-        if(this.rule != null) {
-            return getRule().leftHandSymbol().name();
+        if(this.production != null) {
+            return getProduction().leftHandSymbol().name();
         } else if(getToken() != null) {
             if(getToken().getKeepInAST()) {
                 return getToken().getValue();

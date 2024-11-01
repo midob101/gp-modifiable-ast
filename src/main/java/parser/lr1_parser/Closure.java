@@ -1,6 +1,6 @@
 package parser.lr1_parser;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import parser.lr1_parser.items.Item;
 import parser.lr1_parser.items.ItemSet;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Closure {
     /**
-     * Decorates an item set by the relevant grammar rules for this set.
+     * Decorates an item set by the relevant grammar productions for this set.
      * This function works in place. The item set passed as reference will be modified and new entries will be added
      * if required.
      *
@@ -26,10 +26,10 @@ public class Closure {
      * This follows the algorithm defined in the following lecture (page 6).
      * https://web.stanford.edu/class/archive/cs/cs143/cs143.1128/handouts/110%20LR%20and%20SLR%20Parsing.pdf
      *
-     * @param grammarRules The list of productions
+     * @param productions The list of productions
      * @param itemSet The item set to calculate the closure for
      */
-    public static void decorateClosure(List<GrammarRule> grammarRules, ItemSet itemSet) {
+    public static void decorateClosure(List<Production> productions, ItemSet itemSet) {
         boolean hasChanges = true;
         while (hasChanges) {
             hasChanges = false;
@@ -38,11 +38,11 @@ public class Closure {
             LinkedList<Item> addedItems = new LinkedList<>();
             for (Item item : itemSet.getItems()) {
                 if(!item.isPosAtEnd() && !item.getSymbolAtPos().isTerminal()) {
-                    for(GrammarRule production: grammarRules) {
+                    for(Production production: productions) {
                         if(production.leftHandSymbol().equals(item.getSymbolAtPos())) {
                             List<Symbol> calculateFirstFor = item.getRemainingSymbols();
                             calculateFirstFor.add(item.lookaheadSymbol());
-                            FirstSet first = FirstSet.generate(grammarRules, calculateFirstFor);
+                            FirstSet first = FirstSet.generate(productions, calculateFirstFor);
                             for(Symbol terminal: first.getSymbolList()) {
                                 addedItems.add(new Item(production, 0, terminal));
                             }

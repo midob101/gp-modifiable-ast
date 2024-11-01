@@ -1,6 +1,6 @@
 package selectors.structural;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import lexer.LexerDefinition;
 import lexer.Token;
 import org.junit.jupiter.api.Assertions;
@@ -17,7 +17,7 @@ public class HasChildSelectorTest {
 
     @Test
     public void testNoChildren() {
-        GrammarRule r1 = Mockito.mock(GrammarRule.class);
+        Production r1 = Mockito.mock(Production.class);
         ProductionTreeNode root = new ProductionTreeNode(r1);
         HasChildSelector selector = new HasChildSelector(new TrueSelectorStub());
         Assertions.assertFalse(selector.matches(root));
@@ -25,8 +25,8 @@ public class HasChildSelectorTest {
 
     @Test
     public void testOneChildTrueSelector() throws AddingConnectedNode {
-        GrammarRule r1 = Mockito.mock(GrammarRule.class);
-        GrammarRule r2 = Mockito.mock(GrammarRule.class);
+        Production r1 = Mockito.mock(Production.class);
+        Production r2 = Mockito.mock(Production.class);
         ProductionTreeNode root = new ProductionTreeNode(r1);
         ProductionTreeNode child = new ProductionTreeNode(r2);
         root.addChild(child);
@@ -36,8 +36,8 @@ public class HasChildSelectorTest {
 
     @Test
     public void testOneChildFalseSelector() throws AddingConnectedNode {
-        GrammarRule r1 = Mockito.mock(GrammarRule.class);
-        GrammarRule r2 = Mockito.mock(GrammarRule.class);
+        Production r1 = Mockito.mock(Production.class);
+        Production r2 = Mockito.mock(Production.class);
         ProductionTreeNode root = new ProductionTreeNode(r1);
         ProductionTreeNode child = new ProductionTreeNode(r2);
         root.addChild(child);
@@ -47,7 +47,7 @@ public class HasChildSelectorTest {
 
     @Test
     public void testNestedChild() throws AddingConnectedNode {
-        GrammarRule production = Mockito.mock(GrammarRule.class);
+        Production production = Mockito.mock(Production.class);
 
         Token t1 = Mockito.mock(Token.class);
         LexerDefinition ld1 = Mockito.mock(LexerDefinition.class);

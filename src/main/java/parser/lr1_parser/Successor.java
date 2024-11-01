@@ -1,6 +1,6 @@
 package parser.lr1_parser;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import parser.lr1_parser.items.Item;
 import parser.lr1_parser.items.ItemFamily;
@@ -25,7 +25,7 @@ public class Successor {
      * @param family the entire item family. required to find identical item sets to the generated one
      * @return The successor item set
      */
-    public ItemSet generateSuccessor(List<GrammarRule> g, ItemSet source, Symbol x, ItemFamily family) {
+    public ItemSet generateSuccessor(List<Production> g, ItemSet source, Symbol x, ItemFamily family) {
         if(cache.containsKey(source) && cache.get(source).containsKey(x)) {
             return cache.get(source).get(x);
         }

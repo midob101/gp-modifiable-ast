@@ -1,7 +1,7 @@
 package parser.lr1_parser;
 
+import grammar.Production;
 import syntax_tree.ConcreteSyntaxTreeNode;
-import grammar.GrammarRule;
 import grammar.Symbol;
 import language_definitions.LanguageDefinition;
 import lexer.Token;
@@ -85,11 +85,11 @@ public class Parser {
                     } else if (action.getClass() == ReduceAction.class) {
                         // Reduce the production matched.
                         ReduceAction reduceAction = (ReduceAction) action;
-                        GrammarRule rule = reduceAction.getReducedRule();
-                        Symbol s = rule.leftHandSymbol();
-                        ConcreteSyntaxTreeNode newNode = new ConcreteSyntaxTreeNode(rule);
-                        int remaining = rule.getSymbols().size();
-                        for (int i = 0; i < rule.getSymbols().size(); i++) {
+                        Production production = reduceAction.getReducedProduction();
+                        Symbol s = production.leftHandSymbol();
+                        ConcreteSyntaxTreeNode newNode = new ConcreteSyntaxTreeNode(production);
+                        int remaining = production.getSymbols().size();
+                        for (int i = 0; i < production.getSymbols().size(); i++) {
                             stack.pop();
                             ConcreteSyntaxTreeNode child = danglingTreeNodes.removeLast();
                             newNode.addChild(child);
@@ -111,7 +111,7 @@ public class Parser {
                         stack.push(gotoTable.getTarget(currentTopOfStack, s));
 
                         danglingTreeNodes.add(newNode);
-                        Logger.debug(LoggerComponents.PARSER, "Reducing grammar rule " + rule);
+                        Logger.debug(LoggerComponents.PARSER, "Reducing production " + production);
                     } else if (action.getClass() == AcceptAction.class) {
                         return getRootNode(danglingTreeNodes);
                     }
@@ -138,7 +138,7 @@ public class Parser {
     private ConcreteSyntaxTreeNode getRootNode(LinkedList<ConcreteSyntaxTreeNode> danglingTreeNodes) {
         ConcreteSyntaxTreeNode rootNode = null;
         for(ConcreteSyntaxTreeNode node: danglingTreeNodes) {
-            if(node.getRule() != null) {
+            if(node.getProduction() != null) {
                 rootNode = node;
                 break;
             }

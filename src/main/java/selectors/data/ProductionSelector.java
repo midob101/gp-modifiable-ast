@@ -17,7 +17,7 @@ public class ProductionSelector extends BaseSelector {
     @Override
     public boolean matches(AbstractSyntaxTreeNode treeNode) {
         if(treeNode instanceof ProductionTreeNode convertedNode) {
-            return convertedNode.getRule().leftHandSymbol().name().equals(this.production);
+            return convertedNode.getProduction().leftHandSymbol().name().equals(this.production);
         }
         return false;
     }

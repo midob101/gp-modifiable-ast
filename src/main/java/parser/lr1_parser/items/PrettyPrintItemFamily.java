@@ -1,6 +1,6 @@
 package parser.lr1_parser.items;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 
 public class PrettyPrintItemFamily {
@@ -17,11 +17,11 @@ public class PrettyPrintItemFamily {
         for(ItemSet itemSet: itemFamily.getItemSets()) {
             sb.append("I_").append(itemSet).append(":     ");
             for(Item item: itemSet.getItems()) {
-                GrammarRule rule = item.grammarRule();
-                sb.append(rule.leftHandSymbol().name())
+                Production production = item.production();
+                sb.append(production.leftHandSymbol().name())
                         .append(" -> ");
                 int curPos = 0;
-                for(Symbol symbol: rule.getSymbols()) {
+                for(Symbol symbol: production.getSymbols()) {
                     if(curPos == item.pos()) {
                         sb.append(".");
                     }

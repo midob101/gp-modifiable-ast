@@ -29,15 +29,15 @@ public class FirstSetTest {
         Symbol b = new Symbol("b", true);
         Symbol c = new Symbol("c", true);
 
-        GrammarRule g1 = new GrammarRule(S, List.of(A, B));
-        GrammarRule g2 = new GrammarRule(A, List.of(C, a));
-        GrammarRule g3 = new GrammarRule(A, List.of());
-        GrammarRule g4 = new GrammarRule(B, List.of(B, a, A, C));
-        GrammarRule g5 = new GrammarRule(B, List.of(c));
-        GrammarRule g6 = new GrammarRule(C, List.of(b));
-        GrammarRule g7 = new GrammarRule(C, List.of());
+        Production g1 = new Production(S, List.of(A, B));
+        Production g2 = new Production(A, List.of(C, a));
+        Production g3 = new Production(A, List.of());
+        Production g4 = new Production(B, List.of(B, a, A, C));
+        Production g5 = new Production(B, List.of(c));
+        Production g6 = new Production(C, List.of(b));
+        Production g7 = new Production(C, List.of());
 
-        List<GrammarRule> grammar = List.of(g1, g2, g3, g4, g5, g6, g7);
+        List<Production> grammar = List.of(g1, g2, g3, g4, g5, g6, g7);
 
         Set<Symbol> symbolSet = FirstSet.generate(grammar, S).getSymbolList();
         Assertions.assertEquals(Set.of(a, b, c), symbolSet);
@@ -65,10 +65,10 @@ public class FirstSetTest {
         Symbol A = new Symbol("A", false);
         Symbol B = new Symbol("B", false);
 
-        GrammarRule g1 = new GrammarRule(A, List.of(B));
-        GrammarRule g2 = new GrammarRule(B, List.of(A));
+        Production g1 = new Production(A, List.of(B));
+        Production g2 = new Production(B, List.of(A));
 
-        List<GrammarRule> grammar = List.of(g1, g2);
+        List<Production> grammar = List.of(g1, g2);
 
         Set<Symbol> symbolSet = FirstSet.generate(grammar, A).getSymbolList();
         Assertions.assertEquals(Set.of(), symbolSet);
@@ -88,16 +88,16 @@ public class FirstSetTest {
         Symbol C = new Symbol("C", false);
         Symbol c = new Symbol("c", true);
 
-        GrammarRule g1 = new GrammarRule(A, List.of(B));
-        GrammarRule g2 = new GrammarRule(A, List.of());
-        GrammarRule g3 = new GrammarRule(B, List.of(C));
-        GrammarRule g4 = new GrammarRule(B, List.of());
-        GrammarRule g5 = new GrammarRule(C, List.of(c));
+        Production g1 = new Production(A, List.of(B));
+        Production g2 = new Production(A, List.of());
+        Production g3 = new Production(B, List.of(C));
+        Production g4 = new Production(B, List.of());
+        Production g5 = new Production(C, List.of(c));
 
-        List<GrammarRule> grammar = List.of(g1, g2, g3, g4, g5);
+        List<Production> grammar = List.of(g1, g2, g3, g4, g5);
 
         /**
-         * This should return the first symbol set of a grammar rule equivalent to
+         * This should return the first symbol set of a grammar production equivalent to
          *      DUMMY   ->  ABc
          * That should be only c.
          */
@@ -105,7 +105,7 @@ public class FirstSetTest {
         Assertions.assertEquals(Set.of(c), symbolSet);
 
         /**
-         * This should return the first symbol set of a grammar rule equivalent to
+         * This should return the first symbol set of a grammar production equivalent to
          *      DUMMY   ->  AB
          * That should be c and epsilon, as the c is not required anymore.
          */
@@ -113,7 +113,7 @@ public class FirstSetTest {
         Assertions.assertEquals(Set.of(c, Symbol.EPSILON), symbolSet);
 
         /**
-         * This should return the first symbol of the grammar rule with A on the left hand side.
+         * This should return the first symbol of the grammar production with A on the left hand side.
          * This is c and epsilon
          *
          * The return values are different, because the method above requires the c at the end.

@@ -1,13 +1,12 @@
 package selectors.data;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import lexer.LexerDefinition;
 import lexer.Token;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import syntax_tree.ast.AbstractSyntaxTreeNode;
 import syntax_tree.ast.ProductionTreeNode;
 import syntax_tree.ast.TokenTreeNode;
 
@@ -15,7 +14,7 @@ public class TokenSelectorTest {
 
     @Test
     public void testProductionNode() {
-        GrammarRule r1 = Mockito.mock(GrammarRule.class);
+        Production r1 = Mockito.mock(Production.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("test", false));
         ProductionTreeNode node = new ProductionTreeNode(r1);
         TokenSelector selector = new TokenSelector("test");
@@ -35,7 +34,7 @@ public class TokenSelectorTest {
 
     @Test
     public void testDoesNotMatchAlias() {
-        GrammarRule r1 = Mockito.mock(GrammarRule.class);
+        Production r1 = Mockito.mock(Production.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("test1", false));
         ProductionTreeNode node = new ProductionTreeNode(r1);
         node.setAlias("test1");

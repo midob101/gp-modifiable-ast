@@ -1,22 +1,22 @@
 package syntax_tree.ast;
 
-import grammar.GrammarRule;
+import grammar.Production;
 
 public class ProductionTreeNode extends AbstractSyntaxTreeNode {
 
-    private final GrammarRule production;
+    private final Production production;
 
     /**
-     * Creates a tree node based on a grammar production rule
+     * Creates a tree node based on a grammar production
      */
-    public ProductionTreeNode(GrammarRule rule) {
-        this.production = rule;
+    public ProductionTreeNode(Production production) {
+        this.production = production;
     }
 
     /**
      * @return production
      */
-    public GrammarRule getRule() {
+    public Production getProduction() {
         return production;
     }
 
@@ -27,7 +27,7 @@ public class ProductionTreeNode extends AbstractSyntaxTreeNode {
      */
     @Override
     public String getDisplayValue() {
-        String displayValue = "ProductionTreeNode: " + getRule().leftHandSymbol().name();
+        String displayValue = "ProductionTreeNode: " + getProduction().leftHandSymbol().name();
         if(this.getAlias() != null) {
             displayValue += ", alias:" + this.getAlias();
         }

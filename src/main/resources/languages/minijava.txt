@@ -55,7 +55,7 @@ LEXER_RULES
 HIDDEN_LEXER_RULES
     whitespace, single_line_comment, multi_line_comment;
 
-GRAMMAR_RULES
+PRODUCTIONS
     S                           ->  MAIN_CLASS CLASS_DECLARATIONS[inline];
     CLASS_DECLARATIONS[list]    ->  CLASS_DECLARATION CLASS_DECLARATIONS | EPSILON;
     CLASS_DECLARATION           ->  class_stmt[hidden] identifier[alias=className] curly_bracket_open[hidden] VAR_DECLARATIONS[inline] METHOD_DECLARATIONS[inline] curly_bracket_close[hidden];

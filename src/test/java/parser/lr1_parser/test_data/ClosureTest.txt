@@ -1,4 +1,4 @@
-[Item{grammarRule=S -> [A - Nonterminal,B - Nonterminal,]
-, pos=0, lookaheadSymbol=Symbol[name=END_OF_INPUT, isTerminal=true]}, Item{grammarRule=A -> [a - Terminal,]
-, pos=0, lookaheadSymbol=Symbol[name=b, isTerminal=true]}, Item{grammarRule=A -> [EPSILON - Nonterminal,]
+[Item{production=S -> [A - Nonterminal,B - Nonterminal,]
+, pos=0, lookaheadSymbol=Symbol[name=END_OF_INPUT, isTerminal=true]}, Item{production=A -> [a - Terminal,]
+, pos=0, lookaheadSymbol=Symbol[name=b, isTerminal=true]}, Item{production=A -> [EPSILON - Nonterminal,]
 , pos=0, lookaheadSymbol=Symbol[name=b, isTerminal=true]}]

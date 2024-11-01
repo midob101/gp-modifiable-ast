@@ -1,6 +1,6 @@
 package parser.lr1_parser.items;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import language_definitions.LanguageDefinition;
 import logger.Logger;
@@ -30,14 +30,14 @@ public class ItemFamily {
      * @param successor The successor instance
      */
     public void create(LanguageDefinition languageDefinition, Successor successor) {
-        List<GrammarRule> grammarRules = languageDefinition.getGrammarRules();
+        List<Production> productions = languageDefinition.getProductions();
         Set<Symbol> allGrammarSymbols = languageDefinition.getAllGrammarSymbols();
         Symbol startSymbol = languageDefinition.getGrammarStartSymbol();
         Symbol startClone = Symbol.INTERNAL_START_COPY;
-        Item initial = new Item(new GrammarRule(startClone, List.of(startSymbol)), 0, Symbol.END_OF_INPUT);
+        Item initial = new Item(new Production(startClone, List.of(startSymbol)), 0, Symbol.END_OF_INPUT);
         start = new ItemSet();
         start.addItem(initial);
-        Closure.decorateClosure(grammarRules, start);
+        Closure.decorateClosure(productions, start);
         this.itemSets.add(start);
 
         Queue<ItemSet> toBeDone = new LinkedList<>();
@@ -46,7 +46,7 @@ public class ItemFamily {
         while(!toBeDone.isEmpty()) {
             ItemSet itemSet = toBeDone.poll();
             for(Symbol symbol : allGrammarSymbols) {
-                ItemSet successorSet = successor.generateSuccessor(grammarRules, itemSet, symbol, this);
+                ItemSet successorSet = successor.generateSuccessor(productions, itemSet, symbol, this);
                 if(!successorSet.isEmpty()) {
                     ItemSet existing = this.getSimilarItemSet(successorSet);
                     if(existing == null) {

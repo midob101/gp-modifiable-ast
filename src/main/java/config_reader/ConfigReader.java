@@ -1,6 +1,6 @@
 package config_reader;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import grammar.SymbolModifier;
 import language_definitions.LanguageDefinition;
@@ -39,7 +39,7 @@ public class ConfigReader {
                     case "LEXER_RULES":
                     case "HIDDEN_LEXER_RULES":
                     case "LEXER_POSTPROCESSORS":
-                    case "GRAMMAR_RULES":
+                    case "PRODUCTIONS":
                         segment = line;
                         segmentChanged = true;
                         break;
@@ -71,8 +71,8 @@ public class ConfigReader {
                         case "LEXER_POSTPROCESSORS":
                             ConfigReader.readLexerPostprocessors(concatted, resultLanguage);
                             break;
-                        case "GRAMMAR_RULES":
-                            ConfigReader.readGrammarRules(concatted, resultLanguage);
+                        case "PRODUCTIONS":
+                            ConfigReader.readProductions(concatted, resultLanguage);
                             break;
                     }
 
@@ -195,9 +195,9 @@ public class ConfigReader {
     }
 
     /**
-     * Creates the grammar rules for a definition
+     * Creates the grammar productions for a definition
      */
-    private static void readGrammarRules(String concatted, LanguageDefinition resultLanguage) {
+    private static void readProductions(String concatted, LanguageDefinition resultLanguage) {
         String[] parts = concatted.split("->");
         NameAndModifiers lhsNameAndModifiers = splitNameWithModifiers(parts[0]);
         Symbol leftHandSideSymbol = new Symbol(lhsNameAndModifiers.name(), false);
@@ -221,8 +221,8 @@ public class ConfigReader {
                 }
             }
 
-            GrammarRule grammarRule = new GrammarRule(leftHandSideSymbol, symbols, allSymbolModifiers, lhsNameAndModifiers.modifiers());
-            resultLanguage.addGrammarRule(grammarRule);
+            Production production = new Production(leftHandSideSymbol, symbols, allSymbolModifiers, lhsNameAndModifiers.modifiers());
+            resultLanguage.addProduction(production);
         }
     }
 

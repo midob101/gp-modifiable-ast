@@ -6,6 +6,6 @@ LEXER_RULES
     a =   "a";
     b =   "b";
 
-GRAMMAR_RULES
+PRODUCTIONS
     S   ->  X X;
     X   ->  a X | b;

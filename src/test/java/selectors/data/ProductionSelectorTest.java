@@ -1,13 +1,12 @@
 package selectors.data;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import lexer.LexerDefinition;
 import lexer.Token;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import syntax_tree.ast.AbstractSyntaxTreeNode;
 import syntax_tree.ast.ProductionTreeNode;
 import syntax_tree.ast.StringTreeNode;
 import syntax_tree.ast.TokenTreeNode;
@@ -23,7 +22,7 @@ public class ProductionSelectorTest {
 
     @Test
     public void testProductionNameDoesNotMatch() {
-        GrammarRule r1 = Mockito.mock(GrammarRule.class);
+        Production r1 = Mockito.mock(Production.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("TEST1", false));
         ProductionTreeNode node = new ProductionTreeNode(r1);
         ProductionSelector selector = new ProductionSelector("TEST");
@@ -32,7 +31,7 @@ public class ProductionSelectorTest {
 
     @Test
     public void testDoesNotMatchAlias() {
-        GrammarRule r1 = Mockito.mock(GrammarRule.class);
+        Production r1 = Mockito.mock(Production.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("TEST1", false));
         ProductionTreeNode node = new ProductionTreeNode(r1);
         node.setAlias("TEST1");
@@ -55,7 +54,7 @@ public class ProductionSelectorTest {
 
     @Test
     public void testDoesMatch() {
-        GrammarRule r1 = Mockito.mock(GrammarRule.class);
+        Production r1 = Mockito.mock(Production.class);
         Mockito.when(r1.leftHandSymbol()).thenReturn(new Symbol("TEST", false));
         ProductionTreeNode node = new ProductionTreeNode(r1);
         ProductionSelector selector = new ProductionSelector("TEST");

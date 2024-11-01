@@ -1,6 +1,6 @@
 package language_definitions;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import lexer.LexerDefinition;
 import logger.Logger;
@@ -23,7 +23,7 @@ public class LanguageDefinition {
     private String multilineCommentStyleEnd;
     private boolean caseSensitive = true;
     private final List<LexerDefinition> lexerDefinitionList = new LinkedList<>();
-    private final List<GrammarRule> grammarRules = new LinkedList<>();
+    private final List<Production> productions = new LinkedList<>();
     private Symbol grammarStartSymbol;
 
     public String getLanguageName() {
@@ -98,12 +98,12 @@ public class LanguageDefinition {
         return lexerDefinitionList;
     }
 
-    public void addGrammarRule(GrammarRule grammarRule) {
-        this.grammarRules.add(grammarRule);
+    public void addProduction(Production production) {
+        this.productions.add(production);
     }
 
-    public List<GrammarRule> getGrammarRules() {
-        return grammarRules;
+    public List<Production> getProductions() {
+        return productions;
     }
 
     public void setGrammarStartSymbol(Symbol symbol) {
@@ -116,9 +116,9 @@ public class LanguageDefinition {
 
     public Set<Symbol> getAllGrammarSymbols() {
         Set<Symbol> symbols = new LinkedHashSet<>();
-        for(GrammarRule grammarRule : grammarRules) {
-            symbols.addAll(grammarRule.getSymbols());
-            symbols.add(grammarRule.leftHandSymbol());
+        for(Production production : productions) {
+            symbols.addAll(production.getSymbols());
+            symbols.add(production.leftHandSymbol());
         }
         return symbols;
     }
@@ -131,11 +131,11 @@ public class LanguageDefinition {
     public boolean isValid() {
         boolean isValid = true;
         List<LexerDefinition> terminals = this.getLexerDefinitionList();
-        List<GrammarRule> grammarRules = this.getGrammarRules();
+        List<Production> productions = this.getProductions();
 
         for(Symbol symbol : this.getAllGrammarSymbols()) {
             if(!symbol.isTerminal()) {
-                if(grammarRules.stream().filter((rule) -> rule.leftHandSymbol().equals(symbol)).findAny().isEmpty()) {
+                if(productions.stream().filter((production) -> production.leftHandSymbol().equals(symbol)).findAny().isEmpty()) {
                     Logger.err(LoggerComponents.CONFIG_READER, "Missing definition of non terminal " + symbol.name());
                     isValid = false;
                 }

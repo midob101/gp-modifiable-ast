@@ -6,5 +6,5 @@ LEXER_RULES
     bracket_open = "(";
     bracket_close = ")";
 
-GRAMMAR_RULES
+PRODUCTIONS
     S   ->  bracket_open S bracket_close S | EPSILON;

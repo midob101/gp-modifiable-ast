@@ -1,3 +1,3 @@
-[Item{grammarRule=S -> [A - Nonterminal,B - Nonterminal,]
-, pos=1, lookaheadSymbol=Symbol[name=a, isTerminal=true]}, Item{grammarRule=B -> [b - Terminal,]
+[Item{production=S -> [A - Nonterminal,B - Nonterminal,]
+, pos=1, lookaheadSymbol=Symbol[name=a, isTerminal=true]}, Item{production=B -> [b - Terminal,]
 , pos=0, lookaheadSymbol=Symbol[name=a, isTerminal=true]}]

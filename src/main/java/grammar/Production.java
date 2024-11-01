@@ -4,12 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * TODO: Rename to production
- * Also adjust variable names, comments, etc.
- * Keep it at production at all times.
- */
-public final class GrammarRule {
+public final class Production {
     private final Symbol leftHandSymbol;
     private final List<Symbol> symbols;
     private final List<List<SymbolModifier>> symbolModifiers;
@@ -18,7 +13,7 @@ public final class GrammarRule {
     /**
      *
      */
-    public GrammarRule(Symbol leftHandSymbol, List<Symbol> symbols, List<List<SymbolModifier>> symbolModifiers, List<SymbolModifier> leftHandModifiers) {
+    public Production(Symbol leftHandSymbol, List<Symbol> symbols, List<List<SymbolModifier>> symbolModifiers, List<SymbolModifier> leftHandModifiers) {
         if(symbolModifiers.size() != symbols.size()) {
             throw new RuntimeException("The symbol modifiers list has to be same length as the symbols list");
         }
@@ -28,7 +23,7 @@ public final class GrammarRule {
         this.leftHandModifiers = leftHandModifiers;
     }
 
-    public GrammarRule(Symbol leftHandSymbol, List<Symbol> symbols) {
+    public Production(Symbol leftHandSymbol, List<Symbol> symbols) {
         this.leftHandSymbol = leftHandSymbol;
         this.symbols = symbols;
         this.symbolModifiers = new LinkedList<>();
@@ -85,7 +80,7 @@ public final class GrammarRule {
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (GrammarRule) obj;
+        var that = (Production) obj;
         return Objects.equals(this.leftHandSymbol, that.leftHandSymbol) &&
                 Objects.equals(this.symbols, that.symbols) &&
                 Objects.equals(this.symbolModifiers, that.symbolModifiers) &&

@@ -1,36 +1,36 @@
 package parser.lr1_parser.items;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public record Item(GrammarRule grammarRule, int pos, Symbol lookaheadSymbol) {
+public record Item(Production production, int pos, Symbol lookaheadSymbol) {
 
     /**
-     * @return true if the position is at the end of the grammar rule
+     * @return true if the position is at the end of the production
      */
     public boolean isPosAtEnd() {
-        return this.grammarRule.getSymbols().size() <= pos;
+        return this.production.getSymbols().size() <= pos;
     }
 
     /**
-     * @return the symbol in the grammar rule that is at the current position
+     * @return the symbol in the production that is at the current position
      */
     public Symbol getSymbolAtPos() {
         if (!this.isPosAtEnd()) {
-            return this.grammarRule.getSymbols().get(pos);
+            return this.production.getSymbols().get(pos);
         }
         return null;
     }
 
     /**
-     * @return a new item, with the same grammar rule and lookahead but the position advanced to the next symbol.
+     * @return a new item, with the same production and lookahead but the position advanced to the next symbol.
      */
     public Item getNextItem() {
         if (!this.isPosAtEnd()) {
-            return new Item(grammarRule, pos + 1, lookaheadSymbol);
+            return new Item(production, pos + 1, lookaheadSymbol);
         }
         return null;
     }
@@ -40,9 +40,9 @@ public record Item(GrammarRule grammarRule, int pos, Symbol lookaheadSymbol) {
      */
     public List<Symbol> getRemainingSymbols() {
         LinkedList<Symbol> remainingSymbols = new LinkedList<>();
-        int size = this.grammarRule.getSymbols().size();
+        int size = this.production.getSymbols().size();
         for (int i = pos + 1; i < size; i++) {
-            remainingSymbols.add(this.grammarRule.getSymbols().get(i));
+            remainingSymbols.add(this.production.getSymbols().get(i));
         }
         return remainingSymbols;
     }
@@ -50,7 +50,7 @@ public record Item(GrammarRule grammarRule, int pos, Symbol lookaheadSymbol) {
     @Override
     public String toString() {
         return "Item{" +
-                "grammarRule=" + grammarRule +
+                "production=" + production +
                 ", pos=" + pos +
                 ", lookaheadSymbol=" + lookaheadSymbol +
                 '}';

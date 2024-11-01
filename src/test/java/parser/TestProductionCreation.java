@@ -13,12 +13,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class TestGrammarRuleCreation {
+public class TestProductionCreation {
 
     @Test
     public void testCreation() throws IOException, ConfigReaderException {
         LanguageDefinition languageDefinition = ConfigReader.read(new File("src/test/java/languages/ab.txt"));
         String expected = Files.readString(Path.of("src/test/java/parser/results/ab.txt"), StandardCharsets.UTF_8);
-        Assertions.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(languageDefinition.getGrammarRules().toString()));
+        Assertions.assertEquals(StringUtilities.useCRLF(expected), StringUtilities.useCRLF(languageDefinition.getProductions().toString()));
     }
 }

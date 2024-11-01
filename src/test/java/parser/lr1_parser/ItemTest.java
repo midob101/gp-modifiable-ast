@@ -1,6 +1,6 @@
 package parser.lr1_parser;
 
-import grammar.GrammarRule;
+import grammar.Production;
 import grammar.Symbol;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,10 +17,10 @@ public class ItemTest {
         Symbol s1 = new Symbol("s1", false);
         Symbol s2 = new Symbol("s2", false);
 
-        Item item = new Item(new GrammarRule(s1, List.of(s1, s2)), 0, null);
+        Item item = new Item(new Production(s1, List.of(s1, s2)), 0, null);
         Assertions.assertEquals(s1, item.getSymbolAtPos());
 
-        item = new Item(new GrammarRule(s1, List.of(s1, s2)), 1, null);
+        item = new Item(new Production(s1, List.of(s1, s2)), 1, null);
         Assertions.assertEquals(s2, item.getSymbolAtPos());
     }
 
@@ -29,7 +29,7 @@ public class ItemTest {
         Symbol s1 = new Symbol("s1", false);
         Symbol s2 = new Symbol("s2", false);
 
-        Item item = new Item(new GrammarRule(s1, List.of(s1, s2)), 2, null);
+        Item item = new Item(new Production(s1, List.of(s1, s2)), 2, null);
         Assertions.assertNull(item.getSymbolAtPos());
     }
 
@@ -39,7 +39,7 @@ public class ItemTest {
         Symbol s2 = new Symbol("s2", false);
         Symbol s3 = new Symbol("s3", false);
 
-        Item item = new Item(new GrammarRule(s1, List.of(s1, s2, s3)), 0, null);
+        Item item = new Item(new Production(s1, List.of(s1, s2, s3)), 0, null);
         Assertions.assertEquals(List.of(s2, s3), item.getRemainingSymbols());
     }
 
@@ -49,7 +49,7 @@ public class ItemTest {
         Symbol s2 = new Symbol("s2", false);
         Symbol s3 = new Symbol("s3", false);
 
-        Item item = new Item(new GrammarRule(s1, List.of(s1, s2, s3)), 2, null);
+        Item item = new Item(new Production(s1, List.of(s1, s2, s3)), 2, null);
         Assertions.assertEquals(List.of(), item.getRemainingSymbols());
     }
 
@@ -59,7 +59,7 @@ public class ItemTest {
         Symbol s2 = new Symbol("s2", false);
         Symbol s3 = new Symbol("s3", false);
 
-        Item item = new Item(new GrammarRule(s1, List.of(s1, s2, s3)), 1, null);
+        Item item = new Item(new Production(s1, List.of(s1, s2, s3)), 1, null);
         Assertions.assertEquals(List.of(s3), item.getRemainingSymbols());
     }
 
@@ -73,8 +73,8 @@ public class ItemTest {
         LinkedList<Symbol> la2 = new LinkedList<>();
         la2.add(b);
 
-        GrammarRule g1 = new GrammarRule(a, la);
-        GrammarRule g2 = new GrammarRule(b, la2);
+        Production g1 = new Production(a, la);
+        Production g2 = new Production(b, la2);
 
         ReduceAction r1 = new ReduceAction(g1);
         ReduceAction r2 = new ReduceAction(g2);
