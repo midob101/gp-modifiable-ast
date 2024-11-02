@@ -74,8 +74,8 @@ class A
     }
 
     public int[] get_array(int a, int b) {
-        int[] ret;
-        return ret;
+        int[] return_val;
+        return/* this comment should not crash the process */return_val;
     }
 }
 

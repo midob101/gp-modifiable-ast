@@ -817,7 +817,7 @@ S
     │   │                   │   │       │       ├── [
     │   │                   │   │       │       ├── ]
     │   │                   │   │       │       └── whitespace
-    │   │                   │   │       ├── ret
+    │   │                   │   │       ├── return_val
     │   │                   │   │       ├── ;
     │   │                   │   │       └── whitespace
     │   │                   │   ├── STATEMENTS
@@ -845,7 +845,7 @@ S
     │   │                   │   │   └── STATEMENTS
     │   │                   │   │       ├── STATEMENT
     │   │                   │   │       │   └── ARRAY_ASSIGNMENT_STATEMENT
-    │   │                   │   │       │       ├── ret
+    │   │                   │   │       │       ├── return_val
     │   │                   │   │       │       ├── [
     │   │                   │   │       │       ├── EXPRESSION
     │   │                   │   │       │       │   └── CLAUSE
@@ -864,7 +864,7 @@ S
     │   │                   │   │       └── STATEMENTS
     │   │                   │   │           ├── STATEMENT
     │   │                   │   │           │   └── ARRAY_ASSIGNMENT_STATEMENT
-    │   │                   │   │           │       ├── ret
+    │   │                   │   │           │       ├── return_val
     │   │                   │   │           │       ├── [
     │   │                   │   │           │       ├── EXPRESSION
     │   │                   │   │           │       │   └── CLAUSE
@@ -882,11 +882,11 @@ S
     │   │                   │   │           │       └── whitespace
     │   │                   │   │           └── STATEMENTS
     │   │                   │   ├── return
-    │   │                   │   ├── whitespace
+    │   │                   │   ├── multi_line_comment
     │   │                   │   ├── EXPRESSION
     │   │                   │   │   └── CLAUSE
     │   │                   │   │       └── PRIMARY_EXPRESSION
-    │   │                   │   │           └── ret
+    │   │                   │   │           └── return_val
     │   │                   │   ├── ;
     │   │                   │   ├── whitespace
     │   │                   │   ├── }

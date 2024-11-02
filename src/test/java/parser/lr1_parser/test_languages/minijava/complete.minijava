@@ -96,11 +96,11 @@ class A
     }
 
     public int[] get_array(int a, int b) {
-        int[] ret;
+        int[] return_val;
         ret = new int[2];
-        ret[0] = a;
-        ret[1] = b;
-        return ret;
+        return_val[0] = a;
+        return_val[1] = b;
+        return/* this comment should not crash the process */return_val;
     }
 }
 

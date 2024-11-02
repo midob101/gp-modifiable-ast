@@ -310,7 +310,7 @@ ProductionTreeNode: S, aliases:[]
 │       │   ├── ProductionTreeNode: TYPE, aliases:[]
 │       │   │   └── ProductionTreeNode: ARRAY_TYPE, aliases:[]
 │       │   │       └── TokenTreeNode: int_type, alias:[] | value: int
-│       │   └── TokenTreeNode: identifier, alias:[varName] | value: ret
+│       │   └── TokenTreeNode: identifier, alias:[varName] | value: return_val
 │       ├── ProductionTreeNode: STATEMENT, aliases:[]
 │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
 │       │       ├── TokenTreeNode: identifier, alias:[varName] | value: ret
@@ -321,21 +321,21 @@ ProductionTreeNode: S, aliases:[]
 │       │                   └── TokenTreeNode: integer_literal, alias:[] | value: 2
 │       ├── ProductionTreeNode: STATEMENT, aliases:[]
 │       │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT, aliases:[]
-│       │       ├── TokenTreeNode: identifier, alias:[varName] | value: ret
+│       │       ├── TokenTreeNode: identifier, alias:[varName] | value: return_val
 │       │       ├── ProductionTreeNode: EXPRESSION, aliases:[]
 │       │       │   └── TokenTreeNode: integer_literal, alias:[] | value: 0
 │       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
 │       │           └── TokenTreeNode: identifier, alias:[varName] | value: a
 │       ├── ProductionTreeNode: STATEMENT, aliases:[]
 │       │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT, aliases:[]
-│       │       ├── TokenTreeNode: identifier, alias:[varName] | value: ret
+│       │       ├── TokenTreeNode: identifier, alias:[varName] | value: return_val
 │       │       ├── ProductionTreeNode: EXPRESSION, aliases:[]
 │       │       │   └── TokenTreeNode: integer_literal, alias:[] | value: 1
 │       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
 │       │           └── TokenTreeNode: identifier, alias:[varName] | value: b
 │       ├── TokenTreeNode: return_stmt, alias:[] | value: return
 │       └── ProductionTreeNode: EXPRESSION, aliases:[]
-│           └── TokenTreeNode: identifier, alias:[varName] | value: ret
+│           └── TokenTreeNode: identifier, alias:[varName] | value: return_val
 ├── ProductionTreeNode: CLASS_DECLARATION, aliases:[]
 │   ├── TokenTreeNode: identifier, alias:[className] | value: B
 │   ├── TokenTreeNode: identifier, alias:[extendedClassName] | value: A
