@@ -30,10 +30,12 @@ public class ParserTest {
     private static Parser bracketsParser;
     private static Parser mathParser;
     private static Parser miniJavaParser;
+    private static Parser miniJavaExtendedParser;
     private static LanguageDefinition aabaabLanguageDefinition;
     private static LanguageDefinition bracketsLanguageDefinition;
     private static LanguageDefinition mathLanguageDefinition;
     private static LanguageDefinition miniJavaLanguageDefinition;
+    private static LanguageDefinition miniJavaExtendedLanguageDefinition;
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
@@ -52,6 +54,10 @@ public class ParserTest {
         miniJavaLanguageDefinition = ConfigReader.read(new File("src/main/resources/languages/minijava.txt"));
         miniJavaParser = new Parser();
         miniJavaParser.initialize(miniJavaLanguageDefinition);
+
+        miniJavaExtendedLanguageDefinition = ConfigReader.read(new File("src/main/resources/languages/minijava_extended.txt"));
+        miniJavaExtendedParser = new Parser();
+        miniJavaExtendedParser.initialize(miniJavaExtendedLanguageDefinition);
     }
 
     @Test
@@ -117,6 +123,21 @@ public class ParserTest {
 
         String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/minijava/" + comparisonFile), StandardCharsets.UTF_8);
         ConcreteSyntaxTreeNode cst = miniJavaParser.createCST(tokenList);
+        AbstractSyntaxTreeNode ast = AbstractSyntaxTreeFactory.create(cst);
+        String prettyPrinted = TreePrettyPrinter.print(ast);
+        Assertions.assertEquals(
+                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(expected)),
+                StringUtilities.trimEmptyLines(StringUtilities.useCRLF(prettyPrinted))
+        );
+    }
+
+    @Test
+    public void testMiniJavaExtendedAst() throws IOException, LexerParseException {
+        Lexer lexer = new Lexer();
+        TokenList tokenList = lexer.runForFile("src/test/java/parser/lr1_parser/test_languages/minijava/complete.minijava_extended", miniJavaExtendedLanguageDefinition);
+
+        String expected = Files.readString(Path.of("src/test/java/parser/lr1_parser/test_data/minijava/complete_extended_ast.txt"), StandardCharsets.UTF_8);
+        ConcreteSyntaxTreeNode cst = miniJavaExtendedParser.createCST(tokenList);
         AbstractSyntaxTreeNode ast = AbstractSyntaxTreeFactory.create(cst);
         String prettyPrinted = TreePrettyPrinter.print(ast);
         Assertions.assertEquals(

@@ -27,8 +27,8 @@ class SubclassReturnValue
             _int_value = 5;
             _int_array = new int[5-2];
             _int_array[0] = 10;
-            bool_value =  true;
-            bool_value =  false;
+            bool_value = true;
+            bool_value = false;
 
             // If statement
             if(bool_value) {
