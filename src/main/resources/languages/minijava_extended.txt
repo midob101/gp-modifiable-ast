@@ -1,0 +1,115 @@
+LANGUAGE_DEF
+    name = minijava;
+    single_line_comment_available = true;
+    single_line_comment_style = //;
+    multi_line_comment_available = true;
+    multi_line_comment_style_start = /*;
+    multi_line_comment_style_end = */;
+    case_sensitive = true;
+    grammar_start = S;
+
+LEXER_RULES
+    whitespace              =   regex(\s+);
+    identifier              =   regex([a-zA-Z_][a-zA-Z_0-9]*);
+    integer_literal         =   regex([0-9]+(\.[0-9]+)?);
+    true_literal            =   "true";
+    false_literal           =   "false";
+    this_expression         =   regex(this(?!([a-zA-Z_0-9])));
+    new_expression          =   regex(new(?!([a-zA-Z_0-9])));
+    class_stmt              =   regex(class(?!([a-zA-Z_0-9])));
+    public_stmt             =   regex(public(?!([a-zA-Z_0-9])));
+    static_stmt             =   regex(static(?!([a-zA-Z_0-9])));
+    return_stmt             =   regex(return(?!([a-zA-Z_0-9])));
+    extents_stmt            =   regex(extends(?!([a-zA-Z_0-9])));
+    void_type               =   regex(void(?!([a-zA-Z_0-9])));
+    main_identifier         =   regex(main(?!([a-zA-Z_0-9])));
+    string_type             =   regex(String(?!([a-zA-Z_0-9])));
+    int_type                =   regex(int(?!([a-zA-Z_0-9])));
+    boolean_type            =   regex(boolean(?!([a-zA-Z_0-9])));
+    array_length_stmt       =   regex(length(?!([a-zA-Z_0-9])));
+    not                     =   "!";
+    bracket_open            =   "(";
+    bracket_close           =   ")";
+    curly_bracket_open      =   "{";
+    curly_bracket_close     =   "}";
+    square_bracket_open     =   "[";
+    square_bracket_close    =   "]";
+    dot                     =   ".";
+    comma                   =   ",";
+    semicolon               =   ";";
+    if                      =   regex(if(?!([a-zA-Z_0-9])));
+    else                    =   regex(else(?!([a-zA-Z_0-9])));
+    while                   =   regex(while(?!([a-zA-Z_0-9])));
+    compop                  =   regex(<[^=]|>[^=]|==|<=|>=);
+    assignment              =   "=";
+    plus                    =   "+";
+    minus                   =   "-";
+    multiply                =   "*";
+    and                     =   "&&";
+    or                      =   "||";
+    println                 =   "System.out.println";
+    single_line_comment     =   customMatcher(singleLineCommentMatcher);
+    multi_line_comment      =   customMatcher(multiLineCommentMatcher);
+
+HIDDEN_LEXER_RULES
+    whitespace, single_line_comment, multi_line_comment;
+
+PRODUCTIONS
+    S                           ->  MAIN_CLASS CLASS_DECLARATIONS[inline];
+    CLASS_DECLARATIONS[list]    ->  CLASS_DECLARATION CLASS_DECLARATIONS | EPSILON;
+    CLASS_DECLARATION           ->  class_stmt[hidden] identifier[alias=className] curly_bracket_open[hidden] VAR_DECLARATIONS[inline] METHOD_DECLARATIONS[inline] curly_bracket_close[hidden];
+    CLASS_DECLARATION           ->  class_stmt[hidden] identifier[alias=className] extents_stmt[hidden] identifier[alias=extendedClassName] curly_bracket_open[hidden] VAR_DECLARATIONS[inline] METHOD_DECLARATIONS[inline] curly_bracket_close[hidden];
+    MAIN_CLASS                  ->  class_stmt[hidden] identifier[alias=className] curly_bracket_open[hidden] public_stmt static_stmt void_type main_identifier
+                                    bracket_open[hidden] string_type square_bracket_open square_bracket_close identifier[alias=varName] bracket_close[hidden]
+                                    curly_bracket_open[hidden] VAR_DECLARATIONS[inline] STATEMENTS[inline] curly_bracket_close[hidden] curly_bracket_close[hidden];
+    METHOD_DECLARATIONS[list]   ->  METHOD_DECLARATION METHOD_DECLARATIONS | EPSILON;
+    METHOD_DECLARATION          ->  public_stmt TYPE identifier[alias=functionName] bracket_open[hidden] FORMAL_PARAMETER_LIST[inline] bracket_close[hidden] curly_bracket_open[hidden] VAR_DECLARATIONS[inline] STATEMENTS[inline] curly_bracket_close[hidden];
+    FORMAL_PARAMETER_LIST[list] ->  FORMAL_PARAMETER_LIST comma[hidden] FORMAL_PARAMETER | FORMAL_PARAMETER | EPSILON;
+    FORMAL_PARAMETER            ->  TYPE identifier[alias=parameterName];
+    VAR_DECLARATIONS[list]      ->  VAR_DECLARATIONS VAR_DECLARATION | EPSILON;
+    STATEMENTS[list]            ->  STATEMENT STATEMENTS | EPSILON;
+    VAR_DECLARATION             ->  TYPE identifier[alias=varName] semicolon[hidden];
+    STATEMENT                   ->  BLOCK | ASSIGNMENT_STATEMENT | ARRAY_ASSIGNMENT_STATEMENT | IF_STATEMENT | WHILE_STATEMENT | PRINT_STATEMENT | RETURN_STATEMENT;
+    RETURN_STATEMENT            ->  return_stmt EXPRESSION semicolon[hidden];
+    BLOCK                       ->  curly_bracket_open[hidden] STATEMENTS[inline] curly_bracket_close[hidden];
+    ASSIGNMENT_STATEMENT        ->  identifier[alias=varName] assignment[hidden] EXPRESSION semicolon[hidden];
+    ARRAY_ASSIGNMENT_STATEMENT  ->  identifier[alias=varName] square_bracket_open[hidden] EXPRESSION square_bracket_close[hidden] assignment[hidden] EXPRESSION semicolon[hidden];
+    IF_STATEMENT                ->  if[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] STATEMENT[alias=then] else[hidden] STATEMENT[alias=else];
+    WHILE_STATEMENT             ->  while[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] STATEMENT;
+    PRINT_STATEMENT             ->  println[hidden] bracket_open[hidden] EXPRESSION bracket_close[hidden] semicolon[hidden];
+    TYPE                        ->  ARRAY_TYPE | BOOLEAN_TYPE | INTEGER_TYPE | identifier[alias=className];
+    ARRAY_TYPE                  ->  int_type square_bracket_open[hidden] square_bracket_close[hidden];
+    BOOLEAN_TYPE                ->  boolean_type;
+    INTEGER_TYPE                ->  int_type;
+    EXPRESSION                  ->  AND_EXPRESSION
+                                    | COMPARE_EXPRESSION
+                                    | PLUS_EXPRESSION
+                                    | MINUS_EXPRESSION
+                                    | TIMES_EXPRESSION
+                                    | ARRAY_LOOKUP
+                                    | ARRAY_LENGTH
+                                    | MESSAGE_SEND
+                                    | CLAUSE[inline];
+    AND_EXPRESSION              ->  CLAUSE[inline,alias=left] and[hidden] CLAUSE[inline,alias=right];
+    COMPARE_EXPRESSION          ->  PRIMARY_EXPRESSION[inline,alias=left] compop PRIMARY_EXPRESSION[inline,alias=right];
+    PLUS_EXPRESSION             ->  PRIMARY_EXPRESSION[inline,alias=left] plus[hidden] PRIMARY_EXPRESSION[inline,alias=right];
+    MINUS_EXPRESSION            ->  PRIMARY_EXPRESSION[inline,alias=left] minus[hidden] PRIMARY_EXPRESSION[inline,alias=right];
+    TIMES_EXPRESSION            ->  PRIMARY_EXPRESSION[inline,alias=left] multiply[hidden] PRIMARY_EXPRESSION[inline,alias=right];
+    ARRAY_LOOKUP                ->  PRIMARY_EXPRESSION[inline] square_bracket_open[hidden] PRIMARY_EXPRESSION[inline] square_bracket_close[hidden];
+    ARRAY_LENGTH                ->  PRIMARY_EXPRESSION[inline] dot[hidden] array_length_stmt;
+    MESSAGE_SEND                ->  PRIMARY_EXPRESSION[inline,alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] bracket_close[hidden] |
+                                    PRIMARY_EXPRESSION[inline,alias=calledOn] dot[hidden] identifier[alias=functionName] bracket_open[hidden] EXPRESSION_LIST bracket_close[hidden];
+    EXPRESSION_LIST[list]       ->  EXPRESSION | EXPRESSION_LIST comma[hidden] EXPRESSION;
+    CLAUSE                      ->  NOT_EXPRESSION | PRIMARY_EXPRESSION[inline];
+    NOT_EXPRESSION              ->  not[hidden] CLAUSE[inline];
+    PRIMARY_EXPRESSION          ->  integer_literal
+                                    | true_literal
+                                    | false_literal
+                                    | identifier[alias=varName]
+                                    | this_expression
+                                    | ARRAY_ALLOCATION_EXPRESSION
+                                    | ALLOCATION_EXPRESSION
+                                    | BRACKET_EXPRESSION;
+    ARRAY_ALLOCATION_EXPRESSION ->  new_expression[hidden] int_type square_bracket_open[hidden] EXPRESSION square_bracket_close[hidden];
+    ALLOCATION_EXPRESSION       ->  new_expression[hidden] identifier[alias=className] bracket_open[hidden] bracket_close[hidden];
+    BRACKET_EXPRESSION          ->  bracket_open[hidden] EXPRESSION bracket_close[hidden];

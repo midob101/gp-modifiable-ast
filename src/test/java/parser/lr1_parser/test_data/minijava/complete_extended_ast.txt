@@ -1,0 +1,384 @@
+ProductionTreeNode: S, aliases:[]
+├── ProductionTreeNode: MAIN_CLASS, aliases:[]
+│   ├── TokenTreeNode: identifier, alias:[className] | value: SubclassReturnValue
+│   ├── TokenTreeNode: public_stmt, alias:[] | value: public
+│   ├── TokenTreeNode: static_stmt, alias:[] | value: static
+│   ├── TokenTreeNode: void_type, alias:[] | value: void
+│   ├── TokenTreeNode: main_identifier, alias:[] | value: main
+│   ├── TokenTreeNode: string_type, alias:[] | value: String
+│   ├── TokenTreeNode: square_bracket_open, alias:[] | value: [
+│   ├── TokenTreeNode: square_bracket_close, alias:[] | value: ]
+│   ├── TokenTreeNode: identifier, alias:[varName] | value: args
+│   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── TokenTreeNode: identifier, alias:[className] | value: A
+│   │   └── TokenTreeNode: identifier, alias:[varName] | value: a
+│   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   └── TokenTreeNode: identifier, alias:[varName] | value: _int_value
+│   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: ARRAY_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   └── TokenTreeNode: identifier, alias:[varName] | value: _int_array
+│   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: BOOLEAN_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: boolean_type, alias:[] | value: boolean
+│   │   └── TokenTreeNode: identifier, alias:[varName] | value: bool_value
+│   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   └── ProductionTreeNode: BLOCK, aliases:[]
+│   │       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │       │       ├── TokenTreeNode: identifier, alias:[varName] | value: a
+│   │       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       │           └── ProductionTreeNode: ALLOCATION_EXPRESSION, aliases:[]
+│   │       │               └── TokenTreeNode: identifier, alias:[className] | value: A
+│   │       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │       │       ├── TokenTreeNode: identifier, alias:[varName] | value: _int_value
+│   │       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       │           └── TokenTreeNode: integer_literal, alias:[] | value: 5
+│   │       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │       │       ├── TokenTreeNode: identifier, alias:[varName] | value: _int_array
+│   │       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       │           └── ProductionTreeNode: ARRAY_ALLOCATION_EXPRESSION, aliases:[]
+│   │       │               ├── TokenTreeNode: int_type, alias:[] | value: int
+│   │       │               └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       │                   └── ProductionTreeNode: MINUS_EXPRESSION, aliases:[]
+│   │       │                       ├── TokenTreeNode: integer_literal, alias:[left] | value: 5
+│   │       │                       └── TokenTreeNode: integer_literal, alias:[right] | value: 2
+│   │       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │       │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT, aliases:[]
+│   │       │       ├── TokenTreeNode: identifier, alias:[varName] | value: _int_array
+│   │       │       ├── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       │       │   └── TokenTreeNode: integer_literal, alias:[] | value: 0
+│   │       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       │           └── TokenTreeNode: integer_literal, alias:[] | value: 10
+│   │       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │       │       ├── TokenTreeNode: identifier, alias:[varName] | value: bool_value
+│   │       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       │           └── TokenTreeNode: true_literal, alias:[] | value: true
+│   │       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │       │       ├── TokenTreeNode: identifier, alias:[varName] | value: bool_value
+│   │       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       │           └── TokenTreeNode: false_literal, alias:[] | value: false
+│   │       └── ProductionTreeNode: STATEMENT, aliases:[]
+│   │           └── ProductionTreeNode: IF_STATEMENT, aliases:[]
+│   │               ├── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │               │   └── TokenTreeNode: identifier, alias:[varName] | value: bool_value
+│   │               ├── ProductionTreeNode: STATEMENT, aliases:[then]
+│   │               │   └── ProductionTreeNode: BLOCK, aliases:[]
+│   │               │       └── ProductionTreeNode: STATEMENT, aliases:[]
+│   │               │           └── ProductionTreeNode: WHILE_STATEMENT, aliases:[]
+│   │               │               ├── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │               │               │   └── ProductionTreeNode: AND_EXPRESSION, aliases:[]
+│   │               │               │       ├── TokenTreeNode: identifier, alias:[varName, left] | value: bool_value
+│   │               │               │       └── ProductionTreeNode: BRACKET_EXPRESSION, aliases:[right]
+│   │               │               │           └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │               │               │               └── ProductionTreeNode: AND_EXPRESSION, aliases:[]
+│   │               │               │                   ├── TokenTreeNode: false_literal, alias:[left] | value: false
+│   │               │               │                   └── ProductionTreeNode: BRACKET_EXPRESSION, aliases:[right]
+│   │               │               │                       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │               │               │                           └── ProductionTreeNode: COMPARE_EXPRESSION, aliases:[]
+│   │               │               │                               ├── TokenTreeNode: integer_literal, alias:[left] | value: 1
+│   │               │               │                               └── TokenTreeNode: integer_literal, alias:[right] | value: 5
+│   │               │               └── ProductionTreeNode: STATEMENT, aliases:[]
+│   │               │                   └── ProductionTreeNode: BLOCK, aliases:[]
+│   │               └── ProductionTreeNode: STATEMENT, aliases:[else]
+│   │                   └── ProductionTreeNode: BLOCK, aliases:[]
+│   │                       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │                       │   └── ProductionTreeNode: PRINT_STATEMENT, aliases:[]
+│   │                       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │                       │           └── TokenTreeNode: identifier, alias:[varName] | value: _int_value
+│   │                       └── ProductionTreeNode: STATEMENT, aliases:[]
+│   │                           └── ProductionTreeNode: PRINT_STATEMENT, aliases:[]
+│   │                               └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │                                   └── ProductionTreeNode: PLUS_EXPRESSION, aliases:[]
+│   │                                       ├── TokenTreeNode: identifier, alias:[varName, left] | value: _int_value
+│   │                                       └── ProductionTreeNode: BRACKET_EXPRESSION, aliases:[right]
+│   │                                           └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │                                               └── ProductionTreeNode: ARRAY_LOOKUP, aliases:[]
+│   │                                                   ├── TokenTreeNode: identifier, alias:[varName] | value: _int_array
+│   │                                                   └── TokenTreeNode: integer_literal, alias:[] | value: 2
+│   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT, aliases:[]
+│   │       ├── TokenTreeNode: identifier, alias:[varName] | value: _int_array
+│   │       ├── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       │   └── TokenTreeNode: integer_literal, alias:[] | value: 2
+│   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │           └── TokenTreeNode: integer_literal, alias:[] | value: 12939291
+│   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │       ├── TokenTreeNode: identifier, alias:[varName] | value: _int_value
+│   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │           └── ProductionTreeNode: TIMES_EXPRESSION, aliases:[]
+│   │               ├── TokenTreeNode: integer_literal, alias:[left] | value: 5
+│   │               └── TokenTreeNode: identifier, alias:[varName, right] | value: _int_value
+│   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │       ├── TokenTreeNode: identifier, alias:[varName] | value: _int_value
+│   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │           └── ProductionTreeNode: PLUS_EXPRESSION, aliases:[]
+│   │               ├── TokenTreeNode: integer_literal, alias:[left] | value: 5
+│   │               └── TokenTreeNode: identifier, alias:[varName, right] | value: _int_value
+│   └── ProductionTreeNode: STATEMENT, aliases:[]
+│       └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│           ├── TokenTreeNode: identifier, alias:[varName] | value: _int_value
+│           └── ProductionTreeNode: EXPRESSION, aliases:[]
+│               └── ProductionTreeNode: MINUS_EXPRESSION, aliases:[]
+│                   ├── TokenTreeNode: integer_literal, alias:[left] | value: 5
+│                   └── TokenTreeNode: identifier, alias:[varName, right] | value: _int_value
+├── ProductionTreeNode: CLASS_DECLARATION, aliases:[]
+│   ├── TokenTreeNode: identifier, alias:[className] | value: A
+│   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── TokenTreeNode: identifier, alias:[className] | value: A
+│   │   └── TokenTreeNode: identifier, alias:[varName] | value: a
+│   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   └── TokenTreeNode: identifier, alias:[varName] | value: _int_value
+│   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: ARRAY_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   └── TokenTreeNode: identifier, alias:[varName] | value: _int_array
+│   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: BOOLEAN_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: boolean_type, alias:[] | value: boolean
+│   │   └── TokenTreeNode: identifier, alias:[varName] | value: bool_value
+│   ├── ProductionTreeNode: METHOD_DECLARATION, aliases:[]
+│   │   ├── TokenTreeNode: public_stmt, alias:[] | value: public
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   ├── TokenTreeNode: identifier, alias:[functionName] | value: get_int_literal
+│   │   ├── TokenTreeNode: return_stmt, alias:[] | value: return
+│   │   └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       └── TokenTreeNode: integer_literal, alias:[] | value: 5
+│   ├── ProductionTreeNode: METHOD_DECLARATION, aliases:[]
+│   │   ├── TokenTreeNode: public_stmt, alias:[] | value: public
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   ├── TokenTreeNode: identifier, alias:[functionName] | value: get_int_literal2
+│   │   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:[varName] | value: ret
+│   │   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │   │       ├── TokenTreeNode: identifier, alias:[varName] | value: ret
+│   │   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │           └── TokenTreeNode: integer_literal, alias:[] | value: 928
+│   │   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │   │       ├── TokenTreeNode: identifier, alias:[varName] | value: ret
+│   │   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │           └── ProductionTreeNode: PLUS_EXPRESSION, aliases:[]
+│   │   │               ├── TokenTreeNode: identifier, alias:[varName, left] | value: ret
+│   │   │               └── TokenTreeNode: integer_literal, alias:[right] | value: 12423
+│   │   ├── TokenTreeNode: return_stmt, alias:[] | value: return
+│   │   └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       └── TokenTreeNode: identifier, alias:[varName] | value: ret
+│   ├── ProductionTreeNode: METHOD_DECLARATION, aliases:[]
+│   │   ├── TokenTreeNode: public_stmt, alias:[] | value: public
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   ├── TokenTreeNode: identifier, alias:[functionName] | value: get_sum
+│   │   ├── ProductionTreeNode: FORMAL_PARAMETER, aliases:[]
+│   │   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:[parameterName] | value: a
+│   │   ├── ProductionTreeNode: FORMAL_PARAMETER, aliases:[]
+│   │   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:[parameterName] | value: b
+│   │   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:[varName] | value: sum_test
+│   │   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │   │       ├── TokenTreeNode: identifier, alias:[varName] | value: sum_test
+│   │   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │           └── ProductionTreeNode: MESSAGE_SEND, aliases:[]
+│   │   │               ├── TokenTreeNode: this_expression, alias:[calledOn] | value: this
+│   │   │               ├── TokenTreeNode: identifier, alias:[functionName] | value: get_sum
+│   │   │               └── ProductionTreeNode: EXPRESSION_LIST, aliases:[]
+│   │   │                   └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │                       └── TokenTreeNode: identifier, alias:[varName] | value: random_int_array
+│   │   ├── TokenTreeNode: return_stmt, alias:[] | value: return
+│   │   └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       └── ProductionTreeNode: PLUS_EXPRESSION, aliases:[]
+│   │           ├── TokenTreeNode: identifier, alias:[varName, left] | value: a
+│   │           └── TokenTreeNode: identifier, alias:[varName, right] | value: b
+│   ├── ProductionTreeNode: METHOD_DECLARATION, aliases:[]
+│   │   ├── TokenTreeNode: public_stmt, alias:[] | value: public
+│   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   ├── TokenTreeNode: identifier, alias:[functionName] | value: get_sum
+│   │   ├── ProductionTreeNode: FORMAL_PARAMETER, aliases:[]
+│   │   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   │   └── ProductionTreeNode: ARRAY_TYPE, aliases:[]
+│   │   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:[parameterName] | value: a
+│   │   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:[varName] | value: i
+│   │   ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│   │   │   ├── ProductionTreeNode: TYPE, aliases:[]
+│   │   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│   │   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│   │   │   └── TokenTreeNode: identifier, alias:[varName] | value: sum
+│   │   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │   │       ├── TokenTreeNode: identifier, alias:[varName] | value: i
+│   │   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │           └── TokenTreeNode: integer_literal, alias:[] | value: 0
+│   │   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │   │       ├── TokenTreeNode: identifier, alias:[varName] | value: sum
+│   │   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │           └── TokenTreeNode: integer_literal, alias:[] | value: 0
+│   │   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │   └── ProductionTreeNode: WHILE_STATEMENT, aliases:[]
+│   │   │       ├── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │       │   └── ProductionTreeNode: COMPARE_EXPRESSION, aliases:[]
+│   │   │       │       ├── TokenTreeNode: identifier, alias:[varName, left] | value: i
+│   │   │       │       └── ProductionTreeNode: BRACKET_EXPRESSION, aliases:[right]
+│   │   │       │           └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │       │               └── ProductionTreeNode: ARRAY_LENGTH, aliases:[]
+│   │   │       │                   ├── TokenTreeNode: identifier, alias:[varName] | value: a
+│   │   │       │                   └── TokenTreeNode: array_length_stmt, alias:[] | value: length
+│   │   │       └── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │           └── ProductionTreeNode: BLOCK, aliases:[]
+│   │   │               ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │               │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │   │               │       ├── TokenTreeNode: identifier, alias:[varName] | value: sum
+│   │   │               │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │               │           └── ProductionTreeNode: PLUS_EXPRESSION, aliases:[]
+│   │   │               │               ├── TokenTreeNode: identifier, alias:[varName, left] | value: sum
+│   │   │               │               └── ProductionTreeNode: BRACKET_EXPRESSION, aliases:[right]
+│   │   │               │                   └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │               │                       └── ProductionTreeNode: ARRAY_LOOKUP, aliases:[]
+│   │   │               │                           ├── TokenTreeNode: identifier, alias:[varName] | value: a
+│   │   │               │                           └── TokenTreeNode: identifier, alias:[varName] | value: i
+│   │   │               └── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │                   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │   │                       ├── TokenTreeNode: identifier, alias:[varName] | value: i
+│   │   │                       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │                           └── ProductionTreeNode: PLUS_EXPRESSION, aliases:[]
+│   │   │                               ├── TokenTreeNode: identifier, alias:[varName, left] | value: i
+│   │   │                               └── TokenTreeNode: integer_literal, alias:[right] | value: 1
+│   │   ├── TokenTreeNode: return_stmt, alias:[] | value: return
+│   │   └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │       └── TokenTreeNode: identifier, alias:[varName] | value: sum
+│   └── ProductionTreeNode: METHOD_DECLARATION, aliases:[]
+│       ├── TokenTreeNode: public_stmt, alias:[] | value: public
+│       ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   └── ProductionTreeNode: ARRAY_TYPE, aliases:[]
+│       │       └── TokenTreeNode: int_type, alias:[] | value: int
+│       ├── TokenTreeNode: identifier, alias:[functionName] | value: get_array
+│       ├── ProductionTreeNode: FORMAL_PARAMETER, aliases:[]
+│       │   ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│       │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│       │   └── TokenTreeNode: identifier, alias:[parameterName] | value: a
+│       ├── ProductionTreeNode: FORMAL_PARAMETER, aliases:[]
+│       │   ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│       │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│       │   └── TokenTreeNode: identifier, alias:[parameterName] | value: b
+│       ├── ProductionTreeNode: VAR_DECLARATION, aliases:[]
+│       │   ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   │   └── ProductionTreeNode: ARRAY_TYPE, aliases:[]
+│       │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│       │   └── TokenTreeNode: identifier, alias:[varName] | value: return_val
+│       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│       │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│       │       ├── TokenTreeNode: identifier, alias:[varName] | value: ret
+│       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│       │           └── ProductionTreeNode: ARRAY_ALLOCATION_EXPRESSION, aliases:[]
+│       │               ├── TokenTreeNode: int_type, alias:[] | value: int
+│       │               └── ProductionTreeNode: EXPRESSION, aliases:[]
+│       │                   └── TokenTreeNode: integer_literal, alias:[] | value: 2
+│       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│       │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT, aliases:[]
+│       │       ├── TokenTreeNode: identifier, alias:[varName] | value: return_val
+│       │       ├── ProductionTreeNode: EXPRESSION, aliases:[]
+│       │       │   └── TokenTreeNode: integer_literal, alias:[] | value: 0
+│       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│       │           └── TokenTreeNode: identifier, alias:[varName] | value: a
+│       ├── ProductionTreeNode: STATEMENT, aliases:[]
+│       │   └── ProductionTreeNode: ARRAY_ASSIGNMENT_STATEMENT, aliases:[]
+│       │       ├── TokenTreeNode: identifier, alias:[varName] | value: return_val
+│       │       ├── ProductionTreeNode: EXPRESSION, aliases:[]
+│       │       │   └── TokenTreeNode: integer_literal, alias:[] | value: 1
+│       │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│       │           └── TokenTreeNode: identifier, alias:[varName] | value: b
+│       ├── TokenTreeNode: return_stmt, alias:[] | value: return
+│       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│           └── TokenTreeNode: identifier, alias:[varName] | value: return_val
+├── ProductionTreeNode: CLASS_DECLARATION, aliases:[]
+│   ├── TokenTreeNode: identifier, alias:[className] | value: B
+│   ├── TokenTreeNode: identifier, alias:[extendedClassName] | value: A
+│   └── ProductionTreeNode: METHOD_DECLARATION, aliases:[]
+│       ├── TokenTreeNode: public_stmt, alias:[] | value: public
+│       ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   └── TokenTreeNode: identifier, alias:[className] | value: A
+│       ├── TokenTreeNode: identifier, alias:[functionName] | value: foo
+│       ├── TokenTreeNode: return_stmt, alias:[] | value: return
+│       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│           └── ProductionTreeNode: ALLOCATION_EXPRESSION, aliases:[]
+│               └── TokenTreeNode: identifier, alias:[className] | value: B
+├── ProductionTreeNode: CLASS_DECLARATION, aliases:[]
+│   ├── TokenTreeNode: identifier, alias:[className] | value: C
+│   ├── TokenTreeNode: identifier, alias:[extendedClassName] | value: B
+│   └── ProductionTreeNode: METHOD_DECLARATION, aliases:[]
+│       ├── TokenTreeNode: public_stmt, alias:[] | value: public
+│       ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   └── TokenTreeNode: identifier, alias:[className] | value: A
+│       ├── TokenTreeNode: identifier, alias:[functionName] | value: foo
+│       ├── ProductionTreeNode: FORMAL_PARAMETER, aliases:[]
+│       │   ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│       │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│       │   └── TokenTreeNode: identifier, alias:[parameterName] | value: a
+│       ├── ProductionTreeNode: FORMAL_PARAMETER, aliases:[]
+│       │   ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
+│       │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│       │   └── TokenTreeNode: identifier, alias:[parameterName] | value: b
+│       ├── ProductionTreeNode: FORMAL_PARAMETER, aliases:[]
+│       │   ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   │   └── ProductionTreeNode: ARRAY_TYPE, aliases:[]
+│       │   │       └── TokenTreeNode: int_type, alias:[] | value: int
+│       │   └── TokenTreeNode: identifier, alias:[parameterName] | value: c
+│       ├── ProductionTreeNode: FORMAL_PARAMETER, aliases:[]
+│       │   ├── ProductionTreeNode: TYPE, aliases:[]
+│       │   │   └── ProductionTreeNode: BOOLEAN_TYPE, aliases:[]
+│       │   │       └── TokenTreeNode: boolean_type, alias:[] | value: boolean
+│       │   └── TokenTreeNode: identifier, alias:[parameterName] | value: d
+│       ├── TokenTreeNode: return_stmt, alias:[] | value: return
+│       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│           └── ProductionTreeNode: ALLOCATION_EXPRESSION, aliases:[]
+│               └── TokenTreeNode: identifier, alias:[className] | value: B
+└── ProductionTreeNode: CLASS_DECLARATION, aliases:[]
+    └── TokenTreeNode: identifier, alias:[className] | value: D
