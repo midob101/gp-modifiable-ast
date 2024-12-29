@@ -64,8 +64,8 @@ class A
 
     public int get_int_literal()
     {
-        return 5;   // Return integer literal
         a = new A();     // dead code. Works in extended mini java
+        return 5;   // Return integer literal
     }
 
     public int get_int_literal2()

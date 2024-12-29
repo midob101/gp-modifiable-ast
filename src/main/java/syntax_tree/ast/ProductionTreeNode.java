@@ -35,6 +35,11 @@ public class ProductionTreeNode extends AbstractSyntaxTreeNode {
     }
 
     @Override
+    public AbstractSyntaxTreeNode clone() {
+        return new ProductionTreeNode(this.production);
+    }
+
+    @Override
     protected String getSources() {
         return "";
     }

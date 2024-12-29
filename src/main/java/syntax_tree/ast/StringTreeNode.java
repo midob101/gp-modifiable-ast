@@ -6,6 +6,7 @@ public class StringTreeNode extends AbstractSyntaxTreeNode {
     public StringTreeNode(String value) {
         this.value = value;
     }
+
     /**
      * Gets the display value for this tree node.
      *
@@ -15,6 +16,11 @@ public class StringTreeNode extends AbstractSyntaxTreeNode {
         return "StringTreeNode, value: " + this.value;
     }
 
+    @Override
+    public AbstractSyntaxTreeNode clone() {
+        return new StringTreeNode(this.value);
+    }
+
     public String getValue() {
         return value;
     }
@@ -22,4 +28,6 @@ public class StringTreeNode extends AbstractSyntaxTreeNode {
     protected String getSources() {
         return this.value;
     }
+
+
 }

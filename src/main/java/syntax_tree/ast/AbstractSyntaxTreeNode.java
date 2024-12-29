@@ -6,6 +6,7 @@ import syntax_tree.ast.exceptions.AddingConnectedNode;
 import syntax_tree.ast.exceptions.ReplacingNonChildNode;
 import syntax_tree.ast.exceptions.ReplacingUnconnectedNode;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -116,10 +117,33 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
      * Replaces one child in this node.
      *
      * @param original to be replaced
+     * @param newChild the node to be added at the index of the original node
+     */
+    public void replaceChild(AbstractSyntaxTreeNode original, AbstractSyntaxTreeNode newChild) throws ReplacingNonChildNode, AddingConnectedNode {
+        this.replaceChild(original, List.of(newChild));
+    }
+
+    /**
+     * Replaces one child in this node.
+     *
+     * @param original to be replaced
      * @param newChildren the nodes to be added at the index of the original node
      */
     public void replaceChild(AbstractSyntaxTreeNode original, List<AbstractSyntaxTreeNode> newChildren) throws ReplacingNonChildNode, AddingConnectedNode {
         this.replaceChild(original, newChildren, false);
+    }
+
+    /**
+     * Replaces one child in this node.
+     *
+     * @param original to be replaced
+     * @param child the node to be added at the index of the original node
+     * @param forced If true, the replacement is done even if a child already has a parent. This should be used with caution
+     *               and only be used when entirely sure that the subtree is dangling. Mostly this will be the case in the
+     *               AST generation and postprocessing rules.
+     */
+    public void replaceChild(AbstractSyntaxTreeNode original, AbstractSyntaxTreeNode child, boolean forced) throws ReplacingNonChildNode, AddingConnectedNode {
+        this.replaceChild(original, List.of(child), forced);
     }
 
     /**
@@ -154,9 +178,16 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
      * Replaces this node with a different tree node
      */
     public void replace(AbstractSyntaxTreeNode replaceWith) throws ReplacingUnconnectedNode {
+        this.replace(List.of(replaceWith));
+    }
+
+    /**
+     * Replaces this node with different tree nodes
+     */
+    public void replace(List<AbstractSyntaxTreeNode> replaceWith) throws ReplacingUnconnectedNode {
         if(this.parent != null) {
             try {
-                this.parent.replaceChild(this, List.of(replaceWith));
+                this.parent.replaceChild(this, replaceWith);
             } catch (ReplacingNonChildNode|AddingConnectedNode e) {
                 // We can safely ignore the exception at this point. We know, that the child is a direct
                 // child of the node.
@@ -242,6 +273,27 @@ public abstract class AbstractSyntaxTreeNode implements IPrintableTreeNode<Abstr
         }
 
         return new QueryResult(matches);
+    }
+
+    public AbstractSyntaxTreeNode deepClone() {
+        AbstractSyntaxTreeNode newInstance;
+        try {
+            newInstance = this.clone();
+            newInstance.copyAttributes(this);
+            for(AbstractSyntaxTreeNode child: children) {
+                newInstance.addChild(child.deepClone());
+            }
+        } catch (AddingConnectedNode e) {
+            throw new RuntimeException(e);
+        }
+        return newInstance;
+    }
+
+    public abstract AbstractSyntaxTreeNode clone();
+
+    private void copyAttributes(AbstractSyntaxTreeNode abstractSyntaxTreeNode) {
+        this.alias = abstractSyntaxTreeNode.getAliases();
+        this.hidden = abstractSyntaxTreeNode.hidden;
     }
 
     /**

@@ -23,6 +23,12 @@ public class TokenTreeNode extends AbstractSyntaxTreeNode {
     public String getValue() {
         return token.getValue();
     }
+
+    @Override
+    public AbstractSyntaxTreeNode clone() {
+        return new TokenTreeNode(this.token);
+    }
+
     /**
      * Gets the display value for this tree node.
      *

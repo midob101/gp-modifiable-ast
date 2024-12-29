@@ -71,7 +71,7 @@ class A
     {
         int ret;
         ret = 928;
-        ret = ret + 12423;
+        ret = ret + (12423);
         return ret;   // Return integer literal
     }
 

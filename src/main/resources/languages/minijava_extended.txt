@@ -40,8 +40,8 @@ LEXER_RULES
     if                      =   regex(if(?!([a-zA-Z_0-9])));
     else                    =   regex(else(?!([a-zA-Z_0-9])));
     while                   =   regex(while(?!([a-zA-Z_0-9])));
-    compop                  =   regex(<[^=]|>[^=]|==|<=|>=);
     assignment              =   "=";
+    compop                  =   regex(==|<=|>=|<|>);
     plus                    =   "+";
     minus                   =   "-";
     multiply                =   "*";
@@ -63,14 +63,13 @@ PRODUCTIONS
                                     bracket_open[hidden] string_type square_bracket_open square_bracket_close identifier[alias=varName] bracket_close[hidden]
                                     curly_bracket_open[hidden] VAR_DECLARATIONS[inline] STATEMENTS[inline] curly_bracket_close[hidden] curly_bracket_close[hidden];
     METHOD_DECLARATIONS[list]   ->  METHOD_DECLARATION METHOD_DECLARATIONS | EPSILON;
-    METHOD_DECLARATION          ->  public_stmt TYPE identifier[alias=functionName] bracket_open[hidden] FORMAL_PARAMETER_LIST[inline] bracket_close[hidden] curly_bracket_open[hidden] VAR_DECLARATIONS[inline] STATEMENTS[inline] curly_bracket_close[hidden];
+    METHOD_DECLARATION          ->  public_stmt TYPE identifier[alias=functionName] bracket_open[hidden] FORMAL_PARAMETER_LIST[inline] bracket_close[hidden] curly_bracket_open[hidden] VAR_DECLARATIONS[inline] STATEMENTS[inline] return_stmt EXPRESSION semicolon[hidden]  curly_bracket_close[hidden];
     FORMAL_PARAMETER_LIST[list] ->  FORMAL_PARAMETER_LIST comma[hidden] FORMAL_PARAMETER | FORMAL_PARAMETER | EPSILON;
     FORMAL_PARAMETER            ->  TYPE identifier[alias=parameterName];
     VAR_DECLARATIONS[list]      ->  VAR_DECLARATIONS VAR_DECLARATION | EPSILON;
     STATEMENTS[list]            ->  STATEMENT STATEMENTS | EPSILON;
     VAR_DECLARATION             ->  TYPE identifier[alias=varName] semicolon[hidden];
-    STATEMENT                   ->  BLOCK | ASSIGNMENT_STATEMENT | ARRAY_ASSIGNMENT_STATEMENT | IF_STATEMENT | WHILE_STATEMENT | PRINT_STATEMENT | RETURN_STATEMENT;
-    RETURN_STATEMENT            ->  return_stmt EXPRESSION semicolon[hidden];
+    STATEMENT                   ->  BLOCK | ASSIGNMENT_STATEMENT | ARRAY_ASSIGNMENT_STATEMENT | IF_STATEMENT | WHILE_STATEMENT | PRINT_STATEMENT;
     BLOCK                       ->  curly_bracket_open[hidden] STATEMENTS[inline] curly_bracket_close[hidden];
     ASSIGNMENT_STATEMENT        ->  identifier[alias=varName] assignment[hidden] EXPRESSION semicolon[hidden];
     ARRAY_ASSIGNMENT_STATEMENT  ->  identifier[alias=varName] square_bracket_open[hidden] EXPRESSION square_bracket_close[hidden] assignment[hidden] EXPRESSION semicolon[hidden];
@@ -91,7 +90,7 @@ PRODUCTIONS
                                     | MESSAGE_SEND
                                     | CLAUSE[inline];
     AND_EXPRESSION              ->  CLAUSE[inline,alias=left] and[hidden] CLAUSE[inline,alias=right];
-    COMPARE_EXPRESSION          ->  PRIMARY_EXPRESSION[inline,alias=left] compop PRIMARY_EXPRESSION[inline,alias=right];
+    COMPARE_EXPRESSION          ->  PRIMARY_EXPRESSION[inline,alias=left] compop[alias=compop] PRIMARY_EXPRESSION[inline,alias=right];
     PLUS_EXPRESSION             ->  PRIMARY_EXPRESSION[inline,alias=left] plus[hidden] PRIMARY_EXPRESSION[inline,alias=right];
     MINUS_EXPRESSION            ->  PRIMARY_EXPRESSION[inline,alias=left] minus[hidden] PRIMARY_EXPRESSION[inline,alias=right];
     TIMES_EXPRESSION            ->  PRIMARY_EXPRESSION[inline,alias=left] multiply[hidden] PRIMARY_EXPRESSION[inline,alias=right];
