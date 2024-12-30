@@ -87,6 +87,7 @@ ProductionTreeNode: S, aliases:[]
 │   │               │               │                       └── ProductionTreeNode: EXPRESSION, aliases:[]
 │   │               │               │                           └── ProductionTreeNode: COMPARE_EXPRESSION, aliases:[]
 │   │               │               │                               ├── TokenTreeNode: integer_literal, alias:[left] | value: 1
+│   │               │               │                               ├── TokenTreeNode: compop, alias:[compop] | value: <
 │   │               │               │                               └── TokenTreeNode: integer_literal, alias:[right] | value: 5
 │   │               │               └── ProductionTreeNode: STATEMENT, aliases:[]
 │   │               │                   └── ProductionTreeNode: BLOCK, aliases:[]
@@ -161,6 +162,12 @@ ProductionTreeNode: S, aliases:[]
 │   │   │   └── ProductionTreeNode: INTEGER_TYPE, aliases:[]
 │   │   │       └── TokenTreeNode: int_type, alias:[] | value: int
 │   │   ├── TokenTreeNode: identifier, alias:[functionName] | value: get_int_literal
+│   │   ├── ProductionTreeNode: STATEMENT, aliases:[]
+│   │   │   └── ProductionTreeNode: ASSIGNMENT_STATEMENT, aliases:[]
+│   │   │       ├── TokenTreeNode: identifier, alias:[varName] | value: a
+│   │   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │           └── ProductionTreeNode: ALLOCATION_EXPRESSION, aliases:[]
+│   │   │               └── TokenTreeNode: identifier, alias:[className] | value: A
 │   │   ├── TokenTreeNode: return_stmt, alias:[] | value: return
 │   │   └── ProductionTreeNode: EXPRESSION, aliases:[]
 │   │       └── TokenTreeNode: integer_literal, alias:[] | value: 5
@@ -262,6 +269,7 @@ ProductionTreeNode: S, aliases:[]
 │   │   │       ├── ProductionTreeNode: EXPRESSION, aliases:[]
 │   │   │       │   └── ProductionTreeNode: COMPARE_EXPRESSION, aliases:[]
 │   │   │       │       ├── TokenTreeNode: identifier, alias:[varName, left] | value: i
+│   │   │       │       ├── TokenTreeNode: compop, alias:[compop] | value: <
 │   │   │       │       └── ProductionTreeNode: BRACKET_EXPRESSION, aliases:[right]
 │   │   │       │           └── ProductionTreeNode: EXPRESSION, aliases:[]
 │   │   │       │               └── ProductionTreeNode: ARRAY_LENGTH, aliases:[]

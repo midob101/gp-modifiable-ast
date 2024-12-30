@@ -186,7 +186,9 @@ ProductionTreeNode: S, aliases:[]
 │   │   │       └── ProductionTreeNode: EXPRESSION, aliases:[]
 │   │   │           └── ProductionTreeNode: PLUS_EXPRESSION, aliases:[]
 │   │   │               ├── TokenTreeNode: identifier, alias:[varName, left] | value: ret
-│   │   │               └── TokenTreeNode: integer_literal, alias:[right] | value: 12423
+│   │   │               └── ProductionTreeNode: BRACKET_EXPRESSION, aliases:[right]
+│   │   │                   └── ProductionTreeNode: EXPRESSION, aliases:[]
+│   │   │                       └── TokenTreeNode: integer_literal, alias:[] | value: 12423
 │   │   ├── TokenTreeNode: return_stmt, alias:[] | value: return
 │   │   └── ProductionTreeNode: EXPRESSION, aliases:[]
 │   │       └── TokenTreeNode: identifier, alias:[varName] | value: ret

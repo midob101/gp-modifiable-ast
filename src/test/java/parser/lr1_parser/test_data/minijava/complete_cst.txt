@@ -524,7 +524,13 @@ S
     │   │       │   │       │       │       ├── +
     │   │       │   │       │       │       ├── whitespace
     │   │       │   │       │       │       └── PRIMARY_EXPRESSION
-    │   │       │   │       │       │           └── 12423
+    │   │       │   │       │       │           └── BRACKET_EXPRESSION
+    │   │       │   │       │       │               ├── (
+    │   │       │   │       │       │               ├── EXPRESSION
+    │   │       │   │       │       │               │   └── CLAUSE
+    │   │       │   │       │       │               │       └── PRIMARY_EXPRESSION
+    │   │       │   │       │       │               │           └── 12423
+    │   │       │   │       │       │               └── )
     │   │       │   │       │       ├── ;
     │   │       │   │       │       └── whitespace
     │   │       │   │       └── STATEMENTS
